@@ -1,0 +1,183 @@
+%%%Écrit par Jean-Raphaël Carrier (2014) en collaboration avec Claudine Allen%%%
+%Dernière modification JRC: 10 janvier 2014
+%Dernière modification CA: 31 août 2020
+%
+\RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
+\documentclass[canadien,12pt,oneside,letterpaper]{article}
+%
+%-----------------------------------------------------
+%Loading packages
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+\usepackage{graphicx}
+\usepackage[americanvoltages,americancurrents]{circuitikz}
+\usetikzlibrary{babel}
+\usepackage{caption}
+\usepackage[letterpaper,headheight=15pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+%
+%----------------------------------------------------
+%Other configurations and layout
+%
+\sisetup{separate-uncertainty}
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textsl{GPH-2006/PHY-2002~---~Laboratoire~I}}
+\rhead{\textsl{Page \thepage}}
+\setcounter{secnumdepth}{0}
+\setlength{\parskip}{1.5ex plus0.5ex minus0.2ex}
+%\onehalfspacing
+\interfootnotelinepenalty=10000 %To avoid footnotes spreading on several pages.
+%
+%---------------------------------------------------
+%
+\title{\textbf{Laboratoire I}\\Métrologie \& statistiques : acquisition numérique\thanks{Auteurs: Claudine Allen \& Jean-Raphaël Carrier}}
+\renewcommand\footnotemark{}
+\date{}
+
+\begin{document}
+
+\maketitle \vspace{-2cm}
+
+\section{Objectifs}
+
+Ce laboratoire vise à familiariser l’étudiant à l’acquisition de données assistée par ordinateur, en particulier pour la caractérisation d’un système instable où la variation de la grandeur mesurée rend impraticable l’utilisation d’un instrument avec afficheur numérique ou analogique. En plus d’introduire les premières notions de base en métrologie et analyse statistique, ce laboratoire met ainsi l’accent sur une situation plus typique de la recherche expérimentale au lieu du cadre didactique habituel. L’étudiant sera sensibilisé à l’importance de choisir une méthode de mesure et de présentation des résultats appropriée à l’expérience ainsi qu’à la pertinence de l’analyse qualitative. 
+
+Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 6, 7, 9, 10 et 11 du plan de cours et couvriront la qualité 5~--~utilisation d’outils d’ingénierie, prescrite dans les normes du Bureau d'agrément d'Ingénieurs Canada (BAIC).
+
+\vspace{10ex}
+% \framebox[\textwidth][c]{\parbox{0.9\textwidth}}
+\noindent\textit{Les notes de bas de page de ce protocole indiquent où, et répètent parfois comment, consigner les divers éléments de votre compte rendu de recherche. Prenez le temps de les lire attentivement même si le texte est dense! Ces instructions demeurent les mêmes pour tous les protocoles subséquents des expériences en présentiel.}
+\vspace{10ex}
+
+\section[]{Préparation\footnote{La préparation s'effectue INDIVIDUELLEMENT AVANT d'arriver au laboratoire dans votre cahier de recherche électronique selon les consignes dans le document \textit{Tenue du cahier de laboratoire}.}}
+
+Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit au minimum:
+\begin{itemize} \itemsep5pt
+\item se créer un mot de passe sur \textit{Pixel} pour le domaine FSG (\texttt{Applications $\rightarrow$ Utilitaires}), voir la section \texttt{Matériel didactique} du plan de cours pour plus d'informations;
+\item lire les manuels de l'utilisateur du module d'acquisition (pages 1 à 32), du multimètre à 4\textonehalf~chiffres (pages 20 à 24) et du multimètre à 6\textonehalf~chiffres (pages 17 à 22);
+\item lire le complément \textit{Introduction à LabVIEW}, l'annexe n'est pas obligatoire, mais pourra vous être fort utile en cas de problème(s) de communication avec les instruments;
+\item lire le complément \textit{Fonctionnement d'une pile électrochimique};
+\item lire les sections "Introduction" et "Conclusion" du \textit{Guide de rédaction de rapports scientifiques};
+\item lire le protocole de ce laboratoire en portant une attention particulière à la section de \textbf{Questions et discussion}: à la sortie de chaque séance, il faut s'assurer d'avoir toutes les données correctes et autres informations nécessaires pour répondre à ces questions;
+\item évaluez en millivolts la résolution de numérisation (conversion analogique-numérique, échantillonnage) du module d'acquisition lors d'une mesure de tension, sachant que cette mesure sera une différence (\textit{differential}) de potentiel entre deux points du circuit. Faites ce calcul pour deux intervalles de mesure: d'abord de $-10$~V à 10~V, puis de $-1$~V à 1~V.\\ \textit{N.B. Longueur estimée de la démarche de solution: 1 ligne pour chaque intervalle. On fait appel à vos capacités de chercheur, dans le sens littéral de chercher par vous-même, pour comprendre le rôle du module d'acquisition avec son manuel et autres sources d'information (\textit{e.g.} dictionnaire!) sur la numérisation. Des discussions à ce sujet sur le forum du cours sont encouragées.}
+\end{itemize}
+
+
+\section{Matériel}
+
+La réalisation de ce laboratoire requiert l'utilisation de:
+\begin{itemize} \itemsep5pt
+\item une pomme de terre;
+\item un multimètre à 4\textonehalf~chiffres;
+\item un multimètre à 6\textonehalf~chiffres;
+\item un module d'acquisition (NI USB-6008);
+\item un ordinateur avec le logiciel \textit{LabVIEW};
+\item quatre tiges métalliques: acier (grosse tige rouillée), acier inoxydable\footnote{Pour la suite du document, pour éviter toute confusion avec l'acier, le terme «inox» sera utilisé pour désigner «acier inoxydable».} (tige mince), aluminium (grosse tige plus pâle) et zinc (vis);
+\item deux résistances électriques (nominalement 12~$\Omega$ et 1~k$\Omega$);
+\item une plaquette de montage.
+\end{itemize}
+
+\section[]{Manipulations\footnote{La consignation des expériences selon le document \textit{Tenue du cahier de laboratoire} se continue INDIVIDUELLEMENT dans votre cahier en ligne. Ces notes doivent être prises immédiatement PENDANT la séance de laboratoire en parallèle avec les manipulations.}}
+
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+%\subsection{Partie 0 --- Exercice de statistiques en métrologie}
+
+%Pendant la présentation introduisant des notions de base et un peu d'historique en métrologie, vous serez conviés à mesurer les dimensions d'une efface et estimer son volume. Ces mesures expérimentales seront rassemblées pour illustrer quelques concepts de statistiques et métrologie en fin de présentation.
+
+
+\subsection{Partie 1 --- VI \textit{LabVIEW} contrôlant le module d'acquisition}
+
+Tout au long de la création du VI \textit{LabVIEW}, n'oubliez pas d'enregistrer souvent votre fichier. À moins que vous ne teniez à tout recommencer du début\dots
+
+a) Après vous être procuré le matériel complémentaire, soit une pomme de terre, quatre tiges et le module d'acquisition, branchez ce dernier dans un port USB de l'ordinateur.
+
+b) Démarrez le logiciel \textit{LabVIEW} et ouvrez un VI vide. Faites \texttt{Ctrl+E} pour afficher le diagramme ainsi que la face-avant si une seule de ces deux interfaces est ouverte initialement. Le raccourci \texttt{Ctrl+H}, quant à lui, affiche une fenêtre d'aide contextuelle très utile.
+
+c) Sur le diagramme, affichez la palette \textbf{Fonctions} à l'aide d'un clic droit et sélectionnez l'\textbf{Assistant DAQ} (\texttt{Fonctions $\rightarrow$ Express $\rightarrow$ Entrée $\rightarrow$ Assistant DAQ}). Placez l'Assistant DAQ sur le diagramme. Il se lancera automatiquement et la boîte de dialogue \textbf{Créer un nouvel objet Tâche Express} apparaîtra. Dans celle-ci, sélectionnez \texttt{Acquérir des signaux $\rightarrow$ Entrée analogique $\rightarrow$ Tension}. Sélectionnez la voie \textbf{ai0} et cliquez sur \textbf{Terminer}.
+
+L'Assistant DAQ ouvrira ensuite une nouvelle boîte de dialogue qui affiche les options de configuration d'une boucle While pour la voie sélectionnée. Sous l'onglet \textbf{Configuration}, assurez-vous que les valeurs maximale et minimale de la gamme du signal d'entrée soient de 10~V et $-10$~V respectivement. Au bas de la page, changez le mode d'acquisition pour \textbf{Échantillons continus}, changez le nombre d'\textbf{Échantillons à lire} pour 10 et mettez une \textbf{Fréquence} de 10~Hz. Ceci signifie qu'à chaque itération le module acquerra 10~données et qu'il y aura 10~données prises à chaque seconde (donc une itération par seconde). Lorsque ceci est fait, cliquez sur \textbf{OK}. Une boîte de dialogue \textbf{Confirmer la création automatique de la boucle} apparaîtra. Cliquez sur \textbf{Oui} et \textit{LabVIEW} créera automatiquement une boucle While autour du VI.
+
+Si vous avez correctement cliqué sur \textbf{Oui}, allez maintenant à l'étape c). Si vous avez cliqué sur \textbf{Non} (malheur!), vous devrez rajouter une boucle While manuellement. Pour ce faire, sélectionnez une boucle While (\texttt{Fonctions $\rightarrow$ Programmation $\rightarrow$ Structures $\rightarrow$ Boucle While}) et placez-la sur le diagramme de façon à ce qu'elle englobe l'Assistant DAQ (faites-la plus grande que nécessaire, d'autres objets devront être placés à l'intérieur de la boucle). Maintenant, rajoutez un bouton Stop. Pour ce faire, allez à la face-avant (\texttt{Ctrl+E}), ajoutez-y un bouton-poussoir (\texttt{Commandes $\rightarrow$ Moderne $\rightarrow$ Booléen $\rightarrow$ Bouton-poussoir}) puis changez son nom pour «stop~(F)». Par la suite, retournez au diagramme ; vous constaterez que le bouton Stop a été rajouté. Déplacez-le à l'intérieur de votre boucle While s'il n'y est pas déjà. Reliez la sortie du bouton Stop à l'entrée \textbf{stop~(F)} de l'Assistant DAQ et reliez la sortie \textbf{arrêtée} de l'Assistant DAQ au terminal de condition de la boucle While (l'octogone rouge). Vous pouvez agrandir l'icône de l'Assistant DAQ afin de mieux voir ses entrées et ses sorties.
+
+d) Sur le diagramme, cliquez avec le bouton droit sur la sortie \textbf{Données} et sélectionnez \texttt{Créer $\rightarrow$ Indicateur graphe}. Un graphe apparaît sur la face-avant. Sur le diagramme, si l'indicateur graphe est placé à l'intérieur de la boucle While, celui-ci affichera les valeurs mesurées en continu. S'il est placé en-dehors de la boucle, alors il affichera l'ensemble des valeurs lorsque toutes les itérations auront été faites. Puisqu'on souhaite ce dernier type de graphique, placez l'indicateur en-dehors de la boucle (mais veillez à ce qu'il soit tout de même relié à l'aide d'un fil à la sortie \textbf{données} de l'Assistant DAQ).
+
+e) Il serait intéressant d'avoir aussi un indicateur qui afficherait les valeurs mesurées pendant l'exécution du VI, pour voir si tout fonctionne correctement. Pour ce faire, encore sur la sortie \textbf{Données}, créez un indicateur numérique. Cet indicateur doit être placé dans la boucle pour avoir l'effet escompté.
+
+f) Maintenant que le VI peut mesurer une tension et afficher les résultats en continu, il ne reste qu'à le configurer afin qu'il enregistre les résultats automatiquement dans un fichier. Avant toute chose, créez un nouveau dossier dans votre répertoire sur le domaine FSG. C'est là que vous enregistrerez tous vos documents et acquisitions durant la session.
+
+De retour à votre VI, ajoutez la fonction \textbf{Écrire dans un fichier de mesures} (\texttt{Fonctions $\rightarrow$ Programmation $\rightarrow$ E/S sur fichiers $\rightarrow$} \texttt{Écrire dans un fichier de mesures}) et placez-le dans la boucle While, en bas à droite de l'Assistant DAQ (vous pouvez agrandir la boucle au besoin). La boîte de dialogue \textbf{Configurer Écrire dans un fichier de mesures} apparaît. Le champ \textbf{Nom de fichier} affiche l'endroit où les mesures seront enregistrées. Modifiez l'emplacement du fichier \texttt{test.lvm} afin qu'il s'enregistre dans votre dossier. N'ayez pas peur de l'extension~\texttt{.lvm}: il s'agit d'un simple fichier texte. 
+
+Dans la section \textbf{Si le fichier existe déjà}, cochez l'option \textbf{Incrémenter le nom du fichier}. Dans la section \textbf{En-têtes de segment}, cochez \textbf{Un seul en-tête}. Dans le champ \textbf{Description du fichier}, inscrivez le titre du laboratoire ainsi que vos noms. Cliquez sur \textbf{OK} lorsque tout est fait. Reliez la sortie \textbf{Données} de l'Assistant DAQ à l'entrée \textbf{Signaux} de l'icône Écrire dans un fichier de mesures.
+
+g) Rajoutez maintenant un script qui arrêtera automatiquement le processus après 500 mesures. Pour ce faire, rajoutez une constante numérique (\texttt{Fonctions $\rightarrow$ Programmation $\rightarrow$ Numérique $\rightarrow$ Constante numérique}) et placez-la dans la boucle While, près du terminal d'itération (le carré bleu \textbf{i} représentant une variable qui contient la valeur de l'itération en cours). Fixez la constante à 50 (puisque 500 mesures correspondent à 50 itérations). Ensuite, insérez une commande de comparaison \textbf{Supérieur ou égal} (\texttt{Fonctions $\rightarrow$ Programmation $\rightarrow$ Comparaison $\rightarrow$ Supérieur ou égal~?}). Reliez le terminal d'itération \textbf{i} et la constante numérique aux entrées $x$ et $y$ respectivement de la fonction Supérieur ou égal, afin que le résultat soit faux lorsque $\mathbf{i}<constante$. Maintenant, supprimez le fil qui relie le bouton Stop à l'Assistant DAQ. Puis, reliez la sortie de la fonction Supérieur ou égal et la sortie du bouton Stop aux entrées d'une fonction \textbf{OU} (\texttt{Fonctions $\rightarrow$ Programmation $\rightarrow$ Booléen $\rightarrow$ OU}). Enfin, reliez la sortie du OU à l'entrée \textbf{stop~(F)} de l'Assistant DAQ. Ainsi, l'acquisition de données s'arrêtera lorsque 50 itérations auront été faites (soit 500 mesures) ou lorsque l'utilisateur appuiera sur le bouton Stop.
+
+h) Le VI est maintenant terminé. Si ce n'était déjà fait, enregistrez-le! S'il vous reste des fils brisés, enlevez-les avec \texttt{Ctrl+B}, puis assurez-vous que votre VI soit le plus clair possible avec \texttt{Ctrl+U} et en déplaçant manuellement les fils et objets au besoin.
+
+
+\subsection{Partie 2 --- Mesures de tension}
+
+a) Insérez les tiges d'inox et d'aluminium dans la pomme de terre, de façon à avoir une distance de quelques centimètres entre les deux. Enfoncez-les bien. Faites attention de ne pas manger la patate ; cela viendrait fausser les résultats.
+
+b) À l'aide du multimètre à 4\textonehalf~chiffres, mesurez la différence de potentiel entre les deux matériaux. Estimez très approximativement l'incertitude sur cette mesure, mais surtout justifiez-la en commentant brièvement comment vous êtes arrivés à cet estimé ainsi qu'en identifiant les causes de cette incertitude. 
+
+c) Refaites la mesure avec le multimètre à 6\textonehalf~chiffres et notez l'incertitude en comparant à l'étape précédente.
+
+d) Réalisez une acquisition de données informatiques avec le module d'acquisition. Pour ce faire, reliez les deux électrodes (les tiges d'inox et d'aluminium) aux bornes $+$ et $-$ de la voie \textbf{ai0}. À l'aide du VI que vous avez construit dans la première partie, faites l'acquisition des données.
+
+%%Une tcolorbox serait sympa pour ça :) :)
+\textbf{Sagesse expérimentale:} Toujours vérifier immédiatement que les données sont bien enregistrées dans votre fichier à l'aide d'un simple éditeur de texte, par exemple \textit{Bloc-notes (Notepad)} sur \textit{OS Windows} ou \textit{TextEdit} sur \textit{MacOS}. Un esprit critique attentif pourra même parfois déjà déceler des erreurs de mesures problématiques. Par exemple, une colonne entière de valeurs très proches de zéro peut être suspecte si le signal mesuré n'est pas censé être nul. 
+
+e) Importez les données de votre fichier \texttt{.lvm} dans un format numérique à l'aide d'un des logiciels d'analyse suggérés à l'entrée du site Web de cours\footnote{Le choix de logiciel n'est pas imposé à ce point-ci, mais il est recommandé d'évoluer progressivement vers les outils du langage \textit{Python} libre d'accès et bien adapté aux travaux de physique. L'équipe d'enseignement peut vous conseiller dans ce choix en fonction de votre niveau actuel de connaissances informatiques.} puis tracez leur graphique en nuage de points (\textit{scatter}). Vous constaterez que la résolution de l'appareil est très faible : comparez-la avec la résolution que vous aviez calculée en préparation\footnote{N'hésitez pas à consulter l'équipe d'enseignement pour bien comprendre où la résolution intervient dans cette mesure.}. Pour améliorer la résolution de l'appareil, réduisez la gamme du signal d'entrée de l'Assistant DAQ : mettez des valeurs maximale et minimale de 1~V et $-1$~V respectivement. Puis, faites à nouveau une acquisition de données.
+
+f) Construisez un histogramme à partir de vos nouvelles données : ajustez le nombre d'intervalles afin d'obtenir un histogramme significatif (trop ou trop peu d'intervalles ne permettent pas de bien voir la distribution des données).
+
+g) Refaites les étapes a), d) et f) avec les combinaisons d'électrodes suivantes : acier--aluminium, aluminium--zinc et inox--zinc. Ne faites ces acquisitions que pour la gamme de valeurs réduite (de $-1$~V à $1$~V). Vous pouvez faire l'étape d'analyse en f) après le laboratoire si vous pensez manquer de temps. Observez que les fluctuations de la combinaison acier--aluminium permettent de mesurer la résolution de numérisation pour l'intervalle choisi. Comparez avec la résolution que vous aviez calculée en préparation (à noter dans le cahier de laboratoire bien sûr).
+
+h) Refaites les étapes d) et f) après avoir complètement débranché votre pomme de terre pour prendre une mesure de référence sur une gamme de valeurs encore plus réduite (de $-0.05$~V à $0.05$~V). Et oui, vous n’avez alors que le module d’acquisition de branché, sans rien d’autre! Retournez ensuite la plage de tension de $-0.5$~V à $0.5$~V pour les étapes subséquentes.
+
+La plaquette de montage (\textit{breadboard}) simplifiera les branchements que vous aurez à faire pour la prochaine et dernière étape de l'expérience. Son utilisation est donc recommandée pour se familiariser avec son fonctionnent et deviendra essentielle dans les séance de laboratoire subséquentes.
+
+i) Réinsérez les tiges d'inox et de zinc dans votre pomme de terre et connectez-les à l'entrée \textbf{ai0} du système d'acquisition. Rajoutez, en série, les deux résistances de 1~k$\Omega$ et de 12~$\Omega$ entre les deux matériaux (voir figure~\ref{L1-sch-patate}). Reliez les bornes de la petite résistance à l'entrée \textbf{ai1} du module d'acquisition. La mesure de la tension aux bornes de la petite résistance permettra de calculer le courant circulant entre les deux électrodes. Utilisez la plaquette de montage afin de faciliter les branchements de votre montage.
+
+Modifiez votre VI afin qu'il puisse acquérir simultanément deux mesures de tension. Pour ce faire, allez dans les propriétés de l'Assistant DAQ et rajoutez une voie. Sélectionnez \textbf{Tension} puis \textbf{ai1} et faites \textbf{OK}. Laissez les mêmes paramètres que pour la voie \textbf{ai0} et cliquez sur \textbf{OK}. Sur le diagramme, mettez la valeur de la constante numérique à 10. Ainsi, les données seront recueillies pendant dix secondes au lieu de cinquante.
+
+Maintenant, faites une acquisition des données. Sur votre logiciel d'analyse numérique choisi, divisez les valeurs de tension obtenues par la voie \textbf{ai1} par 12~$\Omega$ afin d'avoir le courant\footnote{Négligez l'incertitude de la résistance de 12~$\Omega$ pour ce calcul.} : ce courant est le même qui traverse la plus grosse résistance.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{L1-sch-patate}
+\caption{\label{L1-sch-patate}Schéma du montage de la partie h) avec R1~=~1~k$\Omega$ et R2~=~12~$\Omega$.}
+\end{figure}
+
+\section[]{Observations \& Analyses\footnote{Les questions de cette section doivent être répondues INDIVIDUELLEMENT dans votre cahier de recherche électronique AVANT le début du prochain laboratoire. Ceci n'est PAS un rapport de laboratoire détaillé. Il faut viser le juste équilibre entre précision et concision selon le type de question défini ci-dessous indiquant leur rôle dans votre développement de compétences en recherche et innovation.\\
+\vspace{3pt}
+\texttt{[observation]} : Réponse très courte ou à choix multiple visant à illustrer des commentaires que vous devez apprendre progressivement à remarquer et noter par vous-mêmes dans votre cahier pendant l'expérimentation pour développer votre jugement critique. Il faut réfléchir en manipulant! Cela aide à déceler des erreurs et ainsi développer le premier réflexe de tout chercheur.e et ingénieur.e, soit de modifier et reprendre l'expérience autant de fois que nécessaire.\\
+\vspace{3pt}
+\texttt{[analyse]} : Résultats présentés selon les règles d'écriture en métrologie et l'ensemble de votre réponse doit déjà faire preuve d'analyse critique dans cette étape préliminaire à la rédaction d'un rapport. Par exemple, si vos mesures et observations ont un comportement physiquement inattendu, une courte justification ou hypothèse doit être présentée pour tenter de l'expliquer. Une longue discussion n'est pas requise: la véracité et la qualité priment sur la quantité. Lorsqu'une figure ou un graphique est demandé, il doit respecter les consignes spécifiées dès le début de la page d'introduction du site Internet du cours.\\[-6pt]}}
+
+\begin{enumerate}
+%On pourrait utiliser les données et analyse en classe pour tester la propagation d'incertitude, règles variance vs min-max vs etc.
+\item \texttt{[observation]} À l'étape g) de la deuxième partie, vous avez probablement remarqué que la différence de potentiel entre les électrodes dépendait des métaux choisis. Quelle combinaison permet d'obtenir la plus haute tension?
+\item \texttt{[observation]} Vous aurez aussi remarqué que la combinaison acier--aluminium donnait une tension qui fluctuait autour de zéro. Pourquoi en est-il ainsi?\\a) L'acier est oxydé.\\b) Acier et aluminium commencent les deux par la lettre «a», donc ils ne peuvent réagir ensemble.\\c) Les deux métaux ont la même électronégativité.
+\item \texttt{[analyse]} Comparez l’histogramme de l’étape~f) pour la combinaison inox-aluminium à celui de l’étape~h) en explicitant en légende lequel des deux correspond le mieux au modèle de la loi normale (distribution gaussienne). Pour le cas où cette loi ne s’applique PAS, présentez aussi graphiquement les données de tension d'une manière différente qui met en lumière le manque de stabilité de la mesure.
+\item \texttt{[analyse]} À partir des mesures de l'étape~i), calculez la valeur de la grosse résistance en utilisant une \textit{évaluation de Type A de l'incertitude} tel que présentée dans l’introduction aux bases de la métrologie. Concrètement, divisez la colonne \textit{tension} par la colonne \textit{courant} pour obtenir une distribution de la mesure de résistance. Puis, comparez la moyenne et la médiane de cette distribution de résistance.\\ \textit{N.B. Dans cette situation instable, il vaut mieux définir un intervalle d'incertitude très élargi en multipliant par 3 l'écart type~$\sigma$ de votre distribution de données.}  %pour qui couvre 99.6\% des données acquises}
+\end{enumerate}
+
+\section[]{Parties de rapport\footnote{Cet exercice de rapport d'expérience divisé en parties différentes sur les 4 premiers laboratoires constitue votre première communication scientifique; c'est un langage tout aussi rigoureux et important à maîtriser que le langage mathématique. Les instructions et explications d'écriture pour chaque partie sont détaillées dans le document \textit{Guide de rédaction de rapports scientifiques}. Vos textes doivent être compilés en format PDF et remis INDIVIDUELLEMENT dans la boîte de dépôt correspondante sur le site web du cours AVANT le début du prochain laboratoire.}}
+
+Écrivez en 350 mots ou moins l'introduction et la conclusion d'un rapport scientifique portant sur l'ensemble du laboratoire et remettez votre texte dans la boîte de dépôt de l'évaluation correspondante sur le site du cours.
+
+\end{document}
