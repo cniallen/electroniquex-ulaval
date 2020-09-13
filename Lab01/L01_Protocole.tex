@@ -1,6 +1,6 @@
-%%%Écrit par Jean-Raphaël Carrier (2014) en collaboration avec Claudine Allen%%%
+%%%Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen%%%
 %Dernière modification JRC: 10 janvier 2014
-%Dernière modification CA: 31 août 2020
+%Dernière modification CA: 13 septembre 2020
 %
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -19,7 +19,7 @@
 \usepackage{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
-\usepackage[americanvoltages,americancurrents]{circuitikz}
+\usepackage[oldvoltagedirection,americanvoltages,americancurrents]{circuitikz}
 \usetikzlibrary{babel}
 \usepackage{caption}
 \usepackage[letterpaper,headheight=15pt]{geometry}
@@ -58,14 +58,14 @@ Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 6, 7, 9, 10 e
 
 \vspace{10ex}
 % \framebox[\textwidth][c]{\parbox{0.9\textwidth}}
-\noindent\textit{Les notes de bas de page de ce protocole indiquent où, et répètent parfois comment, consigner les divers éléments de votre compte rendu de recherche. Prenez le temps de les lire attentivement même si le texte est dense! Ces instructions demeurent les mêmes pour tous les protocoles subséquents des expériences en présentiel.}
+\noindent\textit{Les notes de bas de page de ce premier protocole indiquent où, et répètent parfois comment, consigner les divers éléments de votre compte rendu de recherche. Prenez le temps de les lire attentivement même si le texte est dense! Ces instructions demeurent les mêmes pour tous les protocoles subséquents des expériences en présentiel.}
 \vspace{10ex}
 
 \section[]{Préparation\footnote{La préparation s'effectue INDIVIDUELLEMENT AVANT d'arriver au laboratoire dans votre cahier de recherche électronique selon les consignes dans le document \textit{Tenue du cahier de laboratoire}.}}
 
-Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit au minimum:
+\noindent Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit au minimum:
 \begin{itemize} \itemsep5pt
-\item se créer un mot de passe sur \textit{Pixel} pour le domaine FSG (\texttt{Applications $\rightarrow$ Utilitaires}), voir la section \texttt{Matériel didactique} du plan de cours pour plus d'informations;
+\item se créer un mot de passe sur \textit{Pixel} pour le domaine FSG (\texttt{Applications $\rightarrow$ Utilitaires}) et tester la procédure de connexion à distance pour commencer à programmer \textit{LabVIEW}, voir la section \texttt{Matériel didactique} du plan de cours pour plus d'informations;
 \item lire les manuels de l'utilisateur du module d'acquisition (pages 1 à 32), du multimètre à 4\textonehalf~chiffres (pages 20 à 24) et du multimètre à 6\textonehalf~chiffres (pages 17 à 22);
 \item lire le complément \textit{Introduction à LabVIEW}, l'annexe n'est pas obligatoire, mais pourra vous être fort utile en cas de problème(s) de communication avec les instruments;
 \item lire le complément \textit{Fonctionnement d'une pile électrochimique};
@@ -84,7 +84,7 @@ La réalisation de ce laboratoire requiert l'utilisation de:
 \item un multimètre à 6\textonehalf~chiffres;
 \item un module d'acquisition (NI USB-6008);
 \item un ordinateur avec le logiciel \textit{LabVIEW};
-\item quatre tiges métalliques: acier (grosse tige rouillée), acier inoxydable\footnote{Pour la suite du document, pour éviter toute confusion avec l'acier, le terme «inox» sera utilisé pour désigner «acier inoxydable».} (tige mince), aluminium (grosse tige plus pâle) et zinc (vis);
+\item quatre tiges métalliques: acier (grosse tige rouillée), acier inoxydable\footnote{Pour la suite du document, pour éviter toute confusion avec l'acier, le terme «inox» sera utilisé pour désigner «acier inoxydable».} (tige mince), aluminium (grosse tige plus pâle) et zinc (tige plate);
 \item deux résistances électriques (nominalement 12~$\Omega$ et 1~k$\Omega$);
 \item une plaquette de montage.
 \end{itemize}
@@ -162,10 +162,8 @@ Maintenant, faites une acquisition des données. Sur votre logiciel d'analyse nu
 \caption{\label{L1-sch-patate}Schéma du montage de la partie h) avec R1~=~1~k$\Omega$ et R2~=~12~$\Omega$.}
 \end{figure}
 
-\section[]{Observations \& Analyses\footnote{Les questions de cette section doivent être répondues INDIVIDUELLEMENT dans votre cahier de recherche électronique AVANT le début du prochain laboratoire. Ceci n'est PAS un rapport de laboratoire détaillé. Il faut viser le juste équilibre entre précision et concision selon le type de question défini ci-dessous indiquant leur rôle dans votre développement de compétences en recherche et innovation.\\
-\vspace{3pt}
-\texttt{[observation]} : Réponse très courte ou à choix multiple visant à illustrer des commentaires que vous devez apprendre progressivement à remarquer et noter par vous-mêmes dans votre cahier pendant l'expérimentation pour développer votre jugement critique. Il faut réfléchir en manipulant! Cela aide à déceler des erreurs et ainsi développer le premier réflexe de tout chercheur.e et ingénieur.e, soit de modifier et reprendre l'expérience autant de fois que nécessaire.\\
-\vspace{3pt}
+\section[]{Observations \& Analyses\footnote{Les questions de cette section doivent être répondues INDIVIDUELLEMENT dans votre cahier de recherche électronique AVANT le début du prochain laboratoire. Ceci n'est PAS un rapport de laboratoire détaillé. Il faut viser le juste équilibre entre précision et concision selon le type de question défini ci-dessous indiquant leur rôle dans votre développement de compétences en recherche et innovation.\\[6pt]
+\texttt{[observation]} : Réponse très courte ou à choix multiple visant à illustrer des commentaires que vous devez apprendre progressivement à remarquer et noter par vous-mêmes dans votre cahier pendant l'expérimentation pour développer votre jugement critique. Il faut réfléchir en manipulant! Cela aide à déceler des problèmes expérimentaux et ainsi développer le premier réflexe de tout chercheur.e et ingénieur.e, soit de modifier et reprendre l'expérience autant de fois que nécessaire.\\[6pt]
 \texttt{[analyse]} : Résultats présentés selon les règles d'écriture en métrologie et l'ensemble de votre réponse doit déjà faire preuve d'analyse critique dans cette étape préliminaire à la rédaction d'un rapport. Par exemple, si vos mesures et observations ont un comportement physiquement inattendu, une courte justification ou hypothèse doit être présentée pour tenter de l'expliquer. Une longue discussion n'est pas requise: la véracité et la qualité priment sur la quantité. Lorsqu'une figure ou un graphique est demandé, il doit respecter les consignes spécifiées dès le début de la page d'introduction du site Internet du cours.\\[-6pt]}}
 
 \begin{enumerate}
@@ -173,11 +171,11 @@ Maintenant, faites une acquisition des données. Sur votre logiciel d'analyse nu
 \item \texttt{[observation]} À l'étape g) de la deuxième partie, vous avez probablement remarqué que la différence de potentiel entre les électrodes dépendait des métaux choisis. Quelle combinaison permet d'obtenir la plus haute tension?
 \item \texttt{[observation]} Vous aurez aussi remarqué que la combinaison acier--aluminium donnait une tension qui fluctuait autour de zéro. Pourquoi en est-il ainsi?\\a) L'acier est oxydé.\\b) Acier et aluminium commencent les deux par la lettre «a», donc ils ne peuvent réagir ensemble.\\c) Les deux métaux ont la même électronégativité.
 \item \texttt{[analyse]} Comparez l’histogramme de l’étape~f) pour la combinaison inox-aluminium à celui de l’étape~h) en explicitant en légende lequel des deux correspond le mieux au modèle de la loi normale (distribution gaussienne). Pour le cas où cette loi ne s’applique PAS, présentez aussi graphiquement les données de tension d'une manière différente qui met en lumière le manque de stabilité de la mesure.
-\item \texttt{[analyse]} À partir des mesures de l'étape~i), calculez la valeur de la grosse résistance en utilisant une \textit{évaluation de Type A de l'incertitude} tel que présentée dans l’introduction aux bases de la métrologie. Concrètement, divisez la colonne \textit{tension} par la colonne \textit{courant} pour obtenir une distribution de la mesure de résistance. Puis, comparez la moyenne et la médiane de cette distribution de résistance.\\ \textit{N.B. Dans cette situation instable, il vaut mieux définir un intervalle d'incertitude très élargi en multipliant par 3 l'écart type~$\sigma$ de votre distribution de données.}  %pour qui couvre 99.6\% des données acquises}
+\item \texttt{[analyse]} À partir des mesures de l'étape~i), calculez la valeur de la grosse résistance en utilisant une \textit{évaluation de Type A de l'incertitude} tel que présentée dans l’introduction aux bases de la métrologie. Concrètement, divisez la colonne \textit{tension} par la colonne \textit{courant} pour obtenir une distribution de la mesure de résistance. Puis, comparez la moyenne et la médiane de cette distribution de résistance.\\ \textit{N.B. Dans cette situation instable, il vaut mieux définir un intervalle d'incertitude très élargi en multipliant par 3 l'écart type~$\sigma$ de votre distribution de données.}
 \end{enumerate}
 
-\section[]{Parties de rapport\footnote{Cet exercice de rapport d'expérience divisé en parties différentes sur les 4 premiers laboratoires constitue votre première communication scientifique; c'est un langage tout aussi rigoureux et important à maîtriser que le langage mathématique. Les instructions et explications d'écriture pour chaque partie sont détaillées dans le document \textit{Guide de rédaction de rapports scientifiques}. Vos textes doivent être compilés en format PDF et remis INDIVIDUELLEMENT dans la boîte de dépôt correspondante sur le site web du cours AVANT le début du prochain laboratoire.}}
+\section[]{Sections de rapport\footnote{Cet exercice de rapport d'expérience divisé en parties différentes sur les 4 premiers laboratoires constitue votre première communication scientifique; c'est un langage tout aussi rigoureux et important à maîtriser que le langage mathématique. Les instructions et explications d'écriture pour chaque partie sont détaillées dans le document \textit{Guide de rédaction de rapports scientifiques}. Vos textes doivent être compilés en format PDF et remis INDIVIDUELLEMENT dans la boîte de dépôt correspondante sur le site web du cours AVANT le début du prochain laboratoire.}}
 
-Écrivez en 350 mots ou moins l'introduction et la conclusion d'un rapport scientifique portant sur l'ensemble du laboratoire et remettez votre texte dans la boîte de dépôt de l'évaluation correspondante sur le site du cours.
+Écrivez en moins de 350 mots l'introduction et la conclusion d'un rapport scientifique portant sur l'ensemble du laboratoire et remettez votre texte dans la boîte de dépôt de l'évaluation correspondante sur le site du cours.
 
 \end{document}
