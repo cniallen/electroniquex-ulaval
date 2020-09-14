@@ -1,0 +1,227 @@
+%Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen
+%Dernière modification JRC: 13 janvier 2014
+%Élimination du labo de résistivité des matériaux à la fin de l'ère JRC => renumérotation VI -> V maintenant
+%Dernière modification CA: 13 septembre 2020
+%
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[canadien,12pt,oneside,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage[oldvoltagedirection,americanvoltages,americancurrents]{circuitikz}
+\usetikzlibrary{babel}
+\usepackage{caption}
+\usepackage[letterpaper,headheight=15pt]{geometry}
+\usepackage{fancyhdr}
+%\usepackage{setspace}
+
+
+\sisetup{separate-uncertainty}
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textsl{GPH-2006/PHY-2002~---~Laboratoire~V}}
+\rhead{\textsl{Page \thepage}}
+\setcounter{secnumdepth}{0}
+\setlength{\parskip}{1.5ex plus0.5ex minus0.2ex}
+%\onehalfspacing
+
+\title{\textbf{Laboratoire V}\\Transfert de puissance et lignes de transmission\thanks{Auteurs: Claudine Allen \& Jean-Raphaël Carrier}}
+\renewcommand\footnotemark{}
+\date{}
+
+
+\begin{document}
+
+\maketitle \vspace{-2cm}
+
+\section{Objectifs}
+
+L’objectif principal de ce laboratoire est de réaliser une expérimentation complète qui comprend la modélisation, les manipulations et mesures, l’analyse des résultats et une discussion critique, pour se terminer avec la rédaction d’un rapport communiquant clairement et rigoureusement l’ensemble de cette recherche. Par ce travail, l’étudiant devrait saisir que la conception d’un circuit doit considérer l’adaptation de l’impédance à la source d’alimentation pour maximiser le transfert de puissance et ainsi éviter les pertes d’énergie dans la source elle-même. L’adaptation de l’impédance sera aussi explorée à l’aide d’une ligne de transmission afin d’observer des réflexions de signaux aux interfaces de la ligne (changement de milieu de propagation). En continuité avec l’étude des antennes et du couplage capacitif du laboratoire précédent, l’étudiant pourra ainsi relier son apprentissage des circuits électriques aux notions générales d’électromagnétisme pour la propagation d’ondes qui demeurent les mêmes du câble coaxial (ligne de transmission) à la fibre optique (guide d’ondes).
+
+Les travaux effectués aborderont les objectifs d’ensemble 2, 3, 5, 6, 7, 8, 9, 10, 11 et 12 du plan de cours.\\[8mm] \textbf{Dans ce laboratoire, les équipes n'auront pas toutes les mêmes sortes de câbles coaxiaux. Ainsi, ce protocole contient plusieurs «variables» dont les valeurs seront spécifiées au tableau pour chaque équipe.}
+\vfill
+
+\section{Préparation}
+
+\noindent Avant de se présenter au laboratoire, chaque étudiant.e doit au minimum:
+\vspace{1ex}
+\begin{itemize}
+\item lire le complément \textit{Transfert de puissance};
+\item lire le protocole de ce laboratoire;
+\item commencer la programmation du VI de la première partie du laboratoire en n'oubliant pas de l'enregistrer dans la même version de \textit{LabVIEW} que celle sur les ordinateurs du VCH-0647.
+\item amener une clef USB pour enregistrer les données de l'oscilloscope;
+\item faire les deux démonstrations suivantes:
+\end{itemize}
+
+\vspace{2ex}
+\noindent Soit une source de tension, représentée par son circuit équivalent de Thévenin, connectée à une charge $Z_{\mathrm{charge}}$ (figure~\ref{sch-prep}).
+
+\begin{enumerate}[itemsep=2.5ex]
+    \item Dans le cas où l'impédance interne de la source et celle de la charge sont purements résistives ($Z_{\mathrm{source}}=R_{\mathrm{source}}$ et $Z_{\mathrm{charge}}=R_{\mathrm{charge}}$), démontrez que la puissance dissipée par la charge est maximale lorsque $R_{\mathrm{charge}}=R_{\mathrm{source}}$.
+    \item Dans le cas général, démontrez que le transfert de puissance est maximal lorsque l'impédance de la charge égale le complexe conjugué de l'impédance interne de la source ($Z_{\mathrm{charge}}=Z^*_{\mathrm{source}}$).
+\end{enumerate}
+
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,0) node[ground]{} to[V=$V_{\mathrm{source}}$] (0,3) to[european resistor,l^=$Z_{\mathrm{source}}$] (2,3) to[short] (3,3) to[european resistor,l^=$Z_{\mathrm{charge}}$] (3,0) to[short] (0,0)
+{[anchor=south] (0.5,-1) node{source alimentation}}
+;\draw[dotted] (-2,-1) -- (-2,4) -- (2.3,4) -- (2.3,-1) -- (-2,-1)
+;\end{circuitikz}
+\caption{\label{sch-prep}Charge simple reliée à une source de tension.}
+\end{figure}
+
+
+\section{Matériel}
+
+\noindent La réalisation de ce laboratoire requiert l'utilisation de:
+\vspace{1ex}
+\begin{itemize}
+\item un oscilloscope avec générateur de fonctions;
+\item un multimètre à 6\textonehalf~chiffres;
+\item un potentiomètre de 1~k$\Omega$;
+\item une terminaison ajustable (résistance variable) allant jusqu'à 5~k$\Omega$ (code 502);
+\item un module d'adaptation d'impédance;
+\item une résistance de 12~$\Omega$;
+\item quatre condensateurs de 1~$\mu$F;
+\item un câble coaxial avec faible vitesse de propagation;
+\item une plaquette de montage.
+\end{itemize}
+
+
+\section{Manipulations}
+
+\subsection{Partie 1 --- Transfert de puissance en fonction de la charge}
+
+Dans cette partie du laboratoire, vous mesurerez la puissance dissipée par des charges diverses branchées au générateur de fonctions de l'oscilloscope. Vous utiliserez diverses valeurs de résistance en tournant la vis du potentiomètre. Les mesures de résistance et de tension seront faites à l'aide de \textit{LabVIEW}, ce qui permettra de calculer des incertitudes de \textit{Type~A}.
+
+a) Tout d'abord, reliez la sortie du générateur de fonctions à deux points de votre choix de la plaquette de montage (ci-après appelés points \textbf{a} et \textbf{b}). Reliez ces deux points au multimètre à 6\textonehalf~chiffres en mode ohmmètre en utilisant quatre fils. Puis, à l'aide d'une sonde, reliez ces mêmes points \textbf{a} et \textbf{b} au canal~1 de l'oscilloscope. N'activez pas pour l'instant la sortie du générateur.
+
+b) Créez un VI \textit{LabVIEW} afin de mesurer la résistance et la tension efficace entre les points \textbf{a} et \textbf{b} de votre montage. En premier lieu, avec le multimètre, votre VI \textit{LabVIEW} doit:
+\begin{itemize}
+\item initialiser le multimètre à 6\textonehalf~chiffres;
+\item mettre le multimètre en mode ohmmètre à quatre fils;
+\item prendre 30 mesures de la résistance, à l'aide de l'option \textbf{Multiple Points} et l'entrée \textbf{Sample Count} de la fonction \textbf{Read} (au lieu de faire une boucle);
+\item mettre le multimètre en mode voltmètre\footnote{Pour mesurer une résistance, l'ohmmètre doit injecter un léger courant dans la résistance. Toutefois, la présence de ce courant viendrait biaiser la mesure de tension faite par l'oscilloscope. Une façon rapide d'éviter ce problème est de mettre le multimètre en mode voltmètre après que les mesures de résistance aient été prises ; un voltmètre n'injecte aucun courant et ainsi n'influence pas le circuit. Selon cette même logique, le générateur de fonctions doit être désactivé lorsque les mesures de résistance sont prises.}.
+\end{itemize}
+En deuxième lieu, avec l'oscilloscope, le VI doit:
+\begin{itemize}
+\item initialiser le générateur de fonctions;
+\item mettre l'amplitude de la sortie du générateur à 2~V sans décalage (\textit{offset}).\footnote{Notez que le manufacturier définit cette amplitude comme étant crête à crête, il faudra juste en tenir compte dans votre analyse. De plus, il n'est pas nécessaire de changer la fréquence avec votre VI, puisque celle utilisée, 1~kHz, est la fréquence par défaut de l'oscilloscope.}
+\item activer la sortie du générateur, à l'aide de la fonction \textbf{Enable Generator Output};
+\item ajuster les échelles de l'oscilloscope, à l'aide de la fonction \textbf{Autosetup};
+\item prendre 30 mesures de la tension efficace, à l'aide de la fonction de lecture \textbf{DC~RMS} (\textit{CC~EFF}) de l'oscilloscope (en utilisant une boucle cette fois);
+\item désactiver la sortie du générateur.
+\end{itemize}
+Enfin, votre VI \textit{LabVIEW} doit:
+\begin{itemize}
+\item enregistrer les mesures de résistance et de tension dans un fichier \texttt{.lvm}.
+\end{itemize}
+
+\textbf{Note:} Dans votre VI, n'utilisez pas la fonction \textbf{Configure Waveform Characteristics} : vous n'en avez pas besoin.
+
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+%Les signes +,- du générateur de fonction $V_g$  sont inversés! À régler.
+(3,0) to[short,o-] (0,0) node[ground]{} to[sV=$V_g$] (0,4) to[european resistor,l^=$Z_g$] (2,4) to[short,-o] (3,4)
+(5.5,0.5) to[pR,n=pR1] (5.5,2.5) to[R=12~$\Omega$] (5.5,4) to[short,-o] (4.5,4)
+(9,0.5) to[pR,n=pR2] (9,2.5) to[R,l_=12~$\Omega$] (9,4) to[short,-o] (7,4)
+(8,1) to[C=4~$\mu$F] (8,4)
+(pR1.wiper) to[short] (4.5,1.5) to[short,-o] (4.5,0)
+(pR2.wiper) to[short] (8,1.5) to[short] (8,0) to[short,-o] (7,0)
+{[anchor=south] (1.3,-1) node{générateur} (5,-1) node{c)} (8,-1) node{f)}}
+{[anchor=south west] (4.5,1.5) node{$R_{p}$} (8,1.5) node{$R_{p}$}}
+{[anchor=west] (3,4) node{\textbf{a}} (3,0) node{\textbf{b}}}
+{[anchor=east] (4.5,4) node{\textbf{a}} (4.5,0) node{\textbf{b}} (7,4) node{\textbf{a}} (7,0) node{\textbf{b}}}
+;\draw[dotted] (-1.3,-1) -- (-1.3,5) -- (2.5,5) -- (2.5,-1) -- (-1.3,-1)
+;\end{circuitikz}
+\caption{\label{sch-partie1}Générateur de fonctions avec une charge différente pour les étapes c) et f).}
+\end{figure}
+
+c) Placez une charge résistive (figure~\ref{sch-partie1}c) entre les points \textbf{a} et \textbf{b} de votre montage. Ajustez d'abord le potentiomètre à sa résistance minimale (pour que la résistance de la charge soit d'environ 12~$\Omega$).
+
+d) Exécutez votre VI \textit{LabVIEW}. Avant d'aller plus loin, ouvrez votre fichier \texttt{.lvm} avec le \textit{Bloc-Notes} (ou \textit{MATLAB}, \textit{Plotly}, etc.) afin de vérifier que vos valeurs sont correctes et que le VI a bien fonctionné.
+
+e) Tournez la vis du potentiomètre et refaites ces mesures pour d'autres valeurs de résistance. Ayez au minimum dix acquisitions pour des résistances différentes entre 12~$\Omega$ et 200~$\Omega$.
+
+f) Ajoutez un condensateur de 4~$\mu$F en parallèle à votre montage (figure~\ref{sch-partie1}f) afin d'avoir une charge capacitive. Refaites les mesures de résistance et de tension efficace pour dix valeurs de résistance entre 12~$\Omega$ et 200~$\Omega$.
+
+%... retour de la charge inductive un jour...
+
+\subsection{Partie 2 --- Transmission en régime impulsionnel}
+
+Pour les manipulations de cette partie, vous utiliserez un câble coaxial, dont l'impédance est de $Z$, dans lequel l'onde se propage relativement lentement. Ce câble sera la ligne de transmission que vous étudierez. Pour les mesures à l'oscilloscope, utilisez toujours les sondes 10X compensées, jamais les câbles coaxiaux.
+
+Notez que les oscilloscopes sont dotés d'un port USB pour enregistrer les traces à l'écran \dots~ce qui pourrait être très pratique pour votre rapport! Faites bien attention au format dans lequel vous enregistrez vos résultats : l'oscilloscope permet plusieurs options, mais ce sont les données brutes (extension \texttt{.csv}) qui seront utiles. Le format par défaut \textit{Config} (extension \texttt{.scp}) est à éviter!
+
+a) Commencez par faire le montage illustré à la figure~\ref{sch-partie2}. Le générateur de fonctions doit fournir une impulsion allant de 0~V à 2~V, avec une largeur de $W$, à une fréquence de $F$ (afin que deux impulsions consécutives soient très éloignées relativement à la largeur de chacune).
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(-5.5,0) -- (-5.5,2) -- (-2.5,2) -- (-2.5,0) -- (-5.5,0)
+(-1.5,0) -- (-1.5,2) -- (2.5,2) -- (2.5,0) -- (-1.5,0)
+(4,0) -- (4,2) -- (8,2) -- (8,0) -- (4,0)
+(4,3) -- (4,5) -- (8,5) -- (8,3) -- (4,3)
+(-2.5,1.5) to[short] (-1.5,1.5)
+(-2.5,0.5) to[short] (-2,0.5) node[ground]{} to[short] (-1.5,0.5)
+(2.5,1.5) to[short] (4,1.5)
+(2.5,0.5) to[short] (3.25,0.5) node[ground]{} to[short] (4,0.5)
+(3,1.5) to[short] (3,4.5) node[above]{canal~1} to[short] (4,4.5)
+(3.5,3.5) node[ground]{} to[short] (4,3.5)
+(8,3.5) to[short] (8.5,3.5) node[ground]{}
+(8,1.5) to[short] (9,1.5) to[short] (9,4.5) node[above]{canal~2} to[short] (8,4.5)
+(8,0.5) to[short] (9,0.5) node[ground]{}
+(4,1) node[left]{Entrée~}
+(8,1) node[right]{~Sortie}
+{[anchor=south] (-4,0.5) node{générateur} (0.5,0.8) node{module d'adaptation} (0,0.2) node{d'impédance} (6,0.5) node{ligne de transmission} (6,3.5) node{oscilloscope}}
+;\end{circuitikz}
+\caption{\label{sch-partie2}Montage pour l'analyse de la ligne de transmission.}
+\end{figure}
+
+b) En premier lieu, affichez à l'oscilloscope uniquement le signal de sortie\footnote{Lorsque vous affichez seulement le canal~2 à l'écran de l'oscilloscope, assurez-vous que le déclenchement se fasse aussi sur le canal~2. Dans les autres situations, déclenchez toujours sur le canal~1.} (canal~2). Ajustez le module d'adaptation d'impédance à sa valeur minimale ou maximale. Vous remarquerez qu'après chaque impulsion il y a d'autres impulsions ; celles-ci sont dues aux réflexions. En effet, une fraction du signal est réfléchie à la sortie de la ligne, et une fraction de cette réflexion est aussi réfléchie lorsqu'elle retourne à l'entrée de la ligne, pour être ensuite redétectée par la sonde à la sortie. Donc, ces impulsions secondaires ont traversé trois fois, cinq fois, sept fois, etc. la ligne de transmission. Ajustez le module d'adaptation d'impédance afin d'éliminer autant que possible ces impulsions parasites.
+
+c) Déterminez la vitesse de propagation du signal dans le câble coaxial. Pour ce faire, affichez simultanément à l'oscilloscope les canaux 1 et 2. Mesurez le délai entre le début de l'impulsion à l'entrée et à la sortie.
+
+d) Maintenant, affichez seulement le signal d'entrée (canal~1). Vous pouvez cette fois remarquer la présence d'une seule impulsion suivant l'impulsion principale ; celle-ci est due à une réflexion à la sortie de la ligne de transmission. Si vous avez plus d'une impulsion secondaire, c'est parce qu'il y a encore des réflexions à l'entrée de la ligne : le module d'adaptation d'impédance est donc mal ajusté.
+
+Mesurez le délai entre l'impulsion principale et la réflexion et comparez-le avec le délai mesuré en c). Le nouveau délai devrait être exactement deux fois plus long que le premier, puisque l'impulsion aura parcouru une distance deux fois plus longue.
+
+e) Toujours en observant l'impulsion incidente à l'entrée et sa réflexion, mesurez le coefficient de réflexion $\gamma$ défini par:
+\begin{equation*}
+    \gamma=\frac{A_r}{A_i},
+\end{equation*}
+où $A_r$ et $A_i$ sont respectivement les amplitudes des signaux réfléchi et incident.
+
+f) Court-circuitez la sortie du câble et calculez à nouveau le coefficient de réflexion. Assurez-vous que le court-circuit est bien fait : le signal vert (canal 2) devrait être partout à zéro.
+
+g) Enlevez le court-circuit à la fin du câble et remplacez-le par une résistance variable. Jouez avec cette dernière jusqu'à ce que le coefficient de réflexion devienne nul. Par la suite, débranchez la résistance variable, sans modifier son ajustement, et mesurez sa résistance avec le multimètre en mode ohmmètre.
+
+h) Laissez la ligne en circuit ouvert et allongez la durée de l'impulsion envoyée par le générateur de fonctions à $5\,W$, de manière à ce que l'onde réfléchie se superpose à l'onde incidente. Affichez sur l'écran de l'oscilloscope simultanément les deux canaux, i.e. l'entrée et la sortie de la ligne. Notez vos observations de façon détaillée (de manière à pouvoir en discuter dans votre rapport).
+
+i) Court-circuitez la sortie de la ligne de transmission et refaites l'étape h).
+
+
+\section{Analyse minimale pour le rapport}
+
+Les points suivants font partie d'une analyse \textbf{minimale} des expériences de ce laboratoire. La présence de tous ces éléments dans votre rapport ne vous garantit pas une note parfaite. Par contre, l'absence d'au moins un de ces éléments vous garantit une note imparfaite.
+
+\begin{enumerate}
+    \item Utilisez les résultats de la première partie pour représenter, sur un même graphique, la puissance moyenne dissipée par la charge en fonction de la résistance. Considérez que toute la puissance dissipée par la charge est due à la résistance, \textit{i.e.} $p=v_{RMS}^2/R$. Mettez l'axe de la résistance (l'abscisse) en échelle logarithmique. 
+    \item Les démonstrations faites en préparation du laboratoire constituent un modèle théorique du transfert de puissance applicable aux circuits de la première partie, donc comparez les résultats de mesure à ce modèle pour les deux premiers types de charge.
+    \item Estimez la valeur de la résistance qui permet le transfert maximal de puissance pour les deux premiers types de charge.
+    \item À partir du délai que vous avez mesuré à l'étape c) de la deuxième partie et de la longueur du câble, calculez la vitesse de propagation du signal dans le câble ($u=L/\Delta t$).
+\end{enumerate}
+
+\end{document}
