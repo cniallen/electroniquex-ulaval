@@ -1,0 +1,280 @@
+%Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen
+%Dernière modification JRC: 8 février 2014
+%Dernière modification CA: 13 septembre 2020
+%
+%Modifier le protocole pr faire le VI de caractérisation du transistor pour mesurer le courant injecté dans la base (i_{BE}) au lieu de la tension (i_{BE}), ce qui permettra de poser cette question ici: Est-ce que, oui ou non, le ratio de du courant de saturation au courant injecté dans la base demeure approximativement toujours le même? Présentement le transistor ne laisse pas passer de courant pour les 3 premières mesures, changer la première et la 3e pour des valeurs plus élevées où le courant passe!.
+%Bonifier un peu le complément, entre autres avec les modes actif & interrupteur du transistor, cutoff & saturation, beta ratio, etc.
+% Modifier aussi le protocole au début pour faire une acquisition statistique d'entre 25 & 50 pts de V & I pour la résistance (dont la valeur devrait être CHANGÉE POUR BCP DE Mohms afin d'avoir un peu de fluctuations de bruit thermique, to check il me semble que Jérémie m'a dit que ça n'avait pas marché :()-> colonnes pour calculer la distribution de résistance => analyse statistique qui devrait bien poursuivre ce qui se fera dans le 2 laboratoires précédents.
+%
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[canadien,12pt,oneside,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage[oldvoltagedirection,americanvoltages,americancurrents]{circuitikz}
+\usetikzlibrary{babel}
+\usepackage{caption}
+\usepackage[letterpaper,headheight=15pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+
+\sisetup{separate-uncertainty}
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textsl{GPH-2006/PHY-2002~---~Laboratoire~III}}
+\rhead{\textsl{Page \thepage}}
+\setcounter{secnumdepth}{0}
+\setlength{\parskip}{1.5ex plus0.5ex minus0.2ex}
+%\onehalfspacing
+
+\title{\textbf{Laboratoire III}\\Composants linéaires et non linéaires : courbes $i$--$v$\thanks{Auteurs: Claudine Allen \& Jean-Raphaël Carrier}}
+\renewcommand\footnotemark{}
+\date{}
+
+
+\begin{document}
+\hyphenation{Chif-fres}
+\maketitle \vspace{-1cm}
+
+\section{Objectifs}
+
+La courbe $i$--$v$ est le pont principal entre la multidisciplinarité de la science des matériaux et l’ingénierie des dispositifs tels que ceux étudiés dans ce laboratoire: résistance, condensateur, inductance, diode, transistor. Ces dispositifs peuvent avoir plusieurs fonctions comme cuire, illuminer, calculer, stabiliser une tension, etc., mais l’intégration de ces composants dans un circuit en courant continu demeure régie par les principes de conservation édictés avec les lois de Kirchhoff. En effet, on peut approximer une résistance dynamique linéaire par morceaux à partir de la dérivée de la courbe $i$--$v$ afin d’analyser un circuit comportant des composants non linéaires. Spécifiquement, le comportement de diodes sera caractérisé pendant le laboratoire et comparé au cas idéal en termes de résistance dynamique. Quelques caractéristiques d’un transistor seront aussi explorées pour commencer à comprendre leur fonctionnement. Finalement, comme l’acquisition de données des courbes $i$--$v$ impliquera plusieurs instruments contrôlés par ordinateur, l’étudiant se familiarisera aussi avec les protocoles informatiques de communication entrée-sortie.
+
+Les travaux effectués aborderont les objectifs d’ensemble 2, 3, 4, 5, 7, 8, 9, 10, 11 et 12 du plan de cours et couvriront la qualité 5~--~utilisation d’outils d’ingénierie, prescrite dans les normes du Bureau d’agrément d’Ingénieurs Canada (BAIC). 
+
+\newpage
+\section{Préparation}
+
+\noindent Avant de se présenter au laboratoire, chaque étudiant.e doit au minimum:
+\vspace{1ex}
+\begin{itemize}
+\item relire le complément \textit{Introduction à LabVIEW};
+\item lire le complément \textit{Composants non linéaires};
+\item lire la section "Discussion" du \textit{Guide de rédaction de rapports scientifiques};
+\item lire le protocole de ce laboratoire;
+\item débuter la conception des VI \textit{LabVIEW}, sachant que les instructions des protocoles deviennent progressivement incomplètes pour laisser place à votre autonomie de programmeur. Si vous n'êtes pas au laboratoire, vous ne pourrez pas vérifier que vos VI sont pleinement fonctionnels, puisque les pilotes des appareils périphériques\footnote{Toutefois, les pilotes \textit{LabVIEW} des appareils sont téléchargeables sur le site du cours au besoin.} doivent communiquer aux instruments allumés et branchés à l'ordinateur pour exécuter. Il s'agit donc d'avancer le code de vos VI suffisamment pour ne pas manquer de temps durant la séance de laboratoire. Finalement, pour transférer votre VI sur les ordinateurs du laboratoire s'il y a lieu, vous devez l'enregistrer dans la même version de \textit{LabVIEW} que celle sur les postes de travail.
+\end{itemize}
+
+
+\section{Matériel}
+
+\noindent La réalisation de ce laboratoire requiert l'utilisation de:
+\vspace{1ex}
+\begin{itemize}
+\item une source d'alimentation;
+\item un multimètre à 6\textonehalf~chiffres;
+\item un ordinateur avec le logiciel \textit{LabVIEW};
+\item divers composants électriques (une résistance de 1~k$\Omega$, trois résistances de 1,2~k$\Omega$, une bobine de 1~mH, un condensateur de 1~$\mu$F, une diode standard 914B, une diode Zener et un transistor bipolaire 2219A);
+\item Une plaquette de montage.
+\end{itemize}
+
+%%Je pourrais mettre les adresses GPIB regroupées ici, ainsi que la note de bas de page 2 avec un renvoi au document d'intro LabVIEW lorsque complété pour le contrôle d'instruments. Ceci aidera aussi à maintenir le texte.
+
+\section{Manipulations}
+
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+\subsection{Partie 1 --- Liaison entre \textit{LabVIEW} et l'instrumentation}
+
+a) Réalisez le circuit de la figure~\ref{fig-R} avec le multimètre à 6\textonehalf~chiffres. Ensuite, démarrez-le ainsi que le bloc d'alimentation (ne faites que les mettre sous tension, l'ordinateur s'occupera du reste).
+
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,0) to[R=1.2~k$\Omega$] (2,0) to[ammeter] (4,0) to[short] (4,2)
+(0,0) to[short] (0,2) to[V=$0~V-6~V$] (4,2)
+;\end{circuitikz}
+\caption{\label{fig-R}Circuit pour la mesure de la courbe $i$--$v$ de la résistance.}
+\end{figure}
+
+b) Sur l'ordinateur, démarrez \textit{LabVIEW} et ouvrez un VI vide. Enregistrez-le dans votre dossier sur le domaine FSG (et enregistrez-le fréquemment tout au long de la création du VI).
+
+c) Sur le diagramme, insérez la fonction \textbf{Initialize} de la source d'alimentation (\texttt{E/S d'instruments $\rightarrow$ Drivers d'instruments $\rightarrow$ Agilent E363X Series $\rightarrow$\linebreak Initialize}). Afin de mieux voir ses sorties et ses entrées, vous pouvez cliquer droit et déselectionner \textbf{Visualiser sous la forme d'une icône}.
+
+Cliquez avec le bouton droit sur l'entrée \textbf{VISA  resource name} et créez une constante. Sélectionnez l'adresse GPIB du bloc d'alimentation (\verb+GPIB0::5::INSTR+)\footnote{Occasionnellement, il y a changement dans le système d'adressage GPIB et les numéros d'instruments indiqués dans ce protocole ne seront plus les bons. Plusieurs instruments affichent leur adresse GPIB pendant le démarrage, avec plus d'informations pouvant être consultées dans leur manuel d'instructions, et le logiciel \textit{Keysight Connection Expert} indique aussi cette adresse en plus de tester la connexion. Vous pouvez donc effectuer ces vérifications lorsqu'une adresse diffère du protocole.}. Rafraîchissez le menu déroulant si le code d'identification GPIB n'apparaît pas, redémarrez \textit{LabVIEW} au besoin.
+
+d) Insérez la fonction \textbf{Configure Current Limit} de la source d'alimentation (\texttt{Agilent E363X Series $\rightarrow$ Configure $\rightarrow$ Current Limit}). Reliez son entrée\linebreak\textbf{VISA resource name} à la sortie \textbf{VISA resource name out} du premier composant. Cliquez droit sur l'entrée \textbf{Channel} et créez une constante. Par défaut, cette constante sera le canal 1 et c'est celui qu'il faut (le canal 1 correspond à la sortie +~6~V du bloc d'alimentation). Ensuite, cliquez droit sur l'entrée \textbf{Current Limit}, créez une constante et fixez cette constante à 2,5 ampères. Ainsi, le bloc d'alimentation ne fournira jamais un courant supérieur à 2,5 ampères, peu importe la tension demandée --- cette étape est essentielle pour ne pas endommager le multimètre à 6\textonehalf~chiffres, qui ne peut pas soutenir un courant de 3 ampères et plus.
+
+e) Insérez maintenant la fonction \textbf{Configure Output} de la source d'alimentation et reliez son entrée \textbf{VISA} à la sortie \textbf{VISA} du \textbf{Configure Current Limit}. Mettez le canal 1 à l'entrée \textbf{Channel}.
+
+Par la suite, allez sur la face-avant, insérez une commande numérique et appelez-la «Tension». De retour au diagramme, reliez la commande numérique à l'entrée \textbf{Voltage Level}.
+
+f) Désormais, \textit{LabVIEW} contrôle la sortie du bloc d'alimentation. Essayez! Sur la face-avant, inscrivez une valeur de tension entre 0 et 6 volts et exécutez le VI. La source d'alimentation devrait afficher la tension demandée.
+
+g) Maintenant, faites \textit{grosso modo} les mêmes étapes pour le multimètre à 6\textonehalf~chiffres, c'est-à-dire:\\
+-- insérez la fonction \textbf{Initialize} du multimètre sur le diagramme;\\
+-- créez une constante pour l'entrée \textbf{VISA resource name} et sélectionnez le code d'identification du multimètre à 6\textonehalf~chiffres (\verb+GPIB0::22::INSTR+);\\
+-- insérez la fonction \textbf{Configure Measurement} sur le diagramme;\\
+-- reliez les entrée/sortie \textbf{VISA};\\
+-- créez une constante à l'entrée \textbf{Function} et sélectionnez \textbf{DC Current}.
+
+\textbf{Note:} Ne reliez pas les fonctions du multimètre avec les fonctions du bloc d'alimentation, seulement les composants d'un même instrument entre eux.
+
+h) Par la suite, insérez la fonction \textbf{Read} du multimètre sur le diagramme. Laissez l'option \textbf{Single Point} qui est là par défaut. Reliez son entrée \textbf{VISA} à la sortie \textbf{VISA} de la fonction Configure Measurement. Créez un indicateur numérique à la sortie \textbf{Measurement} et appelez-le «Courant».
+
+i) Pour éviter des accidents fâcheux, il est préférable de ne pas fournir une tension \textit{ad vitam aeternam} au circuit. En retournant au bloc d'alimentation, rajoutez une deuxième fonction \textbf{Configure Output}. Reliez son entrée \textbf{VISA} à la sortie \textbf{VISA} de la première fonction Configure Output. Créez une constante à l'entrée \textbf{Enable Output} et assignez-y la valeur \textbf{False}.
+
+Enfin, rajoutez la fonction \textbf{Close} de la source d'alimentation et reliez son entrée \textbf{VISA} à la nouvelle fonction \textbf{Configure Output}. Le \textbf{Close} vérifie s'il y a eu des erreurs lors de l'opération de l'appareil avant de rompre sa liaison avec \textit{LabVIEW}.
+
+j) À ce point, enregistrez une copie de votre VI que vous réutiliserez plus tard.
+
+k) Il est primordial de s'assurer, par un moyen ou un autre, que la lecture faite par le multimètre se fasse uniquement \textit{après} que la source ait appliqué sa tension et que la tension fournie ne retourne à zéro qu'\textit{après} que la valeur du courant ait été lue par le multimètre. Pour ce faire, on utilisera une \textbf{Structure Séquence}.
+
+Insérez une \textbf{Structure Séquence déroulée} (\texttt{Programmation $\rightarrow$ Structures $\rightarrow$ Structure séquence déroulée}) et faites-la en trois étapes (après en avoir fait une partie, cliquez droit et sélectionnez \textbf{Ajoutez une étape avant} pour rajouter une étape).  Placez la deuxième fonction Configure Output ainsi que le Close dans la troisième partie (celle de droite). Placez le Read et l'indicateur «Courant» dans la deuxième partie. Enfin, placez le reste dans la première partie. Refaites les liens brisés au besoin (faites \texttt{Ctrl+B} pour supprimer les liens brisés).
+
+l) Désormais, \textit{LabVIEW} peut appliquer une tension avec le bloc d'alimentation, utiliser le multimètre pour mesurer un courant et arrêter l'application de la tension. Essayez! Appliquez une tension entre 0 et 6 volts et mesurez le courant. Calculez la valeur de la résistance à partir de vos résultats en n'oubliant pas d'évaluer vos incertitudes\footnote{Le sympathique auteur fait ici un rappel qui ne devrait pas être nécessaire ; l'étudiant devrait avoir le réflexe de considérer immédiatement l'incertitude de toute mesure.}. Faites cette mesure avec trois résistances différentes, chacune ayant une résistance nominale de 1,2~k$\Omega$.
+
+
+\subsection{Partie 2 --- Automatisation du VI}
+
+Dans la partie précédente, vous avez construit un VI \textit{LabVIEW} pouvant appliquer une tension et mesurer un courant. Dans cette partie, vous modifierez ce VI afin que \textit{LabVIEW} puisse automatiquement mesurer le courant pour différentes tensions et afficher un graphique du courant en fonction de la tension. De plus, le VI devra enregistrer les données (autant de la tension fournie que du courant lu) dans un fichier, dans votre dossier sur le domaine FSG. Inspirez-vous de ce qui a été fait lors du premier laboratoire.
+
+Avant de commencer, enregistrez votre VI sous un autre nom (afin de pouvoir conserver votre premier VI).
+
+a) Reprenez votre VI tel qu'il était à l'étape j) de la partie 1. (Ou reprenez le VI final de la partie 1 et enlevez la Structure Séquence.)
+
+b) Créez une \textbf{Boucle For} de telle sorte que seuls les composants Configure Output (le premier) et Read soient à l'intérieur de la boucle et que tous les autres composants soient à l'extérieur. L'indicateur du courant doit être à l'intérieur (avec le Read) mais la commande numérique de la tension doit être à l'extérieur.
+
+c) Maintenant, à l'intérieur de la boucle For, rajoutez une \textbf{Structure Séquence déroulée} en deux parties : la première doit contenir la fonction Configure Output alors que le Read et l'indicateur «Courant» vont dans la seconde partie. Refaites les liaisons brisées, en n'oubliant pas de désactiver l'indexation à la sortie de la boucle\footnote{Ceci est un des cas d'instruction incomplète telle que mentionnée en préparation. Quels sont les types de données et comment la boucle de \textit{LabVIEW} les gère-t-elle? N'hésitez pas à en discuter avec l'équipe d'enseignement au besoin.}.
+
+d) Il faut maintenant modifier le diagramme afin que la tension fournie par le bloc d'alimentation augmente d'un incrément par itération. Tout d'abord, changez le nom de la commande numérique «Tension» pour «Incrément tension» et supprimez le lien qui l'unit à la fonction Configure Output.
+
+Insérez maintenant une fonction \textbf{Multiplier} dans la boucle For et reliez sa sortie à l'entrée \textbf{Voltage Level} du Configure Output. Puis, reliez la commande numérique «Incrément tension» et le terminal d'itération (le carré bleu \textbf{i}) aux entrées de la fonction Multiplier.
+
+e) Pour fixer la tension maximale rendue à laquelle la boucle doit s'arrêter, insérez une \textbf{Glissière} (de votre choix) sur la face-avant et nommez-la «Plage tension». Ensuite, changez la valeur maximale de la glissière pour 6~V.
+
+Sur le diagramme, insérez une fonction \textbf{Diviser} à l'extérieur de la boucle, reliez son entrée \textbf{y} à la commande numérique «Incrément tension» et son entrée \textbf{x} à la glissière «Plage tension». Avant de relier la sortie de la fonction Diviser au terminal \textbf{N} de la boucle, faites passer le signal dans une fonction \textbf{Arrondir} : ceci est important puisque la valeur de \textbf{N} doit être entière.
+
+f) Il ne reste maintenant qu'à s'arranger pour que \textit{LabVIEW} construise un graphique $i$--$v$ à partir des résultats. Sur la face-avant, insérez un \textbf{Graphe XY Express}. Si ce n'est pas déjà le cas, sur le diagramme, placez la fonction Graphe XY à l'extérieur de la boucle. Puis, reliez la sortie de la fonction Multiplier à l'entrée \textbf{X} du graphe et la sortie du Read à l'entrée \textbf{Y}.
+
+g) Modifiez le VI afin que les résultats (autant la tension fournie que le courant lu) soient enregistrés automatiquement dans un fichier, dans votre dossier. Utilisez la fonction \textbf{Assembler des signaux} (\texttt{Express $\rightarrow$ Manipulation $\rightarrow$ Assembler}) pour assembler les signaux \textbf{X} et \textbf{Y} avant de les relier à l'entrée \textbf{Signaux} de la fonction \textbf{Écrire dans un fichier de mesures}.
+
+
+\subsection{Partie 3 --- Courbes $i$--$v$ de différents dipôles}
+
+Utilisez le VI construit dans la partie précédente pour tracer les courbes de l'intensité du courant $i$ en fonction de la différence de potentiel $v$ pour différents dipôles.
+
+a) Tracez la courbe $i$--$v$ d'une résistance de 1,2~k$\Omega$ en faisant une acquisition de 40 mesures pour une tension allant de 0~V à 4~V (donc avec des incréments de 0,1~V).
+
+b) Tracez la courbe $i$--$v$ d'un condensateur de 1~$\mu$F en faisant une acquisition de 40 mesures pour une tension allant de 0~V à 2~V.
+
+c) Tracez la courbe $i$--$v$ d'une bobine de 1~mH en faisant une acquisition 0~V à 4~V avec des incréments de 0,05~V.
+
+d) Tracez la courbe $i$--$v$ d'une diode standard en polarité inverse (donc avec la cathode reliée à la borne positive de la source d'alimentation). Faites une acquisition de 0~V à 6~V avec des incréments de 0,05~V. Puis, branchez la diode en courant direct et réexécutez le VI \textit{LabVIEW} pour une tension allant de 0~V à 1~V, avec les mêmes incréments. Sur \textit{Matlab} (ou ailleurs), combinez vos données afin de tracer une seule courbe $i$--$v$ allant de $-6$~V à 1~V.
+
+e) Tracez la courbe $i$--$v$ d'une diode Zener en courant inverse, en faisant une acquisition de 80 mesures de 0~V à 4~V.
+
+
+\subsection{Partie 4 --- Courbes $i$--$v$ d'un transistor}
+
+Puisque le transistor est un tripôle, il faudra modifier à la fois le circuit et le VI.
+
+a) Éteignez le multimètre et le bloc d'alimentation, puis réalisez le circuit de la figure~\ref{fig-T}. Assurez-vous de brancher le transistor 2219A de la bonne façon (consultez sa fiche technique). Ensuite, remettez les deux instruments sous tension.
+
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(2,2) node[npn](npn){}
+(0,2) to[short,-*] (npn.base) node[anchor=south east] {B}
+(2,3) to[short,-*] (npn.collector) node[anchor=south east] {C}
+(2,0) to[short,-*] (npn.emitter) node[anchor=north east] {E}
+(2,0) to[short] (0,0) to[V=$0~V-25~V$] (0,2)
+(2,0) to[short] (4,0) to[V,l_=$0~V-6~V$] (4,3)
+(2,3) to[ammeter] (4,3)
+;\end{circuitikz}
+\caption{\label{fig-T}Circuit pour la mesure des courbes $i$--$v$ du transistor 2219A.}
+\end{figure}
+
+b) Avant de modifier le VI que vous avez utilisé dans la partie précédente, enregistrez-le sous un autre nom.
+
+Supprimez la fonction Initialize du VI et reliez directement l'adresse GPIB du bloc d'alimentation à la fonction Configure Current Limit. Ensuite, réduisez la limite de courant à 0,5 ampère. Enregistrez les modifications et fermez le VI.
+
+Maintenant, ouvrez un VI vide. Enregistrez ce dernier.
+
+c) Tout d'abord, placez une structure Séquence déroulée composée de deux étapes. Dans la première, insérez une fonction Configure Output et créez une constante à son entrée \textbf{Channel}. Cette fois, sélectionnez le canal 2, qui correspond à la sortie +~25~V de l'alimentation. Dans l'étape de droite, insérez le VI que vous venez de modifier (\texttt{Fonctions} $\rightarrow$ \texttt{Sélectionnez un VI\ldots}). L'icône qui apparaîtra contient un VI complet, tel que vous l'avez construit ; il s'agit d'un \textit{sous-VI}.
+
+d) Créez une boucle For autour de la structure Séquence. À l'intérieur de la boucle (mais en-dehors de la séquence), placez une fonction Multiplier et reliez sa sortie à l'entrée Voltage Level de la fonction Configure Output. Une des entrées de la fonction Multiplier sera reliée au terminal d'itération (\textbf{i}).
+
+e) Sur la face-avant, insérez deux commandes numériques. Nommez l'une «Tension base max» et l'autre «Incrément tension base». De retour au diagramme, placez ces deux commandes à l'extérieur et à gauche de la boucle For. Reliez la commande «Incrément tension base» à l'entrée restante de la fonction Multiplier.
+
+Ensuite, insérez une fonction Diviser à gauche de la boucle et reliez les deux commandes à ses entrées de façon à ce que la tension maximale soit divisée par l'incrément de la tension. Reliez la sortie du Diviser à une fonction Arrondir, puis la sortie de cette dernière au terminal de décompte de la boucle (\textbf{N}).
+
+f) Toujours à l'extérieur de la boucle, insérez une fonction Initialize et reliez sa sortie VISA à l'entrée VISA de la fonction Configure Output. Mettez le code GPIB du bloc d'alimentation à l'entrée de la fonction Initialize.
+
+g) Enfin, rajoutez une deuxième fonction Configure Output, cette fois à l'extérieur de la boucle, ainsi qu'un Close. Reliez la sortie VISA de l'existante Configure Output à l'entrée de la nouvelle, puis la sortie de celle-ci au Close. Rajoutez une constante Faux à l'entrée \textbf{Enable Output} de la nouvelle fonction Configure Output. Enregistrez le VI.
+
+h) Désormais, vous pouvez acquérir les données qui vous seront nécessaires pour tracer plusieurs courbes $i$--$v$ avec le transistor. En double-cliquant sur le sous-VI, vous pourrez configurer la plage et le nombre d'itérations pour la tension entre le collecteur et l'émetteur. Avec la face-avant du VI lui-même, vous pourrez faire de même pour la tension entre la base et l'émetteur.
+
+Ainsi, vous obtiendrez les données pour tracer les courbes du courant $i_{\mathrm{ce}}$ en fonction de la tension $v_{\mathrm{ce}}$ pour différentes valeurs de tension $v_{\mathrm{be}}$.
+
+i) Réalisez une acquisition pour une tension $v_{\mathrm{ce}}$ allant de 0~V à 4~V et une tension $v_{\mathrm{be}}$ allant de 0~V à 1,2~V. Dans les deux cas, utilisez des incréments de 0,2~V.
+
+
+\subsection{Partie 5 --- Stabilisateur de tension avec diode}
+
+Cette partie finale applique une caractéristique de la courbe $i$--$v$ d'une diode Zener dans la fonction de réguler la tension; vous n'avez donc plus besoin de \textit{LabVIEW}. Les régulateurs de tension permettent de fixer la tension aux bornes d'une charge, indifféremment du reste du circuit. Il existe plusieurs façons de concevoir un régulateur de tension; seulement une version très simpliste est abordée ici.
+
+a) Placez une diode Zener en série avec une résistance de 1~k$\Omega$, en utilisant comme source la sortie +25~V du bloc d'alimentation (figure~\ref{sch-reg-1}).
+
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,0) node[ground]{} to[V=$v_{\mathrm{s}}$] (0,2.5) to[R=1~k$\Omega$] (3,2.5)
+(0,0) to[short] (3,0) to[zD] (3,2.5)
+(3,2.5) to[short] (4,2.5) node[right]{$v_{\mathrm{out}}$}
+;\end{circuitikz}
+\caption{\label{sch-reg-1}Régulateur de tension simple\\ \textit{Note: À partir d'ici, on n'indique plus toujours le branchement des instruments de mesure dans les schémas pour adopter une notation plus standard: $v_{\mathrm{out}}$ indique où mesurer une tension, mais 2 branchements sont nécessaires pour obtenir une différence de potentiel. Lorsqu'il n'est pas indiqué, le deuxième branchement est la référence de mise à la terre.}}
+\end{figure}
+
+b) Faites varier la source de 0~volt à 15~volts par incréments de 1~volt. À l'aide d'un multimètre en mode voltmètre (DCV), mesurez à chaque fois la tension $v_{\mathrm{out}}$.
+
+
+\section{Observations \& Analyses}
+
+\begin{enumerate}
+    \item \texttt{[observation]} Quelle est la résistance
+        \begin{enumerate}
+            \item d'un condensateur idéal?
+            \item d'une bobine d'inductance idéale?
+        \end{enumerate}
+\end{enumerate}
+\vspace{-1ex}
+\textit{Indice: Ces deux composants remplissent une fonction dans un circuit à courant alternatif, car leur relation entre tension et courant dépend d'un taux de VARIATION par rapport au temps. Ils ne servent donc à rien en courant continu et il s'agit de comprendre physiquement pourquoi.}
+
+\begin{enumerate}[resume]
+    \item \texttt{[observation]} La courbe $i$--$v$ que vous avez mesurée pour un de ces deux composants ne correspond pas du tout au modèle idéal. De quel composant s'agit-il et quelle est la cause d'erreur expliquant cette déviation?
+    \item \texttt{[analyse]} Pour le transistor, faites un graphique superposant l'ensemble des courbes $i$--$v$ dont vous avez fait l'acquisition pendant le laboratoire. Indiquez explicitement au-dessus de chaque courbe la valeur de courant de saturation~$i_{\mathrm{sat}}$, \textit{i.e.} le plateau maximal de courant (avec incertitude par rapport à l'horizontale) qui entre dans le collecteur~$i_{\mathrm{ce}}$.
+\end{enumerate}
+%**Autres possibilités de questions:**
+%\item À l'étape l) de la partie 1, vous avez mesuré trois résistances de 1,2~k$\Omega$ différentes. Avez-vous obtenu \textit{exactement} les mêmes valeurs de résistance pour chacune? Pourquoi? Indice : quelle est la tolérance des résistances de 1,2~k$\Omega$?
+%%\item Comparez les courbes $i$--$v$ des diodes «normale» et Zener. Pourquoi est-il préférable de limiter (réguler) la tension avec une diode Zener en polarité inverse au lieu d'une diode normale en polarité directe?
+
+\section{Section de rapport}
+
+Écrivez en moins de 300 mots une partie d'analyse et discussion d'un rapport de laboratoire sur la caractérisation et l'interprétation du comportement de la diode standard. Au minimum, présentez et/ou discutez les éléments suivants en continuant d'utiliser le vocabulaire de métrologie pour faire des comparaisons claires:
+\begin{enumerate}
+    \item graphique de résistance dynamique $R_{D}=\frac{\mathrm{d}v}{\mathrm{d}i}$ mesurée en fonction de la tension \emph{(faites une différentiation numérique pour traiter directement vos données mesurées)},
+    \item analyse des cas limites de $R_{D}$ mesurée en les comparant aux valeurs attendues selon le modèle de la diode idéale \emph{(une incertitude de type A peut être estimée lorsque $R_{D}$ devient relativement constant, autrement l'évaluation de type B est toujours possible)},
+    \item analyse de la tension seuil $V_{d}$ minimale qui fait circuler le courant dans la diode: comparaison de la valeur idéalement attendue versus le comportement observé, 
+    \item discussion de la validité du modèle de la diode idéale en général,
+    \item proposition d'un modèle un peu mieux adapté aux mesures, soit l'équation de Shockley pour la diode: $i\left( v\right) = i_0\left(e^{v/v_0}-1 \right)$ où $i_0$ et $v_0$ sont des constantes ajustables,
+    \item graphique de la courbe $i$--$v$ mesurée (avec des points) et de l'équation de Shockley ajustée à ces données (avec une ligne); cet ajustement (régression, \textit{fit}) de courbe se fait avec des outils informatiques, par exemple \textit{Curve Fitting Toolbox} de \textit{MATLAB} ou \textit{scipy.optimize.curve\_fit} de \textit{Python},
+    \item analyse de la correspondance entre la fonction ajustée et les mesures sur ce graphique,
+    \item interprétation des résultats au mieux de vos connaissances sur la physique des diodes.
+\end{enumerate}
+
+Pour ce dernier item, d'autres sources que les notes de cours, allant de sites Internet professionnels à la bibliothèque qui existe encore(!), peuvent être utilisées pour aller plus en profondeur dans votre discussion. Il n'est pas nécessaire de maîtriser toute la physique de la matière condensée à ce point-ci bien sûr, veuillez respecter la limite de mots pour cette question.
+
+\end{document}
+
