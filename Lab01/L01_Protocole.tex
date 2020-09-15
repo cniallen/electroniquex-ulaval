@@ -2,6 +2,10 @@
 %Dernière modification JRC: 10 janvier 2014
 %Dernière modification CA: 13 septembre 2020
 %
+%**ToDo**: 
+% - !!!Vérifier les pages de lecture des manuels d’instruction en préparation du laboratoire, il y aurait un mismatch avec mes questions de quiz!!!!! Vérifier pour lab II aussi tant qu'à y être.
+% - Spécifier qu'on peut enrouler les fils du module directement autour des électrodes au départ, en dégainant plus au besoin: mentionner leur pince à dégainer. Expliquer en mode "conception" quand rendus à l'utilisation de plaquette de montage référant au fil & pinces introduits au début : - Comment faire son circuit à la patate (banane + croco) - Comment brancher mutimètre (fil multi + pince grabber), etc. et nous consulter pour apprendre et optimiser.
+%
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
 %
@@ -88,7 +92,7 @@ Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 6, 7, 9, 10 e
 \item un ordinateur avec le logiciel \textit{LabVIEW};
 \item quatre tiges métalliques: acier (grosse tige rouillée), acier inoxydable\footnote{Pour la suite du document, pour éviter toute confusion avec l'acier, le terme «inox» sera utilisé pour désigner «acier inoxydable».} (tige mince), aluminium (grosse tige plus pâle) et zinc (tige plate);
 \item deux résistances électriques (nominalement 12~$\Omega$ et 1~k$\Omega$);
-\item une plaquette de montage.
+\item une plaquette de montage (\textit{breadboard}).
 \end{itemize}
 
 \section[]{Manipulations\footnote{La consignation des expériences selon le document \textit{Tenue du cahier de laboratoire} se continue INDIVIDUELLEMENT dans votre cahier en ligne. Ces notes doivent être prises immédiatement PENDANT la séance de laboratoire en parallèle avec les manipulations.}}
@@ -97,7 +101,7 @@ Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 6, 7, 9, 10 e
 
 %\subsection{Partie 0 --- Exercice de statistiques en métrologie}
 
-%Pendant la présentation introduisant des notions de base et un peu d'historique en métrologie, vous serez conviés à mesurer les dimensions d'une efface et estimer son volume. Ces mesures expérimentales seront rassemblées pour illustrer quelques concepts de statistiques et métrologie en fin de présentation.
+%Pendant la présentation introduisant des notions de base et un peu d'historique en métrologie, vous serez conviés à mesurer les dimensions d'une efface et estimer son volume avec 2 outils étalonnés. Ces mesures expérimentales seront rassemblées pour illustrer quelques concepts de statistiques et métrologie en fin de présentation.
 
 
 \subsection{Partie 1 --- VI \textit{LabVIEW} contrôlant le module d'acquisition}
@@ -150,7 +154,7 @@ g) Refaites les étapes a), d) et f) avec les combinaisons d'électrodes suivant
 
 h) Refaites les étapes d) et f) après avoir complètement débranché votre pomme de terre pour prendre une mesure de référence sur une gamme de valeurs encore plus réduite (de $-0.05$~V à $0.05$~V). Et oui, vous n’avez alors que le module d’acquisition de branché, sans rien d’autre! Retournez ensuite la plage de tension de $-0.5$~V à $0.5$~V pour les étapes subséquentes.
 
-La plaquette de montage (\textit{breadboard}) simplifiera les branchements que vous aurez à faire pour la prochaine et dernière étape de l'expérience. Son utilisation est donc recommandée pour se familiariser avec son fonctionnent et deviendra essentielle dans les séance de laboratoire subséquentes.
+La plaquette de montage (\textit{breadboard}) simplifiera les branchements que vous aurez à faire pour la prochaine et dernière étape de l'expérience. Son utilisation est donc recommandée pour se familiariser avec son fonctionnent et deviendra essentielle dans les séances de laboratoire subséquentes.
 
 i) Réinsérez les tiges d'inox et de zinc dans votre pomme de terre et connectez-les à l'entrée \textbf{ai0} du système d'acquisition. Rajoutez, en série, les deux résistances de 1~k$\Omega$ et de 12~$\Omega$ entre les deux matériaux (voir figure~\ref{L1-sch-patate}). Reliez les bornes de la petite résistance à l'entrée \textbf{ai1} du module d'acquisition. La mesure de la tension aux bornes de la petite résistance permettra de calculer le courant circulant entre les deux électrodes. Utilisez la plaquette de montage afin de faciliter les branchements de votre montage.
 
