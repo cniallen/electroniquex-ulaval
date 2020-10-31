@@ -1,6 +1,6 @@
 %Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen
 %Dernière modification JRC: 13 janvier 2014
-%Élimination du labo de résistivité des matériaux à la fin de l'ère JRC => renumérotation IX -> VIII maintenant
+%Élimination du labo de résistivité des matériaux à la fin de l'ère JRC + regroupement des labos VI & VII en début de pandémie COVID-19 => renumérotation IX -> VII maintenant
 %Dernière modification CA: 31 octobre 2020
 
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
@@ -34,7 +34,7 @@
 \captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{\textsl{GPH-2006/PHY-2002~---~Laboratoire~VIII}}
+\lhead{\textsl{GPH-2006/PHY-2002~---~Laboratoire~VII}}
 \rhead{\textsl{Page \thepage}}
 \setcounter{secnumdepth}{0}
 \setlength{\parskip}{1.5ex plus0.5ex minus0.2ex}
@@ -43,7 +43,7 @@
 %
 %---------------------------------------------------
 %
-\title{\textbf{Laboratoire VIII}\\Filtres passifs, actifs et numériques\thanks{Auteurs: Claudine Allen \& Jean-Raphaël Carrier}}
+\title{\textbf{Laboratoire VII}\\Filtres passifs, actifs et numériques\thanks{Auteurs: Claudine Allen \& Jean-Raphaël Carrier}}
 \renewcommand\footnotemark{}
 \date{}
 
@@ -54,55 +54,67 @@
 
 \section{Objectifs}
 
-Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. On peut alors retirer des fréquences indésirables et généralement obtenir une mesure plus fidèle avec un meilleur rapport signal sur bruit, par exemple. L’effet de différents filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc examinée pour le filtre RC et un exercice de filtrage numérique pour reproduire les mesures analogiques est proposé en devoir.
+Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. On peut alors retirer des fréquences indésirables et généralement obtenir une mesure plus fidèle avec un meilleur rapport signal sur bruit, par exemple. L’effet de différents filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc examinée pour le filtre RC.
+
+%Développer progressivement une méthodologie de travail en transition vers... l'ingénieur.e ou le.la scientifique professionnelle n'a pas de protocole pour ...
 
 Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 4, 5, 7, 9, 10, 11 et 12 du plan de cours.
 
+\section{Lectures préparatoires}
+
+\begin{itemize}
+\item complément \textit{Analyse temporelle};
+\item complément \textit{Analyse fréquentielle};
+\item protocole de ce laboratoire.
+\end{itemize}
+
+
+% \section{Matériel}
+
+% La réalisation de ce laboratoire requiert l'utilisation de:
+% \begin{itemize}
+% \item un oscilloscope avec générateur de fonctions;
+% \item un bloc d'alimentation;
+% \item deux condensateurs de 0,47~$\mu$F et quatre condensateurs de 1~$\mu$F, dont un ayant une précision de $\pm5$~\%;
+% \item deux bobines d'inductance de 1~mH;
+% \item plusieurs résistances : 270~$\Omega$ (trois fois), 560~$\Omega$, 1~k$\Omega$ (trois fois), 10~k$\Omega$ (trois fois) et 100~k$\Omega$;
+% \item un amplificateur opérationnel;
+% \item une plaquette de montage.
+% \end{itemize}
+
+
 \section{Préparation}
 
-Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit:
-\begin{itemize}
-\item lire le complément \textit{Analyse temporelle};
-\item lire le complément \textit{Analyse fréquentielle};
-\item lire le protocole de ce laboratoire;
-\end{itemize}
-
-
-\section{Matériel}
-
-La réalisation de ce laboratoire requiert l'utilisation de:
-\begin{itemize}
-\item un oscilloscope avec générateur de fonctions;
-\item un bloc d'alimentation;
-\item deux condensateurs de 0,47~$\mu$F et quatre condensateurs de 1~$\mu$F, dont un ayant une précision de $\pm5$~\%;
-\item deux bobines d'inductance de 1~mH;
-\item plusieurs résistances : 270~$\Omega$ (trois fois), 560~$\Omega$, 1~k$\Omega$ (trois fois), 10~k$\Omega$ (trois fois) et 100~k$\Omega$;
-\item un amplificateur opérationnel;
-\item une plaquette de montage.
-\end{itemize}
-
-
-\section{Manipulations}
-
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+%Équipe, I'd like I think, surtout si on peut merger des cahiers pour 2 utilisateurs (attention de ne pas perdre ceux déjà faits par contre!? individuel? check vs site de cours (ainsi que check titre du document ici en même temps)
+Pour chacun des circuits ci-dessous, vous devez préparer le protocole qui permettra d'atteindre le sous-objectif indiqué en légende de la figure. Écrivez les manipulations à faire dans votre cahier de recherche afin de les présenter en partage d'écran Zoom pour évaluation pendant la première partie de la séance de cours virtuel.
 
 \subsection{Partie 1 --- Mesures temporelles}
 
-a) Sur la plaquette de montage, réalisez le filtre RC de la figure~\ref{sch-RC} en utilisant le condensateur de précision ($\pm5$~\%).
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
 (0,2) node[left]{$v_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
 (3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
 ;\end{circuitikz}
-\caption{\label{sch-RC}Circuit RC série.}
+\caption{\label{sch-RC}Sous-objectif: Circuit RC série.}
 \end{figure}
 
-b) Avec deux câbles coaxiaux et un «T», reliez la sortie du générateur de fonctions $v_{\mathrm{g}}$ à l'entrée du canal~1 de l'oscilloscope ainsi qu'à la plaquette de montage. À l'aide d'une sonde compensée (10X), reliez les bornes du condensateur au canal~2 de l'oscilloscope.
+% a) Sur la plaquette de montage, réalisez le filtre RC de la figure~\ref{sch-RC} en utilisant le condensateur de précision ($\pm5$~\%).
+% \begin{figure}[h]
+% \centering
+% \begin{circuitikz} \draw
+% (0,2) node[left]{$v_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
+% (3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
+% ;\end{circuitikz}
+% \caption{\label{sch-RC}Circuit RC série.}
+% \end{figure}
 
-c) Générez un signal carré à 50~Hz allant de 0~V à 1~V. Sur l'écran de l'oscilloscope, faites afficher simultanément les deux signaux. En rapetissant les divisions de l'échelle horizontale, observez d'abord qualitativement comment varie la tension $v_{\mathrm{out}}$ et comparez avec le modèle présenté dans le complément \textit{Analyse temporelle}.
+% b) Avec deux câbles coaxiaux et un «T», reliez la sortie du générateur de fonctions $v_{\mathrm{g}}$ à l'entrée du canal~1 de l'oscilloscope ainsi qu'à la plaquette de montage. À l'aide d'une sonde compensée (10X), reliez les bornes du condensateur au canal~2 de l'oscilloscope.
 
-d) Mesurez le temps de montée (de 10~\% à 90~\%) et la constante de temps du circuit. Comparez avec les valeurs attendues.
+% c) Générez un signal carré à 50~Hz allant de 0~V à 1~V. Sur l'écran de l'oscilloscope, faites afficher simultanément les deux signaux. En rapetissant les divisions de l'échelle horizontale, observez d'abord qualitativement comment varie la tension $v_{\mathrm{out}}$ et comparez avec le modèle présenté dans le complément \textit{Analyse temporelle}.
+
+% d) Mesurez le temps de montée (de 10~\% à 90~\%) et la constante de temps du circuit. Comparez avec les valeurs attendues.
 
 
 \subsection{Partie 2 --- Mesures fréquentielles et diagrammes de Bode}
@@ -202,16 +214,10 @@ c) Par la suite, tracez le diagramme de Bode d'un troisième filtre passe-bas de
 \end{figure}
 
 
-\subsection{Partie 4 optionnelle --- Résolution expérimentale du devoir 2}
-
-Montez les deux circuits du \textit{Devoir~2} pour obtenir leurs diagrammes de Bode à l'aide de \textit{LabVIEW}. Vous serez alors en mesure de vérifier vos calculs!
-
-
-\section{Questions et discussion}
-
-\begin{enumerate}
-\item Sur un même graphique, tracez les courbes du gain (en décibels) en fonction de la fréquence normalisée $f/f_{c}$ des quatre filtres passe-bas dont vous avez acquis les diagrammes de Bode dans ce laboratoire, soient les trois filtres de la troisième partie ainsi que le premier filtre RC de la deuxième partie. Utilisez une échelle logarithmique pour la fréquence normalisée. Mesurez les pentes (en décibels par décade) de la courbe de gain dans les hautes fréquences.
-\end{enumerate}
-
+%\section{Questions et discussion}
+%
+%\begin{enumerate}
+%\item Sur un même graphique, tracez les courbes du gain (en décibels) en fonction de la fréquence normalisée $f/f_{c}$ des quatre filtres passe-bas dont vous avez acquis les diagrammes de Bode dans ce laboratoire, soient les trois filtres de la troisième partie ainsi que le premier filtre RC de la deuxième partie. Utilisez une échelle logarithmique pour la fréquence normalisée. Mesurez les pentes (en décibels par décade) de la courbe de gain dans les hautes fréquences.
+%\end{enumerate}
 
 \end{document}
