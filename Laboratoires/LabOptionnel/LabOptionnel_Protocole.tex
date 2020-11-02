@@ -1,0 +1,238 @@
+%Créé par Samuel Tremblay en collaboration avec Jean-Raphaël Carrier et Claudine Allen
+%Dernière modification JRC: 13 janvier 2014
+%Élimination du labo de résistivité des matériaux (IV) à la fin de l'ère JRC => renumérotation XII -> XI puis passé à optionnel pour finalement disparaître en pandémie COVID-19
+%Dernière modification CA: 2 novembre 2020
+%
+\documentclass[12pt,oneside,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[canadien]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[letterpaper]{geometry}
+\usepackage[americanvoltages,americancurrents]{circuitikz}
+\usetikzlibrary{babel}
+\usepackage{setspace}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+\usepackage{sistyle}
+\usepackage{csquotes}
+
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+
+
+\addto\captionsfrench{\def\tablename{Tableau}}
+\linespread{1.3}
+\setcounter{secnumdepth}{0}
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{myheadings}
+\markboth{PHY-2002~---~Laboratoire~XI}{PHY-2002~---~Laboratoire~XII}
+
+
+
+\begin{document}
+
+
+
+\title{\singlespace{\textbf{Laboratoire XI}\\Mesure de bruits fondamentaux}}
+\author{Claudine Allen, Samuel Tremblay \& Jean-Raphaël Carrier}
+\date{}
+\maketitle
+
+
+
+\section{Objectifs}
+
+Cette expérience rejoint plusieurs objectifs du plan de cours. L'étudiant profitera de ce laboratoire pour s'initier aux bruits fondamentaux et aux mesures à faibles courants. Le signal électrique causé par le bruit thermique, aussi appelé bruit de Johnson, d'une résistance sera amplifié et filtré avant d'être traité par des méthodes numériques et analogiques. Cette analyse mènera à une déduction de la valeur de la constante de Boltzmann. Des mesures à basse température seront aussi effectuées, permettant d'obtenir une estimation de la valeur du zéro absolu et d'illustrer le concept d'universalité des principes physiques.
+
+
+
+\section{Préparation}
+
+Avant de se présenter à la séance de laboratoire, chaque étudiant doit:
+\begin{itemize}
+\item lire le complément \textit{Bruits fondamentaux};
+\item lire le protocole de ce laboratoire.
+\end{itemize}
+
+
+
+\section{Matériel}
+
+La réalisation de ce laboratoire requiert l'utilisation de:
+\begin{itemize}
+\item l'ensemble \textit{Noise Fundamentals} de \textit{TeachSpin};
+\item un oscilloscope;
+\item un multimètre;
+\item de l'azote liquide;
+\item une clé USB.
+\end{itemize}
+
+
+
+\section{Considérations préliminaires}
+
+La présente expérience a comme objectif la mesure d'un signal généré par du bruit de Johnson, dont l'amplitude moyennée dans le temps est gouvernée par l'équation suivante :
+
+\begin{align*}
+\langle v_{J}^{2}\!\left(t\right) \rangle &= 4\,k_B\,R\,T\,\Delta\!f
+\end{align*}
+
+
+\paragraph{}Tentons de trouver une grandeur typique pour cette amplitude afin de cerner nos besoins expérimentaux. Soit le bruit de Johnson d'une résistance de $R=\SI{100}{k\Omega}$
+
+\begin{align*}
+T &= \SI{295}{K}\\
+k_B &= \SI{1,38e{-23}}{J/K}\\
+\Delta\!f &= \SI{100}{kHz}=\SI{e5}{Hz}\\ \\
+\langle v_{J}^{2}\!\left(t\right) \rangle &= 4\,k_B\,R\,T\,\Delta\!f \\
+&=4\,(\SI{1.38e{-23}}{J/K})\,(\SI{e5}{\Omega})\,(\SI{295}{K})\,(\SI{e5}{Hz}) \\
+&=\SI{1.63e{-10}}{V^2}
+\end{align*}
+
+
+\paragraph{}Ce qui donne une valeur RMS de \SI{1.28}{\micro V}. Ainsi, en mesurant directement le potentiel d'une résistance à température pièce, il est possible d'obtenir des fluctuations aléatoires de l'ordre de \SI{\pm10}{\micro V}, même si la résistance n'est connectée à aucune source de tension. Le potentiel mesuré est inhérent à la résistance : c'est le bruit thermique, ou bruit de Johnson. Afin d'expliciter ce fait, nous appellerons la résistance générant le bruit de Johnson la \emph{résistance-source}
+
+
+\paragraph{}Afin de mesurer l'amplitude $\langle v_{J}^{2}\!\left(t\right) \rangle$ du bruit de Johnson, il sera nécessaire de traiter le signal, notamment en l'amplifiant. Il faudra cependant faire preuve de prudence : les différents appareils utilisés ont un fonctionnement optimal lorsqu'on leur fournit un signal appartenant à une certaine plage de tensions. Il faudra s'assurer de ne pas amplifier exagérément le signal, qui sortirait alors de cette plage, afin d'obtenir les mesures les plus exactes possibles.
+
+
+
+\section{Manipulations}
+
+
+\subsection{Mesures en fonction de $R$}
+
+
+\paragraph{Configuration de l'électronique modulable} L'électronique modulable sera déjà configurée tel qu'à la figure~\ref{sch-preamp}. Assurez-vous de comprendre le circuit. Refermer l'électronique modulable. Mettre $R_F=\SI{1}{k\ohm}$ afin d'obtenir un gain de 6 (comprenez-vous d'où vient cette valeur?). Mettre $R_{\mathrm{in}}$, qui sera la résistance-source du bruit de Johnson, à sa valeur minimale de \SI{1}{\ohm}. Après l'ampli op, le circuit intégré de l'électronique modulable sépare la composante DC du signal et l'envoi à la sortie MON. La composante AC, qui est celle qui nous intéresse, est amplifiée d'un facteur 100, puis envoyée à la sortie OUT de l'électronique modulable, qui est reliée à l'électronique de traitement.
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,0) node[op amp](opamp){}
+(opamp.+) to[short] (-1.2,-0.5) to[short] (-2,-0.5) to[vR,l^=$R_{\mathrm{\mathrm{in}}}$] (-2,-3) node[ground]{}
+(opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,1.5)
+(-4,1) node[ground]{} to[short] (-4,1.5) to[R=200~$\Omega$] (-1.2,1.5) to[R=$R_F$] (1.2,1.5) to[short] (1.2,0)
+(opamp.out) to[short] (2,0)
+{[anchor=west] (2,0) node{$v_{\mathrm{out}}$}}
+;\end{circuitikz}
+\caption{\label{sch-preamp}Schéma du circuit préamplificateur.}
+\end{figure}
+
+
+\paragraph{Configuration de l'électronique de traitement}Les connexions de l'électronique de traitement seront déjà faites. Le signal passera dans un filtre passe-haut à \SI{0.1}{kHz}, puis un filtre passe-bas à \SI{100}{kHz}. Ensuite, le signal est amplifié une dernière fois, d'un facteur qui sera déterminé plus loin dans l'expérience. Au multiplicateur, le signal est multiplié par lui-même (il a maintenant des unités de \SI{}{V^2}) et convertit en signal pouvant être lu par le multimètre en le enquote{divisant} par \SI{10}{V}. Après le multiplicateur, le signal est envoyé à l'intégrateur temporel, puis à un multimètre.
+
+
+\paragraph{Résumé des opérations effectuées sur le signal}Ainsi, nous avions au départ une différence de potentiel $v_J\!\left(t\right)$ générée par le bruit de Johnson dans une résistance-source. À la sortie de l'électronique modulable, ce signal a été amplifié deux fois :
+
+
+\begin{equation*}
+6*100*v_J\!\left(t\right).
+\end{equation*}
+
+
+Ce signal a ensuite été filtré dans une bande passante de \SI{0.1-100}{kHz}. Une autre amplification, de gain $G_2$, a ensuite été effectuée.
+
+
+\begin{equation*}
+600*G_2*v_J\!\left(t\right)
+\end{equation*}
+
+
+Après le multiplicateur, le signal est
+
+
+\begin{equation*}
+\frac{[600*G_2*v_J\!\left(t\right)]^2}{\SI{10}{V}}.
+\end{equation*}
+
+
+Finalement, après l'intégration temporelle, le signal affiché au multimètre correspond à
+
+
+\begin{equation*}
+v_{\mathrm{multi}}=\frac{[600*G_2]^2}{\SI{10}{V}}* \langle v_{J}^{2}\!\left(t\right) \rangle.
+\end{equation*}
+
+
+Et nous avons ainsi obtenu $\langle v_{J}^{2}\!\left(t\right) \rangle$, la mesure qui nous intéresse dans cette expérience.
+
+
+\paragraph{Choix de $G_2$} Le choix de $G_2$ est effectué afin d'assurer que le signal reste dans l'intervalle de tensions auxquelles les composantes électroniques restent linéaires. Dans l'électronique de traitement, cet intervalle est de \SI{\pm10}{V}. Comme le bruit de Johnson est un processus aléatoire, il peut exhiber des fluctuations extrêmes qui contribuent à la précision générale de l'expérience et ne doivent pas être tronquées.
+
+Un choix sage serait de se limité à $v_{\mathrm{RMS}}=\SI{3}{V}$. Cette valeur, au multimètre, sera
+
+
+\begin{equation*}
+\frac{[\SI{3}{V}]^2}{\SI{10}{V}}=\SI{0.9}{V}.
+\end{equation*}
+
+
+Ainsi, pour toutes les mesures, nous choisirons $G_2$ afin que le multimètre affiche une différence de potentiel environnant \SI{1}{V}.
+
+
+\paragraph{Oscilloscope}Par deux fois lors du traitement du signal, celui-ci est envoyé à l'oscilloscope : avant le multiplicateur et à la sortie de l'intégrateur. Pour enregistrer ces traces, insérer votre clé USB dans l'oscilloscope et utiliser la fonction Save/Recall. Assurez-vous de prendre le plus de points possible par enregistrement.
+
+
+
+\paragraph{Méthodes d'analyse} Vous devez maintenant faire un choix. Vous disposez de trois moyens possibles d'obtenir $\langle v_{J}^{2}\!\left(t\right) \rangle$.
+
+
+\begin{enumerate}
+
+\item En prenant la série de données enregistrée sur l'oscilloscope et correspondant au signal traité analogiquement.
+
+\item En prenant la série de données enregistrée sur l'oscilloscope et correspondant au signal avant le multiplicateur et qui devra donc être traité numériquement.
+
+\item La valeur affichée au multimètre.
+
+\end{enumerate}
+
+
+Discutez de ces options avec le dépanneur.
+
+
+\paragraph{Reprendre une série de points pour toutes les valeurs de $R_{\mathrm{in}}$ jusqu'à \SI{10}{k\ohm}}N'oubliez pas d'ajuster le $G_2$. Noter la valeur de $G_2$, la valeur de tension affichée au multimètre et le nom du fichier CSV pour chaque valeur de $R_{\mathrm{in}}$.
+
+
+\subsection{Mesures à basse température}
+
+
+\paragraph{}La sonde plongée dans l'azote liquide ($T=\SI{77}{K}$) contient trois résistances de \SI{10}{\ohm}, \SI{100}{\ohm} et \SI{1}{k\ohm} qui sont reliés à l'électronique modulable par les ports $A_{ext}$, $B_{ext}$ et $C_{ext}$ de l'entrée $R_{\mathrm{in}}$. Procéder comme précédemment.
+
+
+\section*{Analyse}
+
+
+\paragraph{Bruits parasites}En plus du bruit de Johnson, de nombreux bruits affectent le signal tout au long de l'expérience. Nous allons donc considéré qu'à $v_J\!\left(t\right)$ s'ajoute une différence de potentiel $v_B\!\left(t\right)$ causée par toutes les imperfections dans l'électronique. Posons que cette différence de potentiel n'est pas affectée par la valeur de $R_{\mathrm{in}}$. À la sortie de l'électronique de traitement, nous mesurons donc
+
+
+\begin{align*}
+v_{\mathrm{multi}} &= \frac{[600*G_2]^2}{\SI{10}{V}}*\langle[ v_{J}\!\left(t\right)+v_{B}\!\left(t\right) ]^2\rangle\\
+&= \frac{[600*G_2]^2}{\SI{10}{V}} *[\langle v_{J}^2\!\left(t\right) \rangle+ 2\langle v_{J}\!\left(t\right) * v_{B}\!\left(t\right) \rangle+ \langle v_{B}^2\!\left(t\right) \rangle]
+\end{align*}
+
+
+Lorsque deux signaux ne sont pas corrélés, ce qui est le cas ici \emph{a priori}, la moyenne de leur produit est nulle. Ainsi, il n'y a pas de terme croisé dans l'équation précédente. Nous obtenons donc la somme de deux signaux.
+
+
+\begin{equation*}
+v_{\mathrm{multi}} = \frac{[600*G_2]^2}{\SI{10}{V}} *[\langle v_{J}^2\!\left(t\right) \rangle+ \langle v_{B}^2\!\left(t\right) \rangle].
+\end{equation*}
+
+
+Afin d'isoler $[\langle v_{J}^2\!\left(t\right) \rangle$, tracez $\langle v_{J}^2\!\left(t\right) \rangle+ \langle v_{B}^2\!\left(t\right) \rangle$ en fonction de $R_{\mathrm{in}}$. Comme $v_J\rightarrow0$ lorsque $R_{\mathrm{in}}=0$, l'ordonnée à l'origine de cette courbe nous donne la valeur de $\langle v_{B}^2\!\left(t\right) \rangle$.
+
+
+\paragraph{Constante de Boltzmann et Zéro absolu}Vous devriez maintenant être en mesure de calculer $k_B$ et la valeur du zéro absolu.
+
+
+
+\end{document}
+

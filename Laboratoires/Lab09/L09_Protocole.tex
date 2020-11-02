@@ -1,0 +1,221 @@
+%Créé par Claudine Allen en collaboration avec Jean-Raphaël Carrier
+%Dernière modification JRC: 13 janvier 2014
+%Élimination du labo de résistivité des matériaux (IV) à la fin de l'ère JRC + regroupement des labos VI & VII en début de pandémie COVID-19 => renumérotation XI -> IX maintenant
+%Dernière modification CA: 2 novembre 2020
+%Dernière modification JG:
+
+
+\RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
+\documentclass[canadien,12pt,oneside,letterpaper]{article}
+%
+%-----------------------------------------------------
+%Loading packages
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[canadien]{babel}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\usepackage[all]{hypcap}
+\usepackage{graphicx}
+\usepackage[americanvoltages,americancurrents]{circuitikz}
+\usetikzlibrary{babel}
+\usepackage{caption}
+\usepackage[letterpaper,headheight=15pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+%
+%----------------------------------------------------
+%Other configurations and layout
+%
+\sisetup{separate-uncertainty}
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textsl{GPH-2006/PHY-2002~---~Laboratoire~IX}}
+\rhead{\textsl{Page \thepage}}
+\setcounter{secnumdepth}{0}
+\setlength{\parskip}{1.5ex plus0.5ex minus0.2ex}
+%\onehalfspacing
+\interfootnotelinepenalty=10000 %To avoid footnotes spreading on several pages.
+%
+%---------------------------------------------------
+%
+\title{\textbf{Laboratoire IX}\\Portes \& circuits logiques\thanks{Auteurs: Claudine Allen, Jean-Raphaël Carrier, Denis Panneton, Daniel Bouffard-Landry \& Jérémie Guilbert.}}
+\renewcommand\footnotemark{}
+\date{}
+
+\begin{document}
+
+\maketitle \vspace{-2cm}
+
+\section{Objectifs}
+
+La dernière fonction de circuits électroniques, mais non la moindre, abordée dans ce cours est le calcul informatique. La fonction d’interrupteur ouvert/fermé du transistor est la clef pour obtenir deux niveaux discrets en tension et ainsi générer un signal numérique binaire permettant des opérations logiques (algèbre de Boole). L’étudiant.e réalisera donc des circuits de portes logiques NON-OU et OU à partir de transistors. En plus de ces opérations logiques, l’ordinateur doit aussi se rappeler rapidement des états binaires entre chaque opération. On introduit alors la rétroaction entre portes logiques, ici en circuits intégrés, pour obtenir une mémoire volatile très rapide d’accès avec une bascule asynchrone SR. Il s’agit d’une mémoire vive (\textit{static random-access memory}, SRAM) de l’ordinateur qui se perd lorsque l’alimentation est coupée, à l’opposé des mémoires de stockage non volatil de l’information binaire. 
+
+
+Au lieu de compléter le cours en complexifiant les circuits logiques réalisés à partir d’un schéma, ce laboratoire tentera plutôt d’aider l’étudiant.e à intégrer des connaissances tout en s’exerçant au raisonnement inductif. Concrètement, l’étudiant.e fera la rétro-ingénierie d’un circuit automatisant la mesure du temps de chute d’une masse avec une emphase sur le conditionnement du signal: cette fonction requiert souvent la conception et fabrication de circuits en recherche expérimentale. On bouclera finalement le cours en revenant à la conversion analogique-numérique avec la conception d’un voltmètre à trois niveaux discrets.
+
+
+Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 3, 5, 6, 7, 11 et 12 du plan de cours.
+
+
+\section{Préparation}
+
+Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit:
+\begin{itemize}
+\item lire le complément \textit{Introduction aux signaux numériques};
+\item lire le protocole de ce laboratoire;
+\item débuter, avec un schéma, la conception d'un circuit simple de conversion analogique-numérique en base 1. Ce circuit sera en fait un embryon de voltmètre que vous devrez construire à partir d'une source d'alimentation DC (ou deux au maximum), de la fonction comparateur d'ampli-ops, de résistances et de diodes électroluminescentes (DEL). Ces dernières afficheront la valeur d'un signal de tension dans le système numérotation unaire. Plus précisément, \textbf{aucune} DEL ne doit s'allumer lorsque la tension est inférieure à 1~V, \textbf{une} DEL doit s'allumer lorsque la tension fournie est supérieure à 1~V et \textbf{deux} DEL doivent s'allumer lorsque la tension devient supérieure à 2~V.
+\end{itemize}
+
+
+\section{Matériel}
+
+La réalisation de ce laboratoire requiert l'utilisation de:
+\begin{itemize}
+\item un bloc d'alimentation;
+\item un oscilloscope;
+\item deux résistances de chacune de ces valeurs : 270~$\Omega$, 560~$\Omega$ et 1~k$\Omega$;
+\item une porte NON;
+\item deux diodes électroluminescentes (DEL);
+\item deux portes NON-OU;
+\item trois transistors;
+\item autres composants, selon votre concept de voltmètre;
+\item une plaquette de montage;
+\item un circuit déjà tout monté pour chronométrer la chute d'une bille (partie~1).
+\end{itemize}
+
+
+\section{Manipulations}
+
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+
+\subsection{Partie 1-Mesure automatisée de l'accélération gravitationnelle}
+
+Cette partie du laboratoire fonctionne un peu en inverse pour développer des aptitudes de rétroingénierie: le montage est déjà fait et vous devez déduire son fonctionnement logique. Chaque équipe disposera d'une vingtaine de minutes avec le montage, veuillez vous adresser à votre équipe d'enseignement pour coordonner l'accès. L'expérience sera consignée dans un seul et même cahier de laboratoire pour toute la classe. Ce cahier pourra alors assumer sa fonction 
+tour de rôle partir des notes des précédent
+
+
+Ce montage sert à mesurer l'accélération gravitationnelle à partir de la chute d'une bille. En fait, il compte le nombre d'oscillations envoyées par un oscillateur entre les événements «de départ» et «d'arrivée», duquel le temps de chute peut être déduit. L'idée générale du montage est illustrée à la figure~\ref{fig:calcul-g}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{SchemaFonct-calcul-g}
+\caption{\label{fig:calcul-g}Schéma conceptuel illustrant le fonctionnement général du montage servant à déduire l'accélération gravitationnelle.}
+\end{figure}
+
+Les manipulations pour cette partie ne sont pas explicitées dans ce protocole. Vous aurez donc à utiliser les fiches techniques des circuits intégrés, un oscilloscope, toute la puissance de votre matière grise, ainsi que l'expérience indéniable que vous avez acquise jusqu'à maintenant, afin de déterminer et de réaliser les manipulations nécessaires. Vos buts sont de comprendre en détail le fonctionnement du circuit et de mesurer l'accélération gravitationnelle en justifiant l'incertitude estimée.
+
+À la fin du deuxième tour, vous devrez expliquer brièvement comment le circuit parvient à effectuer les fonctions suivantes:
+\begin{enumerate}
+    \item le conditionnement du signal $S_1$ (signal produit par le début de la chute de la bille);
+    \item le conditionnement du signal $S_2$ (signal produit par l'impact de la bille);
+    \item la génération d'un signal à fréquence fixe;
+    \item le déclenchement et l'arrêt du compteur.
+\end{enumerate}
+
+Complétez l'expérience en écrivant au tableau votre résultat de mesure d'accélération gravitationnelle pour bâtir une distribution statistique avec vos collègues.
+
+
+\subsection{Partie 2 --- Construction de portes logiques}
+
+a) Montez le circuit d'une porte NON-OU (figure~\ref{sch-NOR}) en utilisant les transistors. Appliquez une tension $v_{\mathrm{cc}}$ de 5~V.
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,0) node[ground]{} to[Tnpn,n=q1] (0,2) to[short,-*] (5,2) node[right]{$v_{\mathrm{out}}=\overline{A+B}$} to[leDo] (5,0) node[ground]{}
+(3,0) node[ground]{} to[Tnpn,n=q2] (3,2) to[R=270~$\Omega$,-o] (3,5) node[above]{$v_{\mathrm{cc}}$}
+(-3,1) node[left]{$A$} to[R=560~$\Omega$,o-] (q1.B)
+(-3,-2) node[left]{$B$} to[R=560~$\Omega$,o-] (2,-2) to[short] (2,1) to[short] (q2.B); \end{circuitikz}
+\caption{\label{sch-NOR}Circuit interne simplifié d'une porte NON-OU.}
+\end{figure}
+
+b) Branchez les entrées $A$ et $B$ soit à l'alimentation, soit à la terre. Faites les quatre possibilités pour construire la table de vérité du circuit afin de vérifier qu'il s'agisse bel et bien d'une porte NON-OU.
+
+c) Rajoutez un inverseur au circuit précédent afin d'obtenir une porte OU (figure~\ref{sch-OR}). Dressez aussi la table de vérité de ce circuit.
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(7,1) node[ground]{} to[Tnpn,n=q3] (7,3) to[R=270~$\Omega$,-o] (7,6) node[above]{$v_{\mathrm{cc}}$}
+(0,0) node[ground]{} to[Tnpn,n=q1] (0,2) to[short] (3.5,2) to[R=500~$\Omega$] (q3.B)
+(3,0) node[ground]{} to[Tnpn,n=q2] (3,2) to[R=270~$\Omega$,-o] (3,5) node[above]{$v_{\mathrm{cc}}$}
+(-3,1) node[left]{$A$} to[R=560~$\Omega$,o-] (q1.B)
+(-3,-2) node[left]{$B$} to[R=560~$\Omega$,o-] (2,-2) to[short] (2,1) to[short] (q2.B)
+(7,3) to[short,-*] (9,3) node[right]{$v_{\mathrm{out}}=A+B$} to[leDo] (9,1) node[ground]{}
+;\end{circuitikz}
+\caption{\label{sch-OR}Circuit interne simplifié d'une porte OU créée en ajoutant une porte NON à la sortie d'une porte NON-OU.}
+\end{figure}
+
+d) Les portes NON-OU et les portes NON-ET sont dites \textit{universelles}, puisqu'elles peuvent être utilisées pour bâtir n'importe quelle autre porte logique. En utilisant seulement des portes NON-ET, dessinez un circuit qui serait équivalent à une porte OU.
+
+\subsection{Partie 3 --- Introduction aux circuits logiques rétroactifs}
+
+a) Un circuit logique très simple avec rétroaction est constitué uniquement d'un inverseur (porte NON) dont la sortie est retournée à l'entrée. Lorsque l'entrée est \textit{zéro}, la sortie est \textit{un}. Alors l'entrée devient \textit{un} et la sortie \textit{zéro}, et ainsi de suite. On dit que ce circuit est astable, puisqu'il ne possède aucun niveau stable : il s'agit en fait d'un oscillateur. Construisez cet oscillateur (figure~\ref{sch-osc-astable}) et mesurez au mieux, à l'aide de l'oscilloscope, la fréquence des oscillations. Soyez impressionnés de la valeur mesurée.
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,0) node[not port](not){}
+(not.in) to[short] (-1.5,0) to[short] (-1.5,1) to[short] (1.5,1) to[short] (1.5,0)
+(not.out) to[short] (1.5,0)
+;\end{circuitikz}
+\caption{\label{sch-osc-astable}Circuit astable créé à partir d'une porte NON.}
+\end{figure}
+
+b) En plaçant une sonde à l'entrée (canal~1) et une autre à la sortie (canal~2) de l'inverseur, on remarque que ces deux signaux sont reliés malgré leurs fluctuations. Observez l'attracteur qui les relie à l'aide du mode XY de l'oscilloscope. On peut généralement le faire passer d'un cycle limite à un attracteur étrange, et vice versa, en variant l'alimentation de la porte et même en tapant sur la table. Ce système chaotique aura de quoi émerveiller le.la physicien.ne en vous!
+
+c) Montez le circuit de la bascule asynchrone SR (figure~\ref{sch-RS}) et placez une DEL à chaque sortie. Cette bascule asynchrone est un circuit bistable, puisqu'elle possède deux états stables dits \textit{set} et \textit{reset}.
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,2) node[nor port](norR){}
+(norR.in 1) to[short] (-1.5,2.28) node[left]{$R$}
+(norR.in 2) to[short] (-2.5,1.72) to[short] (-2.5,-1) to[short] (0.5,-1) to[short] (0.5,0)
+(norR.out) to[short] (1,2) node[right]{$Q$}
+(0,0) node[nor port](norS){}
+(norS.in 1) to[short] (-1.5,0.28) to[short] (-1.5,0.5) to[short] (0.5,1.75) to[short] (0.5,2)
+(norS.in 2) to[short] (-1.5,-0.28) node[left]{$S$}
+(norS.out) to[short] (1,0) node[right]{$\overline{Q}$}
+;\end{circuitikz}
+\caption{\label{sch-RS}Bascule asynchrone SR (\textit{latch} en anglais, parfois appelée \textit{flip-flop}) créée à partir de deux portes NON-OU. Ce circuit est bistable puisqu'il possède deux états stables dits \textit{set} et \textit{reset}, voir la table de vérité~\ref{table-RS}. Une \href{https://upload.wikimedia.org/wikipedia/commons/c/c6/R-S_mk2.gif}{animation} publiée sur le site Wikipédia par \href{https://commons.wikimedia.org/wiki/User:Napalm_Llama}{Napalm Llama} peut aider à visualiser la fonctionnement de cette bascule.}
+\end{figure}
+
+Jetons un {\oe}il rapide sur le fonctionnement de cette bascule. Tout d'abord, considérons le cas où l'entrée $R$ (\textit{reset}) est à \textit{un} et l'entrée $S$ à \textit{zéro}. Lorsque $R=1$, la sortie $Q$ est nécessairement à \textit{zéro}, comme nous l'indique la table de vérité de la porte NON-OU. Ceci implique aussi que les entrées de l'autre porte NON-OU (celle du bas) sont à \textit{zéro}, donc $\overline{Q}=1$ et la DEL s'allume. Puis, si $R$ est mis à \textit{zéro}, les sorties $Q$ et $\overline{Q}$ vont conserver leur état, c'est-à-dire $Q=0$ et $\overline{Q}=1$.
+
+Considérons maintenant le cas où l'entrée $S$ (\textit{set}) est à \textit{un} et l'entrée $R$ est à \textit{zéro}. Lorsque $S=1$, la sortie $\overline{Q}$ est automatiquement à \textit{zéro}, ce qui implique que la sortie $Q$ devient \textit{un} et la DEL s'allume. Si de là on retourne à l'état $S=R=0$, l'état des sorties va à nouveau être conservé : elles vont donc être $Q=1$ et $\overline{Q}=0$. Ainsi, l'état des sorties lorsque $S=R=0$ ne dépend pas uniquement de l'état présent des entrées, mais aussi de l'état précédent des entrées.
+
+Dans tous les cas considérés précédemment et résumés dans la table de vérité~\ref{table-RS}, les deux sorties ont toujours un comportement opposé : elles sont complémentaires. Autre constat : la mémoire de ce circuit est une \textit{mémoire vive}, elle est volatile. Elle sera effacée du moment qu'une des entrées $S$ ou $R$ sera mise à \textit{un}, ou encore lorsque l'alimentation du circuit sera interrompue.
+
+d) Dressez la table de vérité du circuit en omettant le cas indéfini où $S=R=1$. Vous devriez obtenir la table de vérité illustrée au tableau~\ref{table-RS}. Vérifiez que les sorties de l'état $S=R=0$ dépendent de l'état précédent du circuit.
+
+e) Investiguez finalement le cas $S=R=1$ qui n'est pas défini comme fonction de la bascule SR. N'hésitez pas à discuter du comportement avec votre magnifique personnel enseignant!
+
+\begin{table}
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\cline{1-4}
+\multicolumn{2}{|c|}{\textbf{Entrées}} & \multicolumn{2}{|c|}{\textbf{Sorties}} \\
+\hline
+$\mathbf{S}$ & $\mathbf{R}$ & $\mathbf{Q}$ & $\mathbf{\overline{Q}}$ & \textbf{Commentaires} \\
+\hline
+0 & 0 & $q$ & $\overline{q}$ & en mémoire \\
+\hline
+0 & 1 & 0 & 1 & mise à zéro (\textit{reset}) \\
+\hline
+1 & 0 & 1 & 0 & mise à un (\textit{set}) \\
+\hline
+\end{tabular}
+\caption{\label{table-RS}Table de vérité partielle de la bascule asynchrone SR.}
+\end{table}
+
+
+\subsection{Partie 4 --- Construction d'un voltmètre en base 1}
+
+Montez le circuit du voltmètre que vous avez conçu en préparation. Testez-le pour voir s'il fonctionne adéquatement. S'il n'est pas tout à fait au point, corrigez-le! Lorsque votre voltmètre fonctionne comme il se doit, faites-le évaluer par un membre du personnel enseignant.
+
+\end{document}
+
