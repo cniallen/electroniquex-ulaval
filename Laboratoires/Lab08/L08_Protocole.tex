@@ -81,7 +81,9 @@ Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit:
 ;\end{circuitikz}
 \caption{\label{sch-osc-relax}Oscillateur à relaxation utilisant un comparateur. Le condensateur qui se charge cause éventuellement l'entrée inverseuse de l'amplificateur opérationnel à dépasser celle non inverseuse et la tension de sortie de ce comparateur tombe alors négative, renversant ainsi la polarité appliquée sur le condensateur. Celui-ci maintenant se décharge jusqu'à ce l'entrée inverseuse repasse sous celle non inverseuse et remet la sortie positive pour recommencer le cycle.}
 \end{figure}
-
+%Objectifs: Mesurer la fréquence du signal à la sortie de l'amplificateur.
+%Déterminer comment varie la fréquence du signal en fonction de la résistance R et de la capacité C.
+%Mettre la légende de la figure en complément. Indiquer que le signal à l'entrée n'est à priori que du bruit.
 
 \section{Matériel}
 
@@ -139,7 +141,7 @@ b) À l'aide de l'oscilloscope, observez la forme du signal $v_{\mathrm{out}}$. 
 c) Branchez un haut-parleur entre la sortie $v_{\mathrm{out}}$ et la mise à la terre. Cependant, l'ajout du haut-parleur dans le circuit modifie légèrement le fonctionnement de ce dernier. En gardant affichée la FFT du signal à l'oscilloscope, mesurez la nouvelle fréquence principale.
 
 \subsubsection{Fonctionnement de l'oscillateur à pont de Wien}
-
+%SOUS-SECTION À METTRE EN COMPLÉMENT
 Le signal à l'entrée non inverseuse (\textit{a priori} ce signal n'est que du bruit) est amplifié, puis il passe au travers d'un pont de Wien qui le filtre, avant de retourner à l'entrée de l'amplificateur, pour être à nouveau amplifié et filtré, et ainsi de suite, \textit{ad infinitum}. Le pont de Wien est \textit{grosso modo} l'addition d'un filtre passe-bas et d'un filtre passe-haut, pour former un filtre passe-bande. La fréquence du signal de sortie est $f=\left(2\,\pi\,R\,C\right)^{-1}$. L'amplitude finale du signal est fixée par la source d'alimentation. % Cet oscillateur doit son oscillation au chargement/déchargement du condensateur qui relie l'entrée non inverseuse de l'amplificateur au \textit{ground}.
 
 \subsection{Partie 4 --- Oscillateur harmonique à rétroaction (LC)}
