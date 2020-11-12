@@ -2,7 +2,7 @@
 %Dernière modification JRC: 2 avril 2014
 %Élimination du labo de résistivité des matériaux (IV) à la fin de l'ère JRC + regroupement des labos VI & VII en début de pandémie COVID-19 => renumérotation X -> VIII maintenant
 %Dernière modification CA: 4 novembre 2020
-%Dernière modification JG:
+%Dernière modification JG: 11 novemebre 2020
 
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -45,7 +45,7 @@
 %
 %---------------------------------------------------
 %
-\title{\textbf{Laboratoire VIII}\\Oscillateurs électroniques\thanks{Auteurs: Claudine Allen, Jérémie Guilbert \& Jean-Raphaël Carrier}}
+\title{\textbf{Atelier VIII}\\Oscillateurs électroniques\thanks{Auteurs: Claudine Allen, Jérémie Guilbert \& Jean-Raphaël Carrier}}
 \renewcommand\footnotemark{}
 \date{}
 
@@ -55,18 +55,41 @@
 
 \section{Objectifs}
 
-À l’inverse de filtrer des fréquences d’un signal, ce laboratoire explore comment ajouter de nouvelles fréquences. La génération de ces signaux oscillant périodiquement à partir d’un courant constant fera notamment intervenir la fonction de comparateur de l’amplificateur opérationnel pour contrôler le cycle de charge-décharge d’un condensateur, puis celle d’amplification avec rétroaction où la fréquence d’oscillation est sélectionnée avec un filtre passe-bande. L’étudiant.e sera aussi initié.e à la conception d’un circuit LC résonnant à une fréquence d’oscillation requise. Des fonctions d’intérêt pour les circuits oscillateurs étudiés sont d’actionner un transducteur afin d’obtenir des ondes mécaniques, ou encore de définir un étalon de temps lorsque l’oscillation est pratiquement harmonique avec une seule fréquence. La transduction sera d’abord mise en pratique avec un haut-parleur pour générer des ondes sonores, et puis avec la résonance de vibration d’un cristal de quartz pour obtenir une oscillation quasi-monochrome qui définira la seconde.
+À l’inverse de filtrer des fréquences d’un signal, cet atelier explore comment ajouter de nouvelles fréquences. La génération de ces signaux oscillant périodiquement à partir d’un courant constant fera notamment intervenir la fonction de comparateur de l’amplificateur opérationnel pour contrôler le cycle de charge-décharge d’un condensateur, puis celle d’amplification avec rétroaction où la fréquence d’oscillation est sélectionnée avec un filtre passe-bande. L’étudiant.e sera aussi initié.e à la conception d’un circuit LC résonnant à une fréquence d’oscillation requise. Des fonctions d’intérêt pour les circuits oscillateurs étudiés sont d’actionner un transducteur afin d’obtenir des ondes mécaniques, ou encore de définir un étalon de temps lorsque l’oscillation est pratiquement harmonique avec une seule fréquence. %La transduction sera d’abord mise en pratique avec un haut-parleur pour générer des ondes sonores, et puis avec la résonance de vibration d’un cristal de quartz pour obtenir une oscillation quasi-monochrome qui définira la seconde.
 
-Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 5, 7, 11 et 12 du plan de cours et couvriront la qualité 5, utilisation d’outils d’ingénierie, prescrite dans les normes du Bureau d’agrément d’Ingénieurs Canada (BAIC).
+% Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 5, 7, 11 et 12 du plan de cours et couvriront la qualité 5, utilisation d’outils d’ingénierie, prescrite dans les normes du Bureau d’agrément d’Ingénieurs Canada (BAIC).
 
 
-\section{Préparation}
+\section{Lectures préparatoires}
+Lire le complément \textit{Oscillateurs électroniques}
+% Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit:
+% \begin{itemize}
+% \item lire le protocole de ce laboratoire;
+% \item déterminer la fréquence des oscillations que produit l'oscillateur à relaxation (figure~\ref{sch-osc-relax}) en fonction de $R$ et $C$ selon les principes de fonctionnement de l'amplificateur opérationnel.
+% \end{itemize}
 
-Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit:
-\begin{itemize}
-\item lire le protocole de ce laboratoire;
-\item déterminer la fréquence des oscillations que produit l'oscillateur à relaxation (figure~\ref{sch-osc-relax}) en fonction de $R$ et $C$ selon les principes de fonctionnement de l'amplificateur opérationnel.
-\end{itemize}
+% \section{Matériel}
+
+% La réalisation de ce laboratoire requiert l'utilisation de:
+% \begin{itemize}
+% \item un oscilloscope avec générateur de fonctions;
+% \item un bloc d'alimentation;
+% \item un multimètre;
+% \item un haut-parleur;
+% \item trois condensateurs de 1~$\mu$F dont un condensateur de précision ($\pm5$~\%);
+% \item un peu beaucoup de résistances : 270~$\Omega$ (deux fois), 560~$\Omega$, 1~k$\Omega$, 10~k$\Omega$ (deux fois), 100~k$\Omega$ et 1~M$\Omega$;
+% \item un potentiomètre linéaire de 1~k$\Omega$ (code 102);
+% \item un amplificateur opérationnel;
+% \item deux puces 555;
+% \item une plaquette de montage.
+% \end{itemize}
+
+
+\section{Manipulations}
+
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+\subsection{Partie 1 - Oscillateur à relaxation}
 
 \begin{figure}[h]
 \centering
@@ -79,42 +102,19 @@ Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit:
 (opamp.up) ++ (0,0.5) node[above]{5~V} -- (opamp.up)
 (-4,2.2) node[ground]{} to[C=$C$] (-1.2,2.2) to[R=$R$] (1.6,2.2) to[short] (1.6,-2.2) to[R=10~k$\Omega$] (-1.2,-2.2) to[R=10~k$\Omega$] (-4,-2.2) node[ground]{}
 ;\end{circuitikz}
-\caption{\label{sch-osc-relax}Oscillateur à relaxation utilisant un comparateur. Le condensateur qui se charge cause éventuellement l'entrée inverseuse de l'amplificateur opérationnel à dépasser celle non inverseuse et la tension de sortie de ce comparateur tombe alors négative, renversant ainsi la polarité appliquée sur le condensateur. Celui-ci maintenant se décharge jusqu'à ce l'entrée inverseuse repasse sous celle non inverseuse et remet la sortie positive pour recommencer le cycle.}
+\caption{\label{sch-osc-relax}Oscillateur à relaxation utilisant un comparateur.}
 \end{figure}
 %Objectifs: Mesurer la fréquence du signal à la sortie de l'amplificateur.
 %Déterminer comment varie la fréquence du signal en fonction de la résistance R et de la capacité C.
 %Mettre la légende de la figure en complément. Indiquer que le signal à l'entrée n'est à priori que du bruit.
 
-\section{Matériel}
+% a) Sur la plaquette de montage, construisez le circuit de l'oscillateur à relaxation que vous avez analysé en préparation (figure~\ref{sch-osc-relax}). Encore une fois, envoyez la sortie $v_{\mathrm{out}}$ à la fois dans le haut-parleur et dans le canal~1 de l'oscilloscope. Utilisez le condensateur de précision de 1~$\mu\mathrm{F}$~$\pm5$~\% pour la capacité $C$. Pour la résistance $R$, placez une résistance de 560~$\Omega$.
 
-La réalisation de ce laboratoire requiert l'utilisation de:
-\begin{itemize}
-\item un oscilloscope avec générateur de fonctions;
-\item un bloc d'alimentation;
-\item un multimètre;
-\item un haut-parleur;
-\item trois condensateurs de 1~$\mu$F dont un condensateur de précision ($\pm5$~\%);
-\item un peu beaucoup de résistances : 270~$\Omega$ (deux fois), 560~$\Omega$, 1~k$\Omega$, 10~k$\Omega$ (deux fois), 100~k$\Omega$ et 1~M$\Omega$;
-\item un potentiomètre linéaire de 1~k$\Omega$ (code 102);
-\item un amplificateur opérationnel;
-\item deux puces 555;
-\item une plaquette de montage.
-\end{itemize}
+% b) À l'oscilloscope, observez la forme du signal et notez sa fréquence à l'aide des curseurs et aussi avec la FFT.
 
+% c) Comparez vos résultats expérimentaux avec l'équation de la fréquence en fonction de $R$ et $C$ que vous aviez calculée en préparation. Pour vos calculs, utilisez la valeur nominale du condensateur et la valeur réelle de la résistance mesurée avec le multimètre.
 
-\section{Manipulations}
-
-\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-
-\subsection{Partie 1 --- Oscillateur à relaxation}
-
-a) Sur la plaquette de montage, construisez le circuit de l'oscillateur à relaxation que vous avez analysé en préparation (figure~\ref{sch-osc-relax}). Encore une fois, envoyez la sortie $v_{\mathrm{out}}$ à la fois dans le haut-parleur et dans le canal~1 de l'oscilloscope. Utilisez le condensateur de précision de 1~$\mu\mathrm{F}$~$\pm5$~\% pour la capacité $C$. Pour la résistance $R$, placez une résistance de 560~$\Omega$.
-
-b) À l'oscilloscope, observez la forme du signal et notez sa fréquence à l'aide des curseurs et aussi avec la FFT.
-
-c) Comparez vos résultats expérimentaux avec l'équation de la fréquence en fonction de $R$ et $C$ que vous aviez calculée en préparation. Pour vos calculs, utilisez la valeur nominale du condensateur et la valeur réelle de la résistance mesurée avec le multimètre.
-
-d) Remplacez la résistance de 560~$\Omega$ par un potentiomètre linéaire de 1~k$\Omega$. En ajustant le potentiomètre, vous serez en mesure de générer un son à une fréquence donnée. Vous pouvez ajouter une résistance en série avec le potentiomètre si vous avez besoin d'une résistance supérieure à 1~k$\Omega$. Chaque équipe devra produire une note différente (dictée par vos dictateurs). Le but ultime est, en combinant les efforts de toute la classe, de jouer une symphonie grandiose!
+% d) Remplacez la résistance de 560~$\Omega$ par un potentiomètre linéaire de 1~k$\Omega$. En ajustant le potentiomètre, vous serez en mesure de générer un son à une fréquence donnée. Vous pouvez ajouter une résistance en série avec le potentiomètre si vous avez besoin d'une résistance supérieure à 1~k$\Omega$. Chaque équipe devra produire une note différente (dictée par vos dictateurs). Le but ultime est, en combinant les efforts de toute la classe, de jouer une symphonie grandiose!
 
 
 \subsection{Partie 2 - Oscillateur harmonique à rétroaction (pont de Wien)}
@@ -135,62 +135,64 @@ a) En continuant sur une autre plaquette de montage, construisez l'oscillateur �
 ;\end{circuitikz}
 \caption{\label{sch-osc-Wien}Oscillateur harmonique --- pont de Wien.}
 \end{figure}
+%OBJECTIFS: 1) Déterminer la fréquence du signal à la sortie. 2) Déterminer l'impact de l'ajout d'une charge à la sortie (résistance ou haut parleur sur tinkercad??) sur la fréquence. Qu'est-ce qui cause la variation observée?
 
-b) À l'aide de l'oscilloscope, observez la forme du signal $v_{\mathrm{out}}$. Notez la fréquence principale du signal généré en mesurant la fréquence des oscillations avec les curseurs et aussi en effectuant une FFT.
+% b) À l'aide de l'oscilloscope, observez la forme du signal $v_{\mathrm{out}}$. Notez la fréquence principale du signal généré en mesurant la fréquence des oscillations avec les curseurs et aussi en effectuant une FFT.
 
-c) Branchez un haut-parleur entre la sortie $v_{\mathrm{out}}$ et la mise à la terre. Cependant, l'ajout du haut-parleur dans le circuit modifie légèrement le fonctionnement de ce dernier. En gardant affichée la FFT du signal à l'oscilloscope, mesurez la nouvelle fréquence principale.
+% c) Branchez un haut-parleur entre la sortie $v_{\mathrm{out}}$ et la mise à la terre. Cependant, l'ajout du haut-parleur dans le circuit modifie légèrement le fonctionnement de ce dernier. En gardant affichée la FFT du signal à l'oscilloscope, mesurez la nouvelle fréquence principale.
 
-\subsubsection{Fonctionnement de l'oscillateur à pont de Wien}
-%SOUS-SECTION À METTRE EN COMPLÉMENT
-Le signal à l'entrée non inverseuse (\textit{a priori} ce signal n'est que du bruit) est amplifié, puis il passe au travers d'un pont de Wien qui le filtre, avant de retourner à l'entrée de l'amplificateur, pour être à nouveau amplifié et filtré, et ainsi de suite, \textit{ad infinitum}. Le pont de Wien est \textit{grosso modo} l'addition d'un filtre passe-bas et d'un filtre passe-haut, pour former un filtre passe-bande. La fréquence du signal de sortie est $f=\left(2\,\pi\,R\,C\right)^{-1}$. L'amplitude finale du signal est fixée par la source d'alimentation. % Cet oscillateur doit son oscillation au chargement/déchargement du condensateur qui relie l'entrée non inverseuse de l'amplificateur au \textit{ground}.
+% \subsubsection{Fonctionnement de l'oscillateur à pont de Wien}
+% %SOUS-SECTION À METTRE EN COMPLÉMENT
+% Le signal à l'entrée non inverseuse (\textit{a priori} ce signal n'est que du bruit) est amplifié, puis il passe au travers d'un pont de Wien qui le filtre, avant de retourner à l'entrée de l'amplificateur, pour être à nouveau amplifié et filtré, et ainsi de suite, \textit{ad infinitum}. Le pont de Wien est \textit{grosso modo} l'addition d'un filtre passe-bas et d'un filtre passe-haut, pour former un filtre passe-bande. La fréquence du signal de sortie est $f=\left(2\,\pi\,R\,C\right)^{-1}$. L'amplitude finale du signal est fixée par la source d'alimentation. % Cet oscillateur doit son oscillation au chargement/déchargement du condensateur qui relie l'entrée non inverseuse de l'amplificateur au \textit{ground}.
 
-\subsection{Partie 4 --- Oscillateur harmonique à rétroaction (LC)}
+\subsection{Partie 3 - Oscillateur harmonique à rétroaction (LC)}
 
-Un autre oscillateur plus simple reposant sur le même principe de filtrage et amplification en boucle du signal est l'oscillateur LC. Vous avez étudié au dernier laboratoire le filtre RLC passe-bande dont la fréquence de résonance correspond à une oscillation, tel qu'attendu pour tout système linéaire qui se modélise par une équation différentielle ordinaire d'ordre 2. Ce filtre peut donc jouer le rôle du pont de Wien. 
+% Un autre oscillateur plus simple reposant sur le même principe de filtrage et amplification en boucle du signal est l'oscillateur LC. Vous avez étudié au dernier laboratoire le filtre RLC passe-bande dont la fréquence de résonance correspond à une oscillation, tel qu'attendu pour tout système linéaire qui se modélise par une équation différentielle ordinaire d'ordre 2. Ce filtre peut donc jouer le rôle du pont de Wien. 
 
-Faites la conception d'un tel oscillateur en plaçant un circuit LC parallèle (\textit{tank circuit}) à l'entrée non inverseuse d'un amplificateur non inverseur. Le circuit devra respecter les spécifications suivantes à démontrer à l'oscilloscope:
-\begin{itemize}
-    \setlength{\itemsep}{0.1ex}
-    \item gain d'au moins un facteur 10,
-    \item fréquence minimale d'oscillation de 7 kHz.
-\end{itemize}
-La recherche sur Internet en particulier filtrée par images, ou oserons-nous dans la littérature en bibliothèque(!), est la meilleure amie du concepteur en herbe. Vous pouvez aussi simuler le circuit si désiré, avec <\url{http://www.falstad.com/circuit/>} par exemple.
+% Faites la conception d'un tel oscillateur en plaçant un circuit LC parallèle (\textit{tank circuit}) à l'entrée non inverseuse d'un amplificateur non inverseur. Le circuit devra respecter les spécifications suivantes à démontrer à l'oscilloscope:
+% \begin{itemize}
+%     \setlength{\itemsep}{0.1ex}
+%     \item gain d'au moins un facteur 10,
+%     \item fréquence minimale d'oscillation de 7 kHz.
+% \end{itemize}
+% La recherche sur Internet en particulier filtrée par images, ou oserons-nous dans la littérature en bibliothèque(!), est la meilleure amie du concepteur en herbe. Vous pouvez aussi simuler le circuit si désiré, avec <\url{http://www.falstad.com/circuit/>} par exemple.
 
-\subsection{Partie 5 --- Oscillations avec la puce 555}
+%Est-ce qu'on garde l'exercice de conception dans l'atelier virtuel?
+\subsection{Partie 4 - Oscillations avec la puce 555}
 
-La puce 555 est un circuit intégré qui est très souvent utilisé en électronique pour, entre autres, bâtir un oscillateur.
-\begin{figure}[h]
-\centering
-\begin{circuitikz} \draw[thick]
-(0,0) to[short] (0,0.5) node[right]{4} to[short,*-*] (0,1.5) node[right]{3} to[short] (0,2.5) node[right]{2} to[short,*-*] (0,3.5) node[right]{1} to[short] (0,4) to[short] (3,4) to[short] (3,3.5) node[left]{8} to[short,*-*] (3,2.5) node[left]{7} to[short] (3,1.5) node[left]{6} to[short,*-*] (3,0.5) node[left]{5} to[short] (3,0) to[short] (0,0)
-{[anchor=east] (0,3.5) node{\textbf{GND}} (0,2.5) node{\textbf{TRIG}} (0,1.5) node{\textbf{OUT}} (0,0.5) node{\textbf{RESET}}}
-{[anchor=west] (3,3.5) node{\textbf{V$_{\text{CC}}$}} (3,2.5) node{\textbf{DISCH}} (3,1.5) node{\textbf{THRES}} (3,0.5) node{\textbf{CONT}}}
-;\end{circuitikz}
-\caption{\label{sch-555}Schéma d'une puce 555.}
-\end{figure}
+% La puce 555 est un circuit intégré qui est très souvent utilisé en électronique pour, entre autres, bâtir un oscillateur.
+% \begin{figure}[h]
+% \centering
+% \begin{circuitikz} \draw[thick]
+% (0,0) to[short] (0,0.5) node[right]{4} to[short,*-*] (0,1.5) node[right]{3} to[short] (0,2.5) node[right]{2} to[short,*-*] (0,3.5) node[right]{1} to[short] (0,4) to[short] (3,4) to[short] (3,3.5) node[left]{8} to[short,*-*] (3,2.5) node[left]{7} to[short] (3,1.5) node[left]{6} to[short,*-*] (3,0.5) node[left]{5} to[short] (3,0) to[short] (0,0)
+% {[anchor=east] (0,3.5) node{\textbf{GND}} (0,2.5) node{\textbf{TRIG}} (0,1.5) node{\textbf{OUT}} (0,0.5) node{\textbf{RESET}}}
+% {[anchor=west] (3,3.5) node{\textbf{V$_{\text{CC}}$}} (3,2.5) node{\textbf{DISCH}} (3,1.5) node{\textbf{THRES}} (3,0.5) node{\textbf{CONT}}}
+% ;\end{circuitikz}
+% \caption{\label{sch-555}Schéma d'une puce 555.}
+% \end{figure}
 
-\subsubsection{Fonctionnement de la puce 555}
+% \subsubsection{Fonctionnement de la puce 555}
 
-Les niveaux de déclenchement (\textit{trigger}) et de seuil (\textit{threshold}) valent un tiers et deux tiers de l'alimentation, respectivement. Lorsque l'entrée \textbf{TRIG} est inférieure au niveau de déclenchement, la sortie de la puce (\textbf{OUT}) vaut \textbf{V$_{\text{CC}}$}. Lorsque l'entrée \textbf{TRIG} est supérieure au niveau de déclenchement et qu'en plus l'entrée \textbf{THRES} est supérieure au niveau de seuil, alors la sortie devient nulle. Lorsque la sortie devient nulle, un court-circuit se fait entre l'entrée \textbf{DISCH} (\textit{discharge}) et la mise à la terre. Mais vous comprendrez mieux en voyant un circuit complet.
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{TRIG} & \textbf{THRES} & \textbf{OUT} \\
-\hline
-$<\frac{1}{3}$\textbf{V$_{\text{CC}}$} & --- & \textbf{V$_{\text{CC}}$} \\
-\hline
-$>\frac{1}{3}$\textbf{V$_{\text{CC}}$} & $>\frac{2}{3}$\textbf{V$_{\text{CC}}$} & 0 \\
-\hline
-$>\frac{1}{3}$\textbf{V$_{\text{CC}}$} & $<\frac{2}{3}$\textbf{V$_{\text{CC}}$} & Conserve l'état \\
-\hline
-\end{tabular}
-\caption{\label{table-555}Sortie d'une puce 555 en fonction des tensions aux entrées \textbf{TRIG} et \textbf{THRES}.}
-\end{table}
+% Les niveaux de déclenchement (\textit{trigger}) et de seuil (\textit{threshold}) valent un tiers et deux tiers de l'alimentation, respectivement. Lorsque l'entrée \textbf{TRIG} est inférieure au niveau de déclenchement, la sortie de la puce (\textbf{OUT}) vaut \textbf{V$_{\text{CC}}$}. Lorsque l'entrée \textbf{TRIG} est supérieure au niveau de déclenchement et qu'en plus l'entrée \textbf{THRES} est supérieure au niveau de seuil, alors la sortie devient nulle. Lorsque la sortie devient nulle, un court-circuit se fait entre l'entrée \textbf{DISCH} (\textit{discharge}) et la mise à la terre. Mais vous comprendrez mieux en voyant un circuit complet.
+% \begin{table}[h]
+% \centering
+% \begin{tabular}{|c|c|c|}
+% \hline
+% \textbf{TRIG} & \textbf{THRES} & \textbf{OUT} \\
+% \hline
+% $<\frac{1}{3}$\textbf{V$_{\text{CC}}$} & --- & \textbf{V$_{\text{CC}}$} \\
+% \hline
+% $>\frac{1}{3}$\textbf{V$_{\text{CC}}$} & $>\frac{2}{3}$\textbf{V$_{\text{CC}}$} & 0 \\
+% \hline
+% $>\frac{1}{3}$\textbf{V$_{\text{CC}}$} & $<\frac{2}{3}$\textbf{V$_{\text{CC}}$} & Conserve l'état \\
+% \hline
+% \end{tabular}
+% \caption{\label{table-555}Sortie d'une puce 555 en fonction des tensions aux entrées \textbf{TRIG} et \textbf{THRES}.}
+% \end{table}
 
-Dans cette partie du laboratoire, vous utiliserez deux puces 555 pour contruire un circuit constitué de deux oscillateurs. L'un produira une oscillation à une fréquence assez élevée pour être un son audible via un haut-parleur (la porteuse), alors que l'autre produira une oscillation à très basse fréquence qui modulera l'amplitude du son (l'enveloppe). Vous obtiendrez donc un son dont l'intensité oscillera dans le temps, comme une alarme!
+% Dans cette partie du laboratoire, vous utiliserez deux puces 555 pour contruire un circuit constitué de deux oscillateurs. L'un produira une oscillation à une fréquence assez élevée pour être un son audible via un haut-parleur (la porteuse), alors que l'autre produira une oscillation à très basse fréquence qui modulera l'amplitude du son (l'enveloppe). Vous obtiendrez donc un son dont l'intensité oscillera dans le temps, comme une alarme!
 
-a) Construisez d'abord l'oscillateur qui permettra de produire le son. Sur la plaquette de montage, faites le circuit de la figure~\ref{sch-alarme-1}. Utilisez les composants $R_A=270~\Omega$, $R_B=1~k\Omega$ et $C=1~\mu\mathrm{F}$. Reliez le haut-parleur à la sortie de la puce.
+% a) Construisez d'abord l'oscillateur qui permettra de produire le son. Sur la plaquette de montage, faites le circuit de la figure~\ref{sch-alarme-1}. Utilisez les composants $R_A=270~\Omega$, $R_B=1~k\Omega$ et $C=1~\mu\mathrm{F}$. Reliez le haut-parleur à la sortie de la puce.
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw[thick]
@@ -210,13 +212,13 @@ a) Construisez d'abord l'oscillateur qui permettra de produire le son. Sur la pl
 \caption{\label{sch-alarme-1}Circuit d'une puce 555 en mode astable. Les numéros des entrées de la puce sont définis à la figure~\ref{sch-555}.}
 \end{figure}
 
-Initialement, lorsque le bloc d'alimentation s'allume, la tension à l'entrée \textbf{TRIG} est basse, donc la sortie est élevée ($v_{\mathrm{out}}=v_{\mathrm{s}}=\mathrm{V_{CC}}$) et le condensateur $C$ se charge avec une constante de temps $\tau=\left(R_A+R_B\right)\,C$. La tension aux bornes du condensateur, \textit{i.e.} la tension aux terminaux \textbf{TRIG} et \textbf{THRES}, augmente jusqu'à atteindre le niveau de seuil, soit $\frac{2}{3}\,v_{\mathrm{s}}$. À ce moment, la sortie devient basse ($v_{\mathrm{out}}=0$~V), le terminal \textbf{DISCH} devient mis à la terre et le condensateur se décharge avec une constante de temps plus petite $\tau=R_B\,C$. Lorsque la différence de potentiel aux bornes du condensateur a diminué jusqu'à atteindre $\frac{1}{3}\,v_{\mathrm{s}}$, alors la sortie redevient élevée, le terminal \textbf{DISCH} est déconnecté de la masse et le condensateur recommence à se charger. Ainsi, la sortie passe de 0~V à $v_{\mathrm{s}}$ puis retourne à 0~V et ainsi de suite, avec une période de $T=\mathrm{ln}\!\left(2\right)\left(R_A+2\,R_B\right)C$\label{eq:alarme}.
+% Initialement, lorsque le bloc d'alimentation s'allume, la tension à l'entrée \textbf{TRIG} est basse, donc la sortie est élevée ($v_{\mathrm{out}}=v_{\mathrm{s}}=\mathrm{V_{CC}}$) et le condensateur $C$ se charge avec une constante de temps $\tau=\left(R_A+R_B\right)\,C$. La tension aux bornes du condensateur, \textit{i.e.} la tension aux terminaux \textbf{TRIG} et \textbf{THRES}, augmente jusqu'à atteindre le niveau de seuil, soit $\frac{2}{3}\,v_{\mathrm{s}}$. À ce moment, la sortie devient basse ($v_{\mathrm{out}}=0$~V), le terminal \textbf{DISCH} devient mis à la terre et le condensateur se décharge avec une constante de temps plus petite $\tau=R_B\,C$. Lorsque la différence de potentiel aux bornes du condensateur a diminué jusqu'à atteindre $\frac{1}{3}\,v_{\mathrm{s}}$, alors la sortie redevient élevée, le terminal \textbf{DISCH} est déconnecté de la masse et le condensateur recommence à se charger. Ainsi, la sortie passe de 0~V à $v_{\mathrm{s}}$ puis retourne à 0~V et ainsi de suite, avec une période de $T=\mathrm{ln}\!\left(2\right)\left(R_A+2\,R_B\right)C$\label{eq:alarme}.
 
-b) Allumez le bloc d'alimentation et fournissez une tension suffisante pour entendre un son clair (4~V devrait être une tension suffisante). Lorsque vous êtes tannés d'entendre cette note plutôt horrible, désactivez l'alimentation.
+% b) Allumez le bloc d'alimentation et fournissez une tension suffisante pour entendre un son clair (4~V devrait être une tension suffisante). Lorsque vous êtes tannés d'entendre cette note plutôt horrible, désactivez l'alimentation.
 
 \subsubsection{Optionnel: Fabrication d'une alarme}
 
-c) Vous pouvez obtenir un son d'alarme rudimentaire en ajoutant un deuxième oscillateur qui viendra moduler beaucoup plus lentement le son de votre premier oscillateur. Avec le circuit de la figure~\ref{sch-alarme-2}), la sortie de la nouvelle puce (B) commande en effet directement directement l'autre (A). Notez que les deux nouvelles résistances sont nettement plus grandes, afin de fournir un signal oscillant beaucoup plus lentement.
+% c) Vous pouvez obtenir un son d'alarme rudimentaire en ajoutant un deuxième oscillateur qui viendra moduler beaucoup plus lentement le son de votre premier oscillateur. Avec le circuit de la figure~\ref{sch-alarme-2}), la sortie de la nouvelle puce (B) commande en effet directement directement l'autre (A). Notez que les deux nouvelles résistances sont nettement plus grandes, afin de fournir un signal oscillant beaucoup plus lentement.
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw[thick]
@@ -247,13 +249,13 @@ c) Vous pouvez obtenir un son d'alarme rudimentaire en ajoutant un deuxième osc
 \caption{\label{sch-alarme-2}Circuit d'une alarme.}
 \end{figure}
 
-d) Lorsque votre circuit est fin prêt, allumez de nouveau le bloc d'alimentation et écoutez la douce mélodie de votre alarme!
+% d) Lorsque votre circuit est fin prêt, allumez de nouveau le bloc d'alimentation et écoutez la douce mélodie de votre alarme!
 
-e) Comparez les deux fréquences (la fréquence sonore et la fréquence associée à l'alternance son--silence) de l'alarme avec les fréquences attendues (calculées à partir de l'équation donnée en page~\pageref{eq:alarme}).
+% e) Comparez les deux fréquences (la fréquence sonore et la fréquence associée à l'alternance son--silence) de l'alarme avec les fréquences attendues (calculées à partir de l'équation donnée en page~\pageref{eq:alarme}).
 
-\subsection{Partie pour terminer votre dernier laboratoire plus tôt}
+% \subsection{Partie pour terminer votre dernier laboratoire plus tôt}
 
-Si vous complétez vos manipulations avant la fin de la séance de laboratoire, veuillez lire la première partie du prochain et dernier laboratoire de votre session puis vous présenter au montage d'accélération gravitationnelle pour y faire votre première contribution d'une dizaine de minutes.
+% Si vous complétez vos manipulations avant la fin de la séance de laboratoire, veuillez lire la première partie du prochain et dernier laboratoire de votre session puis vous présenter au montage d'accélération gravitationnelle pour y faire votre première contribution d'une dizaine de minutes.
 
 
 %Section oscillateur quartz (démo?) à ajouter. ->Variance Allen: mesure de stabilité (avancé) pourrait être fait en démo qu’on garde tjrs tjrs fonctionnel et p-e même compare à une éventuelle horloge atomique :)
