@@ -99,7 +99,7 @@ Pour chacun des circuits ci-dessous, vous devez préparer en équipe de deux (2)
 
 %\subsection{Partie 1 --- Mesures temporelles}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \begin{circuitikz} \draw
 (0,2) node[left]{$v_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
@@ -127,7 +127,7 @@ Pour chacun des circuits ci-dessous, vous devez préparer en équipe de deux (2)
 
 %\subsection{Partie 2 --- Mesures fréquentielles et diagrammes de Bode}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \begin{circuitikz} \draw
 (0,2) node[left]{$V_{\mathrm{g}}$} to[R=270~$\Omega$,o-] (3,2) to[short] (3,2)
@@ -136,7 +136,7 @@ Pour chacun des circuits ci-dessous, vous devez préparer en équipe de deux (2)
 \caption{\label{sch-RC2}\textbf{Sous-objectif} : démontrer que ce même circuit RC série agit en filtre passe-haut ou passe-bas en prenant les mesures appropriées pour construire les diagrammes de Bode du gain ET de la phase en fonction de la fréquence.}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \begin{circuitikz} \draw
 (0,2) node[left]{$V_{\mathrm{g}}$} to[L,l=$L$,a=1<\milli\henry>,o-] (2.5,2) to[C,l=$C$, a=1<\micro\farad>] (5,2) to[short,-o] (6.5,2) node[right]{$V_{\mathrm{out}}$}
@@ -196,7 +196,7 @@ Pour chacun des circuits ci-dessous, vous devez préparer en équipe de deux (2)
 %\subsection{Partie 3 --- Coupures de différents filtres passe-bas}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \subcaptionbox{}
 {\begin{circuitikz} \draw
@@ -276,6 +276,9 @@ Pour chacun des circuits ci-dessous, vous devez préparer en équipe de deux (2)
 % \caption{\label{sch-Butter-Sallen-Key-ordre3}Filtre actif Butterworth en topologie Sallen-Key de troisième ordre.}
 % \end{figure}
 
+\section{Déroulement de l’atelier}
+
+Lors du cours à la date spécifiée dans l’onglet "Contenu et activités" sur le site de cours, nous nous diviserons en groupes, chacun animé par un membre de l’équipe d’enseignement. La première partie du cours sera une discussion des manipulations que vous proposez pour chaque circuit, en partageant à tour de rôle votre cahier de recherche d’équipe à l’écran. Pour la deuxième partie de cours, l’animatrice.teur vous indiquera le ou les circuit.s attribué.s à votre groupe pour réaliser les manipulations en commun à l’aide des services logiciels en ligne de Paul Falstad et Tinkercad. Le cours se terminera en faisant une brève démonstration de votre expérience à toute la classe.
 
 %\section{Questions et discussion}
 %
