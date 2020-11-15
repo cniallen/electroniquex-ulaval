@@ -3,8 +3,9 @@
 %Dernière modification CA: 15 novembre 2020
 %***ToDo***
 %Mieux connecter au cours, tourner en notes de cours avec les 2 compléments d'analyse temporelle et fréquentielle.
-%Inverser intro aux dB (aussi échelle logarithmique en général, quoique ce serait bien avant le lab III pour cette analyse) et Bande passante-fréquence de coupure pour clarifier connexion -3 dB et $2^{-1/2}$ linéaire en amplitude. Peut-être même la notion de filtres avant ça. P.S. Ça $\frac{1}{\sqrt{2}}=2^{-1/2}$ c'est pas beau dans le texte, garder dans les diapos.
-%Rajouter illustration des cas idéaux de types de filtres (transitions verticales) dans le coin des diagrammes de Bode puis introduire déviation en pente dB/decade, ça va mieux connecter avec le dernier sous-objectif de l'atelier.
+%Inverser intro aux dB (aussi échelle logarithmique en général, quoique ce serait bien avant le lab III pour cette analyse) et Bande passante-fréquence de coupure pour clarifier connexion -3 dB et $2^{-1/2}$ linéaire en amplitude. Peut-être même la notion de filtres avant ça... en fait revoir toute la structure pour mieux fitter avec le cours! P.S. Ça $\frac{1}{\sqrt{2}}=2^{-1/2}$ c'est pas beau dans le texte, garder dans les diapos.
+%Mieux connecter phaseurs au vocabulaire de PMII en notation polaire de nombres complexes: faire un tableau. Bienvenue dans la multidisciplinarité inhérente à la physique!
+%Rajouter illustration (geogebra->TikZ) des cas idéaux de chaque type de filtres (transitions verticales) dans le coin des diagrammes de Bode puis introduire déviation en pente dB/decade, ça va mieux connecter avec le dernier sous-objectif de l'atelier.
 %
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -54,7 +55,7 @@ La bande passante d'un système, ou d'un signal, est l'intervalle de fréquences
 B=f_{c2}-f_{c1}.
 \end{equation}
 %
-La largeur de la bande passante dépend des fréquences de coupure, qui elles-mêmes dépendent de la définition du seuil d'intensité au-delà duquel le signal est considéré comme trop faible pour faire partie de la bande passante. Généralement, les fréquences de coupure équivalent à une perte d'intensité de 3~dB, c'est-à-dire aux endroits où l'amplitude du signal (tension, courant) vaut $2^{\,\text{-\textonehalf}}$ de son amplitude maximale. Plus rarement, la bande passante peut être définie comme l'intervalle entre les fréquences où l'intensité a chuté de 6~dB ; l'amplitude est alors égale à la moitié de sa valeur maximale.
+La largeur de la bande passante dépend des fréquences de coupure, qui elles-mêmes dépendent de la définition du seuil d'intensité au-delà duquel le signal est considéré comme trop faible pour faire partie de la bande passante. Généralement, les fréquences de coupure équivalent à une perte d'intensité de 3~dB, c'est-à-dire aux endroits où l'amplitude du signal (tension, courant) vaut $2^{\,\text{-\textonehalf}}$ de son amplitude maximale\footnote{Plus rarement, la bande passante peut être définie comme l'intervalle entre les fréquences où l'intensité a chuté de 6~dB ; l'amplitude est alors égale à la moitié de sa valeur maximale.}.
 
 \subsection{Décibel}
 
@@ -77,6 +78,10 @@ Il existe différentes sortes de filtres ; leur application dépend des fréquen
 
 Un filtre passe-bande est en quelque-sorte la combinaison de ces deux filtres : les fréquences se situant entre les deux fréquences de coupure du filtre passent sans atténuation significative, alors que les fréquences inférieures et supérieures sont effacées. Un filtre coupe-bande agit à l'opposé : il laisse passer toutes les fréquences sauf celles situées dans la fourchette définie par ses deux fréquences de coupure.
 
+Ces fonctions de filtrage avec les circuits se visualisent clairement à l'aide de spectres, c'est-à-dire de graphiques en fonction de la fréquence (et par extension de l'énergie dans d'autres domaines de la physique). Il faut passer donc passer du domaine temporel au domaine fréquentiel avec la transformée de Fourier, où la variable indépendante est le temps ... fonction complexe var ind fréquence  
+%FFT oscilloscope similaire mais circuit système fct de transfert vs signal
+
+Pour des circuits et systèmes électriques, ces spectres .. Bode
 
 \subsection{Exemple --- Circuit RC en série}
 \label{exemple-RC}
