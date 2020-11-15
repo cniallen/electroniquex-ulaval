@@ -5,7 +5,7 @@
 %Mieux connecter au cours, tourner en notes de cours avec les 2 compléments d'analyse temporelle et fréquentielle.
 %Inverser intro aux dB (aussi échelle logarithmique en général, quoique ce serait bien avant le lab III pour cette analyse) et Bande passante-fréquence de coupure pour clarifier connexion -3 dB et $2^{-1/2}$ linéaire en amplitude. Peut-être même la notion de filtres avant ça... en fait revoir toute la structure pour mieux fitter avec le cours! P.S. Ça $\frac{1}{\sqrt{2}}=2^{-1/2}$ c'est pas beau "inline" dans le texte, garder seulement en "displaystyle" et/ou dans les diapos.
 %Mieux connecter phaseurs au vocabulaire de PMII en notation polaire de nombres complexes: faire un tableau. Bienvenue dans la multidisciplinarité inhérente à la physique!
-%Rattacher un bout de texte avec le travail expérimental sur oscilloscope qui a été fait avec la FFT? Bout de blabla déjà commencé à ce sujet: "un signal réel mesuré dans le temps, par exemple $v(t)$, devient...FFT oscilloscope similaire, mettre photo de mesure actuelle (attention illustration pédagogique, pas analyse!)... distinguer circuit système (RÉPONSE en fréequence fct de transfert Vout/Vin) vs signal (Vout pour un Vin spécifique)." See wiki Bode plots, spectral density,etc.
+%Rattacher un bout de texte avec le travail expérimental sur oscilloscope qui a été fait avec la FFT? Bout de blabla déjà commencé à ce sujet: "un signal réel mesuré dans le temps, par exemple $v(t)$, devient...FFT oscilloscope similaire, mettre photo de mesure actuelle (attention illustration pédagogique, pas analyse!)... distinguer circuit système (RÉPONSE en fréquence fct de transfert Vout/Vin) vs signal (Vout pour un Vin spécifique)." See wiki Bode plots, spectral density,etc. et surtout retrouver les notes de systèmes et mesures expériementales.
 %Rajouter illustration (geogebra->TikZ) des cas idéaux de chaque type de filtres (transitions verticales) dans le coin des diagrammes de Bode puis introduire déviation en pente dB/octave ou dB/décade (https://en.wikipedia.org/wiki/Roll-off , https://learnabout-electronics.org/ac_theory/filters83.php), ça va mieux connecter avec le dernier sous-objectif de l'atelier.
 %
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
@@ -86,11 +86,10 @@ Pour des circuits électriques et systèmes de contrôle, ces spectres de répon
 \begin{equation} \label{eq:GainPhase}
 H\!\left(\omega\right)=G\!\left(\omega\right)\,\mathrm{e}^{j\,\varphi(\omega)}\, .
 \end{equation}
-
-Expérimentalement, l'axe du gain en amplitude est souvent gradué en décibels $G\!\left(f\right)=20\,\textrm{log}_{10}\left(\frac{V_{out}}{V_{\mathrm{in}}}\right)$ avec une abscisse logarithmique afin de couvrir un large intervalle en fréquence $f$. Particulièrement dans les domaines acoustique et radio, ce logarithme peut être en base 2 pour graduer l'axe à chaque octave en représentant des doublements de la fréquence fondamentale. Pour le diagramme de Bode de la phase $\phi\!\left(f\right)$, le déphasage est généralement calculé par rapport à la source qui envoie le signal d'entrée $V_{\mathrm{in}}=V_S$.
+Expérimentalement, l'axe du gain en amplitude est souvent gradué en décibels selon \[G\!\left(f\right)=20\,\textrm{log}_{10}\left(\frac{V_{\mathrm{out}}(f)}{V_{\mathrm{in}}(f)}\right)\]
+avec une abscisse logarithmique afin de couvrir un large intervalle en fréquence $f$. Particulièrement dans les domaines acoustique et radio, ce logarithme peut être en base 2 pour graduer l'axe à chaque octave en représentant des doublements de la fréquence fondamentale. Pour le diagramme de Bode de la phase $\phi\!\left(f\right)$, le déphasage est généralement calculé par rapport à la source qui envoie le signal d'entrée $V_{\mathrm{in}(f)}$.
 %%FIN RÉVISION JÉRÉMIE%%
 
-%et revus à l'équation \eqref{eq:GainPhase} ci-dessous.
 %...exemple idéal passe bas
 %j\omega ; ctrl+f \begin center
 \subsection{Exemple --- Circuit RC en série}
@@ -112,31 +111,26 @@ V_C=H_C\,V_S=\frac{Z_C}{Z_C+Z_R}\,V_S\\
 V_R=H_R\,V_S=\frac{Z_R}{Z_C+Z_R}\,V_S
 \end{gather}
 
-Or, puisque l'impédance du condensateur dépend de la fréquence de la source, il en résulte que les deux fonctions de transfert, donc les deux tensions, varieront aussi en fonction de la fréquence. Les fonctions de transfert peuvent s'écrire:
+Or, puisque l'impédance du condensateur dépend de la fréquence de la source, il en résulte que les deux fonctions de transfert, donc les deux tensions, varieront aussi en fonction de la fréquence. Les fonctions de transfert en régime permanent peuvent s'écrire:
 \begin{gather}
-H_C\!\left(j\,\omega\right)=\frac{1}{1+j\,\omega\,R\,C}\\
-H_R\!\left(j\,\omega\right)=\frac{j\,\omega\,R\,C}{1+j\,\omega\,R\,C}.
+H_C\!\left(\omega\right)=\frac{1}{1+j\,\omega\,R\,C}\\
+H_R\!\left(\omega\right)=\frac{j\,\omega\,R\,C}{1+j\,\omega\,R\,C}.
 \end{gather}
 
-Pour un dipôle, la fonction de transfert peut être vue comme un phaseur, c'est-à-dire comme une grandeur ayant une amplitude (qu'on appelle le gain) et une phase.
-\begin{equation} \label{eq:GainPhase}
-H\!\left(j\,\omega\right)=G\!\left(\omega\right)\,\mathrm{e}^{j\,\varphi(\omega)}
-\end{equation}
-Dans le cas du présent circuit RC, les gains et les phases du condensateur et de la résistance sont les suivants:
+Selon l'équation~\eqref{eq:GainPhase}, les diagrammes de Bode de ce circuit RC sont les graphes des gains et des phases obtenus à l'aide de la tension de sortie aux bornes du condensateur ou de la résistance, soit les fonctions
 \begin{subequations}
 \begin{gather}
-G_C=\frac{1}{\sqrt{1+\left(\omega\,R\,C\right)^2}}\\
-\varphi_C=\mathrm{arctan}\!\left(-\omega\,R\,C\right)
+G_C=\frac{1}{\sqrt{1+\left(\omega\,R\,C\right)^2}}\,,\\
+\varphi_C=\mathrm{arctan}\!\left(-\omega\,R\,C\right)\,,
 \end{gather}
 \end{subequations}
 \begin{subequations}
 \begin{gather}
-G_R=\frac{\omega\,R\,C}{\sqrt{1+\left(\omega\,R\,C\right)^2}}\\
-\varphi_R=\mathrm{arctan}\!\left(\frac{1}{\omega\,R\,C}\right).
+G_R=\frac{\omega\,R\,C}{\sqrt{1+\left(\omega\,R\,C\right)^2}}\,,\\
+\varphi_R=\mathrm{arctan}\!\left(\frac{1}{\omega\,R\,C}\right)\,.
 \end{gather}
 \end{subequations}
-
-En analysant les deux équations des gains, il est possible de constater que lorsque $\omega\,\rightarrow\,0$, $G_C\,\rightarrow\,1$ et $G_R\,\rightarrow\,0$. L'inverse survient lorsque $\omega\,\rightarrow\,\infty$. Ainsi, si la sortie du diviseur de tension est prise aux bornes du condensateur, les hautes fréquences seront atténuées mais les basses fréquences ne le seront pas : le circuit agit alors comme un filtre passe-bas. À l'opposé, si la sortie est prise aux bornes de la résistance, le diviseur de tension se comportera comme un filtre passe-haut.
+En analysant les deux fonctions des gains lorsque $\omega\,\rightarrow\,0$, on remarque que la limite $G_C\,\rightarrow\,1$ et $G_R\,\rightarrow\,0$. L'inverse survient lorsque $\omega\,\rightarrow\,\infty$. Ainsi, si la sortie du diviseur de tension est prise aux bornes du condensateur, les hautes fréquences seront atténuées, mais les basses fréquences ne le seront pas : le circuit agit alors comme un filtre passe-bas. À l'opposé, si la sortie est prise aux bornes de la résistance, le diviseur de tension se comportera comme un filtre passe-haut.
 
 La fréquence de coupure (à -3 dB) est celle où les gains valent $2^{\,\text{-\textonehalf}}$:
 \begin{equation}
