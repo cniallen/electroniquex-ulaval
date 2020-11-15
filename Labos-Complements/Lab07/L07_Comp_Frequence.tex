@@ -78,11 +78,11 @@ Il existe différentes sortes de filtres ; leur application dépend des fréquen
 
 Un filtre passe-bande est en quelque-sorte la combinaison de ces deux filtres : les fréquences se situant entre les deux fréquences de coupure du filtre passent sans atténuation significative, alors que les fréquences inférieures et supérieures sont effacées. Un filtre coupe-bande agit à l'opposé : il laisse passer toutes les fréquences sauf celles situées dans la fourchette définie par ses deux fréquences de coupure.
 
-Ces fonctions de filtrage avec les circuits se visualisent clairement à l'aide de spectres, c'est-à-dire de graphiques en fonction de la fréquence (et par extension de l'énergie dans d'autres domaines de la physique). Il faut passer donc passer du domaine temporel au domaine fréquentiel avec la transformée de Fourier, où la variable indépendante est le temps ... fonction complexe var ind fréquence  
-%FFT oscilloscope similaire mais circuit système fct de transfert vs signal
+Ces fonctions de filtrage avec les circuits se visualisent clairement à l'aide de spectres, c'est-à-dire de graphiques en fonction de la fréquence\footnote{Le terme fréquence sera ici généralement utilisé pour désigner la fréquence angulaire ou pulsation $\omega$. S'il y a lieu de référer à la fréquence étalonnée en \si{\hertz}, le symbole $f$ sera indiqué.} $\omega=2\pi f$ (et par extension de l'énergie dans d'autres domaines de la physique). Il faut donc passer de la variable indépendante du temps (domaine temporel) au domaine fréquentiel avec une fonction complexe de la variable indépendante de fréquence $\omega$. L'outil théorique pour ce faire est la transformée de Fourier, alors qu'expérimentalement, un signal sinusoïdal de fréquence, amplitude et phase connues, par exemple $v_{in}(t)$, peut être directement envoyé dans un système pour ensuite mesurer le changement d'amplitude et le déphasage\footnote{Éléments de réflexion: la fréquence n'est pas indiquée dans les mesures à la sortie, pourquoi cela n'est pas nécessaire? Est-ce que la fréquence d'un signal, d'une onde peut changer dans un système linéaire indépendant du temps?} à une sortie, par exemple $v_{out}(t)$. Ces deux grandeurs constituent alors les variables dépendantes en notation polaire de la fonction complexe.... mieux connecter avec ancien protocole symboles
+%un signal réel mesuré dans le temps, par exemple $v(t)$, devient...FFT oscilloscope similaire, mettre photo de mesure actuelle (attention illustration pédagogique, pas analyse!)... distinguer circuit système (RÉPONSE en fréequence fct de transfert Vout/Vin) vs signal (Vout pour un Vin spécifique). See wiki Bode plots, spectral density,...
 
-Pour des circuits et systèmes électriques, ces spectres .. Bode
-
+Pour des circuits électriques et systèmes de contrôle, ces spectres de réponse en fréquence portent le nom de diagrammes de Bode. Spécifiquement, il s'agit des graphes du gain $G(\omega)$ et de la phase $\varphi(\omega)$ tels qu'introduits dans le cours à partir de la fonction de transfert et revus à l'équation \eqref{eq:GainPhase} ci-dessous. ...exemple idéal passe bas.. noter des détails du protocole dont échelle log de fréquence
+%j\omega ; ctrl+f \begin center
 \subsection{Exemple --- Circuit RC en série}
 \label{exemple-RC}
 
@@ -109,8 +109,8 @@ H_R\!\left(j\,\omega\right)=\frac{j\,\omega\,R\,C}{1+j\,\omega\,R\,C}.
 \end{gather}
 
 Pour un dipôle, la fonction de transfert peut être vue comme un phaseur, c'est-à-dire comme une grandeur ayant une amplitude (qu'on appelle le gain) et une phase.
-\begin{equation}
-H\!\left(j\,\omega\right)=G\!\left(\omega\right)\,\mathrm{e}^{j\,\varphi}
+\begin{equation} \label{eq:GainPhase}
+H\!\left(j\,\omega\right)=G\!\left(\omega\right)\,\mathrm{e}^{j\,\varphi(\omega)}
 \end{equation}
 Dans le cas du présent circuit RC, les gains et les phases du condensateur et de la résistance sont les suivants:
 \begin{subequations}
