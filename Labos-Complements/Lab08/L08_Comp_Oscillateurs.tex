@@ -89,7 +89,21 @@ Le signal à l'entrée non inverseuse, qui n'est \textit{a priori} que du bruit 
 
 \section{Oscillateur harmonique à rétroaction (LC)}
 %Ancienne intro partie 3
-Un autre oscillateur plus simple reposant sur le même principe de filtrage et amplification en boucle du signal est l'oscillateur LC. Vous avez étudié au dernier atelier le filtre RLC passe-bande dont la fréquence de résonance correspond à une oscillation, tel qu'attendu pour tout système linéaire qui se modélise par une équation différentielle ordinaire d'ordre 2. Ce filtre peut donc jouer le rôle du pont de Wien. 
+Un autre oscillateur reposant sur le même principe de filtrage et amplification en boucle du signal est l'oscillateur LC. Vous avez étudié au dernier atelier le filtre RLC passe-bande dont la fréquence de résonance correspond à une oscillation. On pourrait donc remplacer le pont de Wien du dernier oscillateur par un tel filtre.
+tel qu'attendu pour tout système linéaire qui se modélise par une équation différentielle ordinaire d'ordre 2.
+\subsection{Équations différentielles associées à un oscillateur}
+On peut déterminer le comportement d'un circuit oscillateur en déterminant l'équation différentielle décrivant la tension au point du circuit qui nous intéresse. Les étapes générales sont les suivantes:
+\begin{enumerate}
+    \item Pour chacun des composants, poser l'équation qui décrit la variation de tension à ses bornes.
+    \begin{itemize}
+        \item Résistance :
+        \item Condensateur :
+        \item Bobine :
+    \end{itemize}
+    \item Déterminer une expression globale pour le circuit à partir de la loi des mailles.
+    \item À partir de cette expression, isoler la variable d'intérêt ($I$ ou $V$).
+    \item Résoudre l'équation différentielle pour la variable d'intérêt.
+\end{enumerate}
 \section{Oscillations avec la puce 555}
 %Ancienne sous-section
 \begin{figure}[h]
