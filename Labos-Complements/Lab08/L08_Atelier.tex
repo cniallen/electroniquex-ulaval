@@ -27,6 +27,7 @@
 \usepackage[letterpaper,headheight=15pt]{geometry}
 \usepackage{fancyhdr}
 \usepackage{setspace}
+\usepackage{float}
 %
 %----------------------------------------------------
 %Other configurations and layout
@@ -83,13 +84,15 @@ Lire le complément \textit{Oscillateurs électroniques}
 % \item deux puces 555;
 % \item une plaquette de montage.
 % \end{itemize}
+\section{Préparation}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+Pour chacun des circuits ci-dessous, vous devez préparer en équipe de deux (2) le protocole qui permettra d'atteindre le sous-objectif indiqué en légende de la figure. Les compléments en lecture préparatoire détaillent la théorie et les modèles pour comprendre le fonctionnement des circuits et les analyser expérimentalement. Dans votre cahier de recherche, concevez et écrivez des suggestions de manipulations à faire pour chaque circuit afin de les présenter en partage d'écran Zoom pour évaluation pendant la première partie de la séance de cours virtuel.
 
-
-\section{Manipulations}
-
+\section{Déroulement de l'atelier}
+Lors du cours à la date spécifiée dans l’onglet "Contenu et activités" sur le site de cours, nous nous diviserons en groupes, chacun animé par un membre de l’équipe d’enseignement. La première partie du cours sera une discussion des manipulations que vous proposez pour chaque circuit, en partageant à tour de rôle votre cahier de recherche d’équipe à l’écran. Pour la deuxième partie de cours, l’animatrice.teur vous indiquera le ou les circuit.s attribué.s à votre groupe pour réaliser les manipulations en commun à l’aide des services logiciels en ligne de Paul Falstad et Tinkercad. Le cours se terminera en faisant une brève démonstration de votre expérience à toute la classe.
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 
-\subsection{Partie 1 - Oscillateur à relaxation}
+\subsection{Oscillateur à relaxation avec comparateur}
 
 \begin{figure}[h]
 \centering
@@ -102,11 +105,8 @@ Lire le complément \textit{Oscillateurs électroniques}
 (opamp.up) ++ (0,0.5) node[above]{5~V} -- (opamp.up)
 (-4,2.2) node[ground]{} to[C=$C$] (-1.2,2.2) to[R=$R$] (1.6,2.2) to[short] (1.6,-2.2) to[R=10~k$\Omega$] (-1.2,-2.2) to[R=10~k$\Omega$] (-4,-2.2) node[ground]{}
 ;\end{circuitikz}
-\caption{\label{sch-osc-relax}Oscillateur à relaxation utilisant un comparateur.}
+\caption{\label{sch-osc-relax}\textbf{Sous-objectif:} Déterminer la forme du signal à la sortie de l'amplificateur et étudier l'impact des paramètres R et C sur celui-ci.}
 \end{figure}
-%Objectifs: Mesurer la fréquence du signal à la sortie de l'amplificateur.
-%Déterminer comment varie la fréquence du signal en fonction de la résistance R et de la capacité C.
-%Mettre la légende de la figure en complément. Indiquer que le signal à l'entrée n'est à priori que du bruit.
 
 % a) Sur la plaquette de montage, construisez le circuit de l'oscillateur à relaxation que vous avez analysé en préparation (figure~\ref{sch-osc-relax}). Encore une fois, envoyez la sortie $v_{\mathrm{out}}$ à la fois dans le haut-parleur et dans le canal~1 de l'oscilloscope. Utilisez le condensateur de précision de 1~$\mu\mathrm{F}$~$\pm5$~\% pour la capacité $C$. Pour la résistance $R$, placez une résistance de 560~$\Omega$.
 
@@ -117,11 +117,11 @@ Lire le complément \textit{Oscillateurs électroniques}
 % d) Remplacez la résistance de 560~$\Omega$ par un potentiomètre linéaire de 1~k$\Omega$. En ajustant le potentiomètre, vous serez en mesure de générer un son à une fréquence donnée. Vous pouvez ajouter une résistance en série avec le potentiomètre si vous avez besoin d'une résistance supérieure à 1~k$\Omega$. Chaque équipe devra produire une note différente (dictée par vos dictateurs). Le but ultime est, en combinant les efforts de toute la classe, de jouer une symphonie grandiose!
 
 
-\subsection{Partie 2 - Oscillateur harmonique à rétroaction (pont de Wien)}
+\subsection{Oscillateur harmonique à rétroaction - pont de Wien}
 
-a) En continuant sur une autre plaquette de montage, construisez l'oscillateur à pont de Wien (figure~\ref{sch-osc-Wien}). Prenez les composants $C=1\,\mu\mathrm{F}$ et $R=270\,\Omega$. Utilisez les sorties $+25$~V et $-25$~V du bloc d'alimentation pour alimenter l'amplificateur opérationnel.
+% a) En continuant sur une autre plaquette de montage, construisez l'oscillateur à pont de Wien (figure~\ref{sch-osc-Wien}). Prenez les composants $C=1\,\mu\mathrm{F}$ et $R=270\,\Omega$. Utilisez les sorties $+25$~V et $-25$~V du bloc d'alimentation pour alimenter l'amplificateur opérationnel.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \begin{circuitikz} \draw
 (0,0) node[op amp](opamp){}
@@ -133,7 +133,7 @@ a) En continuant sur une autre plaquette de montage, construisez l'oscillateur �
 (-4,2.2) node[ground]{} to[R=1~k$\Omega$] (-1.2,2.2) to[R=10~k$\Omega$] (1.6,2.2) to[short] (1.6,0) to[C=$C$] (1.6,-2.2) to[R=$R$] (-1.2,-2.2)
 (-1.2,-2.2) to[C=$C$] (-3,-2.2) node[ground]{} to[R=$R$] (-3,-0.5) to[short] (-1.2,-0.5)
 ;\end{circuitikz}
-\caption{\label{sch-osc-Wien}Oscillateur harmonique --- pont de Wien.}
+\caption{\label{sch-osc-Wien}\textbf{Sous-objectif:} Démontrer que ce circuit agit comme un filtre en prenant les mesures appropriées pour identifier sa bande passante. Également, étudier l'effet de l'ajout d'une charge (résistance??) entre la sortie $v_{\mathrm{out}}$ et la mise à la terre.}
 \end{figure}
 %OBJECTIFS: 1) Déterminer la fréquence du signal à la sortie. 2) Déterminer l'impact de l'ajout d'une charge à la sortie (résistance ou haut parleur sur tinkercad??) sur la fréquence. Qu'est-ce qui cause la variation observée?
 
@@ -145,20 +145,34 @@ a) En continuant sur une autre plaquette de montage, construisez l'oscillateur �
 % %SOUS-SECTION À METTRE EN COMPLÉMENT
 % Le signal à l'entrée non inverseuse (\textit{a priori} ce signal n'est que du bruit) est amplifié, puis il passe au travers d'un pont de Wien qui le filtre, avant de retourner à l'entrée de l'amplificateur, pour être à nouveau amplifié et filtré, et ainsi de suite, \textit{ad infinitum}. Le pont de Wien est \textit{grosso modo} l'addition d'un filtre passe-bas et d'un filtre passe-haut, pour former un filtre passe-bande. La fréquence du signal de sortie est $f=\left(2\,\pi\,R\,C\right)^{-1}$. L'amplitude finale du signal est fixée par la source d'alimentation. % Cet oscillateur doit son oscillation au chargement/déchargement du condensateur qui relie l'entrée non inverseuse de l'amplificateur au \textit{ground}.
 
-\subsection{Partie 3 - Oscillateur harmonique à rétroaction (LC)}
+\subsection{Conception - Oscillateur harmonique à rétroaction (LC)}
 
-% Un autre oscillateur plus simple reposant sur le même principe de filtrage et amplification en boucle du signal est l'oscillateur LC. Vous avez étudié au dernier laboratoire le filtre RLC passe-bande dont la fréquence de résonance correspond à une oscillation, tel qu'attendu pour tout système linéaire qui se modélise par une équation différentielle ordinaire d'ordre 2. Ce filtre peut donc jouer le rôle du pont de Wien. 
+Un autre oscillateur reposant sur le principe de filtrage et amplification en boucle du signal est l'oscillateur LC. Vous avez étudié au dernier atelier le filtre RLC passe-bande dont la fréquence de résonance correspond à une oscillation, tel qu'attendu pour tout système linéaire qui se modélise par une équation différentielle ordinaire d'ordre 2. Ce filtre peut donc jouer le rôle du pont de Wien. 
 
-% Faites la conception d'un tel oscillateur en plaçant un circuit LC parallèle (\textit{tank circuit}) à l'entrée non inverseuse d'un amplificateur non inverseur. Le circuit devra respecter les spécifications suivantes à démontrer à l'oscilloscope:
-% \begin{itemize}
-%     \setlength{\itemsep}{0.1ex}
-%     \item gain d'au moins un facteur 10,
-%     \item fréquence minimale d'oscillation de 7 kHz.
-% \end{itemize}
-% La recherche sur Internet en particulier filtrée par images, ou oserons-nous dans la littérature en bibliothèque(!), est la meilleure amie du concepteur en herbe. Vous pouvez aussi simuler le circuit si désiré, avec <\url{http://www.falstad.com/circuit/>} par exemple.
+Faites la conception d'un tel oscillateur en plaçant un circuit LC parallèle (\textit{tank circuit}) à l'entrée non inverseuse d'un amplificateur non inverseur. Le circuit devra respecter les spécifications suivantes à démontrer à l'oscilloscope:
+\begin{itemize}
+     \setlength{\itemsep}{0.1ex}
+     \item gain d'au moins un facteur 10,
+     \item fréquence minimale d'oscillation de 7 kHz.
+ \end{itemize}
+ 
+ \begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,0) node[op amp](opamp){}
+(opamp.+) to[short] (-1.2,-0.5) to[short] (-1.2,-2.2)
+(opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2.2)
+(opamp.out) to[short,-o] (2.1,0) node[right]{$v_{\mathrm{out}}$}
+(opamp.down) ++ (0,-0.5) node[below]{$-5$~V} -- (opamp.down)
+(opamp.up) ++ (0,0.5) node[above]{5~V} -- (opamp.up)
+(-4,2.2) node[ground]{} to[R=$R_1$] (-1.2,2.2) to[R=$R_2$] (1.6,2.2) to[short] (1.6,-2.2) to[R=$R_3$] (-1.2,-2.2) to[short] (-2.2,-2.2)
+node[draw,minimum width=2cm,minimum height=2cm, dashed] at (-3.2,-2.2){?} (-4.2,-2.2) to[short] (-5,-2.2) node[ground]{};
+\end{circuitikz}
+\caption{\label{sch-osc-relax}\textbf{Sous-objectif:} Complétez le circuit avec les composants de votre choix afin d'obtenir les spécifications demandées.}
+\end{figure}
+ %La recherche sur Internet en particulier filtrée par images, ou oserons-nous dans la littérature en bibliothèque(!), est la meilleure amie du concepteur en herbe. Vous pouvez aussi simuler le circuit si désiré, avec <\url{http://www.falstad.com/circuit/>} par exemple.
 
-%Est-ce qu'on garde l'exercice de conception dans l'atelier virtuel?
-\subsection{Partie 4 - Oscillations avec la puce 555}
+%\subsection{Partie 4 - Oscillations avec la puce 555}
 
 % La puce 555 est un circuit intégré qui est très souvent utilisé en électronique pour, entre autres, bâtir un oscillateur.
 % \begin{figure}[h]
@@ -193,61 +207,61 @@ a) En continuant sur une autre plaquette de montage, construisez l'oscillateur �
 % Dans cette partie du laboratoire, vous utiliserez deux puces 555 pour contruire un circuit constitué de deux oscillateurs. L'un produira une oscillation à une fréquence assez élevée pour être un son audible via un haut-parleur (la porteuse), alors que l'autre produira une oscillation à très basse fréquence qui modulera l'amplitude du son (l'enveloppe). Vous obtiendrez donc un son dont l'intensité oscillera dans le temps, comme une alarme!
 
 % a) Construisez d'abord l'oscillateur qui permettra de produire le son. Sur la plaquette de montage, faites le circuit de la figure~\ref{sch-alarme-1}. Utilisez les composants $R_A=270~\Omega$, $R_B=1~k\Omega$ et $C=1~\mu\mathrm{F}$. Reliez le haut-parleur à la sortie de la puce.
-\begin{figure}[h]
-\centering
-\begin{circuitikz} \draw[thick]
-(0,0) to[short,-*] (0,1) node[right]{2} to[short] (0,2) node[right]{6} to[short,*-*] (0,3) node[right]{7} to[short] (0,4) to[short] (1,4) node[below]{4} to[short,*-*] (2,4) node[below]{8} to[short] (3,4) to[short] (3,3) node[left]{3} to[short,*-*] (3,1) node[left]{5} to[short] (3,0) to[short,-*] (1.5,0) node[above]{1} to[short] (0,0)
-;\draw
-(3,3) to[short,-o] (3.5,3) node[right]{$v_{\mathrm{out}}$}
-(1.5,0) to[short] (1.5,-0.5)
-(-2,-0.5) to[C=$C$] (-2,1) to[R=$R_B$] (-2,3) to[R=$R_A$] (-2,5) to[short] (2,5)
-(-2,1) to[short] (0,1)
-(-1,1) to[short] (-1,2) to[short] (0,2)
-(-2,3) to[short] (0,3)
-(1,4) to[short] (1,5)
-(2,4) to[short] (2,5)
-(-4,-0.5) node[ground]{} to[V=$v_{\mathrm{s}}$] (-4,5) to[short] (-2,5)
-(-4,-0.5) to[short] (1.5,-0.5)
-;\end{circuitikz}
-\caption{\label{sch-alarme-1}Circuit d'une puce 555 en mode astable. Les numéros des entrées de la puce sont définis à la figure~\ref{sch-555}.}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \begin{circuitikz} \draw[thick]
+% (0,0) to[short,-*] (0,1) node[right]{2} to[short] (0,2) node[right]{6} to[short,*-*] (0,3) node[right]{7} to[short] (0,4) to[short] (1,4) node[below]{4} to[short,*-*] (2,4) node[below]{8} to[short] (3,4) to[short] (3,3) node[left]{3} to[short,*-*] (3,1) node[left]{5} to[short] (3,0) to[short,-*] (1.5,0) node[above]{1} to[short] (0,0)
+% ;\draw
+% (3,3) to[short,-o] (3.5,3) node[right]{$v_{\mathrm{out}}$}
+% (1.5,0) to[short] (1.5,-0.5)
+% (-2,-0.5) to[C=$C$] (-2,1) to[R=$R_B$] (-2,3) to[R=$R_A$] (-2,5) to[short] (2,5)
+% (-2,1) to[short] (0,1)
+% (-1,1) to[short] (-1,2) to[short] (0,2)
+% (-2,3) to[short] (0,3)
+% (1,4) to[short] (1,5)
+% (2,4) to[short] (2,5)
+% (-4,-0.5) node[ground]{} to[V=$v_{\mathrm{s}}$] (-4,5) to[short] (-2,5)
+% (-4,-0.5) to[short] (1.5,-0.5)
+% ;\end{circuitikz}
+% \caption{\label{sch-alarme-1}Circuit d'une puce 555 en mode astable. Les numéros des entrées de la puce sont définis à la figure~\ref{sch-555}.}
+% \end{figure}
 
 % Initialement, lorsque le bloc d'alimentation s'allume, la tension à l'entrée \textbf{TRIG} est basse, donc la sortie est élevée ($v_{\mathrm{out}}=v_{\mathrm{s}}=\mathrm{V_{CC}}$) et le condensateur $C$ se charge avec une constante de temps $\tau=\left(R_A+R_B\right)\,C$. La tension aux bornes du condensateur, \textit{i.e.} la tension aux terminaux \textbf{TRIG} et \textbf{THRES}, augmente jusqu'à atteindre le niveau de seuil, soit $\frac{2}{3}\,v_{\mathrm{s}}$. À ce moment, la sortie devient basse ($v_{\mathrm{out}}=0$~V), le terminal \textbf{DISCH} devient mis à la terre et le condensateur se décharge avec une constante de temps plus petite $\tau=R_B\,C$. Lorsque la différence de potentiel aux bornes du condensateur a diminué jusqu'à atteindre $\frac{1}{3}\,v_{\mathrm{s}}$, alors la sortie redevient élevée, le terminal \textbf{DISCH} est déconnecté de la masse et le condensateur recommence à se charger. Ainsi, la sortie passe de 0~V à $v_{\mathrm{s}}$ puis retourne à 0~V et ainsi de suite, avec une période de $T=\mathrm{ln}\!\left(2\right)\left(R_A+2\,R_B\right)C$\label{eq:alarme}.
 
 % b) Allumez le bloc d'alimentation et fournissez une tension suffisante pour entendre un son clair (4~V devrait être une tension suffisante). Lorsque vous êtes tannés d'entendre cette note plutôt horrible, désactivez l'alimentation.
 
-\subsubsection{Optionnel: Fabrication d'une alarme}
+%\subsubsection{Optionnel: Fabrication d'une alarme}
 
 % c) Vous pouvez obtenir un son d'alarme rudimentaire en ajoutant un deuxième oscillateur qui viendra moduler beaucoup plus lentement le son de votre premier oscillateur. Avec le circuit de la figure~\ref{sch-alarme-2}), la sortie de la nouvelle puce (B) commande en effet directement directement l'autre (A). Notez que les deux nouvelles résistances sont nettement plus grandes, afin de fournir un signal oscillant beaucoup plus lentement.
-\begin{figure}[h]
-\centering
-\begin{circuitikz} \draw[thick]
-(0,0) to[short,-*] (0,1) node[right]{2} to[short] (0,2) node[right]{6} to[short,*-*] (0,3) node[right]{7} to[short] (0,4) to[short] (1,4) node[below]{4} to[short,*-*] (2,4) node[below]{8} to[short] (3,4) to[short] (3,3) node[left]{3} to[short,*-*] (3,1) node[left]{5} to[short] (3,0) to[short,-*] (1.5,0) node[above]{1} to[short] (0,0)
-(-7,0) to[short,-*] (-7,1) node[right]{2} to[short] (-7,2) node[right]{6} to[short,*-*] (-7,3) node[right]{7} to[short] (-7,4) to[short] (-6,4) node[below]{4} to[short,*-*] (-5,4) node[below]{8} to[short] (-4,4) to[short] (-4,3) node[left]{3} to[short,*-*] (-4,1) node[left]{5} to[short] (-4,0) to[short,-*] (-5.5,0) node[above]{1} to[short] (-7,0)
-;\draw
-(3,3) to[short,-o] (3.5,3) node[right]{$v_{\mathrm{out}}$}
-(1.5,0) to[short] (1.5,-0.5)
-(-2,-0.5) to[C=1~$\mu$F] (-2,1) to[R=1~k$\Omega$] (-2,3)
-(-2,1) to[short] (0,1)
-(-1,1) to[short] (-1,2) to[short] (0,2)
-(-2,3) to[short] (0,3)
-(1,4) to[short] (1,5)
-(2,4) to[short] (2,5)
-(-11,-0.5) node[ground]{} to[V=4~V] (-11,5) to[short] (-2,5) to[short] (2,5)
-(-4,3) to[R=270~$\Omega$] (-2,3)
-(-5.5,0) to[short] (-5.5,-0.5)
-(-9,-0.5) to[C=1~$\mu$F] (-9,1) to[R=1~M$\Omega$] (-9,3) to[R=100~k$\Omega$] (-9,5)
-(-9,1) to[short] (-7,1)
-(-8,1) to[short] (-8,2) to[short] (-7,2)
-(-9,3) to[short] (-7,3)
-(-6,4) to[short] (-6,5)
-(-5,4) to[short] (-5,5)
-(-11,-0.5) to[short] (1.5,-0.5)
-(-5.5,1.7) node[above]{\textbf{B}}
-(1.5,1.7) node[above]{\textbf{A}}
-;\end{circuitikz}
-\caption{\label{sch-alarme-2}Circuit d'une alarme.}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \begin{circuitikz} \draw[thick]
+% (0,0) to[short,-*] (0,1) node[right]{2} to[short] (0,2) node[right]{6} to[short,*-*] (0,3) node[right]{7} to[short] (0,4) to[short] (1,4) node[below]{4} to[short,*-*] (2,4) node[below]{8} to[short] (3,4) to[short] (3,3) node[left]{3} to[short,*-*] (3,1) node[left]{5} to[short] (3,0) to[short,-*] (1.5,0) node[above]{1} to[short] (0,0)
+% (-7,0) to[short,-*] (-7,1) node[right]{2} to[short] (-7,2) node[right]{6} to[short,*-*] (-7,3) node[right]{7} to[short] (-7,4) to[short] (-6,4) node[below]{4} to[short,*-*] (-5,4) node[below]{8} to[short] (-4,4) to[short] (-4,3) node[left]{3} to[short,*-*] (-4,1) node[left]{5} to[short] (-4,0) to[short,-*] (-5.5,0) node[above]{1} to[short] (-7,0)
+% ;\draw
+% (3,3) to[short,-o] (3.5,3) node[right]{$v_{\mathrm{out}}$}
+% (1.5,0) to[short] (1.5,-0.5)
+% (-2,-0.5) to[C=1~$\mu$F] (-2,1) to[R=1~k$\Omega$] (-2,3)
+% (-2,1) to[short] (0,1)
+% (-1,1) to[short] (-1,2) to[short] (0,2)
+% (-2,3) to[short] (0,3)
+% (1,4) to[short] (1,5)
+% (2,4) to[short] (2,5)
+% (-11,-0.5) node[ground]{} to[V=4~V] (-11,5) to[short] (-2,5) to[short] (2,5)
+% (-4,3) to[R=270~$\Omega$] (-2,3)
+% (-5.5,0) to[short] (-5.5,-0.5)
+% (-9,-0.5) to[C=1~$\mu$F] (-9,1) to[R=1~M$\Omega$] (-9,3) to[R=100~k$\Omega$] (-9,5)
+% (-9,1) to[short] (-7,1)
+% (-8,1) to[short] (-8,2) to[short] (-7,2)
+% (-9,3) to[short] (-7,3)
+% (-6,4) to[short] (-6,5)
+% (-5,4) to[short] (-5,5)
+% (-11,-0.5) to[short] (1.5,-0.5)
+% (-5.5,1.7) node[above]{\textbf{B}}
+% (1.5,1.7) node[above]{\textbf{A}}
+% ;\end{circuitikz}
+% \caption{\label{sch-alarme-2}Circuit d'une alarme.}
+% \end{figure}
 
 % d) Lorsque votre circuit est fin prêt, allumez de nouveau le bloc d'alimentation et écoutez la douce mélodie de votre alarme!
 
