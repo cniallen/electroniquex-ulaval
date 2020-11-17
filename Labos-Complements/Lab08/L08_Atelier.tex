@@ -173,7 +173,7 @@ node[draw,minimum width=2cm,minimum height=2cm, dashed] at (-3.2,-2.2){?} (-4.2,
 \end{figure}
  %La recherche sur Internet en particulier filtrée par images, ou oserons-nous dans la littérature en bibliothèque(!), est la meilleure amie du concepteur en herbe. Vous pouvez aussi simuler le circuit si désiré, avec <\url{http://www.falstad.com/circuit/>} par exemple.
 
-\subsection{Optionnel - Oscillations avec la puce 555}
+\subsection{Oscillations avec la puce 555}
 
 % La puce 555 est un circuit intégré qui est très souvent utilisé en électronique pour, entre autres, bâtir un oscillateur.
 % \begin{figure}[h]
@@ -224,8 +224,9 @@ node[draw,minimum width=2cm,minimum height=2cm, dashed] at (-3.2,-2.2){?} (-4.2,
 (-4,-0.5) node[ground]{} to[V=$v_{\mathrm{s}}$] (-4,5) to[short] (-2,5)
 (-4,-0.5) to[short] (1.5,-0.5)
 ;\end{circuitikz}
-\caption{\label{sch-alarme-1}\textbf{Sous-objectif:} Sur Tinkercad, connecter un haut-parleur à la sortie $v_\mathrm{out}$ de la puce 555. Déterminer un ensemble de valeurs de $R_A$, $R_B$ et $C$ qui permettent de générer un signal de sortie pouvant générer un son à une fréquence audible.}
+\caption{\label{sch-alarme-1}\textbf{Sous-objectif:} Sur Tinkercad, connecter un haut-parleur à la sortie $v_\mathrm{out}$ de la puce 555. On souhaite ainsi faire la \textit{transduction} du signal $v_\mathrm{out}$, c'est-à-dire le convertir d'un signal électrique à un signal mécanique (sonore). Déterminer un ensemble de valeurs de $R_A$, $R_B$ et $C$ qui feront en sorte que le signal résultant sera à une fréquence audible par l'oreille humaine.}
 \end{figure}
+%%%Accent transduction
 
 \section{Déroulement de l'atelier}
 Lors du cours à la date spécifiée dans l’onglet "Contenu et activités" sur le site de cours, nous nous diviserons en groupes, chacun animé par un membre de l’équipe d’enseignement. La première partie du cours sera une discussion des manipulations que vous proposez pour chaque circuit, en partageant à tour de rôle votre cahier de recherche d’équipe à l’écran. Pour la deuxième partie de cours, l’animatrice.teur vous indiquera le ou les circuit.s attribué.s à votre groupe pour réaliser les manipulations en commun à l’aide des services logiciels en ligne de Paul Falstad et Tinkercad. Le cours se terminera en faisant une brève démonstration de votre expérience à toute la classe.
