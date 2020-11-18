@@ -1,4 +1,7 @@
+%Créé par Claudine Allen en collaboration avec Jérémie Guilbert
 %Dernière modification JG: 11 novembre 2020
+%Dernière modification CA: 15 novembre 2020
+%
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
 %
@@ -12,44 +15,35 @@
 \usepackage{textcomp}
 \usepackage{amsmath,amssymb}
 \usepackage{siunitx}
-\usepackage{xcolor}
+\usepackage[svgnames]{xcolor}
 \usepackage{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
-\usepackage[americanvoltages,americancurrents,siunitx]{circuitikz}
+\usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
 \usetikzlibrary{babel}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
 \usepackage{caption}
+%\usepackage{subcaption}
+\usepackage{subfig}
 \usepackage[letterpaper,headheight=15pt]{geometry}
 \usepackage{fancyhdr}
 \usepackage{setspace}
 %
-%----------------------------------------------------
-%Other configurations and layout
-%
-\sisetup{separate-uncertainty}
 \captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
-\pagestyle{fancy}
-\fancyhf{}
-\lhead{\textsl{GPH-2006/PHY-2002~---~Laboratoire~VIII}}
-\rhead{\textsl{Page \thepage}}
-\setcounter{secnumdepth}{0}
-\setlength{\parskip}{1.5ex plus0.5ex minus0.2ex}
-\setlength\parindent{0pt}
-%\onehalfspacing
-\interfootnotelinepenalty=10000 %To avoid footnotes spreading on several pages.
-%
-%---------------------------------------------------
-%
-\title{\textbf{Complément}\\Oscillateurs électroniques\thanks{Auteurs: Claudine Allen, Jérémie Guilbert \& Jean-Raphaël Carrier}}
-\renewcommand\footnotemark{}
-\date{}
+\pagestyle{myheadings}
+\markboth{PHY-2002/GPH-2006~---~Oscillateurs électroniques}{PHY-2002/GPH-2006~---~Oscillateurs électroniques}
 
 \begin{document}
-\maketitle \vspace{-2cm}
+ 
+\title{\textbf{Complément}\\Oscillateurs électroniques}
+\author{Jérémie Guilbert \& Claudine Allen}
+\date{}
+\maketitle
 
-% À l’inverse de filtrer des fréquences d’un signal, cet atelier explore comment ajouter de nouvelles fréquences. La génération de ces signaux oscillant périodiquement à partir d’un courant constant fera notamment intervenir la fonction de comparateur de l’amplificateur opérationnel pour contrôler le cycle de charge-décharge d’un condensateur, puis celle d’amplification avec rétroaction où la fréquence d’oscillation est sélectionnée avec un filtre passe-bande. L’étudiant.e sera aussi initié.e à la conception d’un circuit LC résonnant à une fréquence d’oscillation requise. Des fonctions d’intérêt pour les circuits oscillateurs étudiés sont d’actionner un transducteur afin d’obtenir des ondes mécaniques, ou encore de définir un étalon de temps lorsque l’oscillation est pratiquement harmonique avec une seule fréquence. %La transduction sera d’abord mise en pratique avec un haut-parleur pour générer des ondes sonores, et puis avec la résonance de vibration d’un cristal de quartz pour obtenir une oscillation quasi-monochrome qui définira la seconde.
-
-Bien que les filtre puissent être utilisés passivement pour simplement atténuer les signaux qui oscillent à certaines fréquences, il est aussi possible de les utiliser en combinaison avec des amplificateurs opérationnels afin de générer activement des signaux à des fréquences voulues. La génération de ces signaux fait intervenir la fonction de comparateur d'un ampli-op afin de contrôler le cycle de charge-décharge d'un condensateur, puis celle d'amplification avec rétroaction afin de sélectionner la fréquence d'oscillation avec un filtre passe-bande. Des fonctions d’intérêt pour les circuits oscillateurs étudiés sont d’actionner un transducteur afin d’obtenir des ondes mécaniques, ou encore de définir un étalon de temps lorsque l’oscillation est pratiquement harmonique avec une seule fréquence.
+% En plus d'atténuer les signaux alternatifs dans une bande de fréquences donnée, les filtres peuvent être utilisés en combinaison avec des amplificateurs opérationnels afin de générer activement des signaux oscillants à des fréquences voulues. La génération de ces signaux fait intervenir la fonction de comparateur d'un ampli-op afin de contrôler le cycle de charge-décharge d'un condensateur, puis celle d'amplification avec rétroaction afin de sélectionner la fréquence d'oscillation avec un filtre passe-bande. Des fonctions d’intérêt pour les circuits oscillateurs étudiés sont d’actionner un transducteur afin d’obtenir des ondes mécaniques, ou encore de définir un étalon de temps lorsque l’oscillation est pratiquement harmonique avec une seule fréquence.
 
 \section{Oscillateur à relaxation avec comparateur}
 \begin{figure}[h]
@@ -66,7 +60,8 @@ Bien que les filtre puissent être utilisés passivement pour simplement atténu
 \caption{\label{sch-osc-relax}Oscillateur à relaxation avec comparateur}
 \end{figure}
 %Ancienne légende de la figure 1
-Ce circuit, illustré à la figure \ref{sch-osc-relax}, est basé sur l'utilisation de la fonction comparateur de l'ampli-op qui permet de contrôler le cycle de charge-décharge d'un condensateur afin de générer des oscillations à une fréquence déterminée par les valeurs des composants du circuit. Le condensateur qui se charge cause éventuellement l'entrée inverseuse de l'amplificateur opérationnel à dépasser celle non inverseuse et la tension de sortie de ce comparateur tombe alors négative, renversant ainsi la polarité appliquée sur le condensateur. Celui-ci se décharge maintenant jusqu'à ce que l'entrée inverseuse repasse sous celle non inverseuse et remet la sortie positive pour recommencer le cycle. 
+Le circuit illustré à la figure \ref{sch-osc-relax}
+est basé sur l'utilisation de la fonction comparateur de l'ampli-op qui permet de contrôler le cycle de charge-décharge d'un condensateur afin de générer des oscillations à une fréquence déterminée par les valeurs des composants du circuit. Le condensateur qui se charge cause éventuellement l'entrée inverseuse de l'amplificateur opérationnel à dépasser celle non inverseuse et la tension de sortie de ce comparateur tombe alors négative, renversant ainsi la polarité appliquée sur le condensateur. Celui-ci se décharge maintenant jusqu'à ce que l'entrée inverseuse repasse sous celle non inverseuse et remet la sortie positive pour recommencer le cycle. 
 
 \section{Oscillateur harmonique à rétroaction - pont de Wien}
 \begin{figure}[h]
@@ -83,14 +78,14 @@ Ce circuit, illustré à la figure \ref{sch-osc-relax}, est basé sur l'utilisat
 ;\end{circuitikz}
 \caption{\label{sch-osc-Wien}Oscillateur harmonique à rétroaction - pont de Wien}
 \end{figure}
-Ce circuit, illustré à la figure \ref{sch-osc-Wien}, utilise l'ampli-op en mode rétroaction afin de sélectionner la fréquence du signal qui entrera à l'entrée non inverseuse au moyen d'un filtre passe-bande, permettant par le fait-même de contrôler la fréquence des oscillations à la sortie.
+Le circuit à la figure \ref{sch-osc-Wien} ci-dessus utilise l'ampli-op en mode rétroaction afin de sélectionner la fréquence du signal qui entrera à l'entrée non inverseuse au moyen d'un filtre passe-bande, permettant par le fait-même de contrôler la fréquence des oscillations à la sortie.
 
-Le signal à l'entrée non inverseuse, qui n'est \textit{a priori} que du bruit car aucune source n'est présente, est amplifié puis passe au travers d'un pont de Wien qui le filtre. Le signal ainsi filtré retourne ensuite à l'entrée de l'amplificateur pour être à nouveau amplifié et filtré, et ainsi de suite, \textit{ad infinitum}. Le pont de Wien est \textit{grosso modo} l'addition d'un filtre passe-bas et d'un filtre passe-haut pour former un filtre passe-bande. La fréquence du signal de sortie est $f=\left(2\,\pi\,R\,C\right)^{-1}$. L'amplitude finale du signal est fixée par la source d'alimentation de l'ampli-op. % Cet oscillateur doit son oscillation au chargement/déchargement du condensateur qui relie l'entrée non inverseuse de l'amplificateur au \textit{ground}.
+Le signal à l'entrée non inverseuse, qui n'est \textit{a priori} que du bruit car aucune source n'est présente, est amplifié puis passe au travers d'un pont de Wien qui le filtre. Le signal ainsi filtré retourne ensuite à l'entrée de l'amplificateur pour être à nouveau amplifié et filtré, et ainsi de suite, \textit{ad infinitum}. Le pont de Wien est \textit{grosso modo} l'addition d'un filtre passe-bas et d'un filtre passe-haut pour former un filtre passe-bande. La fréquence du signal de sortie est alors $f=\left(2\,\pi\,R\,C\right)^{-1}$. L'amplitude finale du signal est fixée par la source d'alimentation de l'ampli-op. % Cet oscillateur doit son oscillation au chargement/déchargement du condensateur qui relie l'entrée non inverseuse de l'amplificateur au \textit{ground}.
 
 \section{Oscillateur harmonique à rétroaction (LC)}
 %Ancienne intro partie 3
-Un autre oscillateur reposant sur le même principe de filtrage et amplification en boucle du signal est l'oscillateur LC. Vous avez étudié au dernier atelier le filtre RLC passe-bande dont le gain et la fréquence de résonance peuvent être déterminés analytiquement à partir des valeurs de résistance $R$, d'inductance $L$ et de capacitance $C$ du circuit. On pourrait donc remplacer le pont de Wien du dernier oscillateur par un circuit RLC afin d'obtenir, avec un choix judicieux des composants du circuit, une fréquence de résonance et un gain quelconques. 
-\subsection{Fréquence de résonance et équation différentielle d'un oscillateur}
+Un autre oscillateur reposant sur le même principe de filtrage et amplification en boucle du signal est l'oscillateur LC. Vous avez étudié au dernier atelier le filtre RLC passe-bande dont le gain et la fréquence de résonance peuvent être déterminés analytiquement à partir des valeurs de résistance $R$, d'inductance $L$ et de capacitance $C$ du circuit. On peut donc remplacer le pont de Wien du dernier oscillateur par un circuit RLC afin d'obtenir, avec un choix judicieux des composants du circuit, une fréquence de résonance et un gain quelconques. 
+\subsection{Résonance et équation différentielle des oscillateurs}
 On peut déterminer la fréquence de résonance d'un circuit oscillateur en déterminant l'équation différentielle décrivant la tension ou le courant au point du circuit qui nous intéresse. Pour ce faire, les étapes générales sont les suivantes:
 \begin{enumerate}
     \item Déterminer l'équation gouvernant le circuit à partir des lois de Kirchhoff.
@@ -168,33 +163,36 @@ La résolution de l'équation homogène décrite ici permet de trouver la fréqu
 
 Noter qu'à partir de la solution dérivée pour le courant circulant dans le circuit RLC en série, on pourrait obtenir obtenir des équations pour la tension aux bornes de chacun des composants à partir des relations tension/courant. Par exemple, si on désire connecter une charge sur la bobine, on pourrait déterminer la tension à l'entrée de la charge en connaissant $I(t)$ et sachant que $V_L(t) = L\frac{dI(t)}{dt}$.
 
-\section{Oscillations avec la puce 555}
+\section{Oscillateur avec la puce 555}
 %Ancienne sous-section
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw[thick]
 (0,0) to[short] (0,0.5) node[right]{4} to[short,*-*] (0,1.5) node[right]{3} to[short] (0,2.5) node[right]{2} to[short,*-*] (0,3.5) node[right]{1} to[short] (0,4) to[short] (3,4) to[short] (3,3.5) node[left]{8} to[short,*-*] (3,2.5) node[left]{7} to[short] (3,1.5) node[left]{6} to[short,*-*] (3,0.5) node[left]{5} to[short] (3,0) to[short] (0,0)
-{[anchor=east] (0,3.5) node{\textbf{GND}} (0,2.5) node{\textbf{TRIG}} (0,1.5) node{\textbf{OUT}} (0,0.5) node{\textbf{RESET}}}
-{[anchor=west] (3,3.5) node{\textbf{V$_{\text{CC}}$}} (3,2.5) node{\textbf{DISCH}} (3,1.5) node{\textbf{THRES}} (3,0.5) node{\textbf{CONT}}}
+{[anchor=east] (0,3.5) node{\textbf{GND}} (0,2.5) node{\textbf{TRIG}} (0,1.5) node{\textbf{v$_{\text{out}}$}} (0,0.5) node{\textbf{RESET}}}
+{[anchor=west] (3,3.5) node{\textbf{v$_{\text{cc}}$}} (3,2.5) node{\textbf{DISCH}} (3,1.5) node{\textbf{THRES}} (3,0.5) node{\textbf{CONT}}}
 ;\end{circuitikz}
-\caption{\label{sch-555}Schéma d'une puce 555.}
+\caption{\label{sch-555}Schéma des ports d'entrée et sortie d'une puce 555.}
 \end{figure}
-La puce 555 est un circuit intégré (figure \ref{sch-555}) qui est très souvent utilisé en électronique pour, entre autres, bâtir un oscillateur.Les niveaux de déclenchement (\textit{trigger}) et de seuil (\textit{threshold}) valent un tiers et deux tiers de l'alimentation, respectivement. Lorsque l'entrée \textbf{TRIG} est inférieure au niveau de déclenchement, la sortie de la puce (\textbf{OUT}) vaut \textbf{V$_{\text{CC}}$}. Lorsque l'entrée \textbf{TRIG} est supérieure au niveau de déclenchement et qu'en plus l'entrée \textbf{THRES} est supérieure au niveau de seuil, alors la sortie devient nulle. Lorsque la sortie devient nulle, un court-circuit se fait entre l'entrée \textbf{DISCH} (\textit{discharge}) et la mise à la terre (voir table \ref{table-555}). La figure \ref{sch-alarme-1} illustre comment utiliser la puce 555 pour générer un signal oscillant à une fréquence précise. 
+La puce 555 est un circuit intégré (figure \ref{sch-555}) souvent utilisé en électronique analogique pour, entre autres, bâtir des oscillateurs. Les niveaux de déclenchement (\textit{trigger}) et de seuil (\textit{threshold}) valent respectivement un tiers et deux tiers de l'alimentation \textbf{v$_{\text{cc}}$}. Lorsque l'entrée \textbf{TRIG} est inférieure au niveau de déclenchement, la sortie de la puce \textbf{v$_{\text{out}}$} vaut \textbf{v$_{\text{cc}}$}. Lorsque l'entrée \textbf{TRIG} est supérieure au niveau de déclenchement et qu'en plus l'entrée \textbf{THRES} est supérieure au niveau de seuil, alors la sortie devient nulle. Lorsque la sortie devient nulle, un court-circuit se fait entre l'entrée \textbf{DISCH} (\textit{discharge}) et la mise à la terre. La table \ref{table-555} résume ce fonctionnement.
+
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|}
 \hline
 \textbf{TRIG} & \textbf{THRES} & \textbf{OUT} \\
 \hline
-$<\frac{1}{3}$\textbf{V$_{\text{CC}}$} & --- & \textbf{V$_{\text{CC}}$} \\
+$<\frac{1}{3}$\textbf{v$_{\text{cc}}$} & --- & \textbf{v$_{\text{cc}}$} \\
 \hline
-$>\frac{1}{3}$\textbf{V$_{\text{CC}}$} & $>\frac{2}{3}$\textbf{V$_{\text{CC}}$} & 0 \\
+$>\frac{1}{3}$\textbf{v$_{\text{cc}}$} & $>\frac{2}{3}$\textbf{v$_{\text{cc}}$} & 0 \\
 \hline
-$>\frac{1}{3}$\textbf{V$_{\text{CC}}$} & $<\frac{2}{3}$\textbf{V$_{\text{CC}}$} & Conserve l'état \\
+$>\frac{1}{3}$\textbf{v$_{\text{cc}}$} & $<\frac{2}{3}$\textbf{v$_{\text{cc}}$} & Conserve l'état \\
 \hline
 \end{tabular}
 \caption{\label{table-555}Sortie d'une puce 555 en fonction des tensions aux entrées \textbf{TRIG} et \textbf{THRES}.}
 \end{table}
+
+La figure~\ref{sch-alarme-1} illustre comment utiliser la puce 555 pour générer un signal oscillant à une fréquence précise. Initialement, lorsque le bloc d'alimentation s'allume, la tension à l'entrée \textbf{TRIG} est basse, donc la sortie est élevée ($v_{\mathrm{out}}=v_{\mathrm{s}}=\mathbf{v_{\text{cc}}}$) et le condensateur de capacité $C$ se charge avec une constante de temps $\tau=\left(R_A+R_B\right)\,C$. La tension aux bornes du condensateur, \textit{i.e.} la tension aux terminaux \textbf{TRIG} et \textbf{THRES}, augmente jusqu'à atteindre le niveau de seuil, soit $\frac{2}{3}\,v_{\mathrm{s}}$. À ce moment, la sortie devient basse ($v_{\mathrm{out}}=0$~V), le terminal \textbf{DISCH} devient mis à la terre et le condensateur se décharge avec une constante de temps plus petite $\tau=R_B\,C$. Lorsque la différence de potentiel aux bornes du condensateur a diminué jusqu'à atteindre $\frac{1}{3}\,v_{\mathrm{s}}$, alors la sortie redevient élevée, le terminal \textbf{DISCH} est déconnecté de la masse et le condensateur recommence à se charger. Ainsi, la sortie passe de 0~V à $v_{\mathrm{s}}$ puis retourne à 0~V et ainsi de suite, avec une période de $T=\mathrm{ln}\!\left(2\right)\left(R_A+2\,R_B\right)C$\label{eq:alarme}.
 
 \begin{figure}[h]
 \centering
@@ -212,9 +210,8 @@ $>\frac{1}{3}$\textbf{V$_{\text{CC}}$} & $<\frac{2}{3}$\textbf{V$_{\text{CC}}$} 
 (-4,-0.5) node[ground]{} to[V=$v_{\mathrm{s}}$] (-4,5) to[short] (-2,5)
 (-4,-0.5) to[short] (1.5,-0.5)
 ;\end{circuitikz}
-\caption{\label{sch-alarme-1}Circuit d'une puce 555 en mode astable. Les numéros des entrées de la puce sont définis à la figure~\ref{sch-555}.}
+\caption{Circuit d'une puce 555 en mode astable. Les numéros des entrées de la puce sont définis à la figure~\ref{sch-555}.}
+\label{sch-alarme-1}
 \end{figure}
-
-Initialement, lorsque le bloc d'alimentation s'allume, la tension à l'entrée \textbf{TRIG} est basse, donc la sortie est élevée ($v_{\mathrm{out}}=v_{\mathrm{s}}=\mathrm{V_{CC}}$) et le condensateur $C$ se charge avec une constante de temps $\tau=\left(R_A+R_B\right)\,C$. La tension aux bornes du condensateur, \textit{i.e.} la tension aux terminaux \textbf{TRIG} et \textbf{THRES}, augmente jusqu'à atteindre le niveau de seuil, soit $\frac{2}{3}\,v_{\mathrm{s}}$. À ce moment, la sortie devient basse ($v_{\mathrm{out}}=0$~V), le terminal \textbf{DISCH} devient mis à la terre et le condensateur se décharge avec une constante de temps plus petite $\tau=R_B\,C$. Lorsque la différence de potentiel aux bornes du condensateur a diminué jusqu'à atteindre $\frac{1}{3}\,v_{\mathrm{s}}$, alors la sortie redevient élevée, le terminal \textbf{DISCH} est déconnecté de la masse et le condensateur recommence à se charger. Ainsi, la sortie passe de 0~V à $v_{\mathrm{s}}$ puis retourne à 0~V et ainsi de suite, avec une période de $T=\mathrm{ln}\!\left(2\right)\left(R_A+2\,R_B\right)C$\label{eq:alarme}.
 
 \end{document}
