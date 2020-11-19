@@ -19,7 +19,7 @@
 \usepackage{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
-\usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
+\usepackage[nooldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
 \usetikzlibrary{babel}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.15}
@@ -85,17 +85,19 @@ Le signal à l'entrée non inverseuse, qui n'est \textit{a priori} que du bruit 
 \section{Oscillateur harmonique à rétroaction (LC)}
 %Ancienne intro partie 3
 Un autre oscillateur reposant sur le même principe de filtrage et amplification en boucle du signal est l'oscillateur LC. Vous avez étudié au dernier atelier le filtre RLC passe-bande dont le gain et la fréquence de résonance peuvent être déterminés analytiquement à partir des valeurs de résistance $R$, d'inductance $L$ et de capacitance $C$ du circuit. On peut donc remplacer le pont de Wien du dernier oscillateur par un circuit RLC afin d'obtenir, avec un choix judicieux des composants du circuit, une fréquence de résonance et un gain quelconques. 
+
 \subsection{Résonance et équation différentielle des oscillateurs}
-On peut déterminer la fréquence de résonance d'un circuit oscillateur en déterminant l'équation différentielle décrivant la tension ou le courant au point du circuit qui nous intéresse. Pour ce faire, les étapes générales sont les suivantes:
+On peut déterminer la fréquence de résonance d'un circuit oscillatoire passif en déterminant l'équation différentielle linéaire décrivant la tension ou le courant du circuit au point d'intérêt. Pour ce faire, le principe demeure le même que l'analyse de tout circuit réactif tel que modélisé précédemment à l'aide de la transformation de Laplace, mais ici l'accent est mis sur l'équation différentielle ordinaire (EDO) de départ afin de mieux faire ressortir les liens avec la théorie étudiée dans vos cours de physique mathématique. Les étapes générales d'analyse sont donc les suivantes:
+\renewcommand{\labelenumi}{\Roman{enumi}.}
 \begin{enumerate}
-    \item Déterminer l'équation gouvernant le circuit à partir des lois de Kirchhoff.
-    \item Substituer les équations consitutives tension/courant pour chacun des composants du circuit:
-    \begin{itemize}
-        \item Résistance : $V_R(t) = RI(t)$
-        \item Condensateur : $I_C(t) = C\frac{dV(t)}{dt}$ ou $V_C(t) = V(0)+\frac{1}{C}\int_0^tI(t')dt'$
-        \item Bobine : $V_L(t) = L\frac{dI(t)}{dt}$ ou $I_L(t) = I(0)+\frac{1}{L}\int_0^tV(t')dt'$
-    \end{itemize}
-    \item Exprimer l'équation différentielle en termes de la variable d'intérêt ($I$ ou $V$) au point désiré et résoudre l'équation.
+    \item déterminer le modèle gouvernant le circuit à partir des lois de Kirchhoff,
+    \item substituer les relations constitutives tension/courant pour chacun des composants du circuit, soit
+    \begin{align}
+        \text{résistance : } v_R(t) &= R\,i(t) \quad\text{ou}\quad i_R(t)=\frac{v_R(t)}{i_R(t)}\,,\\
+        \text{condensateur : } i_C(t) &= C\,\frac{\mathrm{d}v(t)}{\mathrm{d}t} \quad\text{ou}\quad v_C(t) = v(0)+\frac{1}{C}\int_0^ti(t')\,dt'\,,\\
+        \text{bobine : } v_L(t) &= L\,\frac{\mathrm{d}i(t)}{\mathrm{d}t} \quad\text{ou}\quad i_L(t)  = i(0)+\frac{1}{L}\int_0^tv(t')\,dt'\,,
+    \end{align}
+    \item exprimer l'équation différentielle en termes de la variable d'intérêt $i(t)$ ou $v(t)$ au point désiré et résoudre l'équation.
 \end{enumerate}
 
 \begin{figure}[h]
@@ -103,36 +105,39 @@ On peut déterminer la fréquence de résonance d'un circuit oscillateur en dét
 \begin{circuitikz} \draw
 (0,0) to[V=$V_S$,invert] (0,3) to[C=$C$] (3,3) to[R=$R$,i>^=$I$] (3,0) to[L=$L$] (0,0);
 \end{circuitikz}
-\caption{\label{circuitRLC-serie}Circuit RLC en série.}
+\caption{Circuit RLC en série.}
+\label{circuitRLC-serie}
 \end{figure}
 
-\vspace{0.7cm} Par exemple, pour le circuit RLC en série de la figure \ref{circuitRLC-serie}, on aurait, si on s'intéresse à déterminer l'expression pour le courant $I$, 
+L'oscillateur le plus simple est le circuit RLC en série de la figure \ref{circuitRLC-serie}. En effet, le comportement transitoire du courant $i(t)$ dans l'unique maille s'analyse ainsi:
 \begin{enumerate}
-    \item $V_S(t)=V_C(t)+V_R(t)+V_L(t)$
-    \item $V_S(t)=V(0)+\frac{1}{C}\int_0^tI(t')dt'+RI(t)+L\frac{dI(t)}{dt}$
+    \item $v_S(t)=v_C(t)+v_R(t)+v_L(t)$ avec la loi des mailles de Kirchhoff,
+    \item $\displaystyle v_S(t)=v(0)+\frac{1}{C}\int_0^ti(t')\,dt'+Ri(t)+L\frac{\mathrm{d}i(t)}{\mathrm{d}t}$ avec les relations constitutives,
+%\end{enumerate}
+%Si on suppose maintenant que la source produit une tension constante, on a, en prenant la dérivée de l'équation précédente, 
+%\begin{enumerate}
+%  \setcounter{enumi}{2}
+  \item $\displaystyle \frac{\mathrm{d}v_S(t)}{\mathrm{d}t} = L\,\frac{\mathrm{d}^2i(t)}{\mathrm{d}t^2}+R\,\frac{\mathrm{d}i(t)}{\mathrm{d}t}+\frac{1}{C}\,i(t)$ en prenant la dérivée.
 \end{enumerate}
-Si on suppose maintenant que la source produit une tension constante, on a, en prenant la dérivée de l'équation précédente, 
-\begin{enumerate}
-  \setcounter{enumi}{2}
-  \item $\frac{dV_S(t)}{dt}=0=L\frac{d^2I(t)}{dt^2}+R\frac{dI(t)}{dt}+\frac{1}{C}I(t)$.
-\end{enumerate}
-Si on exprime l'équation de façon à ce que le coefficient du terme en dérivée seconde soit 1, on a 
+En exprimant cette équation sous forme canonique $\ddot y(t) + 2\alpha\,\dot y(t) + \omega_0^2\,y(t) = f(t)$ avec un coefficient unitaire du terme en dérivée seconde, on a bien une EDO d'ordre~2 \textit{non homogène}
 \begin{equation}\label{eq:RCL}
-    \frac{d^2I(t)}{dt^2}+\frac{R}{L}\frac{dI(t)}{dt}+\frac{1}{LC}I(t) = 0,
+    \frac{\mathrm{d}^2i(t)}{\mathrm{d}t^2}+\frac{R}{L}\,\frac{\mathrm{d}i(t)}{\mathrm{d}t}+\frac{1}{LC}\,i(t) = \frac{\mathrm{d}v_S(t)}{\mathrm{d}t}\,.
 \end{equation}
-qui est un équation différentielle ordinaire d'ordre 2 \textit{homogène}. Pour mieux visualiser la signification de chacun des termes de cette équation, il est utile d'utiliser une analogie avec un système plus intuitif, le système masse-ressort (figure \ref{systeme_masse_ressort}). À partir des forces identifiées sur la figure, l'équation du mouvement pour un objet de masse $m$ au bout d'un ressort de constante $k$ dans un milieu visqueux est 
+
 \begin{figure}[h]
     \centering
-    \includegraphics[]{Labos-Complements/Lab08/masse_ressort.png}
-    \caption{\label{systeme_masse_ressort}Système masse-ressort sur une surface sans friction dans un milieu visqueux. Trois forces agissent sur la masse au bout du ressort: la force de rappel dictée par la constante de rappel du ressort $k$, une force de frottement fluide proportionnelle à la vitesse de la masse et au coefficient d'amortissement $c$ ainsi qu'une force extérieure $F$.}
-    \label{fig:OF}
+    \includegraphics[width=0.55\textwidth]{Labos-Complements/Lab08/masse_ressort.png}
+    \caption{Système masse-ressort sur une surface sans friction dans un milieu visqueux. Trois forces agissent sur la masse $m$ au bout du ressort: la force de rappel dictée par la constante de rappel du ressort~$k$, une force de frottement fluide proportionnelle à la vitesse de la masse $v(t)=\dot x(t)$, dont le coefficient de proportionnalité est l'amortissement~$c$, ainsi qu'une force extérieure~$F$.}
+    \label{fig:systeme_masse_ressort}
 \end{figure}
+Pour mieux visualiser la signification de chacun des termes de cette équation, il est utile d'utiliser une analogie avec un système plus intuitif, le système masse-ressort illustré à la figure~\ref{fig:systeme_masse_ressort}. À partir des forces identifiées sur la figure, l'équation du mouvement pour un objet au bout d'un ressort dans un milieu visqueux est 
 \begin{equation}\label{eq:masse_ressort}
-    \begin{split}
-      &\sum F = m\frac{d^2x}{dt^2} = -c\frac{dx}{dt}-kx+F \\
-      &\Rightarrow \frac{d^2x}{dt^2}+\frac{c}{m}\frac{dx}{dt}+\frac{k}{m}x = F.
-    \end{split}
+    %\begin{split}
+      &\sum F = m\frac{d^2x}{dt^2} = -c\frac{dx}{dt}-kx+F,% \\
+     % &\Rightarrow \frac{d^2x}{dt^2}+\frac{c}{m}\frac{dx}{dt}+\frac{k}{m}x = F.
+    %\end{split}
 \end{equation}
+avec la forme canonique 
 S'il n'y a pas de force $F$ qui entretient le mouvement, l'équation \ref{eq:masse_ressort} a la même forme que l'équation pour le courant du circuit RLC avec une source constante. Cette équation, exprimée sous la forme canonique
 \begin{equation}\label{eq:canonique}
     \frac{d^2I(t)}{dt^2}+2\alpha\frac{dI(t)}{dt}+\omega_0^2I(t) = 0,
