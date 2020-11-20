@@ -3,7 +3,8 @@
 %Dernière modification CA: 15 novembre 2020
 %******************
 %ToDo
-%- Éventuellement commenter dans l'analogie du système masse-ressort que la masse est une constante de proportionnalité dans l'inertie qte de mvt et non pas une propriété intrinsèque de la matière qui est plutôt le nbre d'atomes et masse étalonnée sur isotope carbone. J'ai déjà lu un super texte là-dessus, à retrouver.
+%- Section 3.1 de résonance: éventuellement commenter dans l'analogie du système masse-ressort que la masse est une constante de proportionnalité dans l'inertie qte de mvt et non pas une propriété intrinsèque de la matière qui est plutôt le nbre d'atomes et masse étalonnée sur isotope carbone. J'ai déjà lu un super texte là-dessus, à retrouver.
+%- Section 3.1 de résonance: dans le coin du retour vers un EDO non homogène vu le besoin d'un ampli-op pour forcer les oscillations, ajouter plus clairement (graphes et tout) l'effet du terme d'entretien à la résonance qui fait dépasser l'amplitude initiale (retour de l'énergie des composants dans le circuit, répartition différente de l'énergie dans le temps) en contraste à l'amortissement en l'absence de termes d'entretien. Capsule vidéo de cet effet dans un circuit RLC avec vieil oscillo analogique, en connexion avec atelier filtre itou, et système masse-ressort du jouet paddle ball!
 %
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -90,12 +91,12 @@ Le signal à l'entrée non inverseuse, qui n'est \textit{a priori} que du bruit 
 Un autre oscillateur reposant sur le même principe de filtrage et amplification en boucle du signal est l'oscillateur~LC. Vous avez étudié au dernier atelier le filtre~RLC passe-bande dont le gain et la fréquence de résonance peuvent être déterminés analytiquement à partir des valeurs de résistance~$R$, d'inductance~$L$ et de capacitance~$C$ du circuit. On peut donc remplacer le pont de Wien du dernier oscillateur par un circuit~RLC afin d'obtenir, avec un choix judicieux des composants du circuit, une fréquence de résonance et un gain quelconques. 
 
 \subsection{Résonance et équation différentielle des oscillateurs}
-On peut déterminer la fréquence de résonance d'un circuit oscillatoire passif en déterminant l'équation différentielle linéaire décrivant la tension ou le courant du circuit au point d'intérêt. Pour ce faire, le principe demeure le même que l'analyse de tout circuit réactif tel que modélisé précédemment à l'aide de la transformation de Laplace, mais ici l'accent est mis sur l'équation différentielle ordinaire~(EDO) de départ afin de mieux faire ressortir les liens avec la théorie étudiée dans vos cours de physique mathématique. Les étapes générales d'analyse sont donc les suivantes:
+On peut déterminer la fréquence de résonance $\omega_0=2\pi f_0$ d'un circuit oscillatoire passif en déterminant l'équation différentielle linéaire décrivant la tension ou le courant du circuit au point d'intérêt. Pour ce faire, le principe demeure le même que l'analyse de tout circuit réactif tel que modélisé précédemment à l'aide de la transformation de Laplace, mais ici l'accent est mis sur l'équation différentielle ordinaire~(EDO) de départ afin de mieux faire ressortir les liens avec la théorie étudiée dans vos cours de physique mathématique. Les étapes générales d'analyse sont donc
 \renewcommand{\labelenumi}{\Roman{enumi}.}
 \begin{enumerate}
     \item déterminer le modèle gouvernant le circuit à partir des lois de Kirchhoff,
     \item substituer les relations constitutives tension/courant pour chacun des composants du circuit, soit
-    \begin{equation}
+    \begin{equation} \label{eq:RelCon}
     \begin{split}
         \text{résistance : } v_R(t) &= R\,i(t) \quad\text{ou}\quad i_R(t)=\frac{v_R(t)}{i_R(t)}\,,\\
         \text{condensateur : } i_C(t) &= C\,\frac{\mathrm{d}v(t)}{\mathrm{d}t} \quad\text{ou}\quad v_C(t) = v(0)+\frac{1}{C}\int_0^ti(t')\,dt'\,,\\
@@ -170,22 +171,22 @@ Terme associé & $\mathrm{d}x(t)/\mathrm{d}t$ & $x(t)$ & 1\\
 % \begin{equation}\label{eq:canonique}
 %     \frac{d^2I(t)}{dt^2}+2\alpha\frac{dI(t)}{dt}+\omega_0^2I(t) = 0,
 % \end{equation}
-Lorsque le terme d'entretien est nul, la tension d'alimentation $v_s$ pouvant même être constante, et que l'EDO devient homogène, la dynamique transitoire est la même pour le courant dans le circuit~RLC et pour la position dans le système masse-ressort. La solution générale du cas $\frac{\alpha}{\omega_0}<1$ se simplifie à
+Lorsque le terme d'entretien est nul, la tension d'alimentation $v_s$ pouvant même être constante, l'EDO devient homogène et la dynamique transitoire est la même pour le courant dans le circuit~RLC et pour la position dans le système masse-ressort. La solution générale du cas $\frac{\alpha}{\omega_0}<1$ se simplifie à
 \begin{equation}\label{eq:sol_gen}
    i(t) = x(t) = Ae^{-\alpha t}\sin\left(\sqrt{\omega_0^2-\alpha^2}\:t+\varphi\right), 
 \end{equation}
-où $A$ et $\varphi$ sont des constantes déterminées par les conditions initiales du système. Cette fonction représente l'oscillation de la variable dépendante $i(t)$ ou $x(t)$ à la fréquence $\sqrt{\omega_0^2-\alpha^2}$. L'amplitude de l'oscillation, initialement de $A$, décroît de façon exponentielle avec le temps à un taux dicté par la constante $\alpha$. En l'absence de dissipation d'énergie par résistance ou frottement, le système n'est plus amorti et oscillera à sa \textbf{fréquence de résonance} $\mathbf{\omega_0}$, soit $\frac{1}{\sqrt{LC}}$ pour le circuit RLC et $\sqrt{\frac{k}{m}}$ pour le système masse-ressort. 
+où $A$ et $\varphi$ sont des constantes déterminées par les conditions initiales du système\footnote{La fonction~\eqref{eq:sol_gen} correspond à une superposition de deux solutions linéairement indépendantes comme il se doit pour une EDO homogène d'ordre~2. La fonction harmonique est obtenue à l'aide d'identités trigonométriques remaniant les coefficients en constantes d'amplitude $A$ et de phase $\varphi$.}. Cette fonction représente l'oscillation de la variable dépendante $i(t)$ ou $x(t)$ à la fréquence $\sqrt{\omega_0^2-\alpha^2}$. L'amplitude de l'oscillation, initialement de $A$, décroît de façon exponentielle avec le temps à un taux dicté par la constante $\alpha$ inversement proportionnelle à constante de temps du circuit $\tau=1/\alpha$. En l'absence de dissipation d'énergie par résistance ou frottement, le système n'est plus amorti et oscillera à sa \textbf{fréquence de résonance} $\mathbf{\omega_0}$, soit $\frac{1}{\sqrt{LC}}$ pour le circuit RLC et $\sqrt{\frac{k}{m}}$ pour le système masse-ressort. 
 
 %En comparant terme à terme les équations \ref{eq:RCL}, \ref{eq:masse_ressort} et \ref{eq:canonique} avec cette solution, on observe une équivalence entre les termes résumée au tableau \ref{tab:equiv_masse_ressort}. 
 
 %Si la résistance est non-nulle, la fréquence d'oscillation sera amortie et sera plutôt de $\sqrt{w_0^2-\alpha^2}=\sqrt{\frac{1}{LC}-\left(\frac{R}{L}\right)^2}$.
 %La résolution de l'équation homogène décrite ici permet de trouver la fréquence de résonance d'un circuit. 
 
+Il faut insister sur le fait que les oscillations naturelles dans le circuit~RLC sont toujours transitoires, elles ne peuvent pas perdurer beaucoup plus longtemps que la constante de temps $\tau$ du circuit. En effet, même un circuit~LC (\textit{tank or tuned circuit}) sans composant résistif dissipera de la puissance hors du circuit puisque les fils ne sont pas idéaux avec une résistivité intrinsèque non nulle. C'est pourquoi un composant actif, donc alimenté comme l'ampli-op, est nécessaire dans la conception d'oscillateurs électroniques et que l'analyse doit aussi considérer le régime permanent maintenu par un terme d'entretien non nul, tel que vu en classe et dans le complément \textit{Analyse fréquentielle}. Les relations constitutives~\eqref{eq:RelCon} permettent d'obtenir directement le comportement aussi oscillatoire de la différence de potentiel aux bornes de chaque composant et on peut alors retrouver la réponse en fréquence du circuit~RLC à l'aide de la transformée de Fourier. Toutefois, la présence d'un ampli-op demanderait un système d'EDO non linéaires, non homogènes et couplées pour complètement représenter le circuit, d'où on se tourne plutôt vers un modèle approximatif de l'ampli-op tel qu'introduit dans le complément \textit{Amplificateurs} et vers le diagramme de Bode du gain pour le circuit~RLC, soit un filtre passe-bande. 
+
 %Pour déterminer la réponse en fréquence, c'est-à-dire la valeur du gain en fonction de la fréquence d'oscillation du signal d'entrée $V_S(t)$, il faut résoudre l'équation non-homogène. Ceci est habituellement réalisé en calculant la fonction de transfert du système directement dans l'espace des fréquences avec les expressions pour l'impédance des composants, tel que détaillé dans le complément \textit{Analyse fréquentielle}.
 
-Il faut insister sur le fait que les oscillations naturelles dans le circuit~RLC sont toujours transitoires, ce pourquoi un composant actif, donc alimenté comme l'ampli-op, est nécessaire dans la conception d'oscillateurs électroniques. En effet, même un circuit~LC (\textit{tank or tuned circuit}) sans composant résistif dissipera de la puissance hors du circuit puisque les fils ne sont pas idéaux avec une résistivité intrinsèque non nulle. L'analyse doit alors considérer la ré
-
- Noter qu'à partir de la solution dérivée pour le courant circulant dans le circuit RLC en série, on pourrait obtenir obtenir des équations pour la tension aux bornes de chacun des composants à partir des relations tension/courant. Par exemple, si on désire connecter une charge sur la bobine, on pourrait déterminer la tension à l'entrée de la charge en connaissant $I(t)$ et sachant que $V_L(t) = L\frac{dI(t)}{dt}$.
+ %Noter qu'à partir de la solution dérivée pour le courant circulant dans le circuit RLC en série, on pourrait obtenir obtenir des équations pour la tension aux bornes de chacun des composants à partir des relations tension/courant. Par exemple, si on désire connecter une charge sur la bobine, on pourrait déterminer la tension à l'entrée de la charge en connaissant $I(t)$ et sachant que $V_L(t) = L\frac{dI(t)}{dt}$.
 
 \section{Oscillateur avec la puce 555}
 %Ancienne sous-section
