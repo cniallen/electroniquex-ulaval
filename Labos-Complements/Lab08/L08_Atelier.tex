@@ -1,8 +1,13 @@
 %Créé par Claudine Allen en collaboration avec Jean-Raphaël Carrier
 %Dernière modification JRC: 2 avril 2014
 %Élimination du labo de résistivité des matériaux (IV) à la fin de l'ère JRC + regroupement des labos VI & VII en début de pandémie COVID-19 => renumérotation X -> VIII maintenant
-%Dernière modification CA: 20 novembre 2020
+%Dernière modification CA: 23 novembre 2020
 %Dernière modification JG: 11 novemebre 2020
+%**********************
+%ToDo
+% - Trouver comment partager le son de l'ordinateur sur Zoom pour que les sorties Audio autant sur TinkerCad que Falstad soient entendus en classe virtuelle.
+% - Modifier la manip de l'alarme en mode DIY, tout en la gardant optionnelle. Mettre les mêmes symboles, au lieu de valeurs pre-set, pour le 1er oscillateur 555 en disant de garder la même fréquence qu'à la manip précédente.
+%
 
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -226,14 +231,6 @@ node[draw,minimum width=2cm,minimum height=2cm, dashed] at (-3.2,-2.2){?} (-4.2,
 ;\end{circuitikz}
 \caption{\label{sch-alarme-1}\textbf{Sous-objectif:} Sur Tinkercad, connecter un haut-parleur à la sortie $v_\mathrm{out}$ de la puce 555. On souhaite ainsi faire la \textit{transduction} du signal $v_\mathrm{out}$, c'est-à-dire le convertir d'un signal électrique à un signal mécanique (sonore). Déterminer un ensemble de valeurs de $R_A$, $R_B$ et $C$ qui feront en sorte que le signal résultant sera à une fréquence audible par l'oreille humaine.}
 \end{figure}
-%%%Accent transduction
-
-\section{Déroulement de l'atelier}
-Lors du cours à la date spécifiée dans l’onglet "Contenu et activités" sur le site de cours, nous nous diviserons en groupes, chacun animé par un membre de l’équipe d’enseignement. La première partie du cours sera une discussion des manipulations que vous proposez pour chaque circuit, en partageant à tour de rôle votre cahier de recherche d’équipe à l’écran. Pour la deuxième partie de cours, l’animatrice.teur vous indiquera le ou les circuit.s attribué.s à votre groupe pour réaliser les manipulations en commun à l’aide des services logiciels en ligne de Paul Falstad et Tinkercad. Le cours se terminera en faisant une brève démonstration de votre expérience à toute la classe.
-
-% Initialement, lorsque le bloc d'alimentation s'allume, la tension à l'entrée \textbf{TRIG} est basse, donc la sortie est élevée ($v_{\mathrm{out}}=v_{\mathrm{s}}=\mathrm{V_{CC}}$) et le condensateur $C$ se charge avec une constante de temps $\tau=\left(R_A+R_B\right)\,C$. La tension aux bornes du condensateur, \textit{i.e.} la tension aux terminaux \textbf{TRIG} et \textbf{THRES}, augmente jusqu'à atteindre le niveau de seuil, soit $\frac{2}{3}\,v_{\mathrm{s}}$. À ce moment, la sortie devient basse ($v_{\mathrm{out}}=0$~V), le terminal \textbf{DISCH} devient mis à la terre et le condensateur se décharge avec une constante de temps plus petite $\tau=R_B\,C$. Lorsque la différence de potentiel aux bornes du condensateur a diminué jusqu'à atteindre $\frac{1}{3}\,v_{\mathrm{s}}$, alors la sortie redevient élevée, le terminal \textbf{DISCH} est déconnecté de la masse et le condensateur recommence à se charger. Ainsi, la sortie passe de 0~V à $v_{\mathrm{s}}$ puis retourne à 0~V et ainsi de suite, avec une période de $T=\mathrm{ln}\!\left(2\right)\left(R_A+2\,R_B\right)C$\label{eq:alarme}.
-
-% b) Allumez le bloc d'alimentation et fournissez une tension suffisante pour entendre un son clair (4~V devrait être une tension suffisante). Lorsque vous êtes tannés d'entendre cette note plutôt horrible, désactivez l'alimentation.
 
 \subsubsection{Optionnel: Fabrication d'une alarme}
 
@@ -267,6 +264,13 @@ c) Vous pouvez obtenir un son d'alarme rudimentaire en ajoutant un deuxième osc
 ;\end{circuitikz}
 \caption{\label{sch-alarme-2}Circuit d'une alarme.}
 \end{figure}
+
+\section{Déroulement de l'atelier}
+Lors du cours à la date spécifiée dans l’onglet "Contenu et activités" sur le site de cours, nous nous diviserons en groupes, chacun animé par un membre de l’équipe d’enseignement. La première partie du cours sera une discussion des manipulations que vous proposez pour chaque circuit, en partageant à tour de rôle votre cahier de recherche d’équipe à l’écran. Pour la deuxième partie de cours, l’animatrice.teur vous indiquera le ou les circuit.s attribué.s à votre groupe pour réaliser les manipulations en commun à l’aide des services logiciels en ligne de Paul Falstad et Tinkercad. Le cours se terminera en faisant une brève démonstration de votre expérience à toute la classe.
+
+% Initialement, lorsque le bloc d'alimentation s'allume, la tension à l'entrée \textbf{TRIG} est basse, donc la sortie est élevée ($v_{\mathrm{out}}=v_{\mathrm{s}}=\mathrm{V_{CC}}$) et le condensateur $C$ se charge avec une constante de temps $\tau=\left(R_A+R_B\right)\,C$. La tension aux bornes du condensateur, \textit{i.e.} la tension aux terminaux \textbf{TRIG} et \textbf{THRES}, augmente jusqu'à atteindre le niveau de seuil, soit $\frac{2}{3}\,v_{\mathrm{s}}$. À ce moment, la sortie devient basse ($v_{\mathrm{out}}=0$~V), le terminal \textbf{DISCH} devient mis à la terre et le condensateur se décharge avec une constante de temps plus petite $\tau=R_B\,C$. Lorsque la différence de potentiel aux bornes du condensateur a diminué jusqu'à atteindre $\frac{1}{3}\,v_{\mathrm{s}}$, alors la sortie redevient élevée, le terminal \textbf{DISCH} est déconnecté de la masse et le condensateur recommence à se charger. Ainsi, la sortie passe de 0~V à $v_{\mathrm{s}}$ puis retourne à 0~V et ainsi de suite, avec une période de $T=\mathrm{ln}\!\left(2\right)\left(R_A+2\,R_B\right)C$\label{eq:alarme}.
+
+% b) Allumez le bloc d'alimentation et fournissez une tension suffisante pour entendre un son clair (4~V devrait être une tension suffisante). Lorsque vous êtes tannés d'entendre cette note plutôt horrible, désactivez l'alimentation.
 
 % d) Lorsque votre circuit est fin prêt, allumez de nouveau le bloc d'alimentation et écoutez la douce mélodie de votre alarme!
 
