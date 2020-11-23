@@ -21,7 +21,7 @@
 \usepackage{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
-\usepackage[americanvoltages,americancurrents,siunitx]{circuitikz}
+\usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
 \usetikzlibrary{babel}
 \usepackage{caption}
 \usepackage[letterpaper,headheight=15pt]{geometry}
@@ -235,38 +235,38 @@ Lors du cours à la date spécifiée dans l’onglet "Contenu et activités" sur
 
 % b) Allumez le bloc d'alimentation et fournissez une tension suffisante pour entendre un son clair (4~V devrait être une tension suffisante). Lorsque vous êtes tannés d'entendre cette note plutôt horrible, désactivez l'alimentation.
 
-%\subsubsection{Optionnel: Fabrication d'une alarme}
+\subsubsection{Optionnel: Fabrication d'une alarme}
 
-% c) Vous pouvez obtenir un son d'alarme rudimentaire en ajoutant un deuxième oscillateur qui viendra moduler beaucoup plus lentement le son de votre premier oscillateur. Avec le circuit de la figure~\ref{sch-alarme-2}), la sortie de la nouvelle puce (B) commande en effet directement directement l'autre (A). Notez que les deux nouvelles résistances sont nettement plus grandes, afin de fournir un signal oscillant beaucoup plus lentement.
-% \begin{figure}[h]
-% \centering
-% \begin{circuitikz} \draw[thick]
-% (0,0) to[short,-*] (0,1) node[right]{2} to[short] (0,2) node[right]{6} to[short,*-*] (0,3) node[right]{7} to[short] (0,4) to[short] (1,4) node[below]{4} to[short,*-*] (2,4) node[below]{8} to[short] (3,4) to[short] (3,3) node[left]{3} to[short,*-*] (3,1) node[left]{5} to[short] (3,0) to[short,-*] (1.5,0) node[above]{1} to[short] (0,0)
-% (-7,0) to[short,-*] (-7,1) node[right]{2} to[short] (-7,2) node[right]{6} to[short,*-*] (-7,3) node[right]{7} to[short] (-7,4) to[short] (-6,4) node[below]{4} to[short,*-*] (-5,4) node[below]{8} to[short] (-4,4) to[short] (-4,3) node[left]{3} to[short,*-*] (-4,1) node[left]{5} to[short] (-4,0) to[short,-*] (-5.5,0) node[above]{1} to[short] (-7,0)
-% ;\draw
-% (3,3) to[short,-o] (3.5,3) node[right]{$v_{\mathrm{out}}$}
-% (1.5,0) to[short] (1.5,-0.5)
-% (-2,-0.5) to[C=1~$\mu$F] (-2,1) to[R=1~k$\Omega$] (-2,3)
-% (-2,1) to[short] (0,1)
-% (-1,1) to[short] (-1,2) to[short] (0,2)
-% (-2,3) to[short] (0,3)
-% (1,4) to[short] (1,5)
-% (2,4) to[short] (2,5)
-% (-11,-0.5) node[ground]{} to[V=4~V] (-11,5) to[short] (-2,5) to[short] (2,5)
-% (-4,3) to[R=270~$\Omega$] (-2,3)
-% (-5.5,0) to[short] (-5.5,-0.5)
-% (-9,-0.5) to[C=1~$\mu$F] (-9,1) to[R=1~M$\Omega$] (-9,3) to[R=100~k$\Omega$] (-9,5)
-% (-9,1) to[short] (-7,1)
-% (-8,1) to[short] (-8,2) to[short] (-7,2)
-% (-9,3) to[short] (-7,3)
-% (-6,4) to[short] (-6,5)
-% (-5,4) to[short] (-5,5)
-% (-11,-0.5) to[short] (1.5,-0.5)
-% (-5.5,1.7) node[above]{\textbf{B}}
-% (1.5,1.7) node[above]{\textbf{A}}
-% ;\end{circuitikz}
-% \caption{\label{sch-alarme-2}Circuit d'une alarme.}
-% \end{figure}
+c) Vous pouvez obtenir un son d'alarme rudimentaire en ajoutant un deuxième oscillateur qui viendra moduler beaucoup plus lentement le son de votre premier oscillateur. Avec le circuit de la figure~\ref{sch-alarme-2}), la sortie de la nouvelle puce (B) commande en effet directement directement l'autre (A). Notez que les deux nouvelles résistances sont nettement plus grandes, afin de fournir un signal oscillant beaucoup plus lentement.
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw[thick]
+(0,0) to[short,-*] (0,1) node[right]{2} to[short] (0,2) node[right]{6} to[short,*-*] (0,3) node[right]{7} to[short] (0,4) to[short] (1,4) node[below]{4} to[short,*-*] (2,4) node[below]{8} to[short] (3,4) to[short] (3,3) node[left]{3} to[short,*-*] (3,1) node[left]{5} to[short] (3,0) to[short,-*] (1.5,0) node[above]{1} to[short] (0,0)
+(-7,0) to[short,-*] (-7,1) node[right]{2} to[short] (-7,2) node[right]{6} to[short,*-*] (-7,3) node[right]{7} to[short] (-7,4) to[short] (-6,4) node[below]{4} to[short,*-*] (-5,4) node[below]{8} to[short] (-4,4) to[short] (-4,3) node[left]{3} to[short,*-*] (-4,1) node[left]{5} to[short] (-4,0) to[short,-*] (-5.5,0) node[above]{1} to[short] (-7,0)
+;\draw
+(3,3) to[short,-o] (3.5,3) node[right]{$v_{\mathrm{out}}$}
+(1.5,0) to[short] (1.5,-0.5)
+(-2,-0.5) to[C=1~$\mu$F] (-2,1) to[R=1~k$\Omega$] (-2,3)
+(-2,1) to[short] (0,1)
+(-1,1) to[short] (-1,2) to[short] (0,2)
+(-2,3) to[short] (0,3)
+(1,4) to[short] (1,5)
+(2,4) to[short] (2,5)
+(-11,-0.5) node[ground]{} to[V=4~V] (-11,5) to[short] (-2,5) to[short] (2,5)
+(-4,3) to[R=270~$\Omega$] (-2,3)
+(-5.5,0) to[short] (-5.5,-0.5)
+(-9,-0.5) to[C=1~$\mu$F] (-9,1) to[R=1~M$\Omega$] (-9,3) to[R=100~k$\Omega$] (-9,5)
+(-9,1) to[short] (-7,1)
+(-8,1) to[short] (-8,2) to[short] (-7,2)
+(-9,3) to[short] (-7,3)
+(-6,4) to[short] (-6,5)
+(-5,4) to[short] (-5,5)
+(-11,-0.5) to[short] (1.5,-0.5)
+(-5.5,1.7) node[above]{\textbf{B}}
+(1.5,1.7) node[above]{\textbf{A}}
+;\end{circuitikz}
+\caption{\label{sch-alarme-2}Circuit d'une alarme.}
+\end{figure}
 
 % d) Lorsque votre circuit est fin prêt, allumez de nouveau le bloc d'alimentation et écoutez la douce mélodie de votre alarme!
 
