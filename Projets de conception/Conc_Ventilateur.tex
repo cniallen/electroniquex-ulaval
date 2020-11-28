@@ -1,0 +1,273 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Conc_Ventilateur.tex : Projet de conception - Contrôle Arduino d'un Ventilateur, Électronique et mesures expérimentales GPH-2006 | Physique électronique PHY-2002, Département de physique, de génie physique et d'optique - FSG - Université Laval
+%------------------------------------------------------------------
+%Créé par Louis-Philippe Dallaire, Jérémie Guilbert & Marc-André Vigneault
+%Contributions par Claudine Nì. Allen
+%Compilateur pdfLaTeX, distribution TeX Live 2020
+%Dernière modification CA : 28 novembre 2020
+%
+%ToDo
+% - Voir pour tourner le début du document en titre et inclure un logo ULaval (si ok avec comms) : https://tex.stackexchange.com/questions/238520/how-to-correctly-include-a-header-image-only-on-the-first-page
+% - I'd like to reduce the bottom margin on the last page, I was fiddling with something like \AtEndDocument{\newgeometry{bmargin=0cm}}, but it doesn't work so far. See docs of fancyhdr package.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
+\documentclass[english,french,12pt]{article}
+%
+%----------------------------------------------------------------
+%### Loading Packages ###
+%
+%## Encoding, Typography & Language ##
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} %%is globally set to French, switch to English by inverting order in the '\documentclass' options
+\usepackage{lmodern,csquotes} %%extended support for proper typesetting of accented letters & quotes with '\textquote{}' and the '\begin{displayquote}...\end{displayquote}' environment
+\PassOptionsToPackage{mathscr}{eucal}\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%math fonts and more symbols, extensively listed in the 'latex-AllSymbolList.pdf' of the 'Templates_labOMC' repo
+\usepackage{ulem} %%underlining with '\uline{}', '\uwave{}' etc. and strikeout with '\sout{}'
+\normalem
+%\usepackage{newtxtext} %%for a Times New Roman text font output.
+
+%## Colors, Boxes & Figures ##
+\usepackage[usenames,x11names,table]{xcolor} %%colour names in 'xcolor-palettes.pdf' of the 'Templates_labOMC' repo. For printing, the [cmyk,dvipsnames] colour model is preferred.
+%\usepackage{fancybox} %%more framed boxes
+%\usepackage[breakable]{tcolorbox} %%coloured boxes with optional title
+%\usepackage{float} %%more control on any floating environments 
+%\usepackage{array,dcolumn,tabularx,multirow,longtable,booktabs} %%more control of 'tabular' and 'array' environments
+\usepackage{graphicx,wrapfig,caption,sidecap} %%compiling with 'pdfLaTeX' supports .pdf,.pdf_tex .png, .jpg and .eps(indirectly) files. %Use '\includeinkscape' for .pdf_tex files exported from Inkscape or convert directly to TiKZ code with the 'svg2tikz' extension.
+
+%## Maths & Physics ##
+\usepackage{amsmath,amsthm,amssymb}
+%\usepackage{cancel,trfsigns} %%math simplifications & signs for transforms respectively
+%\usepackage[all]{xy} %%nice math diagrams
+\usepackage{siunitx} %scientific & complex numbers, measurement & uncertainty, see 'latex-SIunitx.pdf' in the 'Templates_labOMC' repo.
+\usepackage{physics} %typesetting for mathematical physics, see 'latex-PhysicsPack.pdf' in the 'Templates_labOMC' repo.
+\usepackage{pgfplots} %graphs of symbolic functions and equations
+%\usepackage{tikz-network} %%crystal lattice & complex networks drawing
+%\usepackage{tikz-optics} %%optical drawing
+%\usepackage{pstricks,pst-optexp,pst-optic} %%neat PSTricks optical drawing
+%\usepackage{tikzorbital,chemfig,chemmacros,mhchem} %%chemical drawings/diagrams and formulae & safety
+%\usepackage{pstricks,pst-labo} %%laboratory chemical glassware
+%\usepackage{pstricks,dsptricks,pst-sigsys} %%signal processing plots/drawings
+%\usepackage[RPvoltages,americanvoltages,americancurrents]{circuitikz} %%electrical circuit drawing with Rising Potential voltages
+%\usetikzlibrary{babel} %%needed for electrical circuit drawing when running babel-french
+%\usepackage{yquant} %%quantum circuit drawing
+
+%## Miscellaneous Nice Tools ##
+\usepackage{ccicons} %%Creative Commons icons, reusable content at <https://search.creativecommons.org/>
+%\usepackage{media9,animate,tikz} %%tools for multimedia and general drawing
+%\usepackage{pythontex} %%runs Python code in the LaTeX source files and typeset the output
+
+%## Bibliography ##
+%\usepackage[backend=biber,sorting=none]{biblatex} %%see 'cheatsheet-BibLaTeX.tex' in the 'Templates_labOMC' repo.
+%\addbibresource{} %%import your .bib file in BibLaTeX format from Zotero
+
+%## Hyperlinks ##
+\usepackage{hyperref,xurl} %%'\href{_URL_}{_hypertext_}' to link the hypertext & '\url{_URL_}' to link the displayed web address, each internal '~\ref{_label_}' is also hyperlinked ; xurl for more line breaks.
+\usepackage{doi} %%automatically resolves object identifiers such as IDs from doi, arXiv, OCLC, etc., use '\doi{}' if the former bugs.
+
+%## Layout ##
+%%Watch for conflicts with the overall document class.
+\usepackage{geometry} %%page layout
+\usepackage{fancyhdr}
+\usepackage{setspace} %%interline spacing tools ; unit relative to current font: em ~width of an 'M' (uppercase), typically equal to the font size in pt
+\usepackage{enumitem} %%tools to change list format
+\usepackage{import}
+%\usepackage{tasks,xsim,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries}
+
+%---------------------------------------------------------
+%### Settings ###
+%
+%## Configuring the layout and other format setups ##
+%\the\parindent{} , \the\value{equation} %%and other '\the' commands to see the current parameter, counter,... value
+\geometry{  %%for geometry package
+%    showframe,  %%uncomment to see lines delimiting the dimension boxes
+    letterpaper,
+    margin=0.75in}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{-\thepage-} %%bottom center page numbering
+\AtEndDocument{\thispagestyle{empty}} %%removes the last page number
+%\interfootnotelinepenalty=10000 %%uncomment if long footnotes are incorrectly spreading on several pages
+\widowpenalty=300 %%increase for less likely widow lines
+\clubpenalty=300  %%increase for less likely orphan lines
+\setlength{\parskip}{1em plus0.4em minus0.2em} %%changing space between paragraphs
+%\setlength\parindent{3em} %%uncomment to force indentation of all paragraphs or remove completely with 0em
+%\setlist[enumerate]{wide=0pt,widest=99,leftmargin=\parindent,labelsep=*} %%Global changes of the [enumerate] list
+\setcounter{equation}{0} %%ensure resetting of the equation counter
+\captionsetup{  %%for figure and table captions
+    font=small,
+    labelfont=bf,
+    labelsep=period,
+    margin=1em}
+    
+%## Global settings for packages ##
+\sisetup{separate-uncertainty=true} %%for SIunitx package
+\hypersetup{   %%for hyperref package
+    breaklinks=true,
+    linktocpage=true,
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=blue}
+\pgfplotsset{compat=1.9,width=5cm} %%for pgfplots package, backwards compatibility with 'compat'
+\usetikzlibrary{arrows} %%for PGF/TikZ
+
+%---------------------------------------------------------
+%### Defining command shortcuts & macros ###
+%
+\newcommand{\be}{\begin{equation}} %%for numbered equations, use instead \[...\] to display without numbering or $...$ to include directly inline.
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{align}} %%number each equation and align them on &= the equal sign and more generally on the ampersand & character. 
+\newcommand{\eea}{\end{align}}
+\newenvironment{eqsplit}{\equation\aligned}{\endaligned\endequation}
+\newcommand{\bes}{\begin{eqsplit}} %%defined the same way as the align environment, but considered as one equation on multiple lines with one number overall.
+\newcommand{\ees}{\end{eqsplit}}
+\newcommand{\beg}{\begin{gather}} %%gathering equations one below another without aligning.
+\newcommand{\eeg}{\end{gather}}
+\DeclareMathOperator{\TLs}{\mathscr{L}} %%Laplace transform symbol \TLs
+\newcommand{\TLd}[1]{\TLs\!\left[#1\right]} %%Laplace transform operator \TLd{}
+\DeclareMathOperator{\TLsi}{\mathscr{L}^{-1}} %%inverse Laplace transform symbol \TLsi
+\newcommand{\TLi}[1]{\TLsi\!\left[#1\right]} %%inverse Laplace transform operator \TLi{}
+\DeclareMathOperator{\TFsi}{\mathscr{F}^{-1}} %%inverse Fourier transform \TFsi
+\newcommand{\TFi}[1]{\TFsi\!\left[#1\right]} %%inverse Fourier transform operator \TFi{}
+\DeclareMathOperator{\TFs}{\mathscr{F}} %%Fourier transform \TFs
+\newcommand{\TFd}[1]{\TFs\!\left[#1\right]} %%Fourier transform operator \TFd{}
+\renewcommand*{\Re}{\mathop{}\!\mathfrak{Re}} %%Real part \Re redefined with 2 characters fraktur typesetting
+\renewcommand*{\Im}{\mathop{}\!\mathfrak{Im}} %%Imaginary part \Im redefined with 2 characters fraktur typesetting
+
+%---------------------------------------------------------
+%### Titre triché pour mettre les auteurs en note de bas de page! ###
+%
+\title{\vspace{-7em}\thanks{Auteurs: Louis-Philippe Dallaire, Jérémie Guilbert, Marc-André Vigneault \& Claudine Allen}}
+\date{}
+\renewcommand\footnotemark{}
+
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\maketitle\thispagestyle{fancy}
+%---------------------------------------------------------
+%
+%------ BEGIN HOMEMADE TITLE ------%
+%inspiré de l'équipe du Prof. L.J. Dubé
+%
+\begin{center}
+    \textbf{\large{Électronique et mesures expérimentales / Physique électronique}}\\
+    \vspace{0.2em}
+    \textbf{GPH-2006 / PHY-2002}
+
+    \textsc{Département de Physique, de Génie Physique et d'Optique\\
+    Faculté des Sciences et de Génie, Université Laval}
+\end{center}
+
+\vspace{-1em}
+\noindent Automne 2020 \hfill Responsable: C. Allen\par
+\vspace{0.2em}
+\hrule
+\vspace{0.5em}
+\centering
+    \textsc{Projet de Conception\\
+    Contrôle Arduino d'un Ventilateur}\\
+\vspace{0.5em}
+\textbf{Début: 30 novembre \hfill Fin: 14 décembre à 10h30}\par
+\vspace{0.4em}
+\hrule
+\justify
+%------ END HOMEMADE TITLE ------%
+%
+\vspace{-1.5em}
+\subsection*{Problématique}
+\vspace{-0.5em}
+L’été dernier, votre ami Itof Mèyacho a vécu la pire canicule de toute sa vie. En effet, comme il est étudiant, il ne peut se permettre d’avoir l’air conditionné tant convoité. Il doit se contenter d’un bon vieux ventilateur. Il souhaiterait trouver un moyen pour ajuster la vitesse de son ventilateur selon la luminosité du soleil qui entre dans son appartement, et ce, sans avoir à se lever de son sofa. Ses jeux vidéo ne peuvent attendre! De plus, bien qu’il fasse complètement noir dans sa chambre la nuit, il trouve essentiel que le ventilateur continue de tourner, mais à moindre vitesse, car le bruit du plein régime l’empêche de se reposer. Comme la prochaine canicule est à venir et qu’il semble trop occupé à jouer aux jeux vidéo, Itof Mèyacho vous demande votre aide. À l'aide de vos nouvelles connaissances en électronique, il est maintenant temps de lui donner un coup de main.
+
+Après un peu de recherche, vous avez réussi à identifier le moteur du ventilateur d’Itof, soit un moteur DC~437~RPM. Ce modèle peut fonctionner à une vitesse de rotation supérieure à 437~RPM, mais cela risque de le briser. Après certains tests, Itof a identifié qu’il était confortable la nuit seulement lorsque le ventilateur tourne à une vitesse de 200~RPM. Vous décidez donc de concevoir un système basé sur un microcontrôleur Arduino. Celui-ci sera utilisé pour lire la luminosité ambiante à partir d’une photorésistance et ensuite ajuster la vitesse de rotation du moteur DC~437~RPM en fonction de la luminosité mesurée. En plein jour, quand la luminosité est maximale, le moteur doit fonctionner près de sa vitesse maximale. Si la luminosité diminue, la vitesse du moteur doit diminuer en conséquence jusqu’à atteindre la valeur attendue en pleine nuit. Entre les deux valeurs de luminosité extrêmes, la vitesse du moteur doit pouvoir prendre le plus de valeurs possibles. Avant de procéder à l’assemblage de votre système, vous devez tester son fonctionnement au moyen du logiciel de conception et simulation de circuits \texttt{Tinkercad}.
+\vspace{-1em}
+
+\subsection*{Composants électroniques permis} 
+\begin{itemize}
+    \item Batteries \SI{9}{\volt}
+    \item Carte de contrôle \hyperlink{https://www.arduino.cc/en/Guide/ArduinoUno}{Arduino Uno} dont le fonctionnement est abordé en~\ref{sec:annexe}
+    \item Ampli-op~U741
+    \item Transistor à jonction bipolaire NPN
+    \item Moteur DC~437~RPM\footnote{La valeur nominale de la vitesse du moteur peut être choisie à partir de la liste déroulante qui apparaît lorsqu'on le sélectionne dans l’environnement \texttt{Tinkercad}.} avec encodeur multicolore (voir figure \textcolor{red}{XXXX} en annexe)
+    \item Des résistances \SIlist[list-final-separator = {, }]{12;33;270;560}{\ohm}, \SIlist[list-final-separator = {, }]{1;1.2;10; 18;100}{\kilo\ohm} et \SI{1}{\mega\ohm}
+    \item Des condensateurs de \SI{100}{\nano\farad}
+    \item Une photorésistance
+\end{itemize}
+\vspace{-1em}
+
+\subsection*{Contraintes supplémentaires}
+\begin{enumerate}
+    \item Vous pouvez utiliser autant de composants que nécessaires dans la liste ci-dessus. Toutefois, vous n’avez pas le droit d’utiliser des composants qui ne figurent pas dans cette liste.
+    \item Vous devez viser un minimum de composants dans le circuit.
+    \item Vous devez découpler l’impédance du circuit de la photorésistance de l’impédance du circuit \textcolor{red}{ADC} de l’Arduino à l'aide d'un tampon. Plus d'informations à ce sujet sont \textcolor{red}{données en annexe}.
+    \item La photorésistance peut tolérer une puissance maximale de \SI{0.1}{W}. Assurez-vous de ne pas la briser.
+    \item Le temps du jour doit être représenté par la position de l’indicateur de luminosité de la photorésistance sur \texttt{Tinkercad}. Lorsque l’indicateur est à sa valeur maximale, il fait plein jour. Lorsqu’il est à sa valeur minimale, il fait nuit. Plus d'informations à ce sujet sont données en \textcolor{red}{annexe}.
+    \item \textbf{BONUS:} Utilisez l’encodeur du moteur afin de lire en temps réel la vitesse du moteur avec l’Arduino et affichez-la sur un écran \textcolor{red}{LCD}.%, ou illustrez sa variation en fonction de la résistance de la photorésistance sur un graphique.
+\end{enumerate}
+\vspace{-1em}
+
+\subsection*{Livrables}
+\begin{itemize}
+    \item Un circuit simulé fonctionnel réalisé avec le programme \texttt{Tinkercad}.
+    \item Une présentation de \SI{10}{\min} comportant les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation.
+    \item Une évaluation de la contribution des coéquipiers.ères au travail de l'équipe via l'onglet \texttt{Évaluation des pairs} du \texttt{Projet de conception}.
+\end{itemize}
+\vspace{-1em}
+
+\subsection*{Consignes logistiques}
+\begin{enumerate}
+    \item Si ce n'est pas déjà fait dans l'onglet \texttt{Équipe de travail} de l'évaluation \texttt{Projet de concep-} \texttt{tion} sur le site du cours, complétez à 3 ou 4 étudiants.es (ni plus ni moins) votre équipe de projet avant la fin de la période de prolongation le \textbf{30 novembre à 23h56}.
+    \item Identifiez aussi au même endroit le.la porteur.euse du projet dans le champ \texttt{Rôle}. Le circuit final à évaluer devra se retrouver dans le compte \texttt{Tinkercad} de cet.te étudiant.e et être clairement identifié "Projet de conception".
+    \item \textbf{Avant} la séance de présentation de votre projet, remplissez votre \texttt{Évaluation des pairs} dans l'onglet du même nom de l'évaluation \texttt{Projet de conception} sur le site du cours.
+    \item Cette communication de votre projet sera enregistrée en classe virtuelle Zoom le 14 décembre 2020 selon un horaire à venir.
+    \item Un forum sur le site du cours est dédié à toutes les questions concernant ce projet de conception. N’hésitez pas à vous en servir. 
+\end{enumerate}
+
+\subsection*{Critères d'évaluation}
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h]
+\centering
+    \begin{tabular}{l c}
+    \hline
+     \textsc{Éléments d'évaluation} & \textsc{Pondération}\\
+     \rowcolor{black} \textcolor{white}{\textbf{Circuit simulé fonctionnel}} & \textcolor{white}{\textbf{50\%}}\\
+     \multicolumn{2}{c}{\textsc{Fonctions principales}}\\
+     \hline
+     Respect du principe de fonctionnement du circuit & 15\%\\
+     Atteinte de tous les besoins de Itof Mèyacho & 15\%\\
+     \hline
+     \multicolumn{2}{c}{\textsc{Contraintes supplémentaires}}\\
+     \hline
+     Respect des composants imposés & 5\%\\
+     Minimisation du circuit & 5\%\\
+     Découplage de l'impédance à l'entrée analogique de l'Arduino  & 5\%\\
+     Puissance maximale de la photorésistance respectée & 5\%\\
+     BONUS: Lecture en temps réel de la vitesse du moteur avec l'encodeur & +10\%\\
+     \rowcolor{black} \textcolor{white}{\textbf{Présentation orale du circuit comprenant:}} & \textcolor{white}{\textbf{30\%}}\\
+     une liste dans laquelle tous les besoins sont identifiés, & 5\%\\
+     une description du fonctionnement global du circuit, & 10\%\\
+     une description du rôle de chaque composant afin de justifier son utilisation, & 10\%\\
+     un graphe de la vitesse du moteur en fonction de la valeur de photorésistance. & 5\%\\
+     \rowcolor{black} \textcolor{white}{\textbf{Évaluation des pairs}} & \textcolor{white}{\textbf{20\%}}\\
+    \end{tabular}
+\caption{Liste des éléments qui seront évalués sur la simulation du circuit dans l'environnement \texttt{Tinkercad} et sur sa présentation en direct.}
+\label{tab:1}
+\end{table}
+
+\newpage
+%
+\section*{ANNEXE}
+\label{sec:annexe}
+\vfill
+\hrule
+\vspace{0.3em}
+\centering
+\textbf{N'oubliez pas de citer vos références s'il y a lieu.}\par
+\vspace{-0.3em}
+La collaboration dans le respect des règles de la santé publique est demandée pour ce projet en équipe de 3~à~4~personnes; veuillez évaluer la contribution de vos coéquipiers.ères dans l'onglet \texttt{Évaluation des pairs} de l'évaluation \texttt{Projet de conception} sur le site Internet du cours.\par
+\vspace{1em}
+\hrule
+\end{document}
