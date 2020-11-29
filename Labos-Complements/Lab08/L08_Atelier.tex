@@ -176,6 +176,25 @@ node[draw,minimum width=2cm,minimum height=2cm, dashed] at (-3.2,-2.2){?} (-4.2,
 \end{circuitikz}
 \caption{\label{sch-osc-relax}\textbf{Sous-objectif:} Complétez le circuit avec les composants de votre choix afin d'obtenir les spécifications demandées.}
 \end{figure}
+
+%%%CORRIGÉ%%%
+%  \begin{figure}[h]
+% \centering
+% \begin{circuitikz} \draw
+% (0,0) node[op amp](opamp){}
+% (opamp.+) to[short] (-1.2,-0.5) to[short] (-1.2,-2.2)
+% (opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2.2)
+% (opamp.out) to[short,-o] (2.1,0) node[right]{$v_{\mathrm{out}}$}
+% (opamp.down) ++ (0,-0.5) node[below]{$-5$~V} -- (opamp.down)
+% (opamp.up) ++ (0,0.5) node[above]{5~V} -- (opamp.up)
+% (-4,2.2) node[ground]{} to[R=$1~\Omega$] (-1.2,2.2) to[R=$11~\Omega$] (1.6,2.2) to[short] (1.6,-2.2) to[R=$560~\Omega$] (-1.2,-2.2) to[short] (-2.2,-2.2);
+% \draw (-2.2,-2.2) to[short] (-2.2,-1.2) to[C,l_=$1~\mathrm{nF}$] (-4.2,-1.2) to[short] (-4.2,-3.2) to[L=$1~\mathrm{mH}$] (-2.2,-3.2) -- (-2.2,-2.2);
+% \draw (-4.2,-2.2) to[short] (-5,-2.2) node[ground];
+% %node[draw,minimum width=2cm,minimum height=2cm, dashed] at (-3.2,-2.2){?} (-4.2,-2.2) to[short] (-5,-2.2) node[ground]{};
+% \end{circuitikz}
+% \caption{Oscillateur LC--Exemple fonctionnel}
+% \end{figure}
+
  %La recherche sur Internet en particulier filtrée par images, ou oserons-nous dans la littérature en bibliothèque(!), est la meilleure amie du concepteur en herbe. Vous pouvez aussi simuler le circuit si désiré, avec <\url{http://www.falstad.com/circuit/>} par exemple.
 
 \subsection{Oscillations avec la puce 555}
