@@ -1,10 +1,12 @@
 %Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen
 %Dernière modification JRC: 8 février 2014
 %Dernière modification CA: 4 novembre 2020
-%
-%Modifier le protocole pr faire le VI de caractérisation du transistor pour mesurer le courant injecté dans la base (i_{BE}) au lieu de la tension (i_{BE}), ce qui permettra de poser cette question ici: Est-ce que, oui ou non, le ratio de du courant de saturation au courant injecté dans la base demeure approximativement toujours le même? Présentement le transistor ne laisse pas passer de courant pour les 3 premières mesures, changer la première et la 3e pour des valeurs plus élevées où le courant passe!.
-%Bonifier un peu le complément, entre autres avec les modes actif & interrupteur du transistor, cutoff & saturation, beta ratio, etc.
-% Modifier aussi le protocole au début pour faire une acquisition statistique d'entre 25 & 50 pts de V & I pour la résistance (dont la valeur devrait être CHANGÉE POUR BCP DE Mohms afin d'avoir un peu de fluctuations de bruit thermique, to check il me semble que Jérémie m'a dit que ça n'avait pas marché :()-> colonnes pour calculer la distribution de résistance => analyse statistique qui devrait bien poursuivre ce qui se fera dans le 2 laboratoires précédents.
+%%%%%%%%%
+%ToDo
+% -Changer les plages de balayage en tension de la diode de façon à permettre une meilleure analyse de la résistance dynamique R_D. La polarité inverse peut probablement être raccourcie pour ménager les diodes et ce serait bien d'aller assez loin en polarité directe pour tenter d'atteindre une plage assez linéaire avec un R_D pratiquement constant. Mais attention, nos diodes sont quasiment plus faciles à péter en forward bias qu'en reverse >_<
+% -Modifier le protocole pr faire le VI de caractérisation du transistor pour mesurer le courant injecté dans la base (i_{BE}) au lieu de la tension (i_{BE}), ce qui permettra de poser cette question ici: Est-ce que, oui ou non, le ratio de du courant de saturation au courant injecté dans la base demeure approximativement toujours le même? Présentement le transistor ne laisse pas passer de courant pour les 3 premières mesures, changer la première et la 3e pour des valeurs plus élevées où le courant passe!.
+% -Bonifier un peu le complément, entre autres avec les modes actif & interrupteur du transistor, cutoff & saturation, beta ratio, etc.
+% -Modifier aussi le protocole au début pour faire une acquisition statistique d'entre 25 & 50 pts de V & I pour la résistance (dont la valeur devrait être CHANGÉE POUR BCP DE Mohms afin d'avoir un peu de fluctuations de bruit thermique, to check il me semble que Jérémie m'a dit que ça n'avait pas marché :()-> colonnes pour calculer la distribution de résistance => analyse statistique qui devrait bien poursuivre ce qui se fera dans le 2 laboratoires précédents.
 %
 \RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -262,15 +264,15 @@ b) Faites varier la source de 0~volt à 15~volts par incréments de 1~volt. À l
 
 \section{Section de rapport}
 
-Écrivez en moins de 300 mots une partie d'analyse des résultats, métrologie et discussion d'un rapport de laboratoire sur la caractérisation et l'interprétation du comportement de la diode standard. Au minimum, présentez et/ou discutez les éléments suivants en continuant d'utiliser le vocabulaire de métrologie pour faire des comparaisons claires:
+Écrivez en moins de 400 mots une partie d'analyse des résultats et discussion d'un rapport de laboratoire sur la caractérisation et l'interprétation du comportement de la diode standard. Dans un TEXTE CONTINU, présentez et/ou discutez les éléments suivants en poursuivant l'utilisation du vocabulaire de métrologie pour faire des comparaisons claires:
 \begin{enumerate}
     \item graphique de résistance dynamique $R_{D}=\frac{\mathrm{d}v}{\mathrm{d}i}$ mesurée en fonction de la tension \emph{(faites une différentiation numérique pour traiter directement vos données mesurées)},
-    \item analyse des cas limites de $R_{D}$ mesurée en les comparant aux valeurs attendues selon le modèle de la diode idéale \emph{(une incertitude de type A peut être estimée lorsque $R_{D}$ devient relativement constant, autrement l'évaluation de type B est toujours possible)},
-    \item analyse de la tension seuil $V_{d}$ minimale qui fait circuler le courant dans la diode: comparaison de la valeur idéalement attendue versus le comportement observé, 
+    \item analyse des cas limites de $R_{D}$ mesurée en les comparant aux valeurs attendues selon le modèle de la diode idéale,
+    \item analyse de la tension seuil $V_{d}$ minimale qui fait circuler le courant dans la diode: comparaison de la valeur de référence versus le comportement observé, 
     \item discussion de la validité du modèle de la diode idéale en général,
     \item proposition d'un modèle un peu mieux adapté aux mesures, soit l'équation de Shockley pour la diode: $i\left( v\right) = i_0\left(e^{v/v_0}-1 \right)$ où $i_0$ et $v_0$ sont des constantes ajustables,
     \item graphique de la courbe $i$--$v$ mesurée (avec des points) et de l'équation de Shockley ajustée à ces données (avec une ligne); cet ajustement (régression, \textit{fit}) de courbe se fait avec des outils informatiques, par exemple \textit{Curve Fitting Toolbox} de \textit{MATLAB} ou \textit{scipy.optimize.curve\_fit} de \textit{Python},
-    \item analyse de la correspondance entre la fonction ajustée et les mesures sur ce graphique,
+    \item analyse de la correspondance entre la fonction ajustée et les résultats de mesure sur ce graphique,
     \item interprétation des résultats au mieux de vos connaissances sur la physique des diodes.
 \end{enumerate}
 

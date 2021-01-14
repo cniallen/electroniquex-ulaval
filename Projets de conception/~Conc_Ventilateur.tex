@@ -4,10 +4,9 @@
 %Créé par Louis-Philippe Dallaire, Jérémie Guilbert & Marc-André Vigneault
 %Contributions par Claudine Nì. Allen
 %Compilateur pdfLaTeX, distribution TeX Live 2020
-%Dernière modification CA : 28 novembre 2020
+%Dernière modification CA : 14 janvier 2020
 %
 %ToDo
-% - Revoir caption setup, ça marche pas pantoute >_< dans les figure en appendice!
 % - Ma page de fin de l'énoncé avec le footer maison n'est pas la dernière ici, mettre le empty page style à la bonne place ici.
 % - Ajouter %---BEGIN HOMEMADE FOOTER---%... et dans les templates aussi.
 % - Voir pour tourner le début du document en titre et inclure un logo ULaval (si ok avec comms) : https://tex.stackexchange.com/questions/238520/how-to-correctly-include-a-header-image-only-on-the-first-page
@@ -99,10 +98,10 @@
 %\setlist[enumerate]{wide=0pt,widest=99,leftmargin=\parindent,labelsep=*} %%Global changes of the [enumerate] list
 \setcounter{equation}{0} %%ensure resetting of the equation counter
 \captionsetup{  %%for figure and table captions
-    font=small,
+    font=footnotesize,
     labelfont=bf,
     labelsep=period,
-    margin=1em}
+    margin=5em}
     
 %## Global settings for packages ##
 \sisetup{separate-uncertainty=true} %%for SIunitx package
