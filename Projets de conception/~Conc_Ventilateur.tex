@@ -1,16 +1,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Conc_Ventilateur.tex : Projet de conception - Contrôle Arduino d'un Ventilateur, Électronique et mesures expérimentales GPH-2006 | Physique électronique PHY-2002, Département de physique, de génie physique et d'optique - FSG - Université Laval
+%Conc_Ventilateur.tex : Projet de conception - Contrôle Arduino d'un Ventilateur | Électronique et mesures expérimentales GPH-2006, Physique électronique PHY-2002 | Département de physique, de génie physique et d'optique - FSG - Université Laval
 %------------------------------------------------------------------
 %Créé par Louis-Philippe Dallaire, Jérémie Guilbert & Marc-André Vigneault
 %Contributions par Claudine Nì. Allen
 %Compilateur pdfLaTeX, distribution TeX Live 2020
-%Dernière modification CA : 14 janvier 2021
+%Dernière modification CA : 18 janvier 2021
 %
 %ToDo
-% - Ma page de fin de l'énoncé avec le footer maison n'est pas la dernière ici, mettre le empty page style à la bonne place ici.
-% - Ajouter %---BEGIN HOMEMADE FOOTER---%... et dans les templates aussi.
-% - Voir pour tourner le début du document en titre et inclure un logo ULaval (si ok avec comms) : https://tex.stackexchange.com/questions/238520/how-to-correctly-include-a-header-image-only-on-the-first-page
-% - I'd like to reduce the bottom margin on the last page, I was fiddling with something like \AtEndDocument{\newgeometry{bmargin=0cm}}, but it doesn't work so far. See docs of fancyhdr package.
+% - Voir pour tourner le début du document en titre ou first-page only header et inclure un logo ULaval (si ok avec comms) : https://tex.stackexchange.com/questions/238520/how-to-correctly-include-a-header-image-only-on-the-first-page
+% - Not sure I want this anymore... I'd like to reduce the bottom margin on the last page, I was fiddling with something like \AtEndDocument{\newgeometry{bmargin=0cm}}, but it doesn't work so far. See docs of fancyhdr package. Or try to work with "\thispagestyle{}" below the footer. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
@@ -89,7 +87,6 @@
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \fancyfoot[C]{-\thepage-} %%bottom center page numbering
-\AtEndDocument{\thispagestyle{empty}} %%removes the last page number
 %\interfootnotelinepenalty=10000 %%uncomment if long footnotes are incorrectly spreading on several pages
 \widowpenalty=300 %%increase for less likely widow lines
 \clubpenalty=300  %%increase for less likely orphan lines
@@ -259,6 +256,7 @@ Après un peu de recherche, vous avez réussi à identifier le moteur du ventila
 \label{tab:1}
 \end{table}
 
+%---BEGIN HOMEMADE FOOTER---%
 \vfill
 \hrule
 \vspace{0.3em}
@@ -268,10 +266,11 @@ Après un peu de recherche, vous avez réussi à identifier le moteur du ventila
 La collaboration dans le respect des règles de la santé publique est demandée pour ce projet en équipe de 3~à~4~personnes; veuillez évaluer la contribution de vos coéquipiers.ères dans l'onglet \texttt{Évaluation des pairs} de l'évaluation \texttt{Projet de conception} sur le site Internet du cours.\par
 \vspace{1em}
 \hrule
-\justify
+%\thispagestyle{empty}
 
 \newpage
 %
+\justify
 \section*{APPENDICE}
 \label{sec:annexe}
 
