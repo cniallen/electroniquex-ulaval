@@ -1,9 +1,8 @@
 %%%Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen%%%
 %Dernière modification JRC: 10 janvier 2014
-%Dernière modification CA: 4 novembre 2020
+%Dernière modification CA: 18 janvier 2021
 %
 %**ToDo**: 
-% - !!!Vérifier les pages de lecture des manuels d’instruction en préparation du laboratoire, il y aurait un mismatch avec mes questions de quiz!!!!! Vérifier pour lab II aussi tant qu'à y être.
 % - Spécifier qu'on peut enrouler les fils du module directement autour des électrodes au départ, en dégainant plus au besoin: mentionner leur pince à dégainer. Expliquer en mode "conception" quand rendus à l'utilisation de plaquette de montage référant au fil & pinces introduits au début : - Comment faire son circuit à la patate (banane + croco) - Comment brancher mutimètre (fil multi + pince grabber), etc. et nous consulter pour apprendre et optimiser.
 %Pour le complément associé, focaliser plutôt sur les concepts de résolution en acquisition numériques ainsi que rapport signal-bruit pour renvoyer au document métro & stats. 
 %
@@ -55,34 +54,39 @@
 
 \maketitle \vspace{-2cm}
 
+\textit{Les évaluations du \texttt{Cahier de recherche} à chaque laboratoire portent sur les sections Préparation, Manipulations et Observations \& Analyses ci-dessous et devront toutes être consignées électroniquement dans le cahier OneNote de votre équipe à des moments différents: 
+\begin{itemize} \itemsep0.3ex
+    \item Préparation $\rightarrow$ avant le laboratoire
+    \item Manipulations $\rightarrow$ pendant, en parallèle avec l'expérimentation
+    \item Observations \& Analyses $\rightarrow$ après, dans la semaine qui suit.
+\end{itemize}}\par
+\vspace{1ex}
+\textit{Finalement, le texte de la dernière partie, Sections de rapport, devra être remis INDIVIDUELLEMENT sur l'application Web Gradescope <\url{https://www.gradescope.com/}> pour l'évaluation \texttt{Rapport} correspondante. Les instructions et explications d'écriture pour chaque section sont détaillées dans le document \texttt{Guide de rédaction de rapports scientifiques}.}
+
 \section{Objectifs}
 
 Ce laboratoire vise à familiariser l’étudiant à l’acquisition de données assistée par ordinateur, en particulier pour la caractérisation d’un système instable où la variation de la grandeur mesurée rend impraticable l’utilisation d’un instrument avec afficheur numérique ou analogique. En plus d’introduire les premières notions de base en métrologie et analyse statistique, ce laboratoire met ainsi l’accent sur une situation plus typique de la recherche expérimentale au lieu du cadre didactique habituel. L’étudiant sera sensibilisé à l’importance de choisir une méthode de mesure et de présentation des résultats appropriée à l’expérience ainsi qu’à la pertinence de l’analyse qualitative. 
 
 Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 6, 7, 9, 10 et 11 du plan de cours et couvriront la qualité 5~--~utilisation d’outils d’ingénierie, prescrite dans les normes du Bureau d'agrément d'Ingénieurs Canada (BAIC).
+\thispagestyle{empty}
+\newpage
 
-\vspace{10ex}
-% \framebox[\textwidth][c]{\parbox{0.9\textwidth}}
-\noindent\textit{Les notes de bas de page de ce premier protocole indiquent où, et répètent parfois comment, consigner les divers éléments de votre compte rendu de recherche. Prenez le temps de les lire attentivement même si le texte est dense! Ces instructions demeurent les mêmes pour tous les protocoles subséquents des expériences en présentiel.}
-\vspace{10ex}
-
-\section[]{Préparation\footnote{La préparation s'effectue INDIVIDUELLEMENT AVANT d'arriver au laboratoire dans votre cahier de recherche électronique selon les consignes dans le document \textit{Tenue du cahier de laboratoire}.}}
-
-\noindent Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit au minimum:
-\vspace{1ex}
+\section{Préparation}
+\vspace{-2ex}
+\noindent Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit au minimum:\par
 \begin{itemize} \itemsep5pt
-\item se créer un mot de passe sur \textit{Pixel} pour le domaine FSG (\texttt{Applications $\rightarrow$ Utilitaires}) et tester la procédure de connexion à distance pour commencer à programmer \textit{LabVIEW}, voir la section \texttt{Matériel didactique} du plan de cours pour plus d'informations;
-\item lire les manuels de l'utilisateur du module d'acquisition (pages 1 à 32), du multimètre à 4\textonehalf~chiffres (pages 20 à 24) et du multimètre à 6\textonehalf~chiffres (pages 17 à 22);
+\item lire les manuels de l'utilisateur du module d'acquisition (pages 1 à 3, 12 à 15 et 24 à 26), du multimètre à 4\textonehalf~chiffres (pages 20 à 24) et du multimètre à 6\textonehalf~chiffres (pages 17 à 22);
 \item lire le complément \textit{Introduction à LabVIEW}, l'annexe n'est pas obligatoire, mais pourra vous être fort utile en cas de problème(s) de communication avec les instruments;
 \item lire le complément \textit{Fonctionnement d'une pile électrochimique};
 \item lire les sections "Introduction" et "Conclusion" du \textit{Guide de rédaction de rapports scientifiques};
-\item lire le protocole de ce laboratoire en portant une attention particulière à la section de \textbf{Questions et discussion}: à la sortie de chaque séance, il faut s'assurer d'avoir toutes les données correctes et autres informations nécessaires pour répondre à ces questions;
+\item lire le protocole de ce laboratoire en portant une attention particulière à la section \textbf{Observations \& Analyses}: à la sortie de chaque séance, il faut s'assurer d'avoir toutes les données correctes et autres informations nécessaires pour répondre à ces questions;
 \item évaluez en millivolts la résolution de numérisation (conversion analogique-numérique, échantillonnage) du module d'acquisition lors d'une mesure de tension, sachant que cette mesure sera une différence (\textit{differential}) de potentiel entre deux points du circuit. Faites ce calcul pour deux intervalles de mesure: d'abord de $-10$~V à 10~V, puis de $-1$~V à 1~V.\\ \textit{N.B. Longueur estimée de la démarche de solution: 1 ligne pour chaque intervalle. On fait appel à vos capacités de chercheur, dans le sens littéral de chercher par vous-même, pour comprendre le rôle du module d'acquisition avec son manuel et autres sources d'information (\textit{e.g.} dictionnaire!) sur la numérisation. Des discussions à ce sujet sur le forum du cours sont encouragées.}
 \end{itemize}
 
-  \fbox{\textbf{Attention:} cette dernière étape de préparation, pour vous familiariser avec le service logiciel Tinkercad, doit être faite en ligne INDIVIDUELLEMENT par tous.tes.}
+\vspace{1ex}
+\noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{Cette dernière étape de préparation, pour vous familiariser avec le service logiciel Tinkercad, doit être faite en ligne INDIVIDUELLEMENT par tous.tes.}}
 
-Veuillez d'abord rejoindre votre compte de classe ici <\url{https://www.tinkercad.com/joinclass/8VE78T25HR9I}> à l'aide de votre IDUL comme \texttt{nickname} pour vous retrouver sur votre \texttt{Dashboard}. Si ce n'est pas le cas, vous devriez pouvoir y retourner en tout temps en cliquant sur le logo carré multicolore de Tinkercad.
+Veuillez d'abord rejoindre votre compte de classe ici <\url{https://www.tinkercad.com/joinclass/QH1RQQYNCB5K}> à l'aide de votre IDUL comme \texttt{nickname} pour vous retrouver sur votre \texttt{Dashboard}. Si ce n'est pas le cas, vous devriez pouvoir y retourner en tout temps en cliquant sur le logo carré multicolore de Tinkercad.
 %
 \begin{figure}[h]
     \centering
@@ -90,10 +94,11 @@ Veuillez d'abord rejoindre votre compte de classe ici <\url{https://www.tinkerca
     \caption{Capture d'écran du service infonuagique Tinkercad indiquant où trouver le tutoriel.}
     \label{fig:tinkercad-trycircuits}
 \end{figure}
-%
-Sur la gauche, vous trouverez la section \texttt{Circuits} rassemblant vos éventuels \texttt{Workspaces} de circuits. À l'intérieur de ces derniers, vous pourrez aussi travailler sur vos designs de circuits en commun à l'aide du bouton \texttt{Share}.
 
-Complétez le tutoriel dans cette section en cliquant sur le bouton vert \texttt{Try Circuits} encerclé à la figure~\ref{fig:tinkercad-trycircuits}. Ce tutoriel est constitué de 4 leçons: \texttt{Start Simulating, Editing Components, Wiring Components} et \texttt{Adding Components}. Ce seront donc ces leçons qui seront évaluées individuellement, directement en ligne, pour vous préparer à faire virtuellement une partie des manipulations du laboratoire sur Tinkercad lorsque vous êtes le.la membre de l'équipe en connexion à distance à la maison.
+Sur la gauche, vous trouverez la section \texttt{Circuits} rassemblant vos éventuels \texttt{Workspaces} de conception. À l'intérieur de ces derniers, vous pourrez aussi travailler sur vos designs de circuits en commun à l'aide du bouton \texttt{Share}.
+
+Complétez le tutoriel dans cette section, sans aucune note à prendre, en cliquant sur le bouton vert \texttt{Try Circuits} encerclé à la figure~\ref{fig:tinkercad-trycircuits}. Ce tutoriel est constitué de 4 leçons: \texttt{Start Simulating, Editing Components, Wiring Components} et \texttt{Adding Components}. Ce seront donc ces leçons qui seront évaluées individuellement, directement en ligne, pour ensuite faire virtuellement les manipulations du laboratoire sur Tinkercad lorsque vous êtes le.la membre de l'équipe en connexion à distance à la maison.
+%Tinkercad et être la maison: mise à jour du 1er  protocole
 
 \section{Matériel}
 
@@ -110,7 +115,7 @@ Complétez le tutoriel dans cette section en cliquant sur le bouton vert \texttt
 \item une plaquette de montage (\textit{breadboard}).
 \end{itemize}
 
-\section[]{Manipulations\footnote{La consignation des expériences selon le document \textit{Tenue du cahier de laboratoire} se continue INDIVIDUELLEMENT dans votre cahier en ligne. Ces notes doivent être prises immédiatement PENDANT la séance de laboratoire en parallèle avec les manipulations.}}
+\section{Manipulations}
 
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 
@@ -183,9 +188,10 @@ Maintenant, faites une acquisition des données. Sur votre logiciel d'analyse nu
 \caption{\label{L1-sch-patate}Schéma du montage de la partie h) avec R1~=~1~k$\Omega$ et R2~=~12~$\Omega$.}
 \end{figure}
 
-\section[]{Observations \& Analyses\footnote{Les questions de cette section doivent être répondues INDIVIDUELLEMENT dans votre cahier de recherche électronique AVANT le début du prochain laboratoire. Ceci n'est PAS un rapport de laboratoire détaillé. Il faut viser le juste équilibre entre précision et concision selon le type de question défini ci-dessous indiquant leur rôle dans votre développement de compétences en recherche et innovation.\\[6pt]
-\texttt{[observation]} : Réponse très courte ou à choix multiple visant à illustrer des commentaires que vous devez apprendre progressivement à remarquer et noter par vous-mêmes dans votre cahier pendant l'expérimentation pour développer votre jugement critique. Il faut réfléchir en manipulant! Cela aide à déceler des problèmes expérimentaux et ainsi développer le premier réflexe de tout chercheur.e et ingénieur.e, soit de modifier et reprendre l'expérience autant de fois que nécessaire.\\[6pt]
-\texttt{[analyse]} : Résultats présentés selon les règles d'écriture en métrologie et l'ensemble de votre réponse doit déjà faire preuve d'analyse critique dans cette étape préliminaire à la rédaction d'un rapport. Par exemple, si vos mesures et observations ont un comportement physiquement inattendu, une courte justification ou hypothèse doit être présentée pour tenter de l'expliquer. Une longue discussion n'est pas requise: la véracité et la qualité priment sur la quantité. Lorsqu'une figure ou un graphique est demandé, il doit respecter les consignes spécifiées dès le début de la page d'introduction du site Internet du cours.\\[-6pt]}}
+\section{Observations \& Analyses\footnote{
+Explication des \textit{tags} pour chaque numéro:\\
+\texttt{[observation]} : Réponse très courte ou à choix multiple visant à illustrer des commentaires que vous devez apprendre progressivement à remarquer et noter par vous-mêmes dans votre cahier pendant l'expérimentation pour développer votre jugement critique. Il faut réfléchir en manipulant! Cela aide à déceler des problèmes expérimentaux et ainsi développer le premier réflexe de tout chercheur.e et ingénieur.e, soit de modifier et reprendre l'expérience autant de fois que nécessaire.\\
+\texttt{[analyse]} : Résultats présentés selon les règles de présentation et d'écriture en métrologie. L'ensemble de votre réponse doit déjà faire preuve d'analyse critique dans cette étape préliminaire à la rédaction d'un rapport. Par exemple, si vos mesures et observations ont un comportement physiquement inattendu, une courte justification ou hypothèse doit être présentée pour tenter de l'expliquer. Une longue discussion n'est pas requise: la véracité et la qualité priment sur la quantité. Lorsqu'une figure ou un graphique est demandé, il doit respecter les consignes spécifiées dès le début de la page d'introduction du site Internet du cours.\\[-6pt]}}
 
 \begin{enumerate}
 %On pourrait utiliser les données et analyse en classe pour tester la propagation d'incertitude, règles variance vs min-max vs etc.
@@ -195,7 +201,7 @@ Maintenant, faites une acquisition des données. Sur votre logiciel d'analyse nu
 \item \texttt{[analyse]} À partir des mesures de l'étape~i), calculez la valeur de la grosse résistance en utilisant une \textit{évaluation de Type A de l'incertitude} tel que présentée dans l’introduction aux bases de la métrologie. Concrètement, divisez la colonne \textit{tension} par la colonne \textit{courant} pour obtenir une distribution de la mesure de résistance. Puis, comparez la moyenne et la médiane de cette distribution de résistance.\\ \textit{N.B. Dans cette situation instable, il vaut mieux définir un intervalle d'incertitude très élargi en multipliant par 3 l'écart type~$\sigma$ de votre distribution de données.}
 \end{enumerate}
 
-\section[]{Sections de rapport\footnote{Cet exercice de rapport d'expérience divisé en parties différentes sur les 4 premiers laboratoires constitue votre première communication scientifique; c'est un langage tout aussi rigoureux et important à maîtriser que le langage mathématique. Les instructions et explications d'écriture pour chaque partie sont détaillées dans le document \textit{Guide de rédaction de rapports scientifiques}. Vos textes doivent être compilés en format PDF et remis INDIVIDUELLEMENT dans la boîte de dépôt correspondante sur le site web du cours AVANT le début du prochain laboratoire.}}
+\section{Sections de rapport}
 
 Écrivez en moins de 350 mots (combinés) l'introduction et la conclusion d'un rapport scientifique portant sur l'ensemble du laboratoire et remettez votre texte dans la boîte de dépôt de l'évaluation correspondante sur le site du cours.
 

@@ -1,6 +1,12 @@
 %Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen et Vincent Méthot
 %Dernière modification JRC: 8 février 2014
-%Dernière modification CA: 4 novembre 2020
+%Dernière modification CA: 18 janvier 2021
+% 
+%ToDo:
+% -Ramener une analyse de type A de l’incertitude, probablement avec mesures LabView et stats pour la partie 2. HMMMMM, je suis entrain de me dire qu’une vérification à la mitaine (PAS de LabVIEW yé!) de résidus et quelques cas de chi2 à différents ajustements de courbes pour la fin avec le modèle math du circuit permettant un calcul d’une grandeur avec incertitude serait pas mal pour voir le concept en action avant de faire le pesage de pitons dans les logiciels le faisant automatiquement. Ajouter une Q&D pour ça! :)
+% -Plus grosse résistance pour checker la tolérance, et voir s’il y a qqch à faire vs reproductibilité/choix méthode de mesure avec chauffage de la résistance à plus haut courant
+% -Q&D: La question sur les résistances internes n’est pas claire, indiquer que c’est pour chaque circuit. Tableau de toutes les résistances est superflu, leur faire comprendre que seule les mesures très biaisées sont valides sinon trop d’incertitude sur la mesure de R interne. Comparer les mesures les plus biaisées avec les moins biaisées.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -63,7 +69,7 @@ Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 4, 5, 6, 7, 9
 \noindent Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit au minimum:
 \vspace{1ex}
 \begin{itemize}
-\item lire le manuel de la source d'alimentation (pages 2 à 6 et 35 à 39);
+\item lire le manuel de la source d'alimentation (pages 2 à 5 et 35 à 39);
 \item lire le complément \textit{Composants électriques linéaires};
 \item lire le complément \textit{Lois et théorèmes de base en électricité};
 \item lire la section "Méthodes expérimentales" du \textit{Guide de rédaction de rapports scientifiques};
