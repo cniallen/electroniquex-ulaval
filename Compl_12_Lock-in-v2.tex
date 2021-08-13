@@ -1,0 +1,80 @@
+\documentclass[12pt,oneside,letterpaper]{article}
+
+\usepackage[canadien]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[letterpaper]{geometry}
+\usepackage[americanvoltages,americancurrents]{circuitikz}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+
+\addto\captionsfrench{\def\tablename{Tableau}}
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{myheadings}
+\markboth{GPH-2006/PHY-2002~---~Amplificateur~à~détection~synchrone}{GPH-2006/PHY-2002~---~Amplificateur~à~détection~synchrone}
+
+
+\begin{document}
+
+
+\title{\textbf{Complément}\\Amplificateur à détection synchrone}
+\author{Maxime Trépanier, Jean-Raphaël Carrier \& Claudine Allen}
+\date{}
+\maketitle
+
+
+\section{Principe et utilité}
+
+Un amplificateur à détection synchrone\footnote{Ci-après référé par ADS.}, aussi connu sous le nom de \textit{lock-in amplifier} en anglais, est un appareil de traitement de signal permettant de mesurer un signal masqué par un bruit important. Typiquement, on parvient aisément à mesurer des signaux de $-60$~dB par rapport au bruit (soit 1000 fois plus de bruit que de signal), ce qui serait très difficile, voire impossible, avec des filtres et des amplificateurs traditionnels. L’ADS parvient à atteindre ce niveau de détection en comparant le signal de réponse du système au signal d’excitation.
+
+Le bruit étant généralement très étalé sur le domaine des fréquences, et le signal à mesurer étant plus confiné, si l'on parvient à sélectionner uniquement l'intervalle de fréquences utile, on peut diminuer considérablement le bruit. Par exemple, considérons une mesure d'une seconde, où le signal est mille fois plus faible que le bruit. Supposons que l'amplitude du signal est de 1~$\mu$V et que celle du bruit est de 1~mV. Le spectre du bruit s'étendra d'environ 1~Hz jusqu'à quelques kilohertz, disons 100~kHz, selon l'appareil de mesure et le filtre passe-bande utilisé. La plage de fréquences sur laquelle s'étend le bruit est donc $\Delta f\approx100$~kHz. S'il s'agit de bruit blanc, alors la puissance en densité spectrale $S_{\mathrm{bruit}}$ du bruit est de $S_{\mathrm{bruit}}\approx P/\Delta f\approx10^{-8}$~V/Hz. Si le signal est concentré autour d'une fréquence, avec une largeur spectrale de $\Delta f\approx1$~Hz, alors la puissance en densité spectrale du signal est de $S_{\mathrm{signal}}\approx10^{-6}$~V/Hz. Le signal est alors 100 fois plus important que le bruit, ce qui permet une mesure significative. Le défi est donc de pouvoir extraire l'information d'un petit intervalle de fréquences, et alors que la bande passante d'un filtre est de l'ordre de $f_0/Q$, ce qui se situe généralement dans les dizaines et les centaines de hertz au mieux, celle d'un ADS peut atteindre aisément les centièmes de hertz et ce, indépendamment de la fréquence observée. On parvient donc à mesurer des signaux très faibles, mais le prix à payer est que le signal ne doit pas être étalé en fréquences, ce qui, fortuitement, est souvent le cas pour des systèmes linéaires.
+
+
+\section{Théorie et fonctionnement}
+
+Le fonctionnement d’un ADS repose sur la transformée de Fourier. En fait, il applique une transformée en cosinus discrète (TCD) sur le signal d’entrée en multipliant chaque point par le signal de référence puis en sommant tous les points de l’échantillonage. Si $\mathfrak{F}_D : t \rightarrow \omega$ est la transformation, $f\!\left(t\right)$ le signal de référence et $v\!\left(t\right)$ le signal, alors
+\begin{equation}
+V\!\left(\omega_c\right)=\mathfrak{F}_D\!\left[v\!\left(t\right)\right]=\sum_tf\!\left(t\right)v\!\left(t\right)\;\;\;\;\forall t\in\left[0,T\right]
+\end{equation}
+après $T$ la période d'échantillonnage. Notons que $t$ est une variable discrète ici, et que $f\!\left(t\right)$ est une fonction sinus de la forme $f\!\left(t\right)=A\,\mathrm{cos}\!\left(\omega_c\,t+\phi\right)$.
+
+Cette expression est équivalente à une transformée de Fourier en cosinus $\mathfrak{F}$ évaluée à la fréquence angulaire $\omega_c$ pour une mesure sur un intervalle fini:
+\begin{equation}
+V\!\left(\omega_c\right)=\mathfrak{F}\!\left[v\!\left(t\right)\right]\left|_{\omega=\omega_c}=\int_0^T\mathrm{cos}\!\left(\omega\,t\right)v\!\left(t\right)\mathrm{d}t\right|_{\omega=\omega_c}\Rightarrow\sum^T_{t=0}\mathrm{cos}\!\left(\omega_c\,t\right)v\!\left(t\right).
+\end{equation}
+Cette méthode fonctionne puisque les fonctions cosinus de différentes périodes sont orthogonales, c’est-à-dire qu'en termes d’espace vectoriel, leur produit scalaire est nul ; de façon équivalente, l’intégrale de leur produit sur une période qui est un multiple des périodes de chaque cosinus est nul, i.e.\footnote{La notation $a\,|\,b$ signifie que $a$ divise $b$ c'est-à-dire, en d'autres termes, que $b$ est un multiple entier de $a$.}
+\begin{equation}
+\int_0^T\mathrm{cos}\!\left(\frac{2\,\pi}{T_1}\,t\right)\mathrm{cos}\!\left(\frac{2\,\pi}{T_2}\,t\right)\mathrm{d}t=0\;\;\;\;\mathrm{avec}\;\;T_1\,T_2\,|\,T\;\;\mathrm{et}\;\;T_1\neq T_2.
+\end{equation}
+
+Évidemment, puisque l’on considère un échantillon de temps fini, le nombre de fréquences possibles (ou périodes) est lui aussi fini, ce qui implique qu’il existe une incertitude sur la fréquence détectée, car il y a un couplage entre des cosinus de fréquences différentes qui ne respectent pas $T_1\,T_2\,|\,T$, tel que l’on peut voir sur la figure~\ref{graphe} ; ce couplage décroît cependant exponentiellement.
+
+Finalement, il est important de noter que la transformée utilisée est sensible à la phase du signal, car on ne prend que la partie en cosinus du signal. Ainsi, si $V\!\left(\omega_c\right)$ est maximal pour la transformée en cosinus discrète, il est nul pour la transformée en sinus discrète (TSD), car les fonctions sont orthogonales. Cela implique que si le signal subit un déphasage de $\pm\pi/2$ par rapport à la fréquence de référence, la lecture de l’ADS n’affichera pas de signal. Heureusement, les ADS de bonne qualité sont équipés de deux canaux, et ils calculent à la fois la TCD$\left(X\right)$ et la TSD$\left(Y\right)$. Ils peuvent alors déterminer la norme du signal et sa phase, en coordonnées polaires. De plus, ils possèdent une option «Auto-phase» qui permet d’ajuster la phase de la fréquence de référence à l’interne, afin que $X$ soit maximal.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{graphe-lock-in}
+\caption{\label{graphe}Intégrale d’un produit de cosinus de fréquences rapprochées.}
+\end{figure}
+
+
+
+
+\end{document}
+
+Écrit par Maxime Trépanier, mis en page et révisé par Jean-Raphaël Carrier
+Dernière modification : 12 janvier 2014
+
+Reste à faire:
+
+- Faire réviser par Claudine
+- Appliquer les corrections
+- Réviser 
