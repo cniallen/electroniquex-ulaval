@@ -1,0 +1,162 @@
+\documentclass[12pt,oneside,letterpaper]{article}
+
+\usepackage[canadien]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[letterpaper]{geometry}
+\usepackage[americanvoltages,americancurrents]{circuitikz}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{myheadings}
+\markboth{GPH-2006/PHY-2002~---~Introduction~au~courant~alternatif}{GPH-2006/PHY-2002~---~Introduction~au~courant~alternatif}
+
+
+\begin{document}
+
+
+\title{\textbf{Complément}\\Introduction au courant alternatif}
+\author{Jean-Raphaël Carrier \& Claudine Allen}
+\date{}
+\maketitle
+
+
+Comme son nom l'indique, un courant alternatif est un courant qui va dans un sens, puis dans l'autre, en alternance. Autrement dit, ce courant (de même pour la tension) oscille entre une valeur positive et une valeur négative. De manière générale, un signal est la combinaison d'une composante continue (DC) et d'une composante alternative (AC).
+
+Dans la majorité des cas, --- et c'est le cas du signal électrique fourni par une prise de courant --- les signaux alternatifs peuvent être décrits par une fonction sinusoïdale. Toutefois, tous les signaux ne sont pas sinusoïdaux. En effet, dans certaines applications, des signaux carrés ou encore triangulaires sont utilisés. Le bruit peut aussi être un signal alternatif. Dans ce cas, toutefois, le signal est aléatoire et donc non périodique.
+
+
+\section{Caractérisation des grandeurs alternatives}
+
+En courant alternatif, puisque plusieurs paramètres (comme la tension et le courant) varient constamment, il est nécessaire de spécifier, en plus de leur valeur, comment celle-ci a été prise. Par exemple, en courant alternatif, une «tension de 12~V» ne veut rien dire. S'agit-il de sa valeur maximale? de sa valeur moyenne? Voici les principales façons de définir une grandeur alternative.
+
+Soit un signal périodique quelconque $v\!\left(t\right)$, de période $T$, dont les valeurs minimale et maximale sont respectivement $v_{\mathrm{min}}$ et $v_{\mathrm{max}}$. Comme tous les signaux périodiques, $v\!\left(t\right)$ peut être considéré comme la somme d'une composante continue et d'une composante alternative.
+\begin{equation}
+v\!\left(t\right)=v_{\mathrm{DC}}+v_{\mathrm{AC}}\!\left(t\right)
+\end{equation}
+
+La \textbf{valeur moyenne} est égale à la composante continue et se calcule comme suit:
+\begin{equation}
+v_{\mathrm{moy}}=v_{\mathrm{DC}}=\frac{1}{T}\,\int_0^T v\!\left(t\right)\,\mathrm{d}t.
+\end{equation}
+La \textbf{valeur absolue moyenne} calcule la moyenne du signal après qu'il ait été redressé.
+\begin{equation}
+\left|v\right|_{\mathrm{moy}}=\frac{1}{T}\,\int_0^T \left|v\!\left(t\right)\right|\,\mathrm{d}t
+\end{equation}
+
+La \textbf{valeur crête} (\textit{peak}) est tout simplement la valeur maximale du signal. La \textbf{valeur crête à crête} (\textit{peak-to-peak}) équivaut quant à elle à la différence entre les valeurs maximale et minimale.
+\begin{gather}
+v_{\mathrm{p}}=v_{\mathrm{max}}\\
+v_{\mathrm{pp}}=v_{\mathrm{max}}-v_{\mathrm{min}}
+\end{gather}
+
+La \textbf{valeur efficace} (\textit{root mean square}) s'obtient, dans le cas d'un signal périodique, avec:
+\begin{equation}
+v_{\mathrm{eff}}=v_{\mathrm{RMS}}=\sqrt{\frac{1}{T}\,\int_0^T v^2\!\left(t\right)\,\mathrm{d}t}.
+\end{equation}
+En séparant le signal en une composante continue et une composante alternative, la valeur efficace du signal peut alors être obtenue à partir de:
+\begin{equation}
+v_{\mathrm{RMS}}=\sqrt{v^2_{\mathrm{DC}}+v^2_{\mathrm{AC}_{\mathrm{RMS}}}}.
+\end{equation}
+Dans l'équation précédente, $v_{\mathrm{AC}_{\mathrm{RMS}}}$ est la valeur efficace de la composante alternative:
+\begin{equation}
+v_{\mathrm{AC}_{\mathrm{RMS}}}=\sqrt{\frac{1}{T}\,\int_0^T v^2_{\mathrm{AC}}\!\left(t\right)\,\mathrm{d}t}.
+\end{equation}
+La valeur efficace d'un courant ou d'une tension variant dans le temps correspond à la valeur du courant continu ou de la tension continue qui provoquerait le même échauffement dans une résistance. Un multimètre, par exemple, mesure la valeur efficace.
+
+Le \textbf{facteur de forme} et le \textbf{facteur de crête} permettent de décrire la forme du signal.
+\begin{gather}
+f_{\mathrm{f}}=\frac{v_{\mathrm{RMS}}}{\left|v\right|_{\mathrm{moy}}}\\
+f_{\mathrm{c}}=\frac{v_\mathrm{p}}{v_{\mathrm{RMS}}}
+\end{gather}
+
+Pour un signal sinusoïdal sans composante continue, ces différentes valeurs sont:
+\begin{subequations}
+\begin{gather}
+v_{\mathrm{moy}}=0\\
+\left|v\right|_{\mathrm{moy}}=\frac{2\,v_{\mathrm{max}}}{\pi}\\
+v_{\mathrm{p}}=v_{\mathrm{max}}\\
+v_{\mathrm{pp}}=2\,v_{\mathrm{max}}\\
+v_{\mathrm{RMS}}=\frac{v_{\mathrm{max}}}{\sqrt{2}}\\
+f_{\mathrm{f}}=\frac{\pi}{2\sqrt{2}}\\
+f_{\mathrm{c}}=\sqrt{2}.
+\end{gather}
+\end{subequations}
+
+
+\section{Période, pulsation, fréquence et phase}
+
+Les signaux alternatifs périodiques peuvent être décrits, outre l'amplitude, par les paramètres suivants : la période, la pulsation, la fréquence et la phase.
+
+La période est habituellement notée $T$ et mesurée en secondes (s). Elle correspond à la durée d'une oscillation complète du signal. La fréquence, $f$, est l'inverse de la période ; elle se mesure en hertz (Hz). La pulsation, notée $\omega$, est la fréquence angulaire (ou la vitesse angulaire) de l'oscillation. Elle est mesurée en radians par seconde (rad/s).
+\begin{equation}
+T=\frac{1}{f}=\frac{2\pi}{\omega}
+\end{equation}
+
+La phase, $\Phi$, d'un signal périodique est une grandeur sans dimension qui décrit la position du signal. Comme pour le potentiel, la phase a besoin d'une référence pour signifier quelque chose. Le déphasage, noté $\phi$, correspond à la différence de phase entre deux signaux. Les composants électriques et électroniques peuvent induire un certain déphasage dans un circuit.
+
+
+\section{Impédance}
+
+L'impédance, notée $Z$, est la mesure de l'opposition d'un élément au passage d'un courant électrique, qui peut être continu ou alternatif. L'impédance est en fait la généralisation des trois composants linéaires principaux (résistance, bobine et condensateur) pour les circuits à courant alternatif.
+
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) to[european resistor=$Z$] (2,0)
+;\end{circuitikz}
+\end{center}
+
+Les impédances se gèrent \textit{grosso modo} comme des résistances. Les règles de simplification, autant en série qu'en parallèle, sont les mêmes. Comme pour la résistance, l'unité de l'impédance est l'ohm ($\Omega$). La seule différence est que les valeurs des impédances sont complexes. Une impédance strictement réelle ne sera en fait qu'une résistance, alors qu'une impédance (au sens large) peut être la combinaison de résistances, de condensateurs et de bobines. Les impédances de chaque composant de base sont les suivantes:
+\begin{gather}
+\label{eq-impedance-R}
+Z_{R}=R\\
+\label{eq-impedance-L}
+Z_{L}=s \, L\\
+\label{eq-impedance-C}
+Z_{C}=\frac{1}{s \, C}.
+\end{gather}
+où $s$ est une variable complexe. En régime permanent (comme ce sera très souvent le cas dans le cadre de ce cours), $s=j \, \omega$ où $j=\sqrt{-1}$ et $\omega=2 \, \pi \, f$ est la pulsation du signal.
+
+En séparant la partie réelle de l'impédance de sa partie imaginaire, on obtient:
+\begin{equation}
+\label{eq-resistance-reactance}
+Z=R+jX.
+\end{equation}
+La partie imaginaire de l'impédance, $X$, est appelée \textit{réactance}.
+
+La loi d'Ohm peut être généralisée pour les impédances. L'équation est la même, si ce n'est que les trois variables sont complexes.
+\begin{equation}
+\label{eq-loi-ohm-complexe}
+V=Z \, I
+\end{equation}
+
+
+\subsection{Admittance}
+
+L'inverse de l'impédance est appelée \textit{admittance} et est notée $Y$. L'admittance est la mesure de la facilité avec laquelle un courant, continu ou alternatif, peut circuler dans un élément. Son unité est le siemens (S).
+
+L'admittance aussi est une grandeur complexe. Sa partie réelle, notée $G$, est la \textit{conductance} et sa partie imaginaire, $B$, s'appelle la \textit{susceptance}.
+\begin{equation}
+\label{eq-conductance-susceptance}
+Y=G+jB
+\end{equation}
+
+Contrairement à l'impédance, l'admittance est une grandeur peu utilisée.
+
+
+\end{document}
+
+Écrit par Jean-Raphaël Carrier
+Dernière modification : 11 janvier 2014
+
+Reste à faire:
+
+- (à voir) dire que si on monte la fréquence des ondes peuvent être émises
+- (à voir) rajouter V*(t)V(t) pour inclure les amplitudes complexes dans le calcul de la valeur RMS 
