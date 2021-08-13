@@ -1,0 +1,136 @@
+\documentclass[12pt,oneside,letterpaper]{article}
+
+\usepackage[canadien]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[letterpaper]{geometry}
+\usepackage[americanvoltages,americancurrents]{circuitikz}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+
+\addto\captionsfrench{\def\tablename{Tableau}}
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{myheadings}
+\markboth{GPH-2006/PHY-2002~---~Introduction~à~la~FFT~sur~MATLAB}{GPH-2006/PHY-2002~---~Introduction~à~la~FFT~sur~MATLAB}
+
+
+\begin{document}
+
+
+\title{\textbf{Complément}\\Introduction à la FFT sur \textit{MATLAB}}
+\author{Simon Duval, Jean-Raphaël Carrier \& Claudine Allen}
+\date{}
+\maketitle
+
+
+
+La transformée de Fourier est une opération mathématique très souvent utilisée en recherche et en industrie. Dans les domaines de l'électronique et de l'optique, elle est d'une grande utilité pour traiter les signaux numériques. Une telle opération est généralement effectuée numériquement puisque les signaux considérés ne sont que très rarement représentés par des fonctions analytiques simples. On a donc recours à la forme discrète de la transformée de Fourier, communément appelée \textit{Discrete Fourier Transform} (DFT). Cette dernière consiste à évaluer l'amplitude et la phase de chacune des composantes spectrales consistuant le signal. Évidemment, vu que le signal est discret, sa DFT sera également discrétisée. Cette discrétisation requiert d'abord une compréhension de base sur certains principes associés à l'échantillonnage d'un signal numérique.
+
+
+
+\section{Échantillonnage et fréquence de Nyquist}
+
+Pour un signal temporel quelconque mesuré avec une fréquence d'échantillonnage $f_e$, l'intervalle entre chaque mesure prise, c'est-à-dire l'intervalle d'échantillonnage $\Delta t$, est représenté par $\Delta t = 1/f_e$. La plus haute fréquence pouvant être échantillonnée, appelée \textit{fréquence de Nyquist}, est donnée par:
+\begin{equation}
+f_{N} = \frac{1}{2\,\Delta t} = \frac{f_e}{2}.
+\end{equation}
+Cette relation est d'une importance capitale en traitement de signaux numériques. Celle-ci nous indique qu'il faut choisir une fréquence d'échantillonnage suffisamment élevée pour représenter adéquatement un signal réel. Si le signal est mal échantillonné, ses fréquences élevées peuvent être interprétées à tort comme des basses fréquences. Ce phénomène appelé \textit{repliement spectral} (en anglais : \textit{aliasing}) peut causer une déformation du signal échantillonné et de sa transformée de Fourier.
+
+
+
+\section{La transformée de Fourier rapide (FFT)}
+
+Un algorithme très puissant et très rapide permet de calculer la DFT : la \textit{Fast Fourier Transform} (FFT). L'algorithme permettant le calcul numérique de la transformée de Fourier inverse, appelé fort logiquement l'\textit{Inverse Fast Fourier Transform} (IFFT), est identique à celui pour la FFT à un signe près. Il existe différentes méthodes pour calculer la FFT, mais la plus connue est celle introduite par Cooley et Tukey en 1865. Celle-ci consiste à calculer la DFT en plusieurs sous-DFT de tailles réduites. En général, la DFT est séparée en deux sous-DFT de même taille. Cette décomposition est répétée récursivement jusqu'à ce qu'il ne reste qu'un élément par DFT à effectuer. On peut ensuite remonter au résultat recherché à l'aide d'opérations arithmétiques simples entre chacun des résultats intermédiares calculés. De ce fait, on inclut généralement cet algorithme dans la grande famille des algorithmes \textit{Divide and Conquer} (diviser pour régner). Contrairement à l'implémentation directe de la DFT, qui requiert l'utilisation de $N^2$ opérations arithmétiques ($N$ étant le nombre de points), la FFT en utilise seulement $N\,\log_2\!\left(N\right)$. Et puisque que les signaux numériques possèdent habituellement un grand nombre de points, le temps de calcul peut être significativement réduit.
+
+
+
+\section{La FFT et \textit{MATLAB}}
+
+Le logiciel \textit{MATLAB} possède des fonctions permettant le calcul de la FFT ou de la IFFT, appelées \texttt{fft.m} et \texttt{ifft.m}. Dans la plupart des cas, ces fonctions utilisent l'algorithme de Cooley et Tukey en divisant la DFT à calculer en $N/2$ DFT de même taille, de façon récursive. Pour diminuer le temps de calcul, il est donc préférable d'utiliser un nombre de points correspondant à une puissance de 2. Un nombre de points quelconque entré en argument oblige l'utilisation d'autres algorithmes de calcul de la FFT, qui sont généralement plus lents.
+
+Considérons l'exemple d'une DFT à une dimension, représentée à la figure~\ref{fig1}. Sur cette figure, on retrouve l'amplitude temporelle du signal dont on souhaite trouver la transformée de Fourier ainsi que le vecteur temps y étant associé. Ces vecteurs possèdent $N$ points chacun et cette situation est adaptée au cas où $N$ est une puissance de 2, donc un nombre pair. Pour cette raison, il y aura une asymétrie de part et d'autre du temps 0. Le vecteur temps peut donc être défini de la façon suivante, selon la syntaxe \textit{MATLAB}:
+\begin{equation}
+t = \left[-\frac{N\Delta t}{2} : \Delta t : \frac{N \Delta t}{2}-\Delta t \right].
+\end{equation}
+On définit également le paramètre $L$, donné par:
+\begin{equation}
+L = N\Delta t.
+\end{equation}
+Puisqu'il y a $N-1$ intervalles de temps, la largeur de la fenêtre temporelle est égale à $L-\Delta t$. La DFT d'un signal $A_t$ sur \textit{MATLAB} peut donc être effectuée de la façon suivante:
+\begin{equation}
+A_{f} = \textrm{fft}\!\left(A_t\right).
+\end{equation}
+
+$A_{f}$ est le vecteur associé à la DFT de $A_t$ et est donc de même grandeur. De la même façon qu'il y a un temps associé à chaque élément du vecteur $A_t$, il y a aussi une fréquence associée à chaque élément du vecteur $A_{f}$ généré. Cependant, la fonction \texttt{fft.m} ne donne pas l'option de générer ce vecteur fréquence pour l'utilisateur : il faut le générer par soi-même. Pour ce faire, comme le suggère la figure~\ref{fig1}, certaines correspondances avec le vecteur temps doivent être respectées. Tout d'abord, la valeur absolue de la plus haute fréquence échantillonnée doit être égale à la fréquence de Nyquist pour respecter le théorème d'échantillonnage. Ensuite, le vecteur fréquence doit être de même grandeur que le vecteur temps et doit donc posséder $N$ points. Ce vecteur doit également posséder à la fois des composantes en fréquences négatives et positives. À partir de ces règles, on peut déterminer l'intervalle entre deux fréquences consécutives du vecteur fréquence:
+\begin{equation}
+\left|F_{\textrm{max}}\right| = f_N = \frac{1}{2\,\Delta t} = \frac{N}{2\,L}.
+\end{equation}
+Or, on a également que:
+\begin{equation}
+f_N = \frac{N\,\Delta f}{2}.
+\end{equation}
+En égalisant ces deux équations, on trouve que:
+\begin{equation}
+\Delta f = \frac{1}{L}.
+\end{equation}
+
+Ce indique que la résolution en fréquence est, à peu de choses près, inversement proportionnelle à la largeur de la fenêtre temporelle, car $L\approx L-\Delta t$ si $\Delta t\ll L$. Le vecteur fréquence peut donc s'écrire selon la syntaxe \textit{MATLAB} comme:
+\begin{equation}
+f = \left[-\frac{N\,\Delta f}{2} : \Delta f : \frac{N\,\Delta f}{2}-\Delta f \right].
+\end{equation}
+En termes du paramètre $L$, ce vecteur s'écrit comme:
+\begin{equation}
+f = \left[-\frac{N}{2\,L} : \frac{1}{L} : \frac{N}{2\,L}-\frac{1}{L} \right].
+\end{equation}
+Par convention, les algorithmes utilisés pour la FFT considèrent l'élément 1 du vecteur temps comme étant le temps 0 alors que dans notre cas, nous avons placé le temps 0 à la position $1+N/2$. Ceci a pour effet de décaler le vecteur $A_f$ en fréquence, comme illustré à la figure~\ref{fig1}. Il existe une fonction \textit{MATLAB} permettant de redresser le vecteur $A_f$ en fréquence. Celle-ci se nomme \texttt{fftshift.m}. Vous comprendrez qu'il existe également une fonction pour la IFFT, qui se nomme \texttt{ifftshift.m}. De plus, pour respecter le théorème de Parseval et obtenir une énergie dans le domaine des fréquences égale à celle dans le domaine temporel, il faut multiplier la DFT obtenue  par l'intervalle d'échantillonnage. Voici comment correctement calculer $A_f$:
+\begin{equation}
+A_{f} = \textrm{fftshift}\!\left(\textrm{fft}\!\left((A_t\right))\right)\cdot\Delta t.
+\end{equation}
+
+La IFFT peut être obtenue de façon similaire, sauf que l'\texttt{ifftshift} doit être effectué avant la fonction \texttt{ifft} et qu'on doit diviser le résultat par l'intervalle d'échantillonnage:
+\begin{equation}
+A_{t} = \textrm{ifft}\!\left(\textrm{ifftshift}\!\left(A_f\right)\right)/\left(\Delta t\right).
+\end{equation}
+
+Avec ces informations, vous devriez être en mesure d'évaluer la transformée de Fourier discrète de n'importe quel signal, qu'il soit réel ou complexe! N'hésitez pas à vérifier votre code avec une fonction simple dont la transformée de Fourier analytique est facilement calculable. Par exemple, contruisez par vous-même une fonction rectangle (\texttt{rect.m}) de la forme suivante:
+\begin{equation}
+\mbox{rect}(x) = \left\{\begin{array}{rcl}
+1 & \mbox{pour} & |x| < \frac{1}{2}\\
+\frac{1}{2} & \mbox{pour} & |x| = \frac{1}{2}\\
+0 & \mbox{ailleurs}\end{array}\right.
+\end{equation}
+La fonction temporelle peut donc être représentée par:
+\begin{equation}
+A_t = \textrm{rect}\!\left(\frac{t}{W}\right).
+\end{equation}
+où $W$ est la pleine largeur du rectangle. Comparez vos résultats avec la transformée de Fourier analytique de cette fonction rectangle, donnée par:
+\begin{equation}
+A_f = W\,\textrm{sinc}\!\left(W\,f\right)=W\,\frac{\textrm{sin}\!\left(\pi\,W\,f\right)}{\pi\,W\,f}.
+\end{equation}
+
+Puisque la transformée de Fourier produit généralement une fonction complexe, celle-ci est fréquemment représentée d'une part par sa norme ou sa norme au carré (fonction \texttt{abs.m}) et d'autre part par sa phase (fonction \texttt{angle.m}). N'oubliez pas de choisir un vecteur temporel avec une largeur judieusement choisie et un nombre de points suffisant pour avoir une précision adéquate, et donc éviter les erreurs numériques! Pour plus d'information, vous pouvez consulter le livre \textit{Computational Fourier Optics: A MATLAB Tutorial} de David Voelz; plusieurs exemples y sont présentés.
+
+\begin{figure}[h!]
+\centering
+{\includegraphics[scale = 0.55]{fig_fft}}
+\caption{Visualisation des concepts associés à la FFT sur \textit{MATLAB}}
+\label{fig1}
+\end{figure}
+
+\end{document}
+
+Écrit par Simon Duval, révisé et légèrement modifié par Jean-Raphaël Carrier
+Dernière modification : 12 janvier 2014
+
+Reste à faire :
+
+- Apporter tous les correctifs reliés aux améliorations (mise en page surtout) prévues pour 2014
+- Faire réviser par Claudine
+- Appliquer corrections de Claudine (si nécessaire) 
