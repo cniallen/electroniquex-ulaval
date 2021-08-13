@@ -1,0 +1,238 @@
+\documentclass[12pt,oneside,letterpaper]{article}
+
+\usepackage[canadien]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[letterpaper]{geometry}
+\usepackage[americanvoltages,americancurrents]{circuitikz}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{myheadings}
+\markboth{GPH-2006/PHY-2002~---~Bruits~fondamentaux}{GPH-2006/PHY-2002~---~Bruits~fondamentaux}
+
+
+\begin{document}
+
+
+\title{\textbf{Complément}\\Bruits fondamentaux}
+\author{Jean-Raphaël Carrier \& Claudine Allen}
+\date{}
+\maketitle
+
+
+\section{Introduction au bruit}
+
+Le bruit est un signal parasite caractéristique, inhérent à tous les circuits, dont l'amplitude et la fréquence varient de façon aléatoire. Il existe différents types de bruit. Si certains peuvent être grandement réduits voire complètement éliminés, d'autres sont inévitables et présents dans tous les circuits. Bien que le bruit soit un signal aléatoire, certaines de ses propriétés sont des paramètres caractéristiques, comme c'est le cas pour la \textit{densité spectrale de puissance}. Celle-ci peut être utilisée pour distinguer les différents types de bruit. Ces derniers sont classés par \textit{couleur} (analogie grossière entre les ondes sonores et lumineuses) selon la façon dont l'intensité du bruit varie avec la fréquence de la bande passante.
+
+
+\subsection{Bruit blanc}
+
+Le bruit blanc est un bruit dont l'intensité est constante pour une largeur de bande constante. Autrement dit, l'intervalle de fréquence allant de 10~Hz à 20~Hz contient la même puissance de bruit que l'intervalle allant de 240~Hz à 250~Hz.
+
+Le bruit thermique (\textit{Johnson-Nyquist noise}) et le bruit de grenaille (\textit{shot noise}) sont deux types de bruits blancs.
+
+
+\subsection{Bruit rose}
+
+Le bruit rose est un bruit dont l'intensité est constante pour une largeur de bande proportionnelle. Ainsi, la même puissance de bruit est contenue dans les intervalles de 10~Hz à 20~Hz et de 100~Hz à 200~Hz. La densité de puissance du bruit rose varie ainsi selon l'inverse de la fréquence ($1/f$). Il y a une diminution de 3~dB par octave (une octave, comme en musique, est l'intervalle séparant deux signaux dont la fréquence de l'un vaut le double de l'autre). Le bruit rose tient son nom du fait qu'il se situe entre le bruit blanc et le bruit rouge.
+
+Le bruit de scintillation (\textit{flicker noise}) est une forme courante de bruit rose.
+
+
+\subsection{Bruit rouge}
+
+Le bruit rouge, aussi appelé bruit brownien (ou carrément \textit{bruit brun} par distorsion), est un bruit dont la densité de puissance varie proportionnellement à l'inverse du carré de la fréquence ($1/f^2$). Sa puissance décroît donc de 6~dB par octave.
+
+
+\subsection{Bruits bleu et violet}
+
+Les bruits bleu et violet sont les inverses des bruits rose et rouge : ils varient selon $f$ et $f^2$ respectivement. Ainsi, les bruits bleu et violet gagnent en intensité à mesure que la fréquence augmente.
+
+
+\section{Bruit de grenaille}
+
+Le bruit de grenaille, aussi appelé bruit de Schottky ou bruit quantique (en anglais : \textit{shot noise}), est un bruit causé par le fait que le courant électrique n'est pas continu mais bien constitué de charges élémentaires (les électrons). Le courant électrique est par définition égal au taux de déplacement d'une charge électrique dans une section continue:
+\begin{equation}
+i=\frac{\mathrm{d}q}{\mathrm{d}t}.
+\end{equation}
+Ainsi, le caractère discret des charges occasionne des fluctuations statistiques dans la valeur du courant.
+
+Pour mieux comprendre ce phénomène, imaginons qu'il n'y ait qu'un seul électron dans un circuit électrique fermé et qu'on mesure le courant à l'aide d'un ampèremètre. Tant et aussi longtemps que l'électron ne passe pas dans l'ampèremètre, le courant mesuré sera nul. Lorsque l'électron traversera l'ampèremètre, il y aura un signal non-nul. Dans un circuit électrique réel, où il y a plusieurs électrons, la valeur du courant est égale à la somme des contributions de tous les électrons. Dans un intervalle de temps donné, le nombre d'électrons qui aura passé dans une section ne sera pas parfaitement constant, puisque les porteurs de charge n'arrivent pas régulièrement mais plutôt en ordre légèrement dispersé. C'est pourquoi la valeur réelle du courant oscille, très légèrement, autour d'une valeur moyenne.
+
+Puisqu'il est causé directement par la quantification des charges électriques, le bruit de grenaille ne peut pas être éliminé : il sera toujours présent, quel que soit le circuit. La grandeur efficace (valeur RMS) du bruit de grenaille est donnée par la relation suivante:
+\begin{equation}
+\label{eq-shot-i}
+\sigma_i=i_{\mathrm{bruit(RMS)}}=\sqrt{2\,q_e\,i_{\mathrm{moy}}\,B},
+\end{equation}
+où $q_e$ est la charge élémentaire, $i_{\mathrm{moy}}$ est le courant moyen et $B$ est la bande passante considérée. Au lieu de mesurer le courant, le bruit de grenaille peut aussi être observé à partir de la tension aux bornes d'une résistance:
+\begin{equation}
+\sigma_v=v_{\mathrm{bruit(RMS)}}=R\,\sigma_i=\sqrt{2\,q_e\,i_{\mathrm{moy}}\,R^2\,B}.
+\end{equation}
+
+
+\subsection{Dérivation de l'équation du bruit de grenaille}
+
+Considérons une section quelconque du fil conducteur d'un circuit électrique. On s'intéresse au nombre d'électrons qui traversent cette section dans un laps de temps donné. Si cet intervalle de temps, $\Delta t$, est petit et si le courant moyen, $i_{\mathrm{moy}}$, est faible, alors ce nombre d'électrons suit la loi de Poisson.
+
+La loi de Poisson est une loi de probabilité discrète dénombrant les événements aléatoires qui surviennent dans un intervalle de temps fixe, connaissant la fréquence moyenne d'apparation de ces événements. Si $\lambda$ est le nombre moyen d'événements occurant dans l'intervalle donné, alors la probabilité que le nombre d'événements $N$ occurant pendant l'intervalle $\Delta t$ soit exactement égal à $k$ est:
+\begin{equation}
+p\left(N=k\right)=\mathrm{e}^{-\lambda}\,\frac{\lambda^k}{k!}.
+\end{equation}
+L'écart type de cette distribution est $\sqrt{\lambda}$. En d'autres mots, la variable aléatoire $N$ peut être décrite par sa valeur moyenne $\lambda$ et cette déviation.
+\begin{equation}
+N=\lambda±\sqrt{\lambda}
+\end{equation}
+
+Puisque par définition le courant est égal à la charge divisée par l'intervalle de temps, et que la charge elle-même égale le nombre d'électrons multiplié par la charge élémentaire\footnote{On s'intéresse ici au courant conventionnel, c'est pourquoi uniquement la valeur absolue de la charge est considérée.}, on peut écrire:
+\begin{gather}
+\frac{q_e\,N}{\Delta t}=\frac{q_e\,\lambda}{\Delta t}±\frac{q_e\,\sqrt{\lambda}}{\Delta t}\\
+i=i_{\mathrm{moy}}±\sigma_i,
+\end{gather}
+où la variation $\sigma_i$ équivaut à la valeur efficace (RMS) du bruit de grenaille.
+\begin{gather}
+\sigma_i=\frac{q_e\,\sqrt{\lambda}}{\Delta t}=\frac{q_e}{\Delta t}\,\sqrt{\frac{i_{\mathrm{moy}}\,\Delta t}{q}}\\
+\label{eq-shot-temps}
+\sigma_i=\sqrt{\frac{q_e\,i_{\mathrm{moy}}}{\Delta t}}
+\end{gather}
+
+Or, en pratique, c'est en fixant une bande passante $B$ et non un laps de temps $\Delta t$ que les mesures de bruit sont effectuées. On utilise alors la relation suivante:
+\begin{equation}
+\label{eq-temps-freq}
+B=\frac{1}{2\,\Delta t}.
+\end{equation}
+La démonstration de la relation~\ref{eq-temps-freq} étant relativement longue et complexe, elle ne sera pas détaillée ici\footnote{Pour faire une explication grossière et simpliste, il faut référer aux propriétés de la transformée de Fourier. Un signal périodique pur, par exemple $y=\textrm{sin}\left(\omega\,t\right)$, a une seule fréquence ($B\rightarrow 0$) et oscille pour un temps $t$ allant de $-\infty$ à $+\infty$ (donc $\Delta t\rightarrow\infty$). À l'opposé, une fonction de Dirac ($\Delta t\rightarrow 0$) sera composée d'une infinité de fréquences ($B\rightarrow \infty$). Ceci mène à la relation $B\,\Delta t=1$.
+
+Mais en électronique, on ne s'intéresse qu'aux fréquences positives. De plus, les propriétés de la transformée de Fourier stipulent que le spectre de puissance d'une fonction réelle est une fonction paire. Donc $\displaystyle\int_{-\infty}^{\infty}P\!\left(\omega\right)\,\textrm{d}\omega=2\,\int_0^{\infty}P\!\left(\omega\right)\,\textrm{d}\omega$. D'où la présence du facteur 2 dans l'équation~\ref{eq-temps-freq}.}.
+
+En substituant l'équation~\ref{eq-temps-freq} dans l'équation~\ref{eq-shot-temps}, on obtient bien l'équation~\ref{eq-shot-i}:
+\begin{equation}
+\sigma_i=\sqrt{\frac{q_e\,i_{\mathrm{moy}}}{\Delta t}\,2\,B\,\Delta t}=\sqrt{2\,q_e\,i_{\mathrm{moy}}\,B}.
+\end{equation}
+
+Le rapport signal sur bruit est:
+\begin{subequations}
+\label{eq-signal-bruit}
+\begin{gather}
+\frac{\mathrm{signal}}{\mathrm{bruit}}=\frac{i_{\mathrm{moy}}}{\sigma_i}=\frac{\lambda}{\sqrt{\lambda}}=\sqrt{\lambda}\\
+\frac{\mathrm{signal}}{\mathrm{bruit}} \propto \sqrt{i_{\mathrm{moy}}}.
+\end{gather}
+\end{subequations}
+Il résulte de l'équation~\ref{eq-signal-bruit} que plus le courant électrique est intense, moins le bruit de grenaille est significatif.
+
+
+\section{Bruit thermique}
+
+À l'instar du bruit de grenaille, le bruit thermique (en anglais : \textit{thermal noise} ou \textit{Johnson-Nyquist noise}) est inhérent à tous les composants électriques et électroniques et n'est pas causé par des défauts de fabrication. En effet, une résistance parfaite et une résistance gossée dans un bout de métal rouillé auront toutes deux un bruit de grenaille et un bruit thermique de même intensité. La grosse différence réside dans le fait que la résistance «broche-à-foin» induira plusieurs autres sortes de bruit.
+
+Le bruit thermique est présent en tout temps, même si le composant en question ne fait pas partie d'un circuit. Si on mesure à l'aide d'un voltmètre parfait la tension aux bornes d'une résistance $R$ qui traîne sur un comptoir, une tension non-nulle sera observée à cause du bruit thermique. La valeur efficace de cette tension de bruit est donnée par l'équation suivante:
+\begin{equation}
+\label{eq-th}
+v_{\mathrm{th}}=v_{\mathrm{bruit(RMS)}}=\sqrt{4\,k_B\,T\,R\,B},
+\end{equation}
+où $k_B$ est la constante de Boltzmann, $T$ est la température absolue et $B$ est la largeur de la bande passante.
+
+
+\subsection{Dérivation de l'équation du bruit thermique}
+
+Considérons deux résistances de même valeur $R_A=R_B=R$, reliées simplement entre elles comme l'indique la figure~\ref{sch-2-res}. Supposons que tout le circuit est dans un environnement où la température absolue, $T$, est uniforme.
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) to[R=$R_A$] (0,2) to[short,-*] (0.5,2) to[short] (1,2) to[R=$R_B$] (1,0) to[short,-*] (0.5,0) to[short] (0,0)
+;\end{circuitikz}
+\end{center}
+\caption{\label{sch-2-res}Deux résistances reliées.}
+\end{figure}
+
+La différence de potentiel $v$ aux bornes de la résistance $A$ due à l'agitation thermique induit un courant $i$ dans le circuit tel que
+\begin{equation}
+\label{eq-courant-2-res}
+i=\frac{v}{2\,R}.
+\end{equation}
+Ce courant fera en sorte que la résistance $B$ dissipera une puissance de
+\begin{equation}
+\label{eq-puissance-2-res}
+P_{AB}=R\,i^2.
+\end{equation}
+Ainsi, on peut considérer qu'il y a un transfert de puissance $P_{AB}$ de la résistance $A$ vers la résistance $B$. De façon tout à fait analogue, il peut être déduit que la résistance $B$ fournira une puissance $P_{BA}$ à la résistance $A$. Puisque les deux composants sont à l'équilibre thermique, il découle du second principe de la thermodynamique que ces deux puissances transférées sont équivalentes, i.e. $P_{AB}=P_{BA}=P$. Cette conclusion n'est pas seulement valide pour la puissance totale transférée, mais aussi pour la puissance transférée pour chaque fréquence (ou intervalle de fréquences) considérée.
+
+Pour déterminer l'équation de la puissance transférée, considérons les mêmes résistances $A$ et $B$, mais cette fois reliées par une ligne de transmission non-dissipative, d'inductance $L$ et de capacité $C$. La ligne de transmission est choisie de telle sorte que $\sqrt{L/C}=R$, afin qu'il n'y ait aucune réflexion aux extrémités.
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) to[R=$R_A$] (0,2) to[short] (0.5,2) to[short,*-*] (10.5,2) to[short] (11,2) to[R=$R_B$] (11,0) to[short] (10.5,0) to[short,l^=$\ell$,*-*] (0.5,0) to[short] (0,0)
+;\end{circuitikz}
+\end{center}
+\caption{\label{sch-2-res-ligne}Deux résistances reliées par une ligne de transmission non dissipative de longueur $\ell$.}
+\end{figure}
+
+Soit $\ell$ la longueur de la ligne de transmission, $u$ la vitesse de propagation du signal et $T$ la température absolue lorsque l'équilibre thermique est atteint. Il y a deux transferts d'énergie dans la ligne de transmission : celui allant de la résistance $A$ vers la résistance $B$ ainsi que l'équivalent de $B$ vers $A$. À un instant $t$ quelconque après que l'équilibre thermique soit atteint, on isole la ligne de transmission en court-circuitant ses extrémités (figure~\ref{sch-2-short-ligne}). Sous ces conditions, il y a réflexion totale à chaque extrémité de la ligne de transmission : l'énergie présente dans celle-ci au temps $t$ y est donc confinée.
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) to[R=$R_A$] (0,2) to[short] (0.5,2) to[short,*-*] (10.5,2) to[short] (11,2) to[R=$R_B$] (11,0) to[short] (10.5,0) to[short,l^=$\ell$,*-*] (0.5,0) to[short] (0,0)
+(0.5,0) to[short] (0.5,2)
+(10.5,0) to[short] (10.5,2)
+;\end{circuitikz}
+\end{center}
+\caption{\label{sch-2-short-ligne}La ligne de transmission est isolée au temps $t$.}
+\end{figure}
+
+Désormais, le signal est une superposition d'ondes stationnaires ayant chacune un n{\oe}ud à chaque extrémité de la ligne de transmission. Les fréquences des différents modes présents sont alors les multiples entiers de $u/\!\left(2\,\ell\right)$. En considérant une bande passante de largeur $B$, il découle que le nombre de modes d'oscillation (i.e. de degrés de liberté) présents dans cette bande passante est égal à $2\,\ell\,B/u$. On considère une longueur $\ell$ suffisamment grande pour que ce nombre soit important.
+
+Il devient alors possible, en utilisant le théorème d'équipartition de l'énergie, de considérer que chaque mode ou degré de liberté contient une énergie moyenne de $k_B\,T$, avec la moitié de l'énergie comprise dans le champ électrique et l'autre moitié dans le champ magnétique. L'énergie totale contenue dans cet intervalle de fréquences $B$ devient donc:
+\begin{equation}
+\label{eq-ener-isol}
+E=\frac{2\,\ell\,k_B\,T\,B}{u}.
+\end{equation}
+
+Comme il a été mentionné, il n'y avait pas de rélexion aux extrémités de la ligne de transmission avant que celles-ci ne soient court-circuitées. Ainsi, l'énergie contenue dans la ligne de transmission isolée (figure~\ref{sch-2-short-ligne}) est égale à l'énergie transférée par la ligne entre les résistances (figure~\ref{sch-2-res-ligne}) pendant un temps $\Delta t=\ell/u$:
+\begin{equation}
+\label{eq-ener-2-res}
+E_{\mathrm{tr}}=\frac{2\,\ell\,k_B\,T\,B}{u}=2\,k_B\,T\,B\,\Delta t.
+\end{equation}
+
+La puissance transférée entre les résistances, dans cette bande passante, est alors:
+\begin{equation}
+\label{eq-puiss-2-res}
+P_{\mathrm{tr}}=\frac{E_{\mathrm{tr}}}{\Delta t}=2\,k_B\,T\,B.
+\end{equation}
+Et grâce au second principe de la thermodynamique il peut être affirmé que les résistances $A$ et $B$ contribuent à part égale à ce transfert de puissance. Ainsi, la puissance dissipée par une seule résistance est:
+\begin{equation}
+\label{eq-puiss-2-res}
+P=k_B\,T\,B.
+\end{equation}
+Enfin, en combinant les équations~\ref{eq-courant-2-res}, \ref{eq-puissance-2-res} et \ref{eq-puiss-2-res}, on peut obtenir l'expression de la tension induite par le bruit thermique (équation~\ref{eq-th}):
+\begin{equation}
+v_{\mathrm{th}}=\sqrt{4\,k_B\,T\,R\,B}.
+\end{equation}
+
+Il est à noter que cette équation n'est valide que si la condition $h\,f \ll k_B\,T$ est respectée, avec $h$ qui est la constante de Planck et $f$ la fréquence centrale (moyenne géométrique) de la bande passante de largeur $B$. Si ce n'est pas le cas (ce qui est peu probable), l'expression $k_B\,T$ doit être remplacée par:
+\begin{equation*}
+\frac{h\,f}{\mathrm{e}^{\frac{h\,f}{k\,T}}-1}.
+\end{equation*}
+La valeur efficace du bruit thermique devient donc:
+\begin{equation}
+v_{\mathrm{th}}=\sqrt{4\,\left(\frac{h\,f}{\mathrm{e}^{\frac{h\,f}{k\,T}}-1}\right)\,R\,B}.
+\end{equation}
+
+
+\section{Bruit de scintillation}
+
+Le bruit de scintillation (en anglais : \textit{flicker noise}) est une source de bruit rose, c'est-à-dire dont la puissance varie proportionnellement avec l'inverse de la fréquence. L'origine du bruit de scintillation peut être attribuée à divers phénomènes, comme par exemple à des impuretés dans le matériau d'un transistor qui libèrent aléatoirement des porteurs de charge, ou encore à des recombinaisons électron-trou parasites. En général, les transistors plus petits sont plus aptes à générer un tel bruit que les transistors plus volumineux. Aussi, le bruit de scintillation est très présent dans les résistances composées de carbone, alors qu'il est presque absent dans les résistances bobinées.
+
+Puisqu'il s'agit d'un bruit rose, le bruit de scintillation devient particulièrement important dans les basses fréquences. La fréquence en-dessous de laquelle ce bruit est plus intense que le bruit blanc (bruit de grenaille et bruit thermique) est une caractéristique importante des composants électroniques.
+
+
+\end{document}
+
+Écrit par Jean-Raphaël Carrier
+Dernière modification : 12 janvier 2014
