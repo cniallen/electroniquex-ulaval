@@ -1,0 +1,46 @@
+\documentclass[12pt,oneside,letterpaper]{article}
+
+\usepackage[canadien]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[letterpaper]{geometry}
+\usepackage[americanvoltages,americancurrents]{circuitikz}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{myheadings}
+\markboth{GPH-2006/PHY-2002~---~Transformateur}{GPH-2006/PHY-2002~---~Transformateur}
+
+
+\begin{document}
+
+
+\title{\textbf{Complément}\\Transformateur}
+\author{Jean-Raphaël Carrier \& Claudine Allen}
+\date{}
+\maketitle
+
+
+Un transformateur est un composant qui modifie le courant et la tension dans un circuit, tout en conservant la même puissance. Un transformateur amplifie ainsi l'intensité du courant par un coefficient $A$ et réduit la tension par le même coefficient. Évidemment, dans le cas où $A<1$, c'est la tension qui est amplifiée et le courant qui est réduit. Les transformateurs sont des composants habituellement très efficaces, c'est-à-dire que la puissance de sortie est presque égale à la puissance d'entrée (peu de pertes).
+
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) node[transformer]{}
+;\end{circuitikz}
+\end{center}
+
+Concrètement, un transformateur est constitué de deux bobines d'inductance couplées qui ne sont toutefois pas en contact. C'est un quadripôle ; il y a deux entrées et deux sorties. La bobine à l'entrée s'appelle \textit{primaire} et celle à la sortie, \textit{secondaire}. Le coefficient $A$ qui multiplie le courant de l'enroulement primaire pour obtenir le courant circulant dans le secondaire est appelé \textit{rapport de transformation du courant}. Ce dernier est égal au rapport entre les nombres de spires du primaire et du secondaire. Par exemple, un transformateur dont le primaire présente 100 tours et le secondaire 1000 a un rapport 1 : 10 (soit $A=0,\!1$) ; ainsi, la tension aux bornes du secondaire est dix fois plus élevée que celle aux bornes du primaire.
+
+
+\end{document}
+
+Écrit par Jean-Raphaël Carrier
+Dernière modification : 11 janvier 2014
+
