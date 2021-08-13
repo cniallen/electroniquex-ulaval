@@ -1,0 +1,138 @@
+\documentclass[12pt,oneside,letterpaper]{article}
+
+\usepackage[canadien]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[letterpaper]{geometry}
+\usepackage[americanvoltages,americancurrents]{circuitikz}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{myheadings}
+\markboth{GPH-2006/PHY-2002~---~Transfert~de~puissance}{GPH-2006/PHY-2002~---~Transfert~de~puissance}
+
+
+\begin{document}
+
+
+\title{\textbf{Complément}\\Transfert de puissance}
+\author{Jean-Raphaël Carrier \& Claudine Allen}
+\date{}
+\maketitle
+
+
+\section{Diviseur de tension}
+
+Un diviseur de tension est un circuit électrique simple qui permet, comme son nom l'indique, de séparer la tension fournie par une source en deux (ou plus) tensions plus basses. Les diviseurs de tension sont couramment utilisés pour créer une tension de référence ou encore pour atténuer l'intensité d'un signal trop fort, qui pourrait alors endommager certains éléments d'un circuit.
+
+Il existe différentes façons de construire un diviseur de tension, en fonction des applications, mais le principe en demeure le même. Le plus simple circuit diviseur de tension est formé de deux résistances placées en série, comme le montre la figure~\ref{diviseur}.
+
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) node[ground]{} to[V=$V_a$] (0,4) to[short] (2,4) to[R=$R_1$] (2,2) to[R=$R_2$] (2,0) to[short] (0,0)
+(6,0) node[ground]{} to[V=$V_a$] (6,4) to[short] (8,4) to[R=$R_1$] (8,2) to[R=$R_2$] (8,0) to[short] (6,0)
+(8,2) to[short] (10,2) to[R=$R_{\mathrm{ch}}$] (10,0) to[short] (6,0)
+;\end{circuitikz}
+\end{center}
+\caption{\label{diviseur}Diviseur de tension constitué de deux résistances en série, sans charge appliquée (gauche) et avec une charge résistive $R_{\mathrm{ch}}$ (droite).}
+\end{figure}
+
+En analysant le circuit sans la charge, il découle du fait que les deux résistances sont en série que:
+\begin{equation}
+V_{R_2}=\frac{R_2}{R_1+R_2}\,V_a.
+\end{equation}
+Et puisque la charge appliquée est en parallèle avec la résistance $R_2$, il serait naturel de dire:
+\begin{gather}
+V_{R_{\mathrm{ch}}}=V_{R_2}\\
+\label{eq-fausse}
+V_{R_{\mathrm{ch}}}=\frac{R_2}{R_1+R_2}\,V_a.
+\end{gather}
+Malheureusement, ce raisonnement n'est pas tout à fait exact : l'équation~\ref{eq-fausse} est incorrecte. En branchant la charge au circuit, ce dernier devient modifié. Lorsque les résistances $R_{ch}$ et $R_2$ sont ainsi placées, en parallèle, la paire a une résistance équivalente
+\begin{equation}
+R_{\mathrm{eq}}=\frac{R_2\,R_{\mathrm{ch}}}{R_2+R_{\mathrm{ch}}}.
+\end{equation}
+La tension aux bornes de la charge est alors donnée par:
+\begin{equation}
+V_{R_{\mathrm{ch}}}=V_{R_{\mathrm{eq}}}=\frac{R_{\mathrm{eq}}}{R_1+R_{\mathrm{eq}}}\,V_a.
+\end{equation}
+
+On remarque qu'à la limite lorsque $R_{\mathrm{ch}}\rightarrow\infty$, la résistance équivalente $R_{\mathrm{eq}}$ devient égale à $R_2$ et l'équation~\ref{eq-fausse} devient valide.
+
+Toute cette analyse peut être généralisée avec le concept d'impédance. On dira alors que lorsque l'impédance de la charge est très élevée par rapport à l'impédance interne, la tension ne variera pas avec la charge. Celle-ci ne modifiera donc pas significativement le reste du circuit. Une source de tension idéale, par exemple, doit avoir une impédance d'entrée nulle afin de fournir la même tension au circuit, indifféremment de la charge de celui-ci. En pratique, les sources de tension contiennent des composants actifs (transistors, amplificateurs opérationnels), qui permettent d'obtenir une très faible impédance interne, de l'ordre du milliohm. Ceci n'aurait pas été possible avec un diviseur de tension composé uniquement de résistances.
+
+
+\subsection{Fonctions de transfert}
+
+Le coefficient par lequel la tension de la source est multipliée pour obtenir la tension aux bornes d'un composant est appelé la \textit{fonction de transfert} de ce composant et est notée $H$. Pour le diviseur de tension présenté précédemment, sans charge, les fonctions de transfert des résistances $R_1$ et $R_2$ sont:
+\begin{subequations}
+\begin{gather}
+H_{R_1}=\frac{V_{R_1}}{V_a}=\frac{R_1}{R_1+R_2}\\
+H_{R_2}=\frac{V_{R_2}}{V_a}=\frac{R_2}{R_1+R_2}.
+\end{gather}
+\end{subequations}
+
+La somme des fonctions de transfert de tous les éléments d'une même maille, excluant la source, est toujours égale à 1 (loi des tensions de Kirchhoff). Les fonctions de transfert sont notamment très utiles pour résoudre des circuits complexes avec la transformée de Laplace.
+
+
+\subsection{Diviseur de tension et équivalent Thévenin}
+
+Une source de tension peut être modélisée par un diviseur de tension formé d'une source de tension constante et de deux impédances de faibles valeurs, choisies afin d'obtenir la tension de sortie voulue (schéma de gauche de la figure~\ref{source-tension}). Une charge quelconque $Z_{\mathrm{ch}}$ est connectée à cette source.
+
+Conformément au théorème de Thévenin, le système vu par la charge peut être représenté de façon équivalente par une source de tension et une impédance en série (schéma de droite de la figure~\ref{source-tension}).
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) node[ground]{} to[V=$V_a$] (0,4) to[short] (2,4) to[european resistor=$Z_1$] (2,2) to[european resistor=$Z_2$] (2,0) to[short] (0,0)
+(2,2) to[short] (4,2) to[european resistor,l^=$Z_{\mathrm{ch}}$] (4,0) to[short] (2,0)
+(7,0) node[ground]{} to[V,l^=$V_{\mathrm{s}}$] (7,3) to[european resistor,l^=$Z_{\mathrm{s}}$] (9,3) to[short] (10,3) to[european resistor,l^=$Z_{\mathrm{ch}}$] (10,0) to[short] (7,0)
+{[anchor=south] (1.5,-1) node{source alimentation} (7.5,-1) node{source alimentation}}
+;\draw[dotted] (-1.5,-1) -- (-1.5,4.5) -- (3.3,4.5) -- (3.3,-1) -- (-1.5,-1)
+(5.5,-1) -- (5.5,4) -- (9.3,4) -- (9.3,-1) -- (5.5,-1)
+;\end{circuitikz}
+\end{center}
+\caption{\label{source-tension}Schémas d'une source de tension (gauche) et de son équivalent Thévenin (droite).}
+\end{figure}
+
+Dans l'exemple précédent, il peut facilement être démontré que:
+\begin{subequations}
+\begin{gather}
+V_{\mathrm{s}}=\frac{Z_2}{Z_1+Z_2}\,V_a\\
+Z_{\mathrm{s}}=\frac{Z_1\,Z_2}{Z_1+Z_2}.
+\end{gather}
+\end{subequations}
+
+Cette impédance équivalente $Z_{\mathrm{s}}$ est appelée l'\textit{impédance interne} de la source d'alimentation. Si cette impédance interne n'est pas beaucoup plus faible que l'impédance de la charge, la tension aux bornes de la charge sera inférieure à $V_{\mathrm{s}}$ ; la source ne sera alors pas très efficace. Ainsi, une source de tension idéale doit avoir une résistance interne qui tend vers zéro.
+
+
+\subsection{Transfert de puissance}
+
+Comme il vient d'être mentionné, un système source-charge où $Z_{\mathrm{s}}\ll Z_{\mathrm{ch}}$ permet de fournir la tension désirée de façon efficace, sans atténuation importante. Mais qu'en est-il du transfert de puissance?
+
+Dans le cas où $Z_{\mathrm{ch}}\rightarrow\infty$, la tension aux bornes de la charge est $V_{\mathrm{ch}}=V_{\mathrm{s}}$ et le courant la traversant est $I_{\mathrm{ch}}=V_{\mathrm{ch}}/Z_{\mathrm{ch}}\rightarrow0$, donc la puissance fournie/dissipée par la charge est nulle ($P_{\mathrm{ch}}=V_{\mathrm{ch}}\,I_{\mathrm{ch}}$). Dans le cas inverse où $Z_{\mathrm{ch}}\rightarrow0$, on obtient encore un transfert de puissance nul puisque $V_{\mathrm{ch}}=I_{\mathrm{ch}}\,Z_{\mathrm{ch}}\rightarrow0$. Il faut donc qu'il existe un juste milieu quelque part où le transfert de puissance serait maximal. Comme il peut être démontré, le transfert maximal de puissance est obtenu lorsque l'impédance de la charge est égale au complexe conjugué de l'impédance interne de la source ($Z_{\mathrm{ch}}=Z^*_{\mathrm{s}}$). Dans le cas de résistances, cela revient à dire que le transfert de puissance est maximal lorsque $R_{\mathrm{ch}}=R_{\mathrm{s}}$.
+
+
+\section{Lignes de transmission}
+
+Jusqu'à présent il a été toujours considéré que les fils et les câbles n'influençaient pas le comportement du circuit, qu'ils n'induisaient aucun déphasage ni de dissipaient de puissance. Or, ce n'est pas toujours le cas.
+
+En effet, les câbles coaxiaux font exception au principe général qui voulait que l'impédance d'une source devait être très faible relativement à la charge afin que la source ne soit pas influencée par le circuit. Avec les câbles coaxiaux, il est souhaitable que les impédances de la charge et de la source soient égales à l'impédance caractéristique du câble lui-même ; il y a alors absence de réflexion à chacune de ses extrémités. Le transfert de puissance est alors maximal. Lorsque cette condition est respectée, la ligne de transmission est \textit{adaptée} au circuit. Avoir une ligne adaptée devient de plus en plus important à mesure que la fréquence augmente, c'est-à-dire lorsque la longueur du câble devient plus longue que, ou comparable à, la longueur d'onde du signal. Dans ce cas, s'il y a présence de réflexions aux extrémités de la ligne (ce qui est le cas lorsqu'elle n'est pas parfaitement adaptée), les ondes incidente et réfléchie n'ont plus la même phase. Pour faire une histoire courte, la présence de réflexions fait en sorte que tout le signal est bousillé!
+
+Pour mieux comprendre, une analogie peut être faite entre l'électricité (le passage des électrons) et l'optique (le passage des photons). Supposons qu'en optique un faisceau lumineux doit traverser trois milieux d'indices de réfraction $n_1$, $n_2$ et $n_3$. À chaque interface, une partie de la puissance lumineuse est réfléchie et une autre est transmise. Si $n_1=n_2=n_3$, alors le milieu est continu et il n'y plus vraiment lieu de parler d'interfaces. Dans ce cas, il n'y a aucune réflexion et toute la puissance lumineuse est transmise. En électricité, l'impédance est analogue à l'indice de réfraction en optique.
+
+
+\end{document}
+
+Écrit par Jean-Raphaël Carrier
+Dernière modification : 11 janvier 2014
+
+Reste à faire:
+
+- (à voir) améliorer l'introduction aux fonctions de transfert 
