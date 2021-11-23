@@ -1,12 +1,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Conc_Ventilateur.tex : Projet de conception - Contrôle Arduino d'un Ventilateur | Électronique et mesures expérimentales GPH-2006, Physique électronique PHY-2002 | Département de physique, de génie physique et d'optique - FSG - Université Laval
 %------------------------------------------------------------------
-%Créé par Louis-Philippe Dallaire, Jérémie Guilbert & Marc-André Vigneault
+%Créé par Jérémie Guilbert, Louis-Philippe Dallaire,  & Marc-André Vigneault
 %Contributions par Claudine Nì. Allen
 %Compilateur pdfLaTeX, distribution TeX Live 2020
-%Dernière modification CA : 18 janvier 2021
+%Dernière modification CA : 23 novembre 2021
 %
 %ToDo
+% - J'ai beaucoup de commentaires à l'intérieur du texte ci-dessous, tout relire et modifier selon comment ça va dans l'adaptation au mode hybride de retour post-pandémie.
+%
 % - Voir pour tourner le début du document en titre ou first-page only header et inclure un logo ULaval (si ok avec comms) : https://tex.stackexchange.com/questions/238520/how-to-correctly-include-a-header-image-only-on-the-first-page
 % - Not sure I want this anymore... I'd like to reduce the bottom margin on the last page, I was fiddling with something like \AtEndDocument{\newgeometry{bmargin=0cm}}, but it doesn't work so far. See docs of fancyhdr package. Or try to work with "\thispagestyle{}" below the footer. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -162,7 +164,7 @@
 \end{center}
 
 \vspace{-1em}
-\noindent Hiver 2021 \hfill Responsable: C. Allen\par
+\noindent Automne 2021 \hfill Responsable: C. Allen\par
 \vspace{0.2em}
 \hrule
 \vspace{0.5em}
@@ -170,63 +172,60 @@
     \textsc{Projet de Conception\\
     Contrôle Arduino d'un Ventilateur}\\
 \vspace{0.5em}
-%\textbf{Début: 30 novembre \hfill Fin: 14 décembre à 10h30}\par
-\hfill Fin: 13 avril à 8h30
+{Dépôt sur Gradescope: 6 décembre \hfill Présentations: 7 décembre (voir horaire)}\par
 \vspace{0.4em}
 \hrule
 \justify
 %------ END HOMEMADE TITLE ------%
-%
-\vspace{-1.5em}
+
+Pour progresser vers l'objectif d'autonomie et d'initiative nécessaire au travail de recherche, de développement et d'ingénierie, la dernière activité du cours ne donne aucun protocole ni schéma de circuit. Vous devez concevoir par vous-même le circuit qui répondra aux besoins à identifier dans la problématique ci-dessous et préparer les éléments demandés dans la section \nameref{subsec:livrables}. Pour ce faire, vous devrez faire appel aux ressources étudiées dans l'ensemble du cours et au-delà, notamment vous initiant au monde des microcontrôleurs à l'interface entre l'électronique et l'informatique. \textcolor{red}{En plus des informations en \nameref{sec:annexe} et en provenance des manufacturiers (fiches techniques), ...}
+
+%culture maker, Do it yourself (DIY) communauté DIY, médigraphie, toute autre source, entraide TEAMS
+\vspace{-1em}
 \subsection*{Problématique}
 \vspace{-0.5em}
 L’été dernier, votre ami Itof Mèyacho a vécu la pire canicule de toute sa vie. En effet, comme il est étudiant, il ne peut se permettre d’avoir l’air conditionné tant convoité. Il doit se contenter d’un bon vieux ventilateur. Il souhaiterait trouver un moyen pour ajuster la vitesse de son ventilateur selon la luminosité du soleil qui entre dans son appartement, et ce, sans avoir à se lever de son sofa. Ses jeux vidéo ne peuvent attendre! De plus, bien qu’il fasse complètement noir dans sa chambre la nuit, il trouve essentiel que le ventilateur continue de tourner, mais à moindre vitesse, car le bruit du plein régime l’empêche de se reposer. Comme la prochaine canicule est à venir et qu’il semble trop occupé à jouer aux jeux vidéo, Itof Mèyacho vous demande votre aide. À l'aide de vos nouvelles connaissances en électronique, il est maintenant temps de lui donner un coup de main.
 
-Après un peu de recherche, vous avez réussi à identifier le moteur du ventilateur d’Itof, soit un moteur DC~437~RPM. Ce modèle peut fonctionner à une vitesse de rotation supérieure à 437~RPM, mais cela risque de le briser. Après certains tests, Itof a identifié qu’il était confortable la nuit seulement lorsque le ventilateur tourne à une vitesse de 200~RPM. Vous décidez donc de concevoir un système basé sur un microcontrôleur Arduino. Celui-ci sera utilisé pour lire la luminosité ambiante à partir d’une photorésistance et ensuite ajuster la vitesse de rotation du moteur DC~437~RPM en fonction de la luminosité mesurée. En plein jour, quand la luminosité est maximale, le moteur doit fonctionner près de sa vitesse maximale. Si la luminosité diminue, la vitesse du moteur doit diminuer en conséquence jusqu’à atteindre la valeur attendue en pleine nuit. Entre les deux valeurs de luminosité extrêmes, la vitesse du moteur doit pouvoir prendre le plus de valeurs possibles. Avant de procéder à l’assemblage de votre système, vous devez tester son fonctionnement au moyen du logiciel de conception et simulation de circuits Tinkercad.
+Après un peu de recherche et expérimentation, vous avez réussi à déterminer que le moteur du ventilateur d’Itof fonctionne en courant continu (DC en anglais). Vous avez aussi remarqué que le moteur ne peut pas tourner à une vitesse supérieure à 437~RPM sans risquer de se briser. Après quelques tests, Itof a identifié qu’il était confortable la nuit seulement lorsque le ventilateur tourne à une vitesse de 200~RPM. Vous décidez donc de concevoir un système basé sur un microcontrôleur Arduino. Celui-ci sera utilisé pour lire la luminosité ambiante à partir d’une photorésistance et ensuite ajuster la vitesse de rotation du moteur DC en fonction de la luminosité mesurée. En plein jour, quand la luminosité est maximale, le moteur doit fonctionner près de sa vitesse maximale de 437~RPM. Si la luminosité diminue, la vitesse du moteur doit ralentir en conséquence jusqu’à atteindre la valeur attendue en pleine nuit. Entre les deux valeurs de luminosité extrêmes, la vitesse du moteur doit pouvoir prendre le plus de valeurs possibles. Notez finalement qu'avant de procéder à l’assemblage de votre système en pratique, vous allez simuler et tester virtuellement son fonctionnement pour réduire les essais-erreurs, le débogage et la frustration(!) au laboratoire.
 \vspace{-1em}
 
-\subsection*{Composants électroniques permis} 
+\subsection*{\color{red}Composants électroniques permis} 
 \begin{itemize}
+%%%VÉRIFIER VS MATÉRIEL COFFRE ET AJOUTER CE QUI MANQUE AVEC FRANÇOIS. CHECK NPN AVEC FICHE TECHNIQUE TRANSISTOR.
     \item Batteries \SI{9}{\volt}
     \item Carte \href{https://www.arduino.cc/en/Guide/ArduinoUno}{Arduino UNO} dont le fonctionnement est abordé en \nameref{sec:annexe}
     \item Amplis-ops~U741
     \item Transistors bipolaires NPN
-    \item Moteur DC~437~RPM\footnote{La valeur nominale de la vitesse du moteur peut être choisie à partir de la liste déroulante qui apparaît lorsqu'on le sélectionne dans l’environnement Tinkercad.} avec encodeur multicolore (voir Figure~\ref{fig:InterrupteurMoteur} en annexe)
+    \item Moteur DC
     \item Des résistances \SIlist[list-final-separator = {, }]{12;33;270;560}{\ohm}, \SIlist[list-final-separator = {, }]{1;1.2;10; 18;100}{\kilo\ohm} et \SI{1}{\mega\ohm}
     \item Des condensateurs de \SI{100}{\nano\farad}
-    \item Une photorésistance
+    \item Une photorésistance, aussi connue sous le nom de \textit{light-dependent resistor (LDR)} ou \textit{photocell} en anglais (NE PAS confondre avec une cellule solaire).
 \end{itemize}
 \vspace{-1em}
 
 \subsection*{Contraintes supplémentaires}
 \begin{enumerate}
     \item Vous pouvez utiliser autant de composants que nécessaires dans la liste ci-dessus. Toutefois, vous n’avez pas le droit d’utiliser des composants qui ne figurent pas dans cette liste.
-    \item Vous devez viser un minimum de composants dans le circuit.
+    \item Vous devez viser un minimum de composants dans le circuit. %Difficile à évaluer, déterminer éventuellement un nombre maximum de composants à ne pas dépasser.
     \item Vous devez découpler l’impédance du circuit de la photorésistance de l’impédance du circuit ADC (convertisseur analogique-numérique) de l’Arduino à l'aide d'un suiveur de tension qui agit alors comme un tampon (\textit{buffer}).
-    \item La photorésistance peut tolérer une puissance maximale de \SI{0.1}{W}. Assurez-vous de ne pas la briser.
-    \item Le temps du jour doit être représenté par la position de l’indicateur de luminosité de la photorésistance sur Tinkercad tel qu'illlustré à la Figure~\ref{fig:photoresistance} en annexe. Lorsque l’indicateur est à sa valeur maximale, il fait plein jour. Lorsqu’il est à sa valeur minimale, il fait nuit.
-    \item \textbf{BONUS:} Utilisez l’encodeur du moteur afin de lire en temps réel la vitesse du moteur avec l’Arduino et affichez-la sur un écran LCD (à cristaux liquides).%, ou illustrez sa variation en fonction de la résistance de la photorésistance sur un graphique.
+    \item Assurez-vous de ne pas briser la photorésistance. Comme la dissipation de puissance tolérée dépend significativement de la température selon la fiche technique de la photorésistance, faites le choix prudent de ne pas dépasser une puissance maximale de \SI{0.1}{W}. 
+    \item \textcolor{red}{Le temps du jour doit être représenté par la position de l’indicateur de luminosité de la photorésistance sur Tinkercad tel qu'illlustré à la Figure~\ref{fig:photoresistance} en annexe. Lorsque l’indicateur est à sa valeur maximale, il fait plein jour. Lorsqu’il est à sa valeur minimale, il fait nuit.}
+    \item \textbf{BONUS VIRTUEL:} Utilisez un modèle de moteur DC avec un encodeur sur Tinkercad ou Fritzing afin de lire en temps réel la vitesse du moteur avec l’Arduino et affichez-la sur un écran LCD (à cristaux liquides).%, ou illustrez sa variation en fonction de la résistance de la photorésistance sur un graphique.
 \end{enumerate}
 \vspace{-1em}
 
 \subsection*{Livrables}
+\label{subsec:livrables}
 \begin{itemize}
-    \item Un circuit simulé fonctionnel réalisé avec le logiciel Tinkercad.
-    \item Une présentation de \SI{10}{\min} comportant les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation.
-    \item Une évaluation de la contribution des coéquipiers.ères au travail de l'équipe via l'onglet \texttt{Évaluation des pairs} du \texttt{Projet de conception}.
+    \item ...Un système...circuit simulé fonctionnel réalisé avec le logiciel Tinkercad, Fritzing, Falstad (outils à disposition) code pour communiquer avec la carte Arduino bien structuré et commentée, liste avec nombre de composants... export...
+    \item La réalisation concrète de ce circuit au laboratoire.
+    \item Une présentation de \SI{10}{\min} avec diapositives comportant les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation.
+    \item Les diapositives et... devront être déposés sur Gradescope la veille de la présentation.
 \end{itemize}
 \vspace{-1em}
 
-\subsection*{Consignes logistiques}
-\begin{enumerate}
-    \item Si ce n'est pas déjà fait dans l'onglet \texttt{Équipe de travail} de l'évaluation \texttt{Projet de concep-} \texttt{tion} sur le site du cours, complétez à 3 ou 4 étudiants.es votre équipe de projet.
-    \item Identifiez aussi au même endroit le.la porteur.euse du projet dans le champ \texttt{Rôle}. Le circuit final à évaluer devra se retrouver dans le compte Tinkercad de cet.te étudiant.e et être clairement identifié "Projet de conception".
-    \item \textbf{Avant} la séance de présentation de votre projet, remplissez votre \texttt{Évaluation des pairs} dans l'onglet du même nom de l'évaluation \texttt{Projet de conception} sur le site du cours.
-    \item Cette communication de votre projet sera enregistrée en classe virtuelle Zoom le 13 avril 2021 selon un horaire à venir.
-    \item Un forum sur le site du cours est dédié à toutes les questions concernant ce projet de conception. N’hésitez pas à vous en servir. 
-\end{enumerate}
-
 \subsection*{Critères d'évaluation}
+
 \renewcommand{\arraystretch}{1.5}
 \begin{table}[h]
 \centering
@@ -251,9 +250,10 @@ Après un peu de recherche, vous avez réussi à identifier le moteur du ventila
      une description du fonctionnement global du circuit, & 10\%\\
      une description du rôle de chaque composant afin de justifier son utilisation, & 10\%\\
      un graphe de la vitesse du moteur en fonction de la valeur de photorésistance. & 5\%\\
-     \rowcolor{black} \textcolor{white}{\textbf{Évaluation des pairs}} & \textcolor{white}{\textbf{20\%}}\\
+     \hline
+     %\rowcolor{black} \textcolor{white}{\textbf{Évaluation des pairs}} & \textcolor{white}{\textbf{20\%}}\\
     \end{tabular}
-\caption{Liste des éléments qui seront évalués sur la simulation du circuit dans l'environnement Tinkercad et sur sa présentation en direct.}
+\caption{Liste des éléments qui seront évalués sur la conception, la simulation et la réalisation du système et sur sa présentation en direct.}
 \label{tab:1}
 \end{table}
 
@@ -264,7 +264,7 @@ Après un peu de recherche, vous avez réussi à identifier le moteur du ventila
 \centering
 \textbf{N'oubliez pas de citer vos références s'il y a lieu.}\par
 \vspace{-0.3em}
-La collaboration dans le respect des règles de la santé publique est demandée pour ce projet en équipe de 3~à~4~personnes; veuillez évaluer la contribution de vos coéquipiers.ères dans l'onglet \texttt{Évaluation des pairs} de l'évaluation \texttt{Projet de conception} sur le site Internet du cours.\par
+La collaboration dans le respect des règles de la santé publique est demandée pour ce projet en équipe de 4~personnes.\par
 \vspace{1em}
 \hrule
 %\thispagestyle{empty}
@@ -272,7 +272,7 @@ La collaboration dans le respect des règles de la santé publique est demandée
 \newpage
 %
 \justify
-\section*{APPENDICE}
+\section*{ANNEXE}
 \label{sec:annexe}
 
 \subsection*{Carte de contrôle et d'acquistion Arduino UNO}
@@ -301,15 +301,15 @@ Cela dépend des périphériques disponibles sur le MCU utilisé, soit ATmega328
  Pour utiliser ces fonctionnalités, Arduino a implémenté des fonctions simples à utiliser, soit les fonctions \texttt{AnalogRead}  et \texttt{DigitalWrite/AnalogWrite}. Afin de faire l’acquisition d’un signal via le schéma Tinkercad de l’Arduino, les entrées qui sont identifiées \textbf{ADC} ou encore \textbf{A0, A1, A2,} … devront être utilisées. Pour générer un signal, les sorties qui sont identifiées \textbf{PWM} seront utilisées. Arduino, voulant simplifier la tâche, a indiqué que certaines entrées étaient dédiées à des fonctions spécifiques, mais en réalité, c’est le MCU qui décide ce qui se passe sur une entrée et plusieurs fonctions différentes peuvent être utilisées sur une seule et même entrée.
  
 \subsubsection*{Comment utiliser un Arduino?}
-Il faut le programmer, sauf que les MCU n'acceptent pas directement des langages interprétés de haut niveau\footnote{Des librairies se développent cependant dans plusieurs langages tels \href{https://pypi.org/project/pyserial/}{Python} et \href{https://www.mathworks.com/help/supportpkg/arduinoio/examples/getting-started-with-matlab-support-package-for-arduino-hardware.html}{MATLAB} pour supporter Arduino ou autres MCU avec \href{https://www.digikey.ca/en/maker/blogs/2018/python-on-hardware}{CircuitPython} par exemple.}. Le C et le C++ sont les langages majoritairement utilisés pour cette programmation puisqu’ils sont rapides d’exécution tout en étant relativement simples à coder pour des langages compilés. Heureusement, la compagnie Arduino offre une interface de programmation conviviale qui contient déjà plusieurs fonctions PRÉCODÉES (\href{https://www.arduino.cc/en/Tutorial/BuiltInExamples}{
+Il faut le programmer, sauf que les MCU n'acceptent pas directement des langages interprétés de haut niveau\footnote{Des librairies se développent cependant dans plusieurs langages tels Python (\href{https://github.com/tino/pyFirmata}{Firmata}, \href{hthttps://github.com/tino/pyFirmatatps://pypi.org/project/pyserial/}{pyserial}, ...) et \href{https://www.mathworks.com/help/supportpkg/arduinoio/examples/getting-started-with-matlab-support-package-for-arduino-hardware.html}{MATLAB} pour communiquer avec une carte Arduino à partir d'un ordinateur ou encore être exécutées directement sur d'autres types de MCU avec \href{https://www.digikey.ca/en/maker/blogs/2018/python-on-hardware}{CircuitPython} par exemple.}. Le C et le C++ sont les langages majoritairement utilisés pour cette programmation puisqu’ils sont rapides d’exécution tout en étant relativement simples à coder pour des langages compilés. Heureusement, la compagnie Arduino offre une interface de programmation conviviale qui contient déjà plusieurs fonctions PRÉCODÉES (\href{https://www.arduino.cc/en/Tutorial/BuiltInExamples}{
 didacticiels ici}) et Tinkercad offre même en parallèle une \href{https://scientiffic.medium.com/tinkercad-circuits-code-blocks-9953d47b5a3f}{programmation visuelle avec des briques Scratch} si désiré. 
 
 \noindent Quelques conseils avant de se lancer dans la programmation Arduino:
 \begin{itemize}
     \item Toutes les variables doivent toutes être déclarées au début, ainsi que leur \href{https://en.wikipedia.org/wiki/C_data_types}{type} avant de les utiliser ailleurs dans le code.
-    \item La fonction \texttt{void functionName() \{\}} signifie seulement que la fonction ne retourne rien, car il faut aussi déclarer ce que la fonction retourne. Si la fonction retourne un entier, il faut plutôt écrire \texttt{int functionName() \{\}}.
-    \item L’intégralité de ce qui se passe lorsque l’Arduino exécute se trouve dans la fonction \texttt{loop() \{\}}.
-    \item Le code dans la fonction \texttt{setup() \{\}} ne sera exécuté qu’une fois au démarrage de l’Arduino.
+    \item La fonction \texttt{void functionName()~\{\}} signifie seulement que la fonction ne retourne rien, car il faut aussi déclarer ce que la fonction retourne. Si la fonction retourne un entier, il faut plutôt écrire \texttt{int functionName()~\{\}}.
+    \item L’intégralité de ce qui se passe lorsque l’Arduino exécute se trouve dans la fonction \texttt{loop()~\{\}}.
+    \item Le code dans la fonction \texttt{setup()~\{\}} ne sera exécuté qu’une fois au démarrage de l’Arduino.
     \item Le moniteur série dans Tinkercad permet de faire des actions équivalentes à la commande \texttt{print} rencontrée en Python et bien d'autres langages; cela pourrait simplifier la tâche.
 \end{itemize}
 
@@ -323,7 +323,7 @@ Une photorésistance est un composant électrique dont la résistance varie en f
     \label{fig:photoresistance}
 \end{figure}
 
-\subsection*{Conseils d'utilisation de transistor.s}
+\subsection*{Conseils d'utilisation de transistor}
 Finalement, le.s transistor.s peut.vent être utilisé.s dans la conception du circuit pour contrôler une charge (le moteur DC) qui serait placée entre le collecteur et l'émetteur et alimentée par une tension $V_{CE}$. Le mode interrupteur, donné en exemple à la Figure~\ref{fig:InterrupteurMoteur}, ou le mode amplificateur peut être utilisé. La tension de contrôle $V_{BE}$ peut être générée par la carte Arduino UNO, ce qui permettrait d’adapter l’alimentation du moteur en fonction de la résistance d’une photorésistance qui pourra également être lue par l’Arduino.
 
 %Refaire ce circuit avec des transistors à jonction bipolaire pour avoir une image avec RPM corrects. 
