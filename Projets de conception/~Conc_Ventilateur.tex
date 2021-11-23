@@ -211,7 +211,7 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
     \item Vous devez viser un minimum de composants dans le circuit. %Difficile à évaluer, déterminer éventuellement un nombre maximum de composants à ne pas dépasser.
     \item Vous devez découpler l’impédance du circuit de la photorésistance de l’impédance du circuit ADC (convertisseur analogique-numérique) de l’Arduino à l'aide d'un suiveur de tension qui agit alors comme un tampon (\textit{buffer}).
     \item Assurez-vous de ne pas briser la photorésistance. Comme la dissipation de puissance tolérée dépend significativement de la température selon la fiche technique de la photorésistance, faites le choix prudent de ne pas dépasser une puissance maximale de \SI{0.1}{W}. 
-    \item \textcolor{red}{Le temps du jour doit être représenté par la position de l’indicateur de luminosité de la photorésistance sur Tinkercad tel qu'illlustré à la Figure~\ref{fig:photoresistance} en annexe. Lorsque l’indicateur est à sa valeur maximale, il fait plein jour. Lorsqu’il est à sa valeur minimale, il fait nuit.}
+    \item \textcolor{red}{Le temps du jour doit être représenté par la position de l’indicateur de luminosité de la photorésistance sur Tinkercad tel qu'illlustré à la Figure~\ref{fig:photoresistance} en annexe. Lorsque l’indicateur est à sa valeur maximale, il fait plein jour. Lorsqu’il est à sa valeur minimale, il fait nuit.... code de couleur fils}
     \item \textbf{BONUS VIRTUEL:} Utilisez un modèle de moteur DC avec un encodeur sur Tinkercad ou Fritzing afin de lire en temps réel la vitesse du moteur avec l’Arduino et affichez-la sur un écran LCD (à cristaux liquides).%, ou illustrez sa variation en fonction de la résistance de la photorésistance sur un graphique.
 \end{enumerate}
 \vspace{-1em}
@@ -219,9 +219,9 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 \subsection*{Livrables}
 \label{subsec:livrables}
 \begin{itemize}
-    \item ...Un système...circuit simulé fonctionnel réalisé avec le logiciel Tinkercad, Fritzing, Falstad (outils à disposition) code pour communiquer avec la carte Arduino bien structuré et commentée, liste avec nombre de composants... export...
+    \item ...Un système...circuit simulé fonctionnel réalisé avec le logiciel Tinkercad, Fritzing, Falstad (outils à disposition) code pour contrôler la carte Arduino bien structuré et commentée, liste avec nombre de composants... export...
     \item La réalisation concrète de ce circuit au laboratoire.
-    \item Une présentation de \SI{10}{\min} avec diapositives comportant les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation.
+    \item Une présentation orale de \SI{10}{\min} avec diapositives comportant les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation.
     \item Les diapositives et... devront être déposés sur Gradescope la veille de la présentation.
 \end{itemize}
 \vspace{-1em}
@@ -233,12 +233,13 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 \centering
     \begin{tabular}{l c}
     \hline
-     \textsc{Éléments d'évaluation} & \textsc{Pondération}\\
-     \rowcolor{black} \textcolor{white}{\textbf{Circuit simulé fonctionnel}} & \textcolor{white}{\textbf{50\%}}\\
-     \multicolumn{2}{c}{\textsc{Fonctions principales}}\\
+     \textsc{Éléments évalués} & \textsc{Pondération}\\
+     \rowcolor{black} \textcolor{white}{\textbf{Conception}} & \textcolor{white}{\textbf{50\%}}\\
+     \multicolumn{2}{c}{\textsc{Fonctions principales \& documentation}}\\
      \hline
-     Respect du principe de fonctionnement du circuit & 15\%\\
-     Atteinte de tous les besoins de Itof Mèyacho & 15\%\\
+     Système fonctionnel au laboratoire & 15\%\\
+     Script de contrôle Arduino avec code commenté & 10\%\\
+     Atteinte de tous les besoins de Itof Mèyacho & 10\%\\
      \hline
      \multicolumn{2}{c}{\textsc{Contraintes supplémentaires}}\\
      \hline
@@ -246,8 +247,8 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
      Minimisation du circuit & 5\%\\
      Découplage de l'impédance à l'entrée analogique de l'Arduino  & 5\%\\
      Puissance maximale de la photorésistance respectée & 5\%\\
-     BONUS: Lecture en temps réel de la vitesse du moteur avec l'encodeur & +10\%\\
-     \rowcolor{black} \textcolor{white}{\textbf{Présentation orale du circuit comprenant:}} & \textcolor{white}{\textbf{30\%}}\\
+     \textbf{Bonus virtuel}: Lecture en temps réel de la vitesse du moteur avec l'encodeur & +5\%\\
+     \rowcolor{black} \textcolor{white}{\textbf{Présentation du circuit comprenant:}} & \textcolor{white}{\textbf{30\%}}\\
      une liste dans laquelle tous les besoins sont identifiés, & 5\%\\
      une description du fonctionnement global du circuit, & 10\%\\
      une description du rôle de chaque composant afin de justifier son utilisation, & 10\%\\
