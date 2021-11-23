@@ -9,6 +9,8 @@
 %ToDo
 % - J'ai beaucoup de commentaires à l'intérieur du texte ci-dessous, tout relire et modifier selon comment ça va dans l'adaptation au mode hybride de retour post-pandémie.
 %
+% - Développer un/des compléments séparés (éliminer l'annexe éventuellement) et/ou capsules vidéo à pour les outils des ateliers et ce projet: Arduino (la carte et le IDE), Fritzing, Tinkercad, Falstad(possiblement bien avant dans les cours asynchrones avec ce dernier). Mentionner seulement dans la section logiciel du site de cours (pas matériel didactique obligatoire) et aborder plus au cours 6 présentiel qui traite entre autres de la 2e partie de la session.
+%
 % - Voir pour tourner le début du document en titre ou first-page only header et inclure un logo ULaval (si ok avec comms) : https://tex.stackexchange.com/questions/238520/how-to-correctly-include-a-header-image-only-on-the-first-page
 % - Not sure I want this anymore... I'd like to reduce the bottom margin on the last page, I was fiddling with something like \AtEndDocument{\newgeometry{bmargin=0cm}}, but it doesn't work so far. See docs of fancyhdr package. Or try to work with "\thispagestyle{}" below the footer. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -264,9 +266,10 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 \centering
 \textbf{N'oubliez pas de citer vos références s'il y a lieu.}\par
 \vspace{-0.3em}
-La collaboration dans le respect des règles de la santé publique est demandée pour ce projet en équipe de 4~personnes.\par
+La collaboration dans le respect des règles de la santé publique est demandée pour ce projet en équipe, en particulier lors de votre présence au laboratoire sans supervision. Remettez tous les fichiers livrables de votre projet sur \href{https://www.gradescope.com/}{Gradescope}.\par
 \vspace{1em}
 \hrule
+%---END HOMEMADE FOOTER---%
 %\thispagestyle{empty}
 
 \newpage
@@ -301,7 +304,7 @@ Cela dépend des périphériques disponibles sur le MCU utilisé, soit ATmega328
  Pour utiliser ces fonctionnalités, Arduino a implémenté des fonctions simples à utiliser, soit les fonctions \texttt{AnalogRead}  et \texttt{DigitalWrite/AnalogWrite}. Afin de faire l’acquisition d’un signal via le schéma Tinkercad de l’Arduino, les entrées qui sont identifiées \textbf{ADC} ou encore \textbf{A0, A1, A2,} … devront être utilisées. Pour générer un signal, les sorties qui sont identifiées \textbf{PWM} seront utilisées. Arduino, voulant simplifier la tâche, a indiqué que certaines entrées étaient dédiées à des fonctions spécifiques, mais en réalité, c’est le MCU qui décide ce qui se passe sur une entrée et plusieurs fonctions différentes peuvent être utilisées sur une seule et même entrée.
  
 \subsubsection*{Comment utiliser un Arduino?}
-Il faut le programmer, sauf que les MCU n'acceptent pas directement des langages interprétés de haut niveau\footnote{Des librairies se développent cependant dans plusieurs langages tels Python (\href{https://github.com/tino/pyFirmata}{Firmata}, \href{hthttps://github.com/tino/pyFirmatatps://pypi.org/project/pyserial/}{pyserial}, ...) et \href{https://www.mathworks.com/help/supportpkg/arduinoio/examples/getting-started-with-matlab-support-package-for-arduino-hardware.html}{MATLAB} pour communiquer avec une carte Arduino à partir d'un ordinateur ou encore être exécutées directement sur d'autres types de MCU avec \href{https://www.digikey.ca/en/maker/blogs/2018/python-on-hardware}{CircuitPython} par exemple.}. Le C et le C++ sont les langages majoritairement utilisés pour cette programmation puisqu’ils sont rapides d’exécution tout en étant relativement simples à coder pour des langages compilés. Heureusement, la compagnie Arduino offre une interface de programmation conviviale qui contient déjà plusieurs fonctions PRÉCODÉES (\href{https://www.arduino.cc/en/Tutorial/BuiltInExamples}{
+Il faut le programmer, sauf que les MCU n'acceptent pas directement des langages interprétés de haut niveau\footnote{Des librairies se développent cependant dans plusieurs langages tels Python (\href{https://github.com/tino/pyFirmata}{Firmata}, \href{https://pypi.org/project/pyserial/}{pyserial}, ...) et \href{https://www.mathworks.com/help/supportpkg/arduinoio/examples/getting-started-with-matlab-support-package-for-arduino-hardware.html}{MATLAB} pour communiquer avec une carte Arduino à partir d'un ordinateur ou encore être exécutées directement sur d'autres types de MCU avec \href{https://www.digikey.ca/en/maker/blogs/2018/python-on-hardware}{CircuitPython} par exemple.}. Le C et le C++ sont les langages majoritairement utilisés pour cette programmation puisqu’ils sont rapides d’exécution tout en étant relativement simples à coder pour des langages compilés. Heureusement, la compagnie Arduino offre une interface de programmation conviviale qui contient déjà plusieurs fonctions PRÉCODÉES (\href{https://www.arduino.cc/en/Tutorial/BuiltInExamples}{
 didacticiels ici}) et Tinkercad offre même en parallèle une \href{https://scientiffic.medium.com/tinkercad-circuits-code-blocks-9953d47b5a3f}{programmation visuelle avec des briques Scratch} si désiré. 
 
 \noindent Quelques conseils avant de se lancer dans la programmation Arduino:
