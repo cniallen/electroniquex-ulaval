@@ -191,7 +191,7 @@ L’été dernier, votre ami Itof Mèyacho a vécu la pire canicule de toute sa 
 Après un peu de recherche et expérimentation, vous avez réussi à déterminer que le moteur du ventilateur d’Itof fonctionne en courant continu (DC en anglais). Vous avez aussi remarqué que le moteur ne peut pas tourner à une vitesse supérieure à 437~RPM sans risquer de se briser. Après quelques tests, Itof a identifié qu’il était confortable la nuit seulement lorsque le ventilateur tourne à une vitesse de 200~RPM. Vous décidez donc de concevoir un système basé sur un microcontrôleur Arduino. Celui-ci sera utilisé pour lire la luminosité ambiante à partir d’une photorésistance et ensuite ajuster la vitesse de rotation du moteur DC en fonction de la luminosité mesurée. En plein jour, quand la luminosité est maximale, le moteur doit fonctionner près de sa vitesse maximale de 437~RPM. Si la luminosité diminue, la vitesse du moteur doit ralentir en conséquence jusqu’à atteindre la valeur attendue en pleine nuit. Entre les deux valeurs de luminosité extrêmes, la vitesse du moteur doit pouvoir prendre le plus de valeurs possibles. Notez finalement qu'avant de procéder à l’assemblage de votre système en pratique, vous allez simuler et tester virtuellement son fonctionnement pour réduire les essais-erreurs, le débogage et la frustration(!) au laboratoire.
 \vspace{-1em}
 
-\subsection*{\color{red}Composants électroniques permis} 
+\subsection*{\color{red}Matériel électronique permis} 
 \begin{itemize}
 %%%VÉRIFIER VS MATÉRIEL COFFRE ET AJOUTER CE QUI MANQUE AVEC FRANÇOIS. CHECK NPN AVEC FICHE TECHNIQUE TRANSISTOR.
     \item Batteries \SI{9}{\volt}
@@ -219,10 +219,16 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 \subsection*{Livrables}
 \label{subsec:livrables}
 \begin{itemize}
-    \item ...Un système...circuit simulé fonctionnel réalisé avec le logiciel Tinkercad, Fritzing, Falstad (outils à disposition) code pour contrôler la carte Arduino bien structuré et commentée, liste avec nombre de composants... export...
-    \item La réalisation concrète de ce circuit au laboratoire.
-    \item Une présentation orale de \SI{10}{\min} avec diapositives comportant les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation.
-    \item Les diapositives et... devront être déposés sur Gradescope la veille de la présentation.
+    \item Documentation de la conception du système où le format de chaque fichier est laissé libre\footnote{N'écrivez PAS de rapport, PAS de texte continu, cette section du cours est terminée et seuls des annotations, des commentaires courts peuvent clarifier les documents. La communication complète du projet se fait de manière orale.}:
+    \begin{itemize}[label=\cdot]
+        \item diagramme schématique et simulation de chaque section de circuit relié à la carte Arduino\footnote{La plupart des simulateurs électroniques gratuits, dont le \href{https://www.falstad.com/circuit/}{site Internet de Paul Falstad}, ne supportent pas directement des processeurs et cartes informatiques, ce pourquoi des simulations séparées sont demandées seulement pour les parties analogues du circuit. Toutefois, des extensions ajoutant une interface de développement de code Arduino commencent \href{http://falstad.com/circuit/avr8js/}{à être publiées}, mais n'aideront \href{https://hackaday.com/2021/06/11/circuit-vr-arduino-virtually-meets-analog/#more-472679}{peut-être pas} votre travail puisque les logiciels sont souvent déployés trop rapidement de nos jours, avant d'être complètement testés sans bogues.}
+        \item conception assistée par ordinateur (ECAD pour \textit{electronic computer-aided design} ou EDA pour \textit{Electronic design automation} en anglais) 
+        \item script de programmation bien structurée et commentée pour contrôler ou communiquer avec la carte Arduino %dans le langage de votre choix
+    \end{itemize}
+    ...Un système...circuit simulé fonctionnel réalisé avec le logiciel Tinkercad, Fritzing, Falstad (outils à disposition) code pour contrôler la carte Arduino bien structuré et commentée, liste avec nombre de composants... export...
+    \item La réalisation concrète de ce circuit au laboratoire. Le matériel qui n'est pas dans votre coffre se retrouvera sur la tablette du haut de l'armoire contenant ces coffres.
+    \item Une présentation orale de \SI{10}{\min} avec diapositives comportant les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation. 
+    \item Les différents documents et diapositives devront être déposés sur \href{https://www.gradescope.com/}{Gradescope} le plus tôt possible la journée de la présentation.
 \end{itemize}
 \vspace{-1em}
 
