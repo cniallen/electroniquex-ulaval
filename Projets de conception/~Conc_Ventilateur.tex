@@ -1,20 +1,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Conc_Ventilateur.tex : Projet de conception - Contrôle Arduino d'un Ventilateur | Électronique et mesures expérimentales GPH-2006, Physique électronique PHY-2002 | Département de physique, de génie physique et d'optique - FSG - Université Laval
 %------------------------------------------------------------------
-%Créé par Jérémie Guilbert, Louis-Philippe Dallaire,  & Marc-André Vigneault
+%Créé par Jérémie Guilbert, Louis-Philippe Dallaire & Marc-André Vigneault
 %Contributions par Claudine Nì. Allen
 %Compilateur pdfLaTeX, distribution TeX Live 2020
-%Dernière modification CA : 24 novembre 2021
+%Dernière modification CA : 18 décembre 2021
 %
-%ToDo
+%%%ToDo
 %
-% - Source de lumière calibrée et alignée pour reproduire une illumination maximale identique sur les photorésistances de toutes les équipes difficile à implémenter pour nous au labo. Les parties sur le max de luminosité possible (slider Tinkercad notamment) sont donc commentées out. Voir s'il y a lieu de ramener ou pas éventuellement.
+% - Pratiquement tout le monde conçoit totalement par essai-erreur, comment forcer des calculs "back of the envelope" avant de "tomber" dans les outils de simulation numérique et ECAD/EDA?
+%
+% - Comment forcer des mesures IRL pendant la présentation?
+%
+% - Source de lumière calibrée et alignée pour reproduire une illumination maximale identique sur les photorésistances de toutes les équipes difficile à implémenter pour nous au labo. Les parties sur le max de luminosité possible (slider Tinkercad notamment) sont donc commentées out. Voir s'il y a lieu de ramener ou pas éventuellement, mais à plus court terme, clarifier la bouette d'étalonnage: même Tinkercad n'a qu'un vague slider de luminosité, ce pkoi le graphe d'optimisation est demandé en fonction de la photorésistance et non pas de la luminosité, mais ce n'est malheureusement pas "catché" par toutes les équipes.
 %
 % - J'ai beaucoup de commentaires à l'intérieur du texte ci-dessous, tout relire et modifier selon comment ça va dans l'adaptation au mode hybride de retour post-pandémie.
 %
-% Éventuellement, intégrer l'annexe dans les compléments dont un nouveau spécifique à l'Arduino. Y mettre une à la fin de ce dernier à partir des ressources Arduino préférees des étudiants discutées, votées sur Teams.
+% - Stabilisation de la vitesse de rotation du moteur à laisser plus libre? Ça a si bien été :)
 %
-% - Développer un/des compléments séparés (éliminer l'annexe éventuellement) et/ou capsules vidéo à pour les outils des ateliers et ce projet: Arduino (la carte et le IDE), Fritzing, Tinkercad, Falstad(possiblement bien avant dans les cours asynchrones avec ce dernier). Mentionner seulement dans la section logiciel du site de cours (pas matériel didactique obligatoire) et aborder plus au cours 6 présentiel qui traite entre autres de la 2e partie de la session.
+% - Éventuellement, intégrer l'annexe dans les compléments dont un nouveau spécifique à l'Arduino. Y mettre une à la fin de ce dernier à partir des ressources Arduino préférees des étudiants, à voter sur Teams. Développer un/des compléments séparés (éliminer l'annexe éventuellement) et/ou capsules vidéo à pour les outils des ateliers et ce projet: Arduino (la carte et le IDE), Fritzing, Tinkercad, Falstad(possiblement bien avant dans les cours asynchrones avec ce dernier). Mentionner seulement dans la section logiciel du site de cours (pas matériel didactique obligatoire) et aborder plus au cours 6 présentiel qui traite entre autres de la 2e partie de la session.
 %
 % - Voir pour tourner le début du document en titre ou first-page only header et inclure un logo ULaval (si ok avec comms) : https://tex.stackexchange.com/questions/238520/how-to-correctly-include-a-header-image-only-on-the-first-page
 % - Not sure I want this anymore... I'd like to reduce the bottom margin on the last page, I was fiddling with something like \AtEndDocument{\newgeometry{bmargin=0cm}}, but it doesn't work so far. See docs of fancyhdr package. Or try to work with "\thispagestyle{}" below the footer. 
@@ -171,16 +175,15 @@
 \end{center}
 
 \vspace{-1em}
-\noindent Automne 2021 \hfill Responsable: C. Allen\par
-\vspace{0.2em}
+\noindent Hiver 2022 \hfill Responsables: C. Allen \& D. Côté\par
+\vspace{0.2ex}
 \hrule
-%\vspace{0.5em}
+%\vspace{0.5ex}
 \centering
     \textsc{Projet de Conception\\
     Contrôle Arduino d'un Ventilateur}\\
-\vspace{4ex}
-%7 décembre (horaire des présentations à venir)\par
-%Dépôt sur Gradescope: 6 décembre à 8h30 \hfill Présentations: 7 décembre (voir horaire)\par
+\vspace{1ex}
+Dépôt des livrables sur Gradescope: 6 décembre à 8h30 \hfill Présentations: 7 décembre (voir horaire)\par %mettre le dépôt des livrables sur Gradescope un solide 2 jours avant la présentation.
 %\vspace{0.4em}
 \hrule
 \justify
@@ -221,7 +224,7 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
     \item Stabilisez la vitesse de rotation du moteur en éliminant le plus possible les oscillations de sa tension d'alimentation.
     \item Assurez-vous de ne pas briser la photorésistance. Comme la dissipation de puissance tolérée dépend significativement de la température selon la fiche technique de ce LDR, faites le choix prudent de ne pas dépasser une puissance maximale de \SI{0.1}{W}.
     \item Recréez le minimum d'irradiance de nuit en bloquant la lumière arrivant sur la photorésistance au laboratoire et en mettant la glissière de luminosité du LDR à son minimum dans la simulation et le plan de conception.
-    %\item Le temps du jour doit être représenté par la position de l’indicateur de luminosité de la photorésistance sur Tinkercad tel qu'illlustré à la Figure~\ref{fig:photoresistance} en annexe. Lorsque l’indicateur est à sa valeur maximale, il fait plein jour. Lorsqu’il est à sa valeur minimale, il fait nuit.
+    %\item Le temps du jour doit être représenté par la position de l’indicateur de luminosité de la photorésistance sur Tinkercad tel qu'illustré à la Figure~\ref{fig:photoresistance} en annexe. Lorsque l’indicateur est à sa valeur maximale, il fait plein jour. Lorsqu’il est à sa valeur minimale, il fait nuit.
     \item \textbf{BONUS VIRTUEL:} Utilisez un modèle de moteur DC avec un encodeur dans le plan de conception assistée par ordinateur afin de lire en temps réel la vitesse du moteur avec l’Arduino et affichez-la sur un écran LCD.
 \end{enumerate}
 
@@ -232,12 +235,13 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
     \begin{itemize}[label=$\bullet$]
         \item simulation sur diagramme schématique pour chaque section de circuit reliée à la carte Arduino\footnote{La plupart des simulateurs électroniques gratuits, dont le \href{https://www.falstad.com/circuit/}{site Internet de Paul Falstad}, ne supportent pas directement des processeurs et des cartes informatiques, ce pourquoi des simulations séparées sont demandées seulement pour les parties analogues du circuit. Toutefois, des extensions ajoutant une interface de développement de code Arduino commencent \href{http://falstad.com/circuit/avr8js/}{à être publiées}, mais n'aideront \href{https://hackaday.com/2021/06/11/circuit-vr-arduino-virtually-meets-analog/}{peut-être pas} votre travail puisque les logiciels sont souvent déployés trop rapidement de nos jours, avant d'être complètement testés sans bogues.},
         \item plan de conception assistée par ordinateur (ECAD, \textit{electronic computer-aided design}, ou EDA, \textit{Electronic design automation}, en anglais) illustrant le système\footnote{Nous avons testé la conception de ce projet surtout avec \href{https://www.tinkercad.com/login}{l'application Web Tinkercad} qui peut simuler l'exécution d'un programme Arduino, mais à notre connaissance, il n'est pas encore possible d'exporter/télécharger le plan du système. Les captures d'écrans bien résolues seront donc exceptionnellement acceptées. De nombreuses autres \href{https://fritzing.org/about/comparison}{alternatives} de logiciels EDA, dont \href{https://fritzing.org/}{Fritzing} installé sur les ordinateurs du laboratoire, s'offrent à vous avec différents niveaux de \href{https://wokwi.com/}{convivialité} et de coûts.},
+        %Les liens Tinkercad expirent, risquant de d'empêcher de la correction si trop de temps s'écoule après le partage!!! Demander des photos IRL avec une équivalence explicite avec le plan EDA...
         \item liste et quantité de composants électroniques utilisés; elle est produite automatiquement avec le plan de design par la plupart des logiciels EDA,
-        \item script de programmation bien structurée et commentée pour contrôler/communiquer avec la carte Arduino. %dans le langage de votre choix
+        \item script de programmation bien structurée et commentée pour contrôler/communiquer avec la carte Arduino.
     \end{itemize}
     \item La réalisation concrète de ce circuit au laboratoire. Le matériel qui n'est pas dans votre coffre se retrouvera sur la tablette du haut de l'armoire contenant ces coffres.
-    \item Une présentation orale de \SI{15}{\min} avec diapositives comportant les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation. Cette présentation devra aussi démontrer la fonctionnalité du système réalisé au laboratoire ainsi que le respect des contraintes imposées à l'aide du plan de conception virtuelle.
-    \item Les différents documents et diapositives devront être déposés sur \href{https://www.gradescope.com/}{Gradescope} le plus tôt possible la journée de la présentation.
+    \item Une présentation orale de \SI{10}{\min} avec diapositives comportant les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation. Cette présentation devra aussi démontrer la fonctionnalité du système réalisé au laboratoire ainsi que le respect des contraintes imposées à l'aide du plan de conception virtuelle. Des questions seront posées par l'évaluateur.trice pendant et/ou à la fin de la présentation.
+    \item Les différents documents et diapositives devront être déposés sur \href{https://www.gradescope.com/}{Gradescope} à la date indiquée en en-tête de cet énoncé.
 \end{itemize}
 \vspace{-1em}
 
@@ -271,9 +275,8 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
      une liste identifiant les besoins de Itof Mèyacho (différents des contraintes), & 5\%\\
      une description du fonctionnement global du système, & 5\%\\
      la correspondance de chaque partie du circuit/code avec les besoins et contraintes, & 10\%\\
-     %une description du rôle de chaque composant afin de justifier son utilisation, & 10\%\\
      un graphe d'optimisation de vitesse du moteur en fonction de la photorésistance, & 5\%\\
-     un temps pour répondre correctement aux questions, & 5\%\\
+     les réponses aux questions. & 5\%\\
      \hline
      %\rowcolor{black} \textcolor{white}{\textbf{Évaluation des pairs}} & \textcolor{white}{\textbf{20\%}}\\
     \end{tabular}
