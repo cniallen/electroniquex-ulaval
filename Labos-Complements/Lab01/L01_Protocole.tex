@@ -3,7 +3,7 @@
 %Dernière modification CA: 18 janvier 2021
 %
 %**ToDo**: 
-% - Spécifier qu'on peut enrouler les fils du module directement autour des électrodes au départ, en dégainant plus au besoin: mentionner leur pince à dégainer. Expliquer en mode "conception" quand rendus à l'utilisation de plaquette de montage référant au fil & pinces introduits au début : - Comment faire son circuit à la patate (banane + croco) - Comment brancher mutimètre (fil multi + pince grabber), etc. et nous consulter pour apprendre et optimiser.
+% - Spécifier qu'on peut enrouler les fils du module directement autour des électrodes au départ, en dégainant plus au besoin: mentionner leur pince à dégainer. Expliquer en mode "conception" quand rendus à l'utilisation de plaquette de montage référant au fil & pinces introduits en vidéo : - Comment faire son circuit à la patate (banane + croco) - Comment brancher mutimètre (fil multi + pince grabber), etc. et nous consulter pour apprendre et optimiser.
 %Pour le complément associé, focaliser plutôt sur les concepts de résolution en acquisition numériques ainsi que rapport signal-bruit pour renvoyer au document métro & stats. 
 %
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
@@ -67,15 +67,15 @@
 
 Ce laboratoire vise à familiariser l’étudiant à l’acquisition de données assistée par ordinateur, en particulier pour la caractérisation d’un système instable où la variation de la grandeur mesurée rend impraticable l’utilisation d’un instrument avec afficheur numérique ou analogique. En plus d’introduire les premières notions de base en métrologie et analyse statistique, ce laboratoire met ainsi l’accent sur une situation plus typique de la recherche expérimentale au lieu du cadre didactique habituel. L’étudiant sera sensibilisé à l’importance de choisir une méthode de mesure et de présentation des résultats appropriée à l’expérience ainsi qu’à la pertinence de l’analyse qualitative. 
 
-Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 6, 7, 9, 10 et 11 du plan de cours et couvriront la qualité 5~--~utilisation d’outils d’ingénierie, prescrite dans les normes du Bureau d'agrément d'Ingénieurs Canada (BAIC).
+%Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 6, 7, 9, 10 et 11 du plan de cours et couvriront la qualité 5~--~utilisation d’outils d’ingénierie, prescrite dans les normes du Bureau d'agrément d'Ingénieurs Canada (BAIC).
 \thispagestyle{empty}
 \newpage
 
 \section{Préparation}
 \vspace{-2ex}
 \noindent Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit au minimum:\par
-\begin{itemize} \itemsep5pt
-\item lire les manuels de l'utilisateur du module d'acquisition (pages 1 à 3, 12 à 15 et 24 à 26), du multimètre à 4\textonehalf~chiffres (pages 20 à 24) et du multimètre à 6\textonehalf~chiffres (pages 17 à 22);
+\begin{itemize} \itemsep12pt
+\item identifier, dans la liste d'inventaire des composants \& instrument <\url{https://airtable.com/shrdI8Y6AqbNd7tZ8}>, la colonne contenant les manuels d'instruction et lire celui du module d'acquisition (pages 1 à 3, 12 à 15 et 24 à 26), celui du multimètre à 4\textonehalf~chiffres (pages 20 à 24) et celui du multimètre à 6\textonehalf~chiffres (pages 17 à 22);
 \item lire le complément \textit{Introduction à LabVIEW}, l'annexe n'est pas obligatoire, mais pourra vous être fort utile en cas de problème(s) de communication avec les instruments;
 \item lire le complément \textit{Fonctionnement d'une pile électrochimique};
 \item lire les sections "Introduction" et "Conclusion" du \textit{Guide de rédaction de rapports scientifiques};
@@ -83,24 +83,25 @@ Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 6, 7, 9, 10 e
 \item évaluez en millivolts la résolution de numérisation (conversion analogique-numérique, échantillonnage) du module d'acquisition lors d'une mesure de tension, sachant que cette mesure sera une différence (\textit{differential}) de potentiel entre deux points du circuit. Faites ce calcul pour deux intervalles de mesure: d'abord de $-10$~V à 10~V, puis de $-1$~V à 1~V.\\ \textit{N.B. Longueur estimée de la démarche de solution: 1 ligne pour chaque intervalle. On fait appel à vos capacités de chercheur, dans le sens littéral de chercher par vous-même, pour comprendre le rôle du module d'acquisition avec son manuel et autres sources d'information (\textit{e.g.} dictionnaire!) sur la numérisation. Des discussions à ce sujet sur le forum du cours sont encouragées.}
 \end{itemize}
 
-\vspace{1ex}
-\noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{Cette dernière étape de préparation, pour vous familiariser avec le service logiciel Tinkercad, doit être faite en ligne INDIVIDUELLEMENT par tous.tes.}}
+%\vspace{1ex}
+% \noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{Cette dernière étape de préparation, pour vous familiariser avec le service logiciel Tinkercad, doit être faite en ligne INDIVIDUELLEMENT par tous.tes.}}
 
-Veuillez d'abord rejoindre votre compte de classe ici <\url{https://www.tinkercad.com/joinclass/QH1RQQYNCB5K}> à l'aide de votre IDUL comme \texttt{nickname} pour vous retrouver sur votre \texttt{Dashboard}. Si ce n'est pas le cas, vous devriez pouvoir y retourner en tout temps en cliquant sur le logo carré multicolore de Tinkercad.
-%
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=.5\linewidth]{Tutoriel_Circuits_TinkerCad.pdf}
-    \caption{Capture d'écran du service infonuagique Tinkercad indiquant où trouver le tutoriel.}
-    \label{fig:tinkercad-trycircuits}
-\end{figure}
+% Veuillez d'abord rejoindre votre compte de classe ici <\url{https://www.tinkercad.com/joinclass/QH1RQQYNCB5K}> à l'aide de votre IDUL comme \texttt{nickname} pour vous retrouver sur votre \texttt{Dashboard}. Si ce n'est pas le cas, vous devriez pouvoir y retourner en tout temps en cliquant sur le logo carré multicolore de Tinkercad.
+% %
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=.5\linewidth]{Tutoriel_Circuits_TinkerCad.pdf}
+%     \caption{Capture d'écran du service infonuagique Tinkercad indiquant où trouver le tutoriel.}
+%     \label{fig:tinkercad-trycircuits}
+% \end{figure}
 
-Sur la gauche, vous trouverez la section \texttt{Circuits} rassemblant vos éventuels \texttt{Workspaces} de conception. À l'intérieur de ces derniers, vous pourrez aussi travailler sur vos designs de circuits en commun à l'aide du bouton \texttt{Share}.
+% Sur la gauche, vous trouverez la section \texttt{Circuits} rassemblant vos éventuels \texttt{Workspaces} de conception. À l'intérieur de ces derniers, vous pourrez aussi travailler sur vos designs de circuits en commun à l'aide du bouton \texttt{Share}.
 
-Complétez le tutoriel dans cette section, sans aucune note à prendre, en cliquant sur le bouton vert \texttt{Try Circuits} encerclé à la figure~\ref{fig:tinkercad-trycircuits}. Ce tutoriel est constitué de 4 leçons: \texttt{Start Simulating, Editing Components, Wiring Components} et \texttt{Adding Components}. Ce seront donc ces leçons qui seront évaluées individuellement, directement en ligne, pour ensuite faire virtuellement les manipulations du laboratoire sur Tinkercad lorsque vous êtes le.la membre de l'équipe en connexion à distance à la maison.
+% Complétez le tutoriel dans cette section, sans aucune note à prendre, en cliquant sur le bouton vert \texttt{Try Circuits} encerclé à la figure~\ref{fig:tinkercad-trycircuits}. Ce tutoriel est constitué de 4 leçons: \texttt{Start Simulating, Editing Components, Wiring Components} et \texttt{Adding Components}. Ce seront donc ces leçons qui seront évaluées individuellement, directement en ligne, pour ensuite faire virtuellement les manipulations du laboratoire sur Tinkercad lorsque vous êtes le.la membre de l'équipe en connexion à distance à la maison.
 %Tinkercad et être la maison: mise à jour du 1er  protocole
 
-\section{Matériel}
+\newpage
+\section{Matériel\footnote{Des photos accompagnent l'inventaire de composants \& instruments <\url{https://airtable.com/shrdI8Y6AqbNd7tZ8}> pour vous aider à identifier le matériel. Certains éléments, comme la patate(!), vous seront parfois remis au début du laboratoire.}}
 
 \noindent La réalisation de ce laboratoire requiert l'utilisation de:
 \vspace{1ex}
@@ -110,7 +111,7 @@ Complétez le tutoriel dans cette section, sans aucune note à prendre, en cliqu
 \item un multimètre à 6\textonehalf~chiffres;
 \item un module d'acquisition (NI USB-6008);
 \item un ordinateur avec le logiciel \textit{LabVIEW};
-\item quatre tiges métalliques: acier (grosse tige rouillée), acier inoxydable\footnote{Pour la suite du document, pour éviter toute confusion avec l'acier, le terme «inox» sera utilisé pour désigner «acier inoxydable».} (tige mince), aluminium (grosse tige plus pâle) et zinc (tige plate);
+\item quatre tiges métalliques: acier, acier inoxydable\footnote{Pour la suite du document, pour éviter toute confusion avec l'acier, le terme «inox» sera utilisé pour désigner «acier inoxydable».}, aluminium et zinc;
 \item deux résistances électriques (nominalement 12~$\Omega$ et 1~k$\Omega$);
 \item une plaquette de montage (\textit{breadboard}).
 \end{itemize}
@@ -142,11 +143,9 @@ d) Sur le diagramme, cliquez avec le bouton droit sur la sortie \textbf{Données
 
 e) Il serait intéressant d'avoir aussi un indicateur qui afficherait les valeurs mesurées pendant l'exécution du VI, pour voir si tout fonctionne correctement. Pour ce faire, encore sur la sortie \textbf{Données}, créez un indicateur numérique. Cet indicateur doit être placé dans la boucle pour avoir l'effet escompté.
 
-f) Maintenant que le VI peut mesurer une tension et afficher les résultats en continu, il ne reste qu'à le configurer afin qu'il enregistre les résultats automatiquement dans un fichier. Avant toute chose, créez un nouveau dossier dans votre répertoire sur le domaine FSG. C'est là que vous enregistrerez tous vos documents et acquisitions durant la session.
+f) Maintenant que le VI peut mesurer une tension et afficher les résultats en continu, il ne reste qu'à le configurer afin qu'il enregistre les résultats automatiquement dans un fichier sur l'ordinateur. Ajoutez la fonction \textbf{Écrire dans un fichier de mesures} (\texttt{Fonctions $\rightarrow$ Programmation $\rightarrow$ E/S sur fichiers $\rightarrow$} \texttt{Écrire dans un fichier de mesures}) et placez-le dans la boucle While, en bas à droite de l'Assistant DAQ (vous pouvez agrandir la boucle au besoin). La boîte de dialogue \textbf{Configurer Écrire dans un fichier de mesures} apparaît. Le champ \textbf{Nom de fichier} affiche l'endroit où les mesures seront enregistrées. Modifiez ce champ par un nom de fichier simple et représentatif en incluant la date. N'ayez pas peur de l'extension~\texttt{.lvm}: il s'agit d'un simple fichier texte.
 
-De retour à votre VI, ajoutez la fonction \textbf{Écrire dans un fichier de mesures} (\texttt{Fonctions $\rightarrow$ Programmation $\rightarrow$ E/S sur fichiers $\rightarrow$} \texttt{Écrire dans un fichier de mesures}) et placez-le dans la boucle While, en bas à droite de l'Assistant DAQ (vous pouvez agrandir la boucle au besoin). La boîte de dialogue \textbf{Configurer Écrire dans un fichier de mesures} apparaît. Le champ \textbf{Nom de fichier} affiche l'endroit où les mesures seront enregistrées. Modifiez l'emplacement du fichier \texttt{test.lvm} afin qu'il s'enregistre dans votre dossier. N'ayez pas peur de l'extension~\texttt{.lvm}: il s'agit d'un simple fichier texte. 
-
-Dans la section \textbf{Si le fichier existe déjà}, cochez l'option \textbf{Incrémenter le nom du fichier}. Dans la section \textbf{En-têtes de segment}, cochez \textbf{Un seul en-tête}. Dans le champ \textbf{Description du fichier}, inscrivez le titre du laboratoire ainsi que vos noms. Cliquez sur \textbf{OK} lorsque tout est fait. Reliez la sortie \textbf{Données} de l'Assistant DAQ à l'entrée \textbf{Signaux} de l'icône Écrire dans un fichier de mesures.
+Dans la section \textbf{Si le fichier existe déjà}, cochez l'option \textbf{Incrémenter le nom du fichier}. Dans la section \textbf{En-têtes de segment}, cochez \textbf{Un seul en-tête}. Cliquez sur \textbf{OK} lorsque tout est fait. Reliez la sortie \textbf{Données} de l'Assistant DAQ à l'entrée \textbf{Signaux} de l'icône Écrire dans un fichier de mesures.
 
 g) Rajoutez maintenant un script qui arrêtera automatiquement le processus après 500 mesures. Pour ce faire, rajoutez une constante numérique (\texttt{Fonctions $\rightarrow$ Programmation $\rightarrow$ Numérique $\rightarrow$ Constante numérique}) et placez-la dans la boucle While, près du terminal d'itération (le carré bleu \textbf{i} représentant une variable qui contient la valeur de l'itération en cours). Fixez la constante à 50 (puisque 500 mesures correspondent à 50 itérations). Ensuite, insérez une commande de comparaison \textbf{Supérieur ou égal} (\texttt{Fonctions $\rightarrow$ Programmation $\rightarrow$ Comparaison $\rightarrow$ Supérieur ou égal~?}). Reliez le terminal d'itération \textbf{i} et la constante numérique aux entrées $x$ et $y$ respectivement de la fonction Supérieur ou égal, afin que le résultat soit faux lorsque $\mathbf{i}<constante$. Maintenant, supprimez le fil qui relie le bouton Stop à l'Assistant DAQ. Puis, reliez la sortie de la fonction Supérieur ou égal et la sortie du bouton Stop aux entrées d'une fonction \textbf{OU} (\texttt{Fonctions $\rightarrow$ Programmation $\rightarrow$ Booléen $\rightarrow$ OU}). Enfin, reliez la sortie du OU à l'entrée \textbf{stop~(F)} de l'Assistant DAQ. Ainsi, l'acquisition de données s'arrêtera lorsque 50 itérations auront été faites (soit 500 mesures) ou lorsque l'utilisateur appuiera sur le bouton Stop.
 
@@ -161,7 +160,7 @@ b) À l'aide du multimètre à 4\textonehalf~chiffres, mesurez la différence de
 
 c) Refaites la mesure avec le multimètre à 6\textonehalf~chiffres et notez l'incertitude en comparant à l'étape précédente.
 
-d) Réalisez une acquisition de données informatiques avec le module d'acquisition. Pour ce faire, reliez les deux électrodes (les tiges d'inox et d'aluminium) aux bornes $+$ et $-$ de la voie \textbf{ai0}. À l'aide du VI que vous avez construit dans la première partie, faites l'acquisition des données.
+d) Réalisez une acquisition de données informatiques avec le module d'acquisition. Pour ce faire, reliez les deux électrodes (les tiges d'inox et d'aluminium) aux bornes $+$ et $-$ de la voie \textbf{ai0}. À l'aide du VI que vous avez construit dans la première partie, faites l'acquisition des données puis transférez le fichier \texttt{.lvm} obtenu dans votre canal privé MS Teams via l'onglet correspondant accompagnant votre cahier de recherche. Notez que le crochet dans la fenêtre de transfert génère une publication et des notifications intempestives, à éviter svp. Vous pouvez aussi transférer tous vos fichiers pour le travail à distance seulement à la fin du laboratoire, mais n'oubliez pas de le faire, car l'ordinateur peut être réinstallé en effaçant les données à tout moment.
 
 %%Une tcolorbox serait sympa pour ça :) :)
 \textbf{Sagesse expérimentale:} Toujours vérifier immédiatement que les données sont bien enregistrées dans votre fichier à l'aide d'un simple éditeur de texte, par exemple \textit{Bloc-notes (Notepad)} sur \textit{OS Windows} ou \textit{TextEdit} sur \textit{MacOS}. Un esprit critique attentif pourra même parfois déjà déceler des erreurs de mesures problématiques. Par exemple, une colonne entière de valeurs très proches de zéro peut être suspecte si le signal mesuré n'est pas censé être nul. 
@@ -201,8 +200,8 @@ Explication des \textit{tags} pour chaque numéro:\\
 \item \texttt{[analyse]} À partir des mesures de l'étape~i), calculez la valeur de la grosse résistance en utilisant une \textit{évaluation de Type A de l'incertitude} tel que présentée dans l’introduction aux bases de la métrologie. Concrètement, divisez la colonne \textit{tension} par la colonne \textit{courant} pour obtenir une distribution de la mesure de résistance. Puis, comparez la moyenne et la médiane de cette distribution de résistance.\\ \textit{N.B. Dans cette situation instable, il vaut mieux définir un intervalle d'incertitude très élargi en multipliant par 3 l'écart type~$\sigma$ de votre distribution de données.}
 \end{enumerate}
 
-\section{Sections de rapport}
+\section{Sections de rapport I}
 
-Écrivez en moins de 350 mots (combinés) l'introduction et la conclusion d'un rapport scientifique portant sur l'ensemble du laboratoire et remettez votre texte dans la boîte de dépôt de l'évaluation correspondante sur le site du cours.
+Écrivez en moins de 350 mots (combinés) l'introduction et la conclusion d'un rapport scientifique portant sur l'ensemble du laboratoire et remettez votre texte sur Gradescope <\url{https://www.gradescope.com/}> en sélectionnant l'évaluation correspondante.
 
 \end{document}
