@@ -25,6 +25,7 @@
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
 \usetikzlibrary{babel}
 \usepackage{caption}
@@ -54,7 +55,7 @@
 
 \begin{document}
 
-\maketitle \vspace{-2cm}
+\maketitle \vspace{-17ex}
 
 %\section{Objectif}
 %
@@ -66,12 +67,12 @@
 
 % Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 3, 5, 6, 7, 11 et 12 du plan de cours.
 
-
 \section{Lecture préparatoire}
-
+\vspace{-2.5ex}
 \begin{itemize}
 \item complément \textit{Introduction aux signaux numériques}
 \end{itemize}
+
 
 % \section{Matériel}
 
@@ -102,10 +103,20 @@
 % \item débuter, avec un schéma, la conception d'un circuit simple de conversion analogique-numérique en base 1. Ce circuit sera en fait un embryon de voltmètre que vous devrez construire à partir d'une source d'alimentation DC (ou deux au maximum), de la fonction comparateur d'ampli-ops, de résistances et de diodes électroluminescentes (DEL). Ces dernières afficheront la valeur d'un signal de tension dans le système numérotation unaire. Plus précisément, \textbf{aucune} DEL ne doit s'allumer lorsque la tension est inférieure à 1~V, \textbf{une} DEL doit s'allumer lorsque la tension fournie est supérieure à 1~V et \textbf{deux} DEL doivent s'allumer lorsque la tension devient supérieure à 2~V.
 % \end{itemize}
 
+\vspace{-3ex}
 \section{Préparation}
-
+\vspace{-1.5ex}
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-Pour chacun des circuits et énoncés de conception ci-dessous, vous devez préparer en équipe de deux (2) le protocole qui permettra d'atteindre le sous-objectif indiqué en légende de la figure. Les compléments en lecture préparatoire détaillent la théorie et les modèles pour comprendre le fonctionnement des circuits et les analyser expérimentalement. Dans votre cahier de recherche, concevez et écrivez des suggestions de manipulations à faire pour chaque circuit afin de les présenter en partage d'écran Zoom pour évaluation pendant la première partie de la séance de cours virtuel.
+Les ateliers se rapprochent d'un mode de travail expérimental plus professionnel, car vous devez vous-même préparer votre propre protocole avant d'arriver au laboratoire afin d'atteindre chaque sous-objectif énoncé ci-dessous. Ces sous-objectifs sont généralement accompagnés d'une figure de circuits, mais il y a toutefois progression vers une conception de plus en plus libre où vous devrez proposer vos propres design de circuits. Pour vous assister dans cette rédaction de protocole, les compléments en lecture préparatoire ci-dessus détaillent la théorie et les modèles pour comprendre le fonctionnement des circuits et les analyser expérimentalement. Concrètement dans votre cahier de recherche avec votre coéquipier.ère, écrivez des manipulations et des analyses à faire pour chaque sous-objectif afin de les mettre en commun en plus grand groupe lors de votre arrivée à la séance de laboratoire. 
+
+\vspace{-3ex}
+\section{Déroulement de l’atelier}
+\vspace{-1.5ex}
+Lors de la séance de laboratoire de 2h à la date spécifiée dans la section \texttt{Contenu et activités} sur le site de cours, nous nous diviserons en grands groupes, chacun animé par un membre de l’équipe d’enseignement. Une partie des sous-objectifs et circuits sera attribuée à chaque groupe dans le but d'en faire une présentation orale éducative de 5~minutes pour le reste de la classe à la fin de la séance. La méthodologie de travail en groupe vous appartient alors entièrement pour réussir la meilleure présentation possible qui sera évaluée sur une base ordinale tel qu'expliqué dans la partie synchrone du cours~6.
+
+Nous recommandons de commencer la séance en délibérant sur l'optimisation des manipulations expérimentales et des analyses proposées dans vos cahiers de recherche respectifs avec l'assistance du membre de l'équipe d'enseignement et il vous faudra ensuite répartir les tâches dans votre groupe. Des exemples de tâches possibles sont la planification et l'organisation, la conception, la simulation, la réalisation expérimentale, la mesure, l'analyse, la communication, etc. et il peut bien sûr y avoir de la redondance pour vérifier l'exactitude des résultats de mesure et d'analyse. Notez que la fin de la section \texttt{Matériel didactique} sur le site de cours propose différents choix de logiciels et d'applications pour vous assister dans les tâches de conception et de simulation.
+
+La dernière activité de la séance sera de vous rendre sur le site Web du cours dans la section \texttt{Évaluations et résultats} pour l'atelier concerné et y évaluer vos pairs sur leur contribution respective au travail du groupe.
 
 % \subsection{Partie 1-Mesure automatisée de l'accélération gravitationnelle}
 
@@ -132,14 +143,13 @@ Pour chacun des circuits et énoncés de conception ci-dessous, vous devez prép
 
 % Complétez l'expérience en écrivant au tableau votre résultat de mesure d'accélération gravitationnelle pour bâtir une distribution statistique avec vos collègues.
 
-\newpage
-\subsection{Partie 1 --- Construction de portes logiques}
+\subsection{Construction de portes logiques}
 
 %a) Montez le circuit d'une porte NON-OU (figure~\ref{sch-NOR}) en utilisant les transistors. Appliquez une tension $v_{\mathrm{cc}}$ de 5~V.
 
  \noindent\textbf{1\textsuperscript{er} sous-objectif} : En utilisant seulement des puces de portes NON-ET (NAND), concevoir un circuit qui serait équivalent à une porte OU.
  
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \begin{circuitikz} \draw
 (0,0) node[ground]{} to[Tnpn,n=q1] (0,2) to[short,-*] (5,2) node[right]{$v_{\mathrm{out}}=\overline{A+B}$} to[leDo] (5,0) node[ground]{}
@@ -167,11 +177,11 @@ Pour chacun des circuits et énoncés de conception ci-dessous, vous devez prép
 % \label{sch-OR}
 % \end{figure}
 
-\subsection{Partie 2 --- Conception d'un voltmètre en base 1}
+\subsection{Conception d'un voltmètre en base 1}
 
 \noindent\textbf{Sous-objectif} : Réaliser une conversion analogique-numérique en base 1 à l'aide d'un circuit simple. Ce circuit est en fait un embryon de voltmètre à concevoir à partir d'une source d'alimentation DC, de la fonction comparateur d'ampli-ops, de résistances et de diodes électroluminescentes (DEL). Ces dernières afficheront la valeur d'un signal de tension dans le système de numérotation unaire, ce signal étant fourni par un générateur de fonctions ou autre source variable. Plus précisément, \textbf{aucune} DEL ne doit s'allumer lorsque la tension est inférieure à 1~V, \textbf{une} DEL doit s'allumer lorsque la tension fournie est supérieure à 1~V et \textbf{deux} DEL doivent s'allumer lorsque la tension devient supérieure à 2~V.
 
-\subsection{Partie 3 --- Introduction aux circuits logiques rétroactifs}
+\subsection{Introduction aux circuits logiques rétroactifs}
 
 % a) Un circuit logique très simple avec rétroaction est constitué uniquement d'un inverseur (porte NON) dont la sortie est retournée à l'entrée. Lorsque l'entrée est \textit{zéro}, la sortie est \textit{un}. Alors l'entrée devient \textit{un} et la sortie \textit{zéro}, et ainsi de suite. On dit que ce circuit est astable, puisqu'il ne possède aucun niveau stable : il s'agit en fait d'un oscillateur. Construisez cet oscillateur (figure~\ref{sch-osc-astable}) et mesurez au mieux, à l'aide de l'oscilloscope, la fréquence des oscillations. Soyez impressionnés de la valeur mesurée.
 % \begin{figure}[h]
@@ -230,10 +240,6 @@ Pour chacun des circuits et énoncés de conception ci-dessous, vous devez prép
 % \end{tabular}
 % \caption{\label{table-RS}Table de vérité partielle de la bascule asynchrone SR.}
 % \end{table}
-
-\section{Déroulement de l’atelier}
-
-Lors du cours à la date spécifiée dans l’onglet "Contenu et activités" sur le site de cours, nous nous diviserons en groupes, chacun animé par un membre de l’équipe d’enseignement. La première partie du cours sera une discussion des manipulations que vous proposez pour chaque circuit, en partageant à tour de rôle votre cahier de recherche d’équipe à l’écran. Pour la deuxième partie de cours, l’animatrice.teur vous indiquera le ou les circuit.s attribué.s à votre groupe pour réaliser les manipulations en commun à l’aide des services logiciels en ligne de Paul Falstad et Tinkercad. Le cours se terminera en faisant une brève démonstration de votre expérience à toute la classe.
 
 %%%%MOT DE LA FIN SUR MICROPROCESSEURS. (ATELIER: DÉFI OSCILLATEUR LC FAIT EN LIVE POUR BONUS, TOUNES D'OSCILLATEURS)
 
