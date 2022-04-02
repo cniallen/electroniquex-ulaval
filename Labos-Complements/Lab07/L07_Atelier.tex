@@ -48,7 +48,7 @@
 %
 %---------------------------------------------------
 %
-\title{\textbf{Atelier VII}\\Filtres passifs \& actifs\thanks{Auteurs: Claudine Allen, Jean-Raphaël Carrier \& Jérémie Guilbert}}
+\title{\textbf{Atelier VII}\\Filtres passifs \& actifs\thanks{Auteurs: Claudine Allen, Jean-Raphaël Carrier, Jérémie Guilbert, Daniel Côté}}
 \renewcommand\footnotemark{}
 \date{}
 
@@ -59,6 +59,14 @@
 
 \section{Objectifs}
 
+Il est très fréquent qu'un signal d'intérêt doit être filtré pour atténuer les effets d'un bruit quelconque (haute fréquence par exemple) ou une lente dérive d'un signal soit-disant constant (basse fréquence). Vous avez vu les filtres RC pour faire des filtres passe-bas ou passe-haut.  Vous travaillerez donc avec les concepts de filtres RC, de résistance (impédance) d'entrée et de sortie, de réponses en fréquences que vous approfondirez tout au long de l'atelier. Dans cet atelier, vous devrez:
+\begin{enumerate}
+\item concevoir un filtre RC approprié pour une source donnée, 
+\item le fabriquer, 
+\item le connecter correctement,
+\item et valider son bon fonctionnement dans les conditions décrites. 
+\end{enumerate}
+ 
 %Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. On peut alors retirer des fréquences indésirables et généralement obtenir une mesure plus fidèle avec un meilleur rapport signal sur bruit, par exemple. L’effet de différents filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc examinée pour le filtre RC. 
 %Dans l'approche pédagogique de préparation et conception de ce laboratoire, l'étudiant.e développera progressivement une méthodologie de travail plus autonome en transition vers la pratique d'une profession de recherche en sciences et génie.
 %
@@ -73,10 +81,13 @@
 %Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 4, 5, 7, 9, 10, 11 et 12 du plan de cours.
 
 \section{Lectures préparatoires}
+Vous devez savoir comment faire un filtre RC passe-bas et un filtre RC passe-haut, et comment déterminer la fréquence de coupure.  Vous devez savoir comment connecter un filtre dans un circuit pour obtenir l'effet voulu. 
 
 \begin{itemize}
 \item complément \textit{Analyse temporelle};
 \item complément \textit{Analyse fréquentielle}.
+\item \href{https://github.com/dccote/Enseignement/blob/master/HOWTO/}{HOWTO-Electronique et HOWTO-Resistance} 
+\item Les \href{https://www.electronics-tutorials.ws/filter/filter_5.html}{filtres actifs} et \href{https://www.electronics-tutorials.ws/filter/filter_6.html}{les filtres passifs}.
 \end{itemize}
 
 
@@ -95,203 +106,74 @@
 
 
 \section{Préparation}
+Regardez la figure \ref{fig:filtres} avec les filtres passifs et actifs. À l'aide des lois de Kirchoff et d'Ohm, obtenez les graphiques de la réponse en fréquence (donc en supposant une tension sinusoidale) en amplitude et en phase d'un filtre passif passe-bas et d'un filtre passif passe-haut pour une résistance et une capacitance donnée.  On définit la réponse en fréquence comme le ratio de la tension de sortie (complexe, avec la phase) sur la tension du signal d'entrée (aussi complexe, avec la phase) pour chaque fréquence.  Tracez l'amplitude et la phase de cette réponse sur 4  graphiques. On appelle ces graphiques des {\em Bode plots}. Calculez la valeur $RC$ et montrez que sur votre graphique l'amplitude de la réponse est de 0.5 à cette fréquence.  Quelle est la phase?
 
-\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-Les ateliers se rapprochent d'un mode de travail expérimental plus professionnel, car vous devez vous-même préparer votre propre protocole avant d'arriver au laboratoire afin d'atteindre chaque sous-objectif énoncé ci-dessous. Ces sous-objectifs sont généralement accompagnés d'une figure de circuits, mais il y a toutefois progression vers une conception de plus en plus libre où vous devrez proposer vos propres design de circuits. Pour vous assister dans cette rédaction de protocole, les compléments en lecture préparatoire ci-dessus détaillent la théorie et les modèles pour comprendre le fonctionnement des circuits et les analyser expérimentalement. Concrètement dans votre cahier de recherche avec votre coéquipier.ère, écrivez des manipulations et des analyses à faire pour chaque sous-objectif afin de les mettre en commun en plus grand groupe lors de votre arrivée à la séance de laboratoire. 
+Regardez ensuite la figure des filtres actifs passe-bas et passe-haut (Figure \ref{fig:filtres}).  Obtenez la réponse en fréquence de chacun, en sachant que ceux du centre sont en fait des filtres passifs avec un amplificateur en mode "follower" (que vous avez fait la semaine dernière). Ceux du bas peuvent être analysés si vous avez le temps et le goût.
+
+Le dernier aspect à préparer est le calcul de l'impédance d'entrée et de sortie de chaque filtre. Calculez-les pour les filtres passifs et les filtres actifs non-inverseur.
+
+\begin{figure}[htbp]
+   \centering
+   \includegraphics[width=15cm]{FP.pdf} 
+   \includegraphics[width=15cm]{FANI.pdf} 
+   \includegraphics[width=15cm]{FAI.pdf} 
+   \caption{Les filtres passifs (en haut) n'ont aucune source de puissance.  Il ne peuvent qu'atténuer des tensions, et leur impédance d'entrée et de sortie sont variables.  Au contraire, les filtres actifs ont une source de tension et apparaissent avec une impédance de sortie faible. Il y a plusieurs façons de faire des filtres, mais en voici deux sortes non-inverseurs (au centre) et inverseurs (en bas).}
+   \label{fig:filtres}
+\end{figure}
+%Les ateliers se rapprochent d'un mode de travail expérimental plus professionnel, car vous devez vous-même préparer votre propre protocole avant d'arriver au laboratoire afin d'atteindre chaque sous-objectif énoncé ci-dessous. Ces sous-objectifs sont généralement accompagnés d'une figure de circuits, mais il y a toutefois progression vers une conception de plus en plus libre où vous devrez proposer vos propres design de circuits. Pour vous assister dans cette rédaction de protocole, les compléments en lecture préparatoire ci-dessus détaillent la théorie et les modèles pour comprendre le fonctionnement des circuits et les analyser expérimentalement. Concrètement dans votre cahier de recherche avec votre coéquipier.ère, écrivez des manipulations et des analyses à faire pour chaque sous-objectif afin de les mettre en commun en plus grand groupe lors de votre arrivée à la séance de laboratoire. 
 
 \section{Déroulement de l’atelier}
 
-Lors de la séance de laboratoire de 2h à la date spécifiée dans la section \texttt{Contenu et activités} sur le site de cours, nous nous diviserons en grands groupes, chacun animé par un membre de l’équipe d’enseignement. Une partie des sous-objectifs et circuits sera attribuée à chaque groupe dans le but d'en faire une présentation orale éducative de 5~minutes pour le reste de la classe à la fin de la séance. La méthodologie de travail en groupe vous appartient alors entièrement pour réussir la meilleure présentation possible qui sera évaluée sur une base ordinale tel qu'expliqué dans la partie synchrone du cours~6.
+Vous serez divisé en 6 groupes. Il y aura trois sources différentes (en 2 copies), pour trois situations différentes:
+\begin{enumerate}
+\item Une source "constante", qui varie lentement. Vous devez concevoir un filtre pour la stabiliser tout en gardant la tension lorsqu'une charge de 1 kOhms  est connectée.
+\item Une source sinusoidale bruyante. Vous devez concevoir un filtre pour enlever le bruit hautes fréquences tout en gardant la tension lorsqu'une charge de 1 kOhms est connectée.
+\item Une source analogique "constante" comme on trouve sur les Arduinos, de type Pulse Width Modulation. Vous devrez faire un filtre passe-bas qui fonctionnera, quelle que soit la résistance de charge utilisée, pour obtenir une tension proportionnelle constante.
+\end{enumerate}
+
+Chaque groupe choisira une source et travaillera à filtrer. Vous expliquerez ensuite faire une présentation orale éducative de 5~minutes pour le reste de la classe à la fin de la séance. 
 
 Nous recommandons de commencer la séance en délibérant sur l'optimisation des manipulations expérimentales et des analyses proposées dans vos cahiers de recherche respectifs avec l'assistance du membre de l'équipe d'enseignement et il vous faudra ensuite répartir les tâches dans votre groupe. Des exemples de tâches possibles sont la planification et l'organisation, la conception, la simulation, la réalisation expérimentale, la mesure, l'analyse, la communication, etc. et il peut bien sûr y avoir de la redondance pour vérifier l'exactitude des résultats de mesure et d'analyse. Notez que la fin de la section \texttt{Matériel didactique} sur le site de cours propose différents choix de logiciels et d'applications pour vous assister dans les tâches de conception et de simulation.
 
 La dernière activité de la séance sera de vous rendre sur le site Web du cours dans la section \texttt{Évaluations et résultats} pour l'atelier concerné et y évaluer vos pairs sur leur contribution respective au travail du groupe.
  
- \section{Atelier}
-%\subsection{Partie 1 --- Mesures temporelles}
-
-\begin{figure}[h!]
-\centering
-\begin{circuitikz} \draw
-(0,2) node[left]{$v_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
-(3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
-;\end{circuitikz}
-\caption{\label{sch-RC}\textbf{Sous-objectif}: observer et quantifier le délai temporel du signal en tension aux bornes des différents composants de ce même circuit RC série.}
-\end{figure}
-
-% a) Sur la plaquette de montage, réalisez le filtre RC de la figure~\ref{sch-RC} en utilisant le condensateur de précision ($\pm5$~\%).
-% \begin{figure}[h]
-% \centering
-% \begin{circuitikz} \draw
-% (0,2) node[left]{$v_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
-% (3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
-% ;\end{circuitikz}
-% \caption{\label{sch-RC}Circuit RC série.}
-% \end{figure}
-
-% b) Avec deux câbles coaxiaux et un «T», reliez la sortie du générateur de fonctions $v_{\mathrm{g}}$ à l'entrée du canal~1 de l'oscilloscope ainsi qu'à la plaquette de montage. À l'aide d'une sonde compensée (10X), reliez les bornes du condensateur au canal~2 de l'oscilloscope.
-
-% c) Générez un signal carré à 50~Hz allant de 0~V à 1~V. Sur l'écran de l'oscilloscope, faites afficher simultanément les deux signaux. En rapetissant les divisions de l'échelle horizontale, observez d'abord qualitativement comment varie la tension $v_{\mathrm{out}}$ et comparez avec le modèle présenté dans le complément \textit{Analyse temporelle}.
-
-% d) Mesurez le temps de montée (de 10~\% à 90~\%) et la constante de temps du circuit. Comparez avec les valeurs attendues.
-
-
-%\subsection{Partie 2 --- Mesures fréquentielles et diagrammes de Bode}
-
-\begin{figure}[h!]
-\centering
-\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{g}}$} to[R=270~$\Omega$,o-] (3,2) to[short] (3,2)
-(3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
-;\end{circuitikz}
-\caption{\label{sch-RC2}\textbf{Sous-objectif} : démontrer que ce même circuit RC série agit en filtre passe-haut ou passe-bas en prenant les mesures appropriées pour construire les diagrammes de Bode du gain ET de la phase en fonction de la fréquence.}
-\end{figure}
-
-\begin{figure}[h!]
-\centering
-\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{g}}$} to[L,l=$L$,a=1<\milli\henry>,o-] (2.5,2) to[C,l=$C$, a=1<\micro\farad>] (5,2) to[short,-o] (6.5,2) node[right]{$V_{\mathrm{out}}$}
-(5.5,2) to[R,l_=$R$,a^=270<\ohm>] (5.5,0) node[ground]{}
-;\end{circuitikz}
-\caption{\textbf{Sous-objectif} : démontrer, à l'aide des diagrammes de Bode, qu'un circuit RLC série agit en filtre passe-bande dont le facteur de qualité $Q$ varie avec d'autres valeurs de $R, L$ et $C$.}
-\label{sch-RLC}
-\end{figure}
-
-% \textbf{Note 1:} L'étudiant.e est dispensé.e d'évaluer les incertitudes pour le reste de ce laboratoire.
-
-% a) Vous utiliserez maintenant un VI \textit{LabVIEW} pour réaliser automatiquement les acquisitions. Ce VI a déjà été créé pour vous et peut être téléchargé à partir du site du cours. Vous devrez cependant modifier l'adresse où le VI enregistrera les données.
-
-% Le diagramme de Bode permet d'illustrer graphiquement la fonction de transfert en régime permanent d'un système, soit sa réponse en fréquence. Il est composé de deux graphiques basé sur la forme polaire des nombres complexes dans le domaine de Fourier, soit celui du gain en décibels en amplitude, $G\!\left(f\right)=20\,\textrm{log}_{10}\left(\frac{V_{out}}{V_{\mathrm{g}}}\right)$, et celui du déphasage par rapport à la source, $\phi\!\left(f\right)$. Graduez toujours l'axe horizontal (les fréquences) avec une échelle logarithmique.
-
-% Sur la face-avant du VI, faites en sorte que les types des mesures 1, 2 et 3 soient respectivement \texttt{Amplitude}, \texttt{Amplitude} et \texttt{Phase}. Mettez $V_{\mathrm{min}}$ à $-2$~V et $V_{\mathrm{max}}$ à 2~V. La fréquence initiale $f_{\mathrm{ini}}$ doit être 1~Hz. Fixez le nombre d'itérations à 25. Les mesures seront prises une fois par octave, \textit{i.e.} aux fréquences définies par $f_{i}=2^i\,f_{\mathrm{ini}}$, donc de 1~Hz à 16,777~MHz (soit presque la totalité de la plage de l'oscilloscope). Lorsque vous tracerez les diagrammes de Bode, ne prenez pas en compte les points où la valeur est de 9,90E+37 ; ces mesures sont erronées et sont dues au fait que le signal à cette fréquence était trop faible pour une mesure adéquate avec l'oscilloscope.
-
-% \begin{figure}[h]
-% \centering
-% \begin{circuitikz} \draw
-% (0,2) node[left]{$V_{\mathrm{g}}$} to[R=270~$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$}
-% (3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
-% ;\end{circuitikz}
-% \caption{\label{sch-RC2}Filtre RC série.}
-% \end{figure}
-% b) Faites cette acquisition pour le filtre RC de la figure~\ref{sch-RC2} ci-dessus. À partir des résultats obtenus, tracez les deux graphiques du diagramme de Bode. À l'aide de ce dernier, déterminez la fréquence de coupure du filtre.
-
-% c) Intervertissez le condensateur et la résistance (afin de prendre la tension aux bornes de la résistance) et refaites l'étape b).
-
-% d) Montez maintenant le circuit inductif de la figure~\ref{sch-RL} et refaites l'étape b).
-% \begin{figure}[h]
-% \centering
-% \begin{circuitikz} \draw
-% (0,2) node[left]{$v_{\mathrm{g}}$} to[R=270~$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
-% (3,2) to[L=1~mH] (3,0) node[ground]{}
-% ;\end{circuitikz}
-% \caption{\label{sch-RL}Filtre RL série.}
-% \end{figure}
-
-% e) Montez maintenant le circuit RLC représenté à la figure~\ref{sch-RLC}. Reliez les bornes de la résistance au canal~2. Faites l'étape b). Calculez le facteur de qualité $Q$.
-% \begin{equation*}
-% Q=\frac{f_0}{B}=\frac{f_0}{\Delta f}=\frac{f_0}{f_{c2}-f_{c1}}
-% \end{equation*}
-% \begin{figure}[h]
-% \centering
-% \begin{circuitikz} \draw
-% (0,2) node[left]{$V_{\mathrm{g}}$} to[L=1~mH,o-] (2.5,2) to[C=1~$\mu$F] (5,2) to[short,-o] (6,2) node[right]{$V_{\mathrm{out}}$}
-% (5,2) to[R=270~$\Omega$] (5,0) node[ground]{}
-% ;\end{circuitikz}
-% \caption{\label{sch-RLC}Filtre RLC série.}
-% \end{figure}
-
-% f) Envoyez dans ce circuit un signal carré de 4~V crête à crête, centré à 0~V, à une fréquence de 100~Hz. Ce signal correspond au signal «\texttt{labo\_8\_carre\_100Hz}». Faites afficher la tension de sortie à l'oscilloscope. S'il y a lieu, comparez ce signal avec celui calculé en devoir (filtrage numérique par transformée de Fourier).
-
-% g) Refaites l'étape précédente, mais cette fois avec une fréquence de 1~kHz. S'il y a lieu, comparez vos résultats avec le filtrage du signal «\texttt{labo\_8\_carre\_1kHz}».
-
-
-%\subsection{Partie 3 --- Coupures de différents filtres passe-bas}
-
-
-\begin{figure}[h!]
-\centering
-\subcaptionbox{}
-{\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{g}}$} to[R=270~$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$}
-(3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
-;\end{circuitikz}}
-\subcaptionbox{}
-{\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{g}}$} to[R=135~$\Omega$,o-] (3,2) to[R=270~$\Omega$] (6,2) to[R=560~$\Omega$] (9,2) to[short,-o] (10,2) node[right]{$V_{\mathrm{out}}$}
-(3,2) to[C=2~$\mu$F] (3,0) node[ground]{}
-(6,2) to[C=1~$\mu$F] (6,0) node[ground]{}
-(9,2) to[C=470~nF] (9,0) node[ground]{}
-;\end{circuitikz}}
-\subcaptionbox{}
-{\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{g}}$} to[L=1~mH,o-] (3,2) to[L=1~mH] (6,2) to[short,-o] (7,2) node[right]{$V_{\mathrm{out}}$}
-(3,2) to[C=470~nF] (3,0) node[ground]{}
-(6,2) to[R=270~$\Omega$] (6,0) node[ground]{}
-;\end{circuitikz}}
-\subcaptionbox{}
-{\begin{circuitikz} \draw
-(0,0) node[op amp](opamp){}
-(opamp.+) to[short] (-1.2,-0.5) to[C,l_=470~nF] (-1.2,-3) node[ground]{}
-(opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2.2)
-(opamp.out) to[short,-o] (2,0) node[right]{$V_{\mathrm{out}}$}
-(opamp.down) ++ (0,-0.5) node[below]{$-3$~V} -- (opamp.down)
-(opamp.up) ++ (0,0.5) node[above]{3~V} -- (opamp.up)
-(-3.2,2.2) node[ground]{} to[R=10~k$\Omega$] (-1.2,2.2) to[R=20~k$\Omega$] (1.2,2.2)
-(1.2,0) to[short] (1.2,3.5) to[short] (-4.5,3.5) to[C,l_=470~nF] (-4.5,-0.5)
-(-10.5,-0.5) node[left]{$V_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (-7.5,-0.5) to[R=560~$\Omega$] (-4.5,-0.5) to[R=1~k$\Omega$] (-1.2,-0.5)
-(-7.5,-0.5) to[C=1~$\mu$F] (-7.5,-3) node[ground]{}
-;\end{circuitikz}}
-\caption{\label{sch-RC-ordre3}\textbf{Sous-objectif} : examiner comment les filtres (a) RC série de premier ordre, (b) RC de troisième ordre, (c) Butterworth en topologie Cauer de troisième ordre et (d) Butterworth en topologie Sallen-Key de troisième ordre, vont dévier du comportement idéal d'un filtre passe-bas. Ce spectre idéal du gain est une fonction échelon de Heaviside en symétrie miroir centrée sur la fréquence de coupure. Cette symétrie de parité paire est seulement pour exprimer l'opération $H(-x)\rightarrow H(x)$.}
-\end{figure}
-%TO CHECK OUT TO HELP FORMATTING: https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures_in_multiple_parts
-
-% Vous pouvez remarquer à partir des diagrammes de Bode précédemment tracés que la transition entre la bande passante et la bande rejetée n'est pas parfaitement verticale. Il est toutefois possible de complexifier le design d'un filtre afin que cette transition soit plus abrupte. Cette analyse sera faite sur des filtres passe-bas.
+% \section{Les filtres: passifs et actifs}
+%\begin{figure}[h!]
+%\centering
+%\begin{circuitikz} \draw
+%(0,2) node[left]{$v_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
+%(3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
+%;\end{circuitikz}
+%\caption{\label{sch-RC}\textbf{Sous-objectif}: observer et quantifier le délai temporel du signal en tension aux bornes des différents composants de ce même circuit RC série.}
+%\end{figure}
 %
-% a) Construisez un filtre passe-bas de troisième ordre, équivalent à trois filtres RC passe-bas en série, et faites l'acquisition habituelle du spectre à la sortie $V_{\mathrm{out}}$. Ce circuit est illustré à la figure~\ref{sch-RC-ordre3}.
-% \begin{figure}[h]
-% \centering
-% \begin{circuitikz} \draw
-% (0,2) node[left]{$V_{\mathrm{g}}$} to[R=135~$\Omega$,o-] (3,2) to[R=270~$\Omega$] (6,2) to[R=560~$\Omega$] (9,2) to[short,-o] (10,2) node[right]{$V_{\mathrm{out}}$}
-% (3,2) to[C=2~$\mu$F] (3,0) node[ground]{}
-% (6,2) to[C=1~$\mu$F] (6,0) node[ground]{}
-% (9,2) to[C=470~nF] (9,0) node[ground]{}
-% ;\end{circuitikz}
-% \caption{\label{sch-RC-ordre3}Filtre RC de troisième ordre.}
-% \end{figure}
-
-% b) Refaites la même acquisition et tracez le diagramme de Bode, mais cette fois en utilisant un filtre passe-bas de type Butterworth en topologie Cauer (figure~\ref{sch-Butter-Cauer-ordre3}).
-% \begin{figure}[h]
-% \centering
-% \begin{circuitikz} \draw
-% (0,2) node[left]{$V_{\mathrm{g}}$} to[L=1~mH,o-] (3,2) to[L=1~mH] (6,2) to[short,-o] (7,2) node[right]{$V_{\mathrm{out}}$}
-% (3,2) to[C=470~nF] (3,0) node[ground]{}
-% (6,2) to[R=270~$\Omega$] (6,0) node[ground]{}
-% ;\end{circuitikz}
-% \caption{\label{sch-Butter-Cauer-ordre3}Filtre Butterworth en topologie Cauer de troisième ordre.}
-% \end{figure}
-
-% c) Par la suite, tracez le diagramme de Bode d'un troisième filtre passe-bas de troisième ordre. Il s'agira cette fois d'un filtre Butterworth actif en topologie Sallen-Key (figure~\ref{sch-Butter-Sallen-Key-ordre3}).
-% \begin{figure}[h]
-% \centering
-% \begin{circuitikz} \draw
-% (0,0) node[op amp](opamp){}
-% (opamp.+) to[short] (-1.2,-0.5) to[C,l_=470~nF] (-1.2,-3) node[ground]{}
-% (opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2.2)
-% (opamp.out) to[short,-o] (2,0) node[right]{$V_{\mathrm{out}}$}
-% (opamp.down) ++ (0,-0.5) node[below]{$-3$~V} -- (opamp.down)
-% (opamp.up) ++ (0,0.5) node[above]{3~V} -- (opamp.up)
-% (-3.2,2.2) node[ground]{} to[R=10~k$\Omega$] (-1.2,2.2) to[R=20~k$\Omega$] (1.2,2.2)
-% (1.2,0) to[short] (1.2,3.5) to[short] (-4.5,3.5) to[C,l_=470~nF] (-4.5,-0.5)
-% (-10.5,-0.5) node[left]{$V_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (-7.5,-0.5) to[R=560~$\Omega$] (-4.5,-0.5) to[R=1~k$\Omega$] (-1.2,-0.5)
-% (-7.5,-0.5) to[C=1~$\mu$F] (-7.5,-3) node[ground]{}
-% ;\end{circuitikz}
-% \caption{\label{sch-Butter-Sallen-Key-ordre3}Filtre actif Butterworth en topologie Sallen-Key de troisième ordre.}
-% \end{figure}
-
-%\section{Questions et discussion}
+%% a) Sur la plaquette de montage, réalisez le filtre RC de la figure~\ref{sch-RC} en utilisant le condensateur de précision ($\pm5$~\%).
+%% \begin{figure}[h]
+%% \centering
+%% \begin{circuitikz} \draw
+%% (0,2) node[left]{$v_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
+%% (3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
+%% ;\end{circuitikz}
+%% \caption{\label{sch-RC}Circuit RC série.}
+%% \end{figure}
 %
-%\begin{enumerate}
-%\item Sur un même graphique, tracez les courbes du gain (en décibels) en fonction de la fréquence normalisée $f/f_{c}$ des quatre filtres passe-bas dont vous avez acquis les diagrammes de Bode dans ce laboratoire, soient les trois filtres de la troisième partie ainsi que le premier filtre RC de la deuxième partie. Utilisez une échelle logarithmique pour la fréquence normalisée. Mesurez les pentes (en décibels par décade) de la courbe de gain dans les hautes fréquences.
-%\end{enumerate}
+%% b) Avec deux câbles coaxiaux et un «T», reliez la sortie du générateur de fonctions $v_{\mathrm{g}}$ à l'entrée du canal~1 de l'oscilloscope ainsi qu'à la plaquette de montage. À l'aide d'une sonde compensée (10X), reliez les bornes du condensateur au canal~2 de l'oscilloscope.
+%
+%% c) Générez un signal carré à 50~Hz allant de 0~V à 1~V. Sur l'écran de l'oscilloscope, faites afficher simultanément les deux signaux. En rapetissant les divisions de l'échelle horizontale, observez d'abord qualitativement comment varie la tension $v_{\mathrm{out}}$ et comparez avec le modèle présenté dans le complément \textit{Analyse temporelle}.
+%
+%% d) Mesurez le temps de montée (de 10~\% à 90~\%) et la constante de temps du circuit. Comparez avec les valeurs attendues.
+%
+%
+%%\subsection{Partie 2 --- Mesures fréquentielles et diagrammes de Bode}
+%
+%\begin{figure}[h!]
+%\centering
+%\begin{circuitikz} \draw
+%(0,2) node[left]{$V_{\mathrm{g}}$} to[R=270~$\Omega$,o-] (3,2) to[short] (3,2)
+%(3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
+%;\end{circuitikz}
+%\caption{\label{sch-RC2}\textbf{Sous-objectif} : démontrer que ce même circuit RC série agit en filtre passe-haut ou passe-bas en prenant les mesures appropriées pour construire les diagrammes de Bode du gain ET de la phase en fonction de la fréquence.}
+%\end{figure}
+
 
 \end{document}
