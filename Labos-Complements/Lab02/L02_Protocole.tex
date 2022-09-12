@@ -1,6 +1,6 @@
 %Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen et Vincent Méthot
 %Dernière modification JRC: 8 février 2014
-%Dernière modification CA: 18 janvier 2021
+%Dernière modification CA: 12 septembre 2022
 % 
 %ToDo:
 % -Ramener une analyse de type A de l’incertitude, probablement avec mesures LabView et stats pour la partie 2. HMMMMM, je suis entrain de me dire qu’une vérification à la mitaine (PAS de LabVIEW yé!) de résidus et quelques cas de chi2 à différents ajustements de courbes pour la fin avec le modèle math du circuit permettant un calcul d’une grandeur avec incertitude serait pas mal pour voir le concept en action avant de faire le pesage de pitons dans les logiciels le faisant automatiquement. Ajouter une Q&D pour ça! :)
@@ -22,7 +22,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{siunitx}
 \usepackage{xcolor}
-\usepackage{hyperref}
+\PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
 \usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
@@ -62,30 +62,24 @@
 Dans ce laboratoire, l’étudiant poursuivra l’apprentissage des notions de métrologie en particulier avec l’estimation quantitative de l’incertitude de mesure. L’exercice de consulter les manuels d’instruction des instruments introduira l’étudiant aux spécifications techniques fournies par les manufacturiers, où on retrouve moult informations essentielles pour réaliser de bonnes expériences. Notamment, l’exactitude de mesure de l’instrument y est indiquée et intervient dans l’évaluation de Type B de l’incertitude. De plus, différents circuits pour mesurer des courants, tensions et résistances en courant continu seront comparés afin de démontrer l’impact que peuvent avoir les instruments de mesure sur les résultats expérimentaux, allant même jusqu’à la destruction si une résistance de protection n’est pas incluse pour prévenir un court-circuit par exemple. L’étudiant sera donc de nouveau sensibilisé à l’importance de choisir une méthode de mesure appropriée à l’expérience.
 
 
-\section{Préparation}
-
-\noindent Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit au minimum:
-\vspace{1ex}
-\begin{itemize}
-\item lire le manuel de la source d'alimentation (pages 2 à 5 et 35 à 39);
-\item lire le complément \textit{Composants électriques linéaires};
-\item lire le complément \textit{Lois et théorèmes de base en électricité};
-\item lire la section "Méthodes expérimentales" du \textit{Guide de rédaction de rapports scientifiques};
-\item lire le protocole de ce laboratoire;
-\item indiquer le numéro des pages du manuel d'instruction où sont indiquées les incertitudes (DC) en tension, en courant et en résistance du: 1) multimètre à 6\textonehalf~chiffres, 2) multimètre à 4\textonehalf~chiffres; 
-\item calculer la tension maximale pour la source à ne pas dépasser pour les circuits des figures~\ref{L2-sch-tensionnb} et \ref{L2-sch-courantnb}, sachant que: 
-    \begin{itemize}
-    \item les résistances énumérées dans la liste du matériel ne peuvent pas dissiper plus de \textonequarter~Watt sécuritairement,  
-    \item on choisit de se limiter à 10\% de cette valeur.
-    \end{itemize}
+\section[Lectures préparatoires]{Lectures préparatoires} \label{sec:prep}
+%\vspace{1ex}
+\begin{itemize} \itemsep4pt
+\item le manuel de la source d'alimentation (pages 2 à 5 et 35 à 39);
+\item les manuels du multimètre à 6\textonehalf~chiffres et du multimètre à 4\textonehalf~chiffres de nouveau afin de trouver,  de commencer à déchiffrer et de noter les numéros de pages (dans votre cahier de recherche) où sont indiquées les incertitudes (DC) en tension, en courant et en résistance de ces instruments;
+\item le complément \textit{Composants électriques linéaires};
+\item le complément \textit{Lois et théorèmes de base en électricité};
+\item la section "Méthodes expérimentales" du \textit{Guide de rédaction de rapports scientifiques};
+\item le protocole de ce laboratoire.
 \end{itemize}
-
+\vspace{1ex}
+\noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{En plus de ces lectures, n'hésitez pas à noter vos réflexions et avancer votre préparation dans le cahier de recherche.}}
 
 \section{Matériel}
 
 \noindent La réalisation de ce laboratoire requiert l'utilisation de:
 \vspace{1ex}
-\begin{itemize}
+\begin{itemize} \itemsep4pt
 \item un multimètre à 4\textonehalf~chiffres;
 \item un multimètre à 6\textonehalf~chiffres;
 \item une source d'alimentation;
@@ -100,15 +94,22 @@ Dans ce laboratoire, l’étudiant poursuivra l’apprentissage des notions de m
 
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 
-\subsection{Partie 1 --- Mesures biaisées et non biaisées}
+\subsection{Partie 1 --- Mesures biaisées et non biaisées} \label{sec:part1}
 
 Faites les étapes de cette partie avec cinq résistances $R$ différentes: 12~$\Omega$, 270~$\Omega$, 560~$\Omega$, 100~k$\Omega$ et 1~M$\Omega$.
 
 a) Mesurez la valeur de chaque résistance en utilisant la fonction ohmmètre du multimètre à 6\textonehalf~chiffres. Tout d'abord, utilisez seulement deux fils. Ensuite, refaites les mesures en utilisant quatre fils. Notez vos mesures et leurs incertitudes dans un tableau.
 
-Pour les étapes b) et c), utilisez simultanément le multimètre à 4\textonehalf~chiffres comme voltmètre et le multimètre à 6\textonehalf~chiffres comme ampèremètre.
+b) Calculez la tension maximale à ne pas dépasser avec la source pour les circuits des figures~\ref{L2-sch-tensionnb} et \ref{L2-sch-courantnb}, sachant que: 
+    \begin{itemize}
+    \item les résistances énumérées dans la liste du matériel ne peuvent pas dissiper plus de \textonequarter~Watt sécuritairement,  
+    \item on choisit de se limiter à 10\% de cette valeur.
+    \end{itemize}
+\vspace{1ex}
 
-b) Réalisez le circuit de la figure~\ref{L2-sch-tensionnb} sur la plaquette de montage. Appliquez une tension (ne dépassez pas la valeur maximale calculée en préparation) et notez les valeurs de tension et de courant mesurées ainsi que leurs incertitudes. Calculez la valeur de chaque résistance et l'incertitude associée à partir de ces résultats.
+\noindent Pour ces mêmes circuits aux étapes c) et d) suivantes, utilisez simultanément le multimètre à 4\textonehalf~chiffres comme voltmètre et le multimètre à 6\textonehalf~chiffres comme ampèremètre.
+
+c) Réalisez le circuit de la figure~\ref{L2-sch-tensionnb} sur la plaquette de montage. Appliquez une tension quelconque, en restant inférieure à la limite maximale calculée à l'étape précédente, et notez les valeurs de tension et de courant mesurées ainsi que leurs incertitudes. Calculez la valeur de chaque résistance et l'incertitude associée à partir de ces résultats.
 
 \begin{figure}[h]
 \centering
@@ -119,7 +120,7 @@ b) Réalisez le circuit de la figure~\ref{L2-sch-tensionnb} sur la plaquette de 
 \caption{\label{L2-sch-tensionnb}Mesure de la tension et du courant d'une résistance -- tension non biaisée.}
 \end{figure}
 
-c) Réalisez le circuit de la figure~\ref{L2-sch-courantnb} sur la plaquette de montage. Encore une fois, appliquez une tension et notez les valeurs de tension et de courant. Calculez la valeur (et l'incertitude) de chaque résistance à partir de ces résultats.
+d) Réalisez le circuit de la figure~\ref{L2-sch-courantnb} sur la plaquette de montage. Encore une fois, appliquez une tension inférieure à la limite et notez les valeurs de tension et de courant. Calculez la valeur (et l'incertitude) de chaque résistance à partir de ces résultats.
 
 \begin{figure}[h]
 \centering
@@ -166,17 +167,16 @@ g) Refaites l'étape f) pour l'autre extrémum du potentiomètre, puis pour deux
 h) À partir de vos résultats, déduisez la résistance interne de la source «boîte noire». Faites vérifier votre résultat par un dépanneur.
 
 
-\section{Observations \& Analyses}
+\section{Questions d'analyse II} \label{sec:grade}
+\vspace{-0.5cm}
+\noindent\textbf{$\rightarrow$ À remettre sur \href{https://www.gradescope.com/}{Gradescope} $\leftarrow$}
 
 \begin{enumerate}
-\item \texttt{[analyse]} À partir des résultats obtenus à l'étape a) de la première partie, calculez le pourcentage d'écart entre les mesures prises avec deux fils et celles prises avec quatre fils. Pour quelle résistance le pourcentage d'écart est-il le plus important et quelle en est la cause?
-\item \texttt{[analyse]} À partir des résultats des étapes b) et c) de la première partie, quelles étaient les mesures indirectes de résistance les plus significativement biaisées? À partir de ces résultats biaisés, déduisez la valeur de la résistance interne du voltmètre et celle de l'ampèremètre.
-\item \texttt{[observation]} Les mesures en circuit fermé avec la pomme de terre au premier laboratoire étaient-elles biaisées a) en tension ou b) en courant?
-\item \texttt{[observation]} Est-ce que l'incertitude d'une mesure dépend \textit{uniquement} de l'exactitude de l'instrument utilisé? Supportez votre réponse à l'aide d'un exemple tiré de chacun des deux premiers laboratoires.
+\item À partir des résultats obtenus à l'étape a) de la première partie, calculez le pourcentage d'écart entre les mesures prises avec deux fils et celles prises avec quatre fils. Pour quelle résistance le pourcentage d'écart est-il le plus important et quelle en est la cause?
+\item À partir des résultats des étapes b) et c) de la première partie, quelles étaient les mesures indirectes de résistance les plus significativement biaisées? À partir de ces résultats biaisés, déduisez la valeur de la résistance interne du voltmètre et celle de l'ampèremètre.
+\item Les mesures en circuit fermé avec la pomme de terre au premier laboratoire étaient-elles biaisées a) en tension ou b) en courant?
+\item Est-ce que l'incertitude d'une mesure dépend \textit{uniquement} de l'exactitude de l'instrument utilisé? Supportez votre réponse à l'aide d'un exemple tiré de chacun des deux premiers laboratoires.
+\item \textsc{Section de rapport - Méthodes expérimentales:} Écrivez en moins de 200 mots les méthodes expérimentales d'un rapport scientifique portant sur la première partie ce laboratoire. C'est en effet sur la \nameref{sec:part1} seulement.
 \end{enumerate}
-
-\section{Section de rapport II}
-
-Écrivez en moins de 200 mots la partie \textit{méthodes expérimentales} d'un rapport qui porterait sur la première partie de cette séance de laboratoire. C'est en effet sur la PARTIE~1 seulement.
 
 \end{document}

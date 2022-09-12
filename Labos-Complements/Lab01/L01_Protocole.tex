@@ -21,7 +21,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{siunitx}
 \usepackage{xcolor}
-\usepackage{hyperref}
+\PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
 \usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
@@ -47,26 +47,26 @@
 %
 %---------------------------------------------------
 %
-\title{\textbf{Laboratoire I}\\Métrologie \& statistiques : acquisition numérique\thanks{Auteurs: Claudine Allen \& Jean-Raphaël Carrier}}
+\title{\vspace{-1.8cm}\textbf{Laboratoire I}\\Métrologie \& statistiques : acquisition numérique\thanks{Auteurs: Claudine Allen \& Jean-Raphaël Carrier}}
 \renewcommand\footnotemark{}
 \date{}
 
 \begin{document}
 
-\maketitle \vspace{-1.5cm}
+\maketitle \vspace{-1.8cm}
 
 \noindent\textit{\textbf{Prélude de structure et logistique des laboratoires}} \par
-\textit{Chaque protocole est divisé en 5 sections qui, à l'exception des \nameref{sec:obj} du \nameref{sec:mat}, correspondent au moment où le travail de laboratoire doit être effectué:}\par
+\textit{Chaque protocole est divisé en 5 sections qui, à l'exception des \nameref{sec:obj} et du \nameref{sec:mat}, correspondent au moment où le travail de laboratoire doit être effectué:}\par
 \begin{itemize} \itemsep0.3ex \itshape
     \item \nameref{sec:prep} $\rightarrow$ avant la séance de laboratoire,
     \item \nameref{sec:manip} $\rightarrow$ pendant, en parallèle avec l'expérimentation,
     \item \nameref{sec:grade} $\rightarrow$ après, dans la semaine qui suit.
 \end{itemize}
-\vspace{1ex}
-\noindent{\itshape La recherche va donc bien au-delà de faire les expériences proprement dites et le \texttt{Cahier de recherche} est votre journal de bord pour vous accompagner à toutes ces étapes. N'hésitez pas à y écrire vos pensées en tout temps dans le cahier OneNote de votre équipe <\url{https://www.onenote.com/notebooks}>, surtout en ce premier cours de laboratoire où son évaluation se concentre sur la consignation de la recherche en temps réel. Le guide de rédaction du cahier spécifiant des consignes de traçabilité et de continuité de la recherche sera noté seulement de manière formative cette session en vue de progresser vers une évaluation complète dans les cours expérimentaux subséquents.
-\vspace{3ex}
+\vspace{0.5ex}
+\noindent{\itshape La recherche en science et génie va donc bien au-delà de faire les expériences proprement dites et le \texttt{Cahier de recherche} est votre journal de bord pour vous accompagner à toutes ces étapes. N'hésitez pas à y écrire vos pensées en tout temps dans le cahier OneNote de votre équipe <\url{https://www.onenote.com/notebooks}>, surtout en ce premier cours de laboratoire où son évaluation se concentre beaucoup sur la consignation de la recherche en temps réel. La rédaction du cahier selon les consignes du guide, qui assure la traçabilité et la continuité de la recherche, sera donc notée sur la base d'une auto-évaluation collaborative cette session en vue de progresser vers une évaluation complète dans les cours expérimentaux subséquents.
+\vspace{1.5ex}
 
-La compréhension du contenu en laboratoire sur l'électronique, la métrologie, l'analyse des résultats et la statistique, quant à elle, repose sur une évaluation des lectures préparatoires (quiz sur le site de cours) et des questions de la section \nameref{sec:grade} <\url{https://www.gradescope.com/}>. La toute dernière de ces questions évaluera aussi votre progression en rédaction scientifique et technique sur les 4 premiers laboratoires qui, en rassemblant les parties, forment l'essentiel de votre premier rapport de laboratoire universitaire.}
+La compréhension du contenu en laboratoire sur l'électronique, la métrologie, l'analyse des résultats et la statistique, quant à elle, repose sur une évaluation des \nameref{sec:prep} (quiz sur le site de cours) et des \nameref{sec:grade} (énoncées à la fin du protocole et à remettre sur <\url{https://www.gradescope.com/}>). La toute dernière de celles-ci suivra votre progression en rédaction scientifique et technique sur les 4 premiers laboratoires qui, en rassemblant les réponses, forment l'essentiel de votre premier rapport de laboratoire universitaire. Du côté des lectures, elles constituent la première étape pour bien se préparer à toute séance de recherche en laboratoire, puisqu'il faut bien sûr comprendre le sujet des expériences que l'on veut développer. Un.e chercheur.e professionnel.le doit trouver des sources rigoureuses sur le sujet en étant de préférence assisté.e par le service d'une bibliothèque scientifique pour exercer un jugement critique sur la qualité des sources dans la surabondance d'informations en ligne. Une bonne préparation expérimentale se complète alors comme un.e athlète qui se prépare pour un match sportif, soit en visualisant et calculant d'avance tout ce qui pourrait se produire au laboratoire.}
 
 \section{Objectifs} \label{sec:obj}
 
@@ -76,22 +76,20 @@ Ce laboratoire vise à familiariser l’étudiant à l’acquisition de données
 %\thispagestyle{empty}
 %\newpage
 
-\section[Lectures préparatoires]{Lectures préparatoires\footnote{Ces lectures font l'objet d'un bref quiz sommatif, accédez-le en arrivant à chaque laboratoire sur le site de cours.}} \label{sec:prep}
+\section[Lectures préparatoires]{Lectures préparatoires\footnote{Accédez le quiz sommatif pour ces lectures sur le site de cours, en arrivant à chaque laboratoire.}} \label{sec:prep}
 \vspace{-2ex}
 
-\begin{itemize} \itemsep6pt
+\begin{itemize} \itemsep3pt
 \item le manuel\footnote{\label{airtable}Tous les manuels d'instruction se retrouvent dans la colonne correspondante de la liste d'inventaire des composants \& instruments à l'adresse <\url{https://airtable.com/shrdI8Y6AqbNd7tZ8}>.} du module d'acquisition (pages 1 à 3, 12 à 15 et 24 à 26)
 \item le manuel\textsuperscript{\footnotemark\ref{airtable}} du multimètre à 4\textonehalf~chiffres (pages 20 à 24) 
 \item le manuel\textsuperscript{\footnotemark\ref{airtable}} du multimètre à 6\textonehalf~chiffres (pages 17 à 22)
 \item le complément \textit{Introduction à LabVIEW}, l'annexe n'est pas obligatoire, mais pourra vous être fort utile en cas de problème(s) de communication avec les instruments
 \item le complément \textit{Fonctionnement d'une pile électrochimique}
 \item les sections "Introduction" et "Conclusion" du \textit{Guide de rédaction de rapports scientifiques}
-\item le protocole de ce laboratoire en portant une attention particulière à la section \textbf{\nameref{sec:grade}}: à la sortie de chaque séance, il faut s'assurer d'avoir toutes les données correctes et autres informations nécessaires pour répondre à ces questions.
+\item le protocole de ce laboratoire en portant une attention particulière à la section \nameref{sec:grade}: à la sortie de chaque séance, il faut s'assurer d'avoir toutes les données correctes et autres informations nécessaires pour répondre à ces questions.
 \end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%% \noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{AJOUTER UN BEAU COMMENTAIRE COMME DE QUOI LES LECTURES EST JUSTE LE DÉBUT DE LA PREP, RÉFLÉCHIR AUX CALCULS POSSIBLES ET TOUTE POUR GAGNER DU TEMPS, EN PARTICULIER LORSQUE PROGRAMMATION}}%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{1ex}
+\noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{En plus de ces lectures, n'hésitez pas à noter vos réflexions et avancer votre préparation dans le cahier de recherche, allant du calcul de valeurs de référence à des tableurs pour recevoir vos données et leurs incertitudes, etc. Il est aussi fortement recommandé de débuter la programmation des VI \textit{LabVIEW} puisque le temps nécessaire varie en fonction de votre pratique et des bogues!}}
 
 %\vspace{1ex}
 % \noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{Cette dernière étape de préparation, pour vous familiariser avec le service logiciel Tinkercad, doit être faite en ligne INDIVIDUELLEMENT par tous.tes.}}
@@ -171,9 +169,11 @@ b) À l'aide du multimètre à 4\textonehalf~chiffres, mesurez la différence de
 c) Refaites la mesure avec le multimètre à 6\textonehalf~chiffres et notez l'incertitude en comparant à l'étape précédente.
 
 d) Réalisez une acquisition de données informatiques avec le module d'acquisition. Pour ce faire, reliez les deux électrodes (les tiges d'inox et d'aluminium) aux bornes $+$ et $-$ de la voie \textbf{ai0}. À l'aide du VI que vous avez construit dans la première partie, faites l'acquisition des données puis transférez le fichier \texttt{.lvm} obtenu dans votre canal privé MS Teams via l'onglet correspondant accompagnant votre cahier de recherche. Notez que le crochet dans la fenêtre de transfert génère une publication et des notifications intempestives, à éviter svp. Vous pouvez aussi transférer tous vos fichiers pour le travail à distance seulement à la fin du laboratoire, mais n'oubliez pas de le faire, car l'ordinateur peut être réinstallé en effaçant les données à tout moment.
+\vspace{1ex}
 
-%%Une tcolorbox serait sympa pour ça :) :)
-\textbf{Sagesse expérimentale:} Toujours vérifier immédiatement que les données sont bien enregistrées dans votre fichier à l'aide d'un simple éditeur de texte, par exemple \textit{Bloc-notes (Notepad)} sur \textit{OS Windows} ou \textit{TextEdit} sur \textit{MacOS}. Un esprit critique attentif pourra même parfois déjà déceler des erreurs de mesures problématiques. Par exemple, une colonne entière de valeurs très proches de zéro peut être suspecte si le signal mesuré n'est pas censé être nul. 
+%%Une tcolorbox serait encore plus sympa pour ça :) :)
+\noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\textbf{Sagesse expérimentale:} Toujours vérifier immédiatement que les données sont bien enregistrées dans votre fichier à l'aide d'un simple éditeur de texte, par exemple \textit{Bloc-notes (Notepad)} sur \textit{OS Windows} ou \textit{TextEdit} sur \textit{MacOS}. Un esprit critique attentif pourra même parfois déjà déceler des erreurs de mesures problématiques. Par exemple, une colonne entière de valeurs très proches de zéro peut être suspecte si le signal mesuré n'est pas censé être nul.}} 
+\vspace{1ex}
 
 e) Importez les données de votre fichier \texttt{.lvm} dans un format numérique à l'aide d'un des logiciels d'analyse suggérés à l'entrée du site Web de cours\footnote{Le choix de logiciel n'est pas imposé à ce point-ci, mais il est recommandé d'évoluer progressivement vers les outils du langage \textit{Python} libre d'accès et bien adapté aux travaux de physique. L'équipe d'enseignement peut vous conseiller dans ce choix en fonction de votre niveau actuel de connaissances informatiques.} puis tracez leur graphique en nuage de points (\textit{scatter}). Vous constaterez que la résolution de l'appareil est très faible\footnote{N'hésitez pas à consulter l'équipe d'enseignement pour bien comprendre où la résolution intervient dans cette mesure.}. Pour améliorer la résolution de l'appareil, réduisez la gamme du signal d'entrée de l'Assistant DAQ : mettez des valeurs maximale et minimale de 1~V et $-1$~V respectivement. Puis, faites à nouveau une acquisition de données.
 
@@ -197,18 +197,18 @@ Maintenant, faites une acquisition des données. Sur votre logiciel d'analyse nu
 \caption{\label{L1-sch-patate}Schéma du montage de la partie h) avec R1~=~1~k$\Omega$ et R2~=~12~$\Omega$.}
 \end{figure}
 
-\section{????Observations \& Analyses I????} \label{sec:grade}
+\section{Questions d'analyse I} \label{sec:grade}
 \vspace{-0.5cm}
 \noindent\textbf{$\rightarrow$ À remettre sur \href{https://www.gradescope.com/}{Gradescope} $\leftarrow$}
 
 \begin{enumerate}
 \item Évaluez en millivolts la résolution de numérisation (conversion analogique-numérique, échantillonnage) du module d'acquisition lors d'une mesure de tension, sachant que cette mesure sera une différence (\textit{differential}) de potentiel entre deux points du circuit. Faites ce calcul pour les deux intervalles utilisés avec le module d'acquisition, soit $-10$~V à 10~V et $-1$~V à 1~V, et comparez ces résultats à ceux mesurés au laboratoire.\\ \textit{N.B. Longueur estimée de la démarche de solution: 1 ligne pour chaque intervalle. On fait appel à vos capacités de chercheur, dans le sens littéral de chercher par vous-même, pour comprendre le rôle du module d'acquisition avec son manuel et autres sources d'information (\textit{e.g.} dictionnaire!) sur la numérisation. Des discussions à ce sujet avec l'équipe d'enseignement et sur le canal général du \texttt{Teams} de cours sont encouragées.}
-\item À l'étape g) de la deuxième partie, vous avez probablement remarqué que la différence de potentiel entre les électrodes dépendait des métaux choisis. Quelle combinaison permet d'obtenir la plus haute tension?
-\item Vous aurez aussi remarqué que la combinaison acier--aluminium donnait une tension qui fluctuait autour de zéro. Pourquoi en est-il ainsi?\\a) L'acier est oxydé.\\b) Acier et aluminium commencent les deux par la lettre «a», donc ils ne peuvent réagir ensemble.\\c) Les deux métaux ont la même électronégativité.
+%\item À l'étape g) de la deuxième partie, vous avez probablement remarqué que la différence de potentiel entre les électrodes dépendait des métaux choisis. Quelle combinaison permet d'obtenir la plus haute tension?
+\item Vous aurez remarqué que la combinaison acier--aluminium donnait une tension qui fluctuait autour de zéro. Pourquoi en est-il ainsi?\\a) L'acier est oxydé.\\b) Acier et aluminium commencent les deux par la lettre «a», donc ils ne peuvent réagir ensemble.\\c) Les deux métaux ont la même électronégativité.
 \item Comparez l’histogramme de l’étape~f) pour la combinaison inox-aluminium à celui de l’étape~h) en explicitant en légende lequel des deux correspond le mieux au modèle de la loi normale (distribution gaussienne). Pour le cas où cette loi ne s’applique PAS, présentez aussi graphiquement les données de tension d'une manière différente qui met en lumière le manque de stabilité de la mesure.
 \item À partir des mesures de l'étape~i), calculez la valeur de la grosse résistance en utilisant une \textit{évaluation de Type A de l'incertitude} tel que présentée dans l’introduction aux bases de la métrologie. Concrètement, divisez la colonne \textit{tension} par la colonne \textit{courant} pour obtenir une distribution de la mesure de résistance. Puis, comparez la moyenne et la médiane de cette distribution de résistance.\\ \textit{N.B. Dans cette situation instable, il vaut mieux définir un intervalle d'incertitude très élargi en multipliant par 3 l'écart type~$\sigma$ de votre distribution de données.}
 \item Lesquelles de ces questions peuvent être répondues en préparation avant le laboratoire?
-\item \textsc{Sections de rapport - Introduction \& conclusion:} Écrivez en moins de 350 mots (combinés) l'introduction et la conclusion d'un rapport scientifique portant sur l'ensemble du laboratoire.\footnote{Les instructions et explications d'écriture pour chaque section sont détaillées dans le document \texttt{Guide de rédaction de rapports scientifiques.}}
+\item \textsc{Sections de rapport - Introduction \& Conclusion:} Écrivez en moins de 350 mots (combinés) l'introduction et la conclusion d'un rapport scientifique portant sur l'ensemble du laboratoire.\footnote{Les instructions et explications d'écriture pour chaque section sont détaillées dans le document \texttt{Guide de rédaction de rapports scientifiques.}}
 \end{enumerate}
 
 \end{document}
