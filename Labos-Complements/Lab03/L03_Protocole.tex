@@ -19,7 +19,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{siunitx}
 \usepackage{xcolor}
-\usepackage{hyperref}
+\PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{enumitem}
 \usepackage{graphicx}
@@ -53,25 +53,23 @@
 
 La courbe $i$--$v$ est le pont principal entre la multidisciplinarité de la science des matériaux et l’ingénierie des dispositifs tels que ceux étudiés dans ce laboratoire: résistance, condensateur, inductance, diode, transistor. Ces dispositifs peuvent avoir plusieurs fonctions comme cuire, illuminer, calculer, stabiliser une tension, etc., mais l’intégration de ces composants dans un circuit en courant continu demeure régie par les principes de conservation édictés avec les lois de Kirchhoff. En effet, on peut approximer une résistance dynamique linéaire par morceaux à partir de la dérivée de la courbe $i$--$v$ afin d’analyser un circuit comportant des composants non linéaires. Spécifiquement, le comportement de diodes sera caractérisé pendant le laboratoire et comparé au cas idéal en termes de résistance dynamique. Quelques caractéristiques d’un transistor seront aussi explorées pour commencer à comprendre leur fonctionnement. Finalement, comme l’acquisition de données des courbes $i$--$v$ impliquera plusieurs instruments contrôlés par ordinateur, l’étudiant se familiarisera aussi avec les protocoles informatiques de communication entrée-sortie.
 
-\newpage
-\section{Préparation}
+\section[Lectures préparatoires]{Lectures préparatoires} \label{sec:prep}
 
-\noindent Avant de se présenter au laboratoire, chaque étudiant.e doit au minimum:
-\vspace{1ex}
-\begin{itemize}
-\item relire le complément \textit{Introduction à LabVIEW};
-\item lire le complément \textit{Composants non linéaires};
-\item lire la section "Discussion" du \textit{Guide de rédaction de rapports scientifiques};
-\item lire le protocole de ce laboratoire;
-\item débuter la conception des VI \textit{LabVIEW}, sachant que les instructions des protocoles deviennent progressivement incomplètes pour laisser place à votre autonomie de programmeur. Si vous n'êtes pas au laboratoire, vous ne pourrez pas vérifier que vos VI sont pleinement fonctionnels, puisque les pilotes des appareils périphériques\footnote{Toutefois, les pilotes \textit{LabVIEW} des appareils sont téléchargeables sur le site du cours au besoin.} doivent communiquer aux instruments allumés et branchés à un ordinateur du VCH-0647 pour exécuter. Il s'agit donc d'avancer le code de vos VI suffisamment pour ne pas manquer de temps durant la séance de laboratoire. Finalement, pour transférer votre VI sur les ordinateurs du laboratoire s'il y a lieu, vous devez l'enregistrer dans la même version de \textit{LabVIEW} que celle sur les postes de travail.
+\begin{itemize} \itemsep4pt
+\item la relecture du complément \textit{Introduction à LabVIEW} parce que les instructions de programmation deviennent de plus en plus incomplètes(!) pour laisser place au développement de votre autonomie (\textit{e.g.} les fonctions \textbf{Initialize} et \textbf{Close} ne seront pas toutes indiquées alors qu'elles doivent respectivement ouvrir et fermer la communication avec chaque instrument); 
+\item le complément \textit{Composants non linéaires};
+\item la section "Discussion" du \textit{Guide de rédaction de rapports scientifiques};
+\item le protocole de ce laboratoire avec la recommandation de commencer les VI \textit{LabVIEW} en parallèle sur votre poste informatique au laboratoire ou sur votre ordinateur personnel\footnote{Les informations d'installation du logiciel \textit{LabVIEW} et des pilotes des appareils périphériques sont détaillées dans la section \texttt{Logiciels} de l'onglet \texttt{Matériel didactique} sur la gauche du site de cours. Dans ce cas, portez attention à la compatibilité lors du transfert de vos VI sur les ordinateurs du VCH-0647: il faut enregistrer chaque VI sous une version avec une année la plus proche possible des licences \textit{LabVIEW} au laboratoire (généralement indiquée à l'ouverture du logiciel ou dans un menu \texttt{À propos de}). Notez d'ailleurs que vos VI ne pourront pas s'exécuter directement sur votre propre ordinateur parce qu'il n'est pas branché aux instruments de mesure allumés, la communication des pilotes de périphériques sera donc interrompue.}.
+
 \end{itemize}
-
+\vspace{1ex}
+\noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{En plus de ces lectures, n'hésitez pas à noter vos réflexions et avancer votre préparation dans le cahier de recherche. Le chemin du fichier VI pour retrouver votre programmation \textit{LabVIEW} débutée à l'avance, qui vous permettra d'avoir le temps nécessaire pour compléter et déboguer le code pendant la séance de laboratoire, devrait déjà être noté dans votre cahier et peut même s'accompagner de captures d'écran.}}
 
 \section{Matériel}
 
 \noindent La réalisation de ce laboratoire requiert l'utilisation de:
 \vspace{1ex}
-\begin{itemize}
+\begin{itemize} \itemsep4pt
 \item une source d'alimentation;
 \item un multimètre à 6\textonehalf~chiffres;
 \item un ordinateur avec le logiciel \textit{LabVIEW};
@@ -240,10 +238,12 @@ a) Placez une diode Zener en série avec une résistance de 1~k$\Omega$, en util
 b) Faites varier la source de 0~volt à 15~volts par incréments de 1~volt. À l'aide d'un multimètre en mode voltmètre (DCV), mesurez à chaque fois la tension $v_{\mathrm{out}}$.
 
 
-\section{Observations \& Analyses}
+\section{Questions d'analyse III} \label{sec:grade}
+\vspace{-0.5cm}
+\noindent$\rightarrow$ À remettre en équipe sur \href{https://www.gradescope.com/}{Gradescope} en ajoutant votre \href{https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members}{binôme de laboratoire} $\leftarrow$
 
 \begin{enumerate}
-    \item \texttt{[observation]} Quelle est la résistance
+    \item Quelle est la résistance
         \begin{enumerate}
             \item d'un condensateur idéal?
             \item d'une bobine d'inductance idéale?
@@ -253,17 +253,13 @@ b) Faites varier la source de 0~volt à 15~volts par incréments de 1~volt. À l
 \textit{Indice: Ces deux composants remplissent une fonction dans un circuit à courant alternatif, car leur relation entre tension et courant dépend d'un taux de VARIATION par rapport au temps. Ils ne servent donc à rien en courant continu et il s'agit de comprendre physiquement pourquoi.}
 
 \begin{enumerate}[resume]
-    \item \texttt{[observation]} La courbe $i$--$v$ que vous avez mesurée pour un de ces deux composants ne correspond pas du tout au modèle idéal. De quel composant s'agit-il et quelle est la cause d'erreur expliquant cette déviation?
-    \item \texttt{[analyse]} Pour le transistor, faites un graphique superposant l'ensemble des courbes $i$--$v$ dont vous avez fait l'acquisition pendant le laboratoire. Indiquez explicitement au-dessus de chaque courbe la valeur de courant de saturation~$i_{\mathrm{sat}}$, \textit{i.e.} le plateau maximal de courant (avec incertitude par rapport à l'horizontale) qui entre dans le collecteur~$i_{\mathrm{ce}}$.
-\end{enumerate}
-%**Autres possibilités de questions:**
-%\item À l'étape l) de la partie 1, vous avez mesuré trois résistances de 1,2~k$\Omega$ différentes. Avez-vous obtenu \textit{exactement} les mêmes valeurs de résistance pour chacune? Pourquoi? Indice : quelle est la tolérance des résistances de 1,2~k$\Omega$?
-%%\item Comparez les courbes $i$--$v$ des diodes «normale» et Zener. Pourquoi est-il préférable de limiter (réguler) la tension avec une diode Zener en polarité inverse au lieu d'une diode normale en polarité directe?
-
-\section{Section de rapport III}
-
-Écrivez en moins de 400 mots une partie d'analyse des résultats et discussion d'un rapport de laboratoire sur la caractérisation et l'interprétation du comportement de la diode standard. Dans un TEXTE CONTINU, présentez et/ou discutez les éléments suivants en poursuivant l'utilisation du vocabulaire de métrologie pour faire des comparaisons claires:
-\begin{enumerate}
+    \item La courbe $i$--$v$ que vous avez mesurée pour un de ces deux composants ne correspond pas du tout au modèle idéal. De quel composant s'agit-il et quelle est la cause d'erreur expliquant cette déviation?
+    \item Pour le transistor, faites un graphique superposant l'ensemble des courbes $i$--$v$ dont vous avez fait l'acquisition pendant le laboratoire. Indiquez explicitement au-dessus de chaque courbe la valeur de courant de saturation~$i_{\mathrm{sat}}$, \textit{i.e.} le plateau maximal de courant (avec incertitude par rapport à l'horizontale) qui entre dans le collecteur~$i_{\mathrm{ce}}$.
+    %**Autres possibilités de questions:**
+    %\item À l'étape l) de la partie 1, vous avez mesuré trois résistances de 1,2~k$\Omega$ différentes. Avez-vous obtenu \textit{exactement} les mêmes valeurs de résistance pour chacune? Pourquoi? Indice : quelle est la tolérance des résistances de 1,2~k$\Omega$?
+    %%\item Comparez les courbes $i$--$v$ des diodes «normale» et Zener. Pourquoi est-il préférable de limiter (réguler) la tension avec une diode Zener en polarité inverse au lieu d'une diode normale en polarité directe?
+    \item \textsc{Section de rapport - Analyse des résultats \& discussion:} Écrivez en moins de 400 mots une partie d'analyse des résultats et discussion d'un rapport de laboratoire sur la caractérisation et l'interprétation du comportement de la diode standard. Dans un TEXTE CONTINU, présentez et/ou discutez les éléments suivants en poursuivant l'utilisation du vocabulaire de métrologie pour faire des comparaisons claires:
+\begin{itemize}
     \item graphique de résistance dynamique $R_{D}=\frac{\mathrm{d}v}{\mathrm{d}i}$ mesurée en fonction de la tension \emph{(faites une différentiation numérique pour traiter directement vos données mesurées)},
     \item analyse des cas limites de $R_{D}$ mesurée en les comparant aux valeurs attendues selon le modèle de la diode idéale,
     \item analyse de la tension seuil $V_{d}$ minimale qui fait circuler le courant dans la diode: comparaison de la valeur de référence versus le comportement observé, 
@@ -272,6 +268,7 @@ b) Faites varier la source de 0~volt à 15~volts par incréments de 1~volt. À l
     \item graphique de la courbe $i$--$v$ mesurée (avec des points) et de l'équation de Shockley ajustée à ces données (avec une ligne); cet ajustement (régression, \textit{fit}) de courbe se fait avec des outils informatiques, par exemple \textit{Curve Fitting Toolbox} de \textit{MATLAB} ou \textit{scipy.optimize.curve\_fit} de \textit{Python},
     \item analyse de la correspondance entre la fonction ajustée et les résultats de mesure sur ce graphique,
     \item interprétation des résultats au mieux de vos connaissances sur la physique des diodes.
+\end{itemize}
 \end{enumerate}
 
 Pour ce dernier item, d'autres sources que les notes de cours, allant de sites Internet professionnels à la bibliothèque qui existe encore(!), peuvent être utilisées pour aller plus en profondeur dans votre discussion. Il n'est pas nécessaire de maîtriser toute la physique de la matière condensée à ce point-ci bien sûr, veuillez respecter la limite de mots pour cette question.
