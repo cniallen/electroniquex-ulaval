@@ -96,7 +96,7 @@ a) Réalisez le circuit de la figure~\ref{fig-R} avec le multimètre à 6\texton
 \caption{\label{fig-R}Circuit pour la mesure de la courbe $i$--$v$ de la résistance.}
 \end{figure}
 
-b) Sur l'ordinateur, démarrez \textit{LabVIEW} et ouvrez un VI vide. Enregistrez-le dans votre dossier sur le domaine FSG (et enregistrez-le fréquemment tout au long de la création du VI).
+b) Sur l'ordinateur, démarrez \textit{LabVIEW} et ouvrez un VI vide. Enregistrez-le localement sur le PC fréquemment tout au long de la création du VI, puis, avant de quitter le laboratoire, assurez-vous de transférer une copie dans votre chaîne Teams d'équipe et/ou dans votre espace de stockage OneDrive personnel (accessible via l'Explorateur de fichiers, ou en ligne sur \url{https://onedrive.live.com}, ou etc.). Les ordinateurs du laboratoire pouvant être réinstallés de zéro sans préavis en cas de bogues, vivre sans copies de sauvegarde est à vos risques et périls!
 
 c) Sur le diagramme, insérez la fonction \textbf{Initialize} de la source d'alimentation (\texttt{E/S d'instruments $\rightarrow$ Drivers d'instruments $\rightarrow$ Agilent E363X Series $\rightarrow$\linebreak Initialize}). Afin de mieux voir ses sorties et ses entrées, vous pouvez cliquer droit et déselectionner \textbf{Visualiser sous la forme d'une icône}.
 
@@ -136,7 +136,7 @@ l) Désormais, \textit{LabVIEW} peut appliquer une tension avec le bloc d'alimen
 
 \subsection{Partie 2 --- Automatisation du VI}
 
-Dans la partie précédente, vous avez construit un VI \textit{LabVIEW} pouvant appliquer une tension et mesurer un courant. Dans cette partie, vous modifierez ce VI afin que \textit{LabVIEW} puisse automatiquement mesurer le courant pour différentes tensions et afficher un graphique du courant en fonction de la tension. De plus, le VI devra enregistrer les données (autant de la tension fournie que du courant lu) dans un fichier, dans votre dossier sur le domaine FSG. Inspirez-vous de ce qui a été fait lors du premier laboratoire.
+Dans la partie précédente, vous avez construit un VI \textit{LabVIEW} pouvant appliquer une tension et mesurer un courant. Dans cette partie, vous modifierez ce VI afin que \textit{LabVIEW} puisse automatiquement mesurer le courant pour différentes tensions et afficher un graphique du courant en fonction de la tension. De plus, le VI devra enregistrer les données (autant de la tension fournie que du courant lu) dans un fichier: inspirez-vous de ce qui a été fait lors du premier laboratoire.
 
 Avant de commencer, enregistrez votre VI sous un autre nom (afin de pouvoir conserver votre premier VI).
 
@@ -237,6 +237,7 @@ a) Placez une diode Zener en série avec une résistance de 1~k$\Omega$, en util
 
 b) Faites varier la source de 0~volt à 15~volts par incréments de 1~volt. À l'aide d'un multimètre en mode voltmètre (DCV), mesurez à chaque fois la tension $v_{\mathrm{out}}$.
 
+\noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\centering \textbf{Rappel}\\ Avez-vous transféré des copies de sauvegarde pour tous vos fichiers de données et de programmation de VI dans votre chaîne Teams d'équipe et/ou dans votre espace de stockage OneDrive personnel?}}
 
 \section{Questions d'analyse III} \label{sec:grade}
 \vspace{-0.5cm}
