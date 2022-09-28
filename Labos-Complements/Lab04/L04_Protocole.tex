@@ -19,7 +19,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{siunitx}
 \usepackage{xcolor}
-\usepackage{hyperref}
+\PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
 \usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
@@ -45,7 +45,7 @@
 %
 %---------------------------------------------------
 %
-\title{\textbf{Laboratoire IV}\\Signaux périodiques : méthodes de mesure en courant alternatif \thanks{Auteurs: Claudine Allen \& Jean-Raphaël Carrier}}
+\title{\textbf{Laboratoire IV}\\Signaux périodiques : méthodes de mesure en courant alternatif \thanks{Auteurs: Claudine Allen, Jean-Raphaël Carrier \& Jérémie Guilbert}}
 \renewcommand\footnotemark{}
 \date{}
 
@@ -59,25 +59,26 @@ Ce laboratoire est essentiellement dédié à l’apprentissage du fonctionnemen
 
 \newpage
 
-\section{Préparation}
+\section[Lectures préparatoires]{Lectures préparatoires} \label{sec:prep}
 
-\noindent Avant de se présenter au laboratoire, chaque étudiant.e doit au minimum:
-\vspace{1ex}
-\begin{itemize}
-\item lire la \textit{Mise en route} (Chapitre 1) du \textit{Kit de formation de l'oscilloscope} (pages 7 à 13);
-\item trouver la page où se situent les incertitudes dans le manuel de l'oscilloscope (voir la fiche technique sur le site du cours) et noter ce numéro de page dans son cahier de laboratoire. Pour fins d'estimation de l'incertitude pendant l'expérience, veuillez noter que tous les instruments ont été achetés en 2011;
+\begin{itemize} \itemsep4pt
+\item la \textit{Mise en route} (Chapitre 1) du \textit{Kit de formation sur l'oscilloscope} (pages 7 à 13);
+\item la consultation de la fiche technique de l'oscilloscope et du générateur de fonctions (il y a deux instruments dans le même boîtier!) pour trouver, commencer à déchiffrer et noter les numéros de pages (dans votre cahier de recherche) où sont indiquées les incertitudes;
+%Pour fins d'estimation de l'incertitude pendant l'expérience, veuillez noter que tous les instruments ont été achetés en 2011;
 %%\item se réjouir, car on supposera toujours que l'incertitude de l'instrument pour la composante continue (\textit{offset}) est seulement de 2~mV, sauf si cette composante est supérieure à 10~V;
-\item lire le complément \textit{Introduction au courant alternatif};
-\item lire la section "Abrégé et page titre" du \textit{Guide de rédaction de rapports scientifiques};
-\item lire le protocole de ce laboratoire;
-\item calculer la valeur de tension efficace d'un signal carré et le facteur de crête d'un signal triangulaire. Pour ce faire, considérez des signaux purement alternatifs qui oscillent de $-v$ à $+v$, c'est-à-dire sans composante DC.
+\item le complément \textit{Introduction au courant alternatif};
+\item le complément \textit{Simulation de circuits sur le site de Paul Falstad} en consultant aussi le haut de la page Web <\url{https://www.falstad.com/circuit/directions.html}> jusqu'à la liste de circuits prédéfinis\footnote{Vous trouverez aussi de nombreux exemples de simulations à l'adresse <\url{https://www.falstad.com/circuit/e-index.html}> pour vous inspirer.};
+\item la section «Abrégé et page titre» du \textit{Guide de rédaction de rapports scientifiques};
+\item le protocole de ce laboratoire.
 \end{itemize}
+\vspace{1ex}
+\noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{En plus de ces lectures, n'hésitez pas à noter vos réflexions et avancer votre préparation dans le cahier de recherche.}}
 
 \section{Matériel}
 
 \noindent La réalisation de ce laboratoire requiert l'utilisation de:
 \vspace{1ex}
-\begin{itemize}
+\begin{itemize} \itemsep4pt
 \item un oscilloscope avec générateur de fonctions;
 \item deux sondes pour oscilloscope: à décrocher des portes de votre armoire;
 \item un multimètre à 4\textonehalf~chiffres;
@@ -96,7 +97,7 @@ Ce laboratoire est essentiellement dédié à l’apprentissage du fonctionnemen
 
 a) Reliez la sortie du générateur de fonctions à l'entrée du canal~1 à l'aide d'un câble coaxial, puis appuyez sur \textbf{Default Setup}.
 
-b) À l'aide du générateur de fonctions (appuyez sur \textbf{Wave Gen}), produisez un signal sinusoïdal de 2,5~V crête à crête, sans composante continue (i.e. sans décalage), à une fréquence de 500~Hz. Ce signal sera affiché sur l'écran.
+b) À l'aide du générateur de fonctions (appuyez sur \textbf{Wave Gen}), produisez un signal sinusoïdal de 2,5~V crête à crête, sans composante continue (\textit{i.e.} sans décalage DC), à une fréquence de 500~Hz. Ce signal sera affiché sur l'écran.
 
 Jouez ensuite avec les boutons rotatifs de l'oscilloscope afin que l'échelle horizontale soit de 1~ms/division et la verticale de 500~mV/division.
 
@@ -104,28 +105,30 @@ c) Appuyez sur \textbf{Cursors} pour utiliser les curseurs afin de prendre vos m
 
 À l'aide des curseurs, mesurez la période ($\Delta$X), la fréquence (1/$\Delta$X) ainsi que l'amplitude crête à crête ($\Delta$Y(1)) du signal sinusoïdal.
 
-\textbf{Note 1:} Il se peut que la valeur de l'amplitude crête à crête que vous mesuriez soit dix fois supérieure à celle attendue. Par défaut, l'oscilloscope multiplie par un facteur dix les valeurs mesurées, pour compenser la sonde qui transmet un signal dix fois plus faible que le signal réel. Mais comme vous n'utilisez pas de sonde pour l'instant, vous n'avez pas besoin de cette multiplication par dix. Pour changer le rapport 10 : 1 de la voie 1 de l'oscilloscope, cliquez sur \textbf{1}, puis sur \textbf{Sonde}. Vous pourrez alors fixer ce rapport à 1 : 1.
+\vspace{1ex}
+\noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{Il se peut que la valeur de l'amplitude crête à crête que vous mesuriez soit dix fois supérieure à celle attendue. Par défaut, l'oscilloscope multiplie par un facteur dix les valeurs mesurées, pour compenser la sonde qui transmet un signal dix fois plus faible que le signal réel. Mais comme vous n'utilisez pas de sonde pour l'instant, vous n'avez pas besoin de cette multiplication par dix. Pour changer le rapport 10~:~1 de la voie 1 de l'oscilloscope, cliquez sur \textbf{1}, puis sur \textbf{Sonde}. Vous pourrez alors fixer ce rapport à 1~:~1.}}
 
-d) Mesurez automatiquement avec l'oscilloscope (appuyez sur \textbf{Meas}) les différents paramètres suivants : la fréquence, l'amplitude crête à crête et la tension efficace. L'ajout de ce dernier se fait en deux étapes au bas de l'écran : \textbf{Type} et \textbf{Ajouter mesure}. Comparez ces mesures avec celles que vous aviez obtenues à l'aide des curseurs à l'étape c).
+d) Mesurez automatiquement avec l'oscilloscope (appuyez sur \textbf{Meas}) les paramètres suivants : la fréquence, l'amplitude crête à crête et la tension efficace. L'ajout de ce dernier se fait en deux étapes au bas de l'écran : \textbf{Type} et \textbf{Ajouter mesure}. Comparez les deux premières mesures avec celles que vous aviez obtenues à l'aide des curseurs à l'étape c).
 
-e) Refaites l'étape précédente avec un signal triangulaire (rampe) de tension conservant les mêmes fréquence et amplitude crête à crête, puis mesurez le facteur de crête et comparez à votre résultat obtenu en préparation.
+e) Refaites l'étape précédente avec un signal triangulaire (rampe) de tension conservant les mêmes fréquence et amplitude crête à crête, puis mesurez le facteur de crête.
 
-f) Envoyez maintenant le signal généré directement dans le multimètre à 4\textonehalf~chiffres. Utilisez un «T» pour que la sortie du générateur de fonctions soit envoyée simultanément au multimètre et à l'oscilloscope. Notez la tension mesurée avec le multimètre --- utilisez le mode \textbf{ACV} puisqu'il s'agit d'une tension alternative.
+f) Envoyez maintenant le signal généré directement dans le multimètre à 4\textonehalf~chiffres. Utilisez un «T» pour que la sortie du générateur de fonctions soit envoyée simultanément au multimètre et à l'oscilloscope. Notez la tension efficace mesurée avec le multimètre --- utilisez le mode \textbf{ACV} puisqu'il s'agit d'une tension alternative.
 
-g) Refaites l'étape précédente avec un signal carré de tension conservant les mêmes fréquence et amplitude crête à crête, puis comparez votre résultat de mesure à la valeur efficace calculée en préparation.
+g) Refaites l'étape précédente avec un signal carré de tension conservant les mêmes fréquence et amplitude crête à crête.
 
-\textbf{Note 2:} Ne vous souciez plus des incertitudes pour la suite du laboratoire, mais gardez un {\oe}il sur les chiffres significatifs.
+\vspace{1ex}
+\noindent\emph{\textbf{Note} -- Ne vous souciez plus des incertitudes pour la suite du laboratoire, mais gardez un {\oe}il sur les chiffres significatifs.}
 
 
 \subsection{Partie 2 --- Balayage et déclenchement}
 
-Pour cette partie du laboratoire seulement, vous n'avez pas à noter quoi que ce soit dans votre cahier de recherche électronique. Portez cependant attention à bien comprendre la fonction de déclenchement \textit{(trigger)} de l'oscilloscope, quitte à en discuter avec votre merveilleuse équipe d'enseignement {\texttt ;-)} C'est la difficulté critique pour arriver à afficher correctement le bon signal à l'écran.
+Pour cette partie du laboratoire seulement, vous n'avez pas à noter quoi que ce soit dans votre cahier de recherche électronique. Portez cependant attention à bien comprendre la fonction de déclenchement \textit{(trigger)} de l'oscilloscope, quitte à en discuter avec votre merveilleuse équipe d'enseignement {\texttt ;-)} C'est la principale difficulté pour arriver à afficher correctement le bon signal à l'écran.
 
-a) Faites le \textit{Lab~2 : Découverte des principes de base du déclenchement de l'oscilloscope} du kit de formation de l'oscilloscope (pages 22 à 27).
+a) Faites le «Lab~2 : Découverte des principes de base du déclenchement de l'oscilloscope» du \textit{Kit de formation sur l'oscilloscope} (pages 22 à 27).
 
-b) Faites le \textit{Lab~3 : Déclenchement sur des signaux bruyants} du kit de formation de l'oscilloscope (pages 28 à 32).
+b) Faites le «Lab~3 : Déclenchement sur des signaux bruyants» du \textit{Kit de formation sur l'oscilloscope} (pages 28 à 32).
 
-c) Faites le \textit{Lab~8 : Déclenchement, capture et analyse d'un événement occasionnel} du kit de formation de l'oscilloscope (pages 52 à 55).
+c) Faites le «Lab~8 : Déclenchement, capture et analyse d'un événement occasionnel» du \textit{Kit de formation sur l'oscilloscope} (pages 52 à 55).
 
 
 \subsection{Partie 3 --- Phaseurs et lois de Kirchhoff en courant alternatif}
@@ -162,26 +165,25 @@ f) Entortillez (\textit{twistez}) votre bout de fil dénudé avec un bout de fil
 g) Avec le générateur de fonctions, injectez dans la résistance et le fil isolé un signal sinusoïdal de 3~V crête à crête à une fréquence de 100~Hz. Sur l'oscilloscope, faites afficher la FFT du signal capté par le fil dénudé. Encore une fois, vous pourrez remarquer la présence d'un pic à 60~Hz qui correspond au bruit causé par les prises de courant et les appareils. Mais cette fois, ce pic ne devrait pas être le plus important : le pic maximal devrait se situer aux alentours de 100~Hz, soit la fréquence du signal traversant le fil non dénudé. Notez sa position ainsi que son amplitude.
 
 
-\section{Observations \& Analyses}
+\section{Questions d'analyse IV} \label{sec:grade}
+\vspace{-0.5cm}
+\noindent$\rightarrow$ À remettre en équipe sur \href{https://www.gradescope.com/}{Gradescope} en ajoutant votre \href{https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members}{binôme de laboratoire} $\leftarrow$
 
 \begin{enumerate}
-    \item \texttt{[analyse]} Dans la troisième partie, vous avez mesuré la tension aux bornes des quatre composants. Si vous additionnez simplement les quatre valeurs crête à crête obtenues, obtenez-vous la valeur crête à crête de la tension à la source? La loi de Kirchhoff des tensions est-elle encore valide en courant alternatif? Si, toutefois, vous additionnez vectoriellement les différentes tensions, en considérant chaque tension comme un phaseur ($v=v_0\,\textrm{e}^{j\phi}$), obtenez-vous la tension de la source? Commentez brièvement.
-    \item \texttt{[analyse]} Utilisez les résultats obtenus à l'étape c), toujours dans la troisième partie. La somme algébrique des tensions des deux résistances donne-t-elle la tension conjointe des deux résistances? Est-ce qu'elles sont identiquement déphasées par rapport à la source? Qu'en est-il pour les condensateurs?
-    \item 
+    \item Calculez la valeur de tension efficace d'un signal carré et le facteur de crête d'un signal triangulaire avec la fréquence et l'amplitude crête à crête employées par le générateur de fonctions dans la première partie des expériences. À l'aide des incertitudes et du vocabulaire international de métrologie (VIM), comparez vos résultats de mesure à ces calculs.
+    \item Dans la troisième partie, vous avez mesuré les paramètres de tension alternative aux bornes de quatre composants en série.
     \begin{enumerate}
-        \item Lisez le complément théorique \textit{Simulation de circuits sur le site de P. Falstad} qui se retrouve dans la page d'introduction du site de cours et consultez les directions de la page Web <\url{https://www.falstad.com/circuit/directions.html}> ainsi que les nombreux exemples <\url{https://www.falstad.com/circuit/e-index.html}> pour vous inspirer.\par
-        \item Simulez le circuit de la troisième partie dans Falstad. Dans un premier oscilloscope, affichez simultanément les tensions de la source, des deux résistances individuelles et de la résistance conjointe. Dans un second oscilloscope, faire de-même avec la source et les deux condensateurs. Confirmez ainsi par simulation vos observations expérimentales sur le déphasage des divers composants du circuit.\par
-        Observez comment il est ainsi facile de visualiser le courant alternatif, représenté par les points jaunes sur les fils (ajustez la bar \textit{Current speed} au besoin), et les changements de polarité, représentés par l'alternance entre le rouge et le vert.\par  
-        Vous pouvez remettre soit un lien vers le circuit simulé (\textit{File} $\rightarrow$ \textit{Export as text...}), ou encore une capture d'écran du circuit qui inclue les signaux sur les oscilloscopes.\par
-        \textit{Notez qu'il est possible d'ajuster les paramètres d'échelle (en voltage et en temps) des oscilloscopes, ainsi que la vitesse de simulation, afin de bien visualiser la forme des signaux.}
-    \end{enumerate}   
-    \item \texttt{[observation]} Dans la quatrième partie, lorsque vous avez affiché la FFT du signal sinusoïdal provenant du générateur de fonctions, vous avez remarqué que le pic correspondait à la fréquence dudit signal, soit 60~Hz. À quoi correspondent les pics subséquents que vous avez observés?
-    \item \texttt{[observation]} À l'étape e) de la quatrième partie, vous avez observé la présence d'une onde électromagnétique qui introduisait un signal parasite à 60~Hz. Donnez une hypothèse sur la provenance de cette onde qui serait conséquente avec la fréquence observée.
-    \item \texttt{[observation]} À l'étape g) de la quatrième partie, vous avez remarqué que le signal passe d'un fil à un autre sans qu'ils soient pour autant connectés, puisqu'ils étaient séparés par une gaine isolante. Le mécanisme physique de ce transfert de signal est le même que celui d'un composant électrique linéaire. Lequel?\\a) Résistance.\\b) Bobine d'inductance.\\c) Condensateur.\\d) Diode Zener.
+    \item Si vous additionnez simplement les quatre valeurs crête à crête obtenues, obtenez-vous la valeur crête à crête de la tension à la source? Si, toutefois, vous additionnez vectoriellement les différentes tensions avec la forme polaire des nombres complexes (phaseur $v=v_0\,\textrm{e}^{j\phi}$ où on omet $\textrm{e}^{j\omega t}$ qui reste le même dans tout le circuit linéaire), obtenez-vous la tension de la source? Que pouvez-vous ainsi conclure sur la validité de la loi des mailles de Kirchhoff en courant alternatif?
+    \item Utilisez les résultats obtenus à l'étape c), toujours dans la troisième partie. La somme algébrique des tensions des deux résistances donne-t-elle la tension conjointe des deux résistances? Est-ce qu'elles sont identiquement déphasées par rapport à la source? Qu'en est-il pour les condensateurs?
+    \item Simulez le circuit de la troisième partie dans Falstad. Dans un premier oscilloscope, affichez simultanément les tensions de la source, des deux résistances individuelles et de la résistance conjointe. Dans un second oscilloscope, faire de-même avec la source et les deux condensateurs. Confirmez ainsi par simulation vos observations expérimentales sur le déphasage des divers composants du circuit.\par
+        Observez comment Falstad permet de bien visualiser le courant alternatif, représenté par les points jaunes sur les fils (ajustez la barre \textit{Current speed} au besoin), et les changements de polarité, représentés par l'alternance rouge/vert.\par  
+        Vous pouvez remettre soit un lien vers le circuit simulé (\textit{File} $\rightarrow$ \textit{Export as text...}), ou encore une capture d'écran du circuit qui inclut les signaux sur les oscilloscopes.\par
+        \textit{Notez qu'il est possible d'ajuster les paramètres d'échelle (en voltage et en temps) des oscilloscopes, ainsi que la vitesse de simulation, afin de bien visualiser la forme des signaux. En cliquant sur le boutton droit dans un oscilloscope, puis en sélectionnant \textit{Properties...}$\rightarrow$\textit{Plots}, il est aussi possible de (dé)cocher \textit{Show current} afin de n'afficher que le signal de voltage.}
+    \end{enumerate}
+    \item Dans la quatrième partie, lorsque vous avez affiché la FFT du signal sinusoïdal provenant du générateur de fonctions, vous avez remarqué que le pic correspondait à la fréquence dudit signal, soit 60~Hz. À quoi correspondent les pics subséquents que vous avez observés?
+    \item À l'étape e) de la quatrième partie, vous avez observé la présence d'une onde électromagnétique qui introduisait un signal parasite à 60~Hz. Donnez une hypothèse sur la provenance de cette onde qui serait conséquente avec la fréquence observée.
+    \item À l'étape g) de la quatrième partie, vous avez remarqué que le signal passe d'un fil à un autre sans qu'ils soient pour autant connectés, puisqu'ils étaient séparés par une gaine isolante. Le mécanisme physique de ce transfert de signal est le même que celui d'un composant électrique linéaire. Lequel?\\a) Résistance.\\b) Bobine d'inductance.\\c) Condensateur.\\d) Diode Zener.
+    \item \textsc{Section de rapport - Abrégé:} Écrivez en moins de 200 mots l'abrégé \textit{(abstract)} d'un rapport de recherche qui porterait sur cette séance de laboratoire.
 \end{enumerate}
-
-\section{Section de rapport IV}
-
-Écrivez en moins de 200 mots l'abrégé \textit{(abstract)} d'un rapport qui porterait sur cette séance de laboratoire.
 
 \end{document}
