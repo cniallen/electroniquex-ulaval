@@ -14,7 +14,7 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage{xcolor}
-\usepackage{hyperref}
+\PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{enumitem}
 \usepackage{graphicx}
@@ -47,44 +47,25 @@
 \section{Objectifs}
 
 L’objectif principal de ce laboratoire est de réaliser une expérimentation complète qui comprend la modélisation, les manipulations et mesures, l’analyse des résultats et une discussion critique, pour se terminer avec la rédaction d’un rapport communiquant clairement et rigoureusement l’ensemble de cette recherche. Par ce travail, l’étudiant devrait saisir que la conception d’un circuit doit considérer l’adaptation de l’impédance à la source d’alimentation pour maximiser le transfert de puissance et ainsi éviter les pertes d’énergie dans la source elle-même. L’adaptation de l’impédance sera aussi explorée à l’aide d’une ligne de transmission afin d’observer des réflexions de signaux aux interfaces de la ligne (changement de milieu de propagation). En continuité avec l’étude des antennes et du couplage capacitif du laboratoire précédent, l’étudiant pourra ainsi relier son apprentissage des circuits électriques aux notions générales d’électromagnétisme pour la propagation d’ondes qui demeurent les mêmes du câble coaxial (ligne de transmission) à la fibre optique (guide d’ondes).
-\vfill
 
-\section{Préparation}
+\section[Lectures préparatoires]{Lectures préparatoires} \label{sec:prep}
 
-\noindent Avant de se présenter au laboratoire, chaque étudiant.e doit au minimum:
-\vspace{1ex}
-\begin{itemize}
-\item lire le complément \textit{Transfert de puissance};
-\item lire le protocole de ce laboratoire;
-\item commencer la programmation du VI de la première partie du laboratoire en n'oubliant pas de l'enregistrer dans la même version de \textit{LabVIEW} que celle sur les ordinateurs du VCH-0647.
-\item amener une clef USB pour enregistrer les données de l'oscilloscope;
-\item faire les deux démonstrations suivantes:
+\begin{itemize} \itemsep4pt
+\item le complément \textit{Transfert de puissance};
+\item le protocole de ce laboratoire avec la recommandation de commencer les VI \textit{LabVIEW} en parallèle sur votre poste informatique au laboratoire ou sur votre ordinateur personnel.
+\item (\textbf{N.B.} La section \nameref{sec:mat} indique une clef USB, notez qu'il s'agit d'amener VOTRE PROPRE clef USB pour exporter les données de l'oscilloscope qui sont plus faciles à enregistrer ainsi tel qu'il sera indiqué dans ce protocole.)
 \end{itemize}
 
-\vspace{2ex}
-\noindent Soit une source de tension, représentée par son circuit équivalent de Thévenin, connectée à une charge $Z_{\mathrm{charge}}$ (figure~\ref{sch-prep}).
-
-\begin{enumerate}[itemsep=2.5ex]
-    \item Dans le cas où l'impédance interne de la source et celle de la charge sont purements résistives ($Z_{\mathrm{source}}=R_{\mathrm{source}}$ et $Z_{\mathrm{charge}}=R_{\mathrm{charge}}$), démontrez que la puissance dissipée par la charge est maximale lorsque $R_{\mathrm{charge}}=R_{\mathrm{source}}$.
-    \item Dans le cas général, démontrez que le transfert de puissance est maximal lorsque l'impédance de la charge égale le complexe conjugué de l'impédance interne de la source ($Z_{\mathrm{charge}}=Z^*_{\mathrm{source}}$).
-\end{enumerate}
-
-\begin{figure}[h]
-\centering
-\begin{circuitikz} \draw
-(0,0) node[ground]{} to[V=$V_{\mathrm{source}}$] (0,3) to[european resistor,l^=$Z_{\mathrm{source}}$] (2,3) to[short] (3,3) to[european resistor,l^=$Z_{\mathrm{charge}}$] (3,0) to[short] (0,0)
-{[anchor=south] (0.5,-1) node{source alimentation}}
-;\draw[dotted] (-2,-1) -- (-2,4) -- (2.3,4) -- (2.3,-1) -- (-2,-1)
-;\end{circuitikz}
-\caption{\label{sch-prep}Charge simple reliée à une source de tension.}
-\end{figure}
+\vspace{1ex}
+\noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{En plus de ces lectures, n'hésitez pas à noter vos réflexions et avancer votre préparation dans le cahier de recherche. Le chemin du fichier VI pour retrouver votre programmation \textit{LabVIEW} débutée à l'avance devrait déjà être noté dans votre cahier et peut même s'accompagner de captures d'écran.}}
 
 
-\section{Matériel}
+\section{Matériel} \label{sec:mat}
 
 \noindent La réalisation de ce laboratoire requiert l'utilisation de:
 \vspace{1ex}
-\begin{itemize}
+\begin{itemize} \itemsep4pt
+\item sa propre clef USB;
 \item un oscilloscope avec générateur de fonctions;
 \item un multimètre à 6\textonehalf~chiffres;
 \item un potentiomètre de 1~k$\Omega$;
@@ -161,7 +142,7 @@ f) Ajoutez un condensateur de 4~$\mu$F en parallèle à votre montage (figure~\r
 
 Pour les manipulations de cette partie, vous utiliserez un câble coaxial, dont l'impédance est de $Z$, dans lequel l'onde se propage relativement lentement. Ce câble sera la ligne de transmission que vous étudierez. Pour les mesures à l'oscilloscope, utilisez toujours les sondes 10X compensées, jamais les câbles coaxiaux.
 
-Notez que les oscilloscopes sont dotés d'un port USB pour enregistrer les traces à l'écran \dots~ce qui pourrait être très pratique pour votre rapport! Faites bien attention au format dans lequel vous enregistrez vos résultats : l'oscilloscope permet plusieurs options, mais ce sont les données brutes (extension \texttt{.csv}) qui seront utiles. Le format par défaut \textit{Config} (extension \texttt{.scp}) est à éviter!
+Les oscilloscopes sont dotés d'un port USB pour enregistrer les traces à l'écran, ce qui est très pratique pour votre rapport. Faites bien attention au format dans lequel vous enregistrez vos résultats : l'oscilloscope permet plusieurs options, mais ce sont les données brutes (extension \texttt{.csv}) qui seront utiles. Le format par défaut \textit{Config} (extension \texttt{.scp}) est à éviter!
 
 a) Commencez par faire le montage illustré à la figure~\ref{sch-partie2}. Le générateur de fonctions doit fournir une impulsion allant de 0~V à 2~V, avec une largeur de $W$, à une fréquence de $F$ (afin que deux impulsions consécutives soient très éloignées relativement à la largeur de chacune).
 \begin{figure}[h]
@@ -210,16 +191,43 @@ h) Laissez la ligne en circuit ouvert et allongez la durée de l'impulsion envoy
 i) Court-circuitez la sortie de la ligne de transmission et refaites l'étape h).
 
 
-\section{Analyse minimale pour le rapport}
+\section{Rapport complet} \label{sec:grade}
+\vspace{-0.5cm}
+\begin{center}
+ $\rightarrow$ À remettre en équipe sur \href{https://www.gradescope.com/}{Gradescope} en ajoutant votre \href{https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members}{binôme de laboratoire} et en sélectionnant toutes vos pages pour la seule "question" qui s'y trouve. $\leftarrow$
+\end{center}
+
+Les instructions de rédaction du rapport complet à remettre pour ces expériences sont bien sûr dans le \texttt{Guide de rédaction de rapports scientifiques}, ce qui REMPLACE les \texttt{Questions d'analyse} pour ce laboratoire. Pour vous aider dans l'analyse de circuit de la première partie, la sous-section suivante simplifie d'abord les démonstrations du transfert de puissance dans une charge générique que vous devez ensuite compléter en calculant l'impédance équivalente pour les charges actuellement utilisées dans vos expériences. La remise de l'analyse préliminaire est optionnelle, mais elle débute un des éléments d'analyse minimale à couvrir dans le rapport complet, tels que listés dans la dernière sous-section.
+
+\subsection{Analyse préliminaire}
+\vspace{-0.5cm}
+\noindent(Remise préliminaire des réponses à ces deux questions sur \href{https://www.gradescope.com/}{Gradescope} suggérée pour une évaluation formative.)
+
+\noindent Soit une source de tension, représentée par son circuit équivalent de Thévenin, connectée à une charge $Z_{\mathrm{charge}}$ (figure~\ref{sch-prep} à la page suivante).
+\begin{enumerate}%[itemsep=2.5ex]
+    \item Dans le cas où l'impédance interne de la source et celle de la charge sont purement résistives ($Z_{\mathrm{source}}=R_{\mathrm{source}}$ et $Z_{\mathrm{charge}}=R_{\mathrm{charge}}$), démontrez que la puissance dissipée par la charge est maximale lorsque $R_{\mathrm{charge}}=R_{\mathrm{source}}$.
+    \item Dans le cas général, démontrez que le transfert de puissance est maximal lorsque l'impédance de la charge égale le complexe conjugué de l'impédance interne de la source ($Z_{\mathrm{charge}}=Z^*_{\mathrm{source}}$).
+\end{enumerate}
+
+\subsection{Analyse minimale}
 
 Les points suivants font partie d'une analyse \textbf{minimale} des expériences de ce laboratoire. La présence de tous ces éléments dans votre rapport ne vous garantit pas une note parfaite. Par contre, l'absence d'au moins un de ces éléments vous garantit une note imparfaite.
 
-\begin{enumerate}
-    \item Utilisez les résultats de la première partie pour représenter, sur un même graphique, la puissance moyenne dissipée par la charge en fonction de la résistance. Considérez que toute la puissance dissipée par la charge est due à la résistance, \textit{i.e.} $p=v_{RMS}^2/R$. Mettez l'axe de la résistance (l'abscisse) en échelle logarithmique. 
-    \item Les démonstrations faites en préparation du laboratoire constituent un modèle théorique du transfert de puissance applicable aux circuits de la première partie, donc comparez les résultats de mesure à ce modèle pour les deux premiers types de charge.
-    \item Estimez la valeur de la résistance qui permet le transfert maximal de puissance pour les deux premiers types de charge.
+\begin{itemize}
+    \item Utilisez les résultats de la première partie pour représenter graphiquement la puissance moyenne dissipée par la charge en fonction de la résistance. La puissance dissipée par l'ensemble de la charge est essentiellement due à cette résistance, négligez toute autre perte pour calculer directement $p_{moy}=v_{RMS}^2/R$ en ordonnée. Mettez l'axe de la résistance (l'abscisse) en échelle logarithmique.
+    \item Complétez le modèle du transfert de puissance de la sous-section précédente afin de le comparer aux résultats de mesure directement sur les graphiques du point précédent pour les deux types de charges utilisées au laboratoire.
+    \item Estimez la valeur de la résistance qui permet le transfert maximal de puissance pour les deux types de charge.
     \item À partir du délai que vous avez mesuré à l'étape c) de la deuxième partie et de la longueur du câble, calculez la vitesse de propagation du signal dans le câble ($u=L/\Delta t$).
     \item Étudiez le comportement des réflexions d'impulsions aux extrémités de la ligne de transmission avec des concepts de base en physique des ondes.
-\end{enumerate}
+\end{itemize}
 
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,0) node[ground]{} to[V=$V_{\mathrm{source}}$] (0,3) to[european resistor,l^=$Z_{\mathrm{source}}$] (2,3) to[short] (3,3) to[european resistor,l^=$Z_{\mathrm{charge}}$] (3,0) to[short] (0,0)
+{[anchor=south] (0.5,-1) node{source alimentation}}
+;\draw[dotted] (-2,-1) -- (-2,4) -- (2.3,4) -- (2.3,-1) -- (-2,-1)
+;\end{circuitikz}
+\caption{\label{sch-prep}Charge simple reliée à une source de tension.}
+\end{figure}
 \end{document}
