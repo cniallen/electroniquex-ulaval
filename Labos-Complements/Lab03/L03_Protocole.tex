@@ -74,7 +74,8 @@ La courbe $i$--$v$ est le pont principal entre la multidisciplinarité de la sci
 \item un multimètre à 6\textonehalf~chiffres;
 \item un ordinateur avec le logiciel \textit{LabVIEW};
 \item divers composants électriques (une résistance de 1~k$\Omega$, trois résistances de 1,2~k$\Omega$, une bobine de 1~mH, un condensateur de 1~$\mu$F, une diode standard 914B, une diode Zener et un transistor bipolaire 2219A);
-\item Une plaquette de montage.
+\item Une plaquette de montage;
+\item un régulateur de tension.
 \end{itemize}
 
 %%Je pourrais mettre les adresses GPIB regroupées ici, ainsi que la note de bas de page 2 avec un renvoi au document d'intro LabVIEW lorsque complété pour le contrôle d'instruments. Ceci aidera aussi à maintenir le texte.
@@ -219,11 +220,28 @@ Ainsi, vous obtiendrez les données pour tracer les courbes du courant $i_{\math
 i) Réalisez une acquisition pour une tension $v_{\mathrm{ce}}$ allant de 0~V à 4~V et une tension $v_{\mathrm{be}}$ allant de 0~V à 1,2~V. Dans les deux cas, utilisez des incréments de 0,2~V.
 
 
-\subsection{Partie 5 --- Stabilisateur de tension avec diode}
+\subsection{Partie 5 --- Régulateurs de tension}
 
-Cette partie finale applique une caractéristique de la courbe $i$--$v$ d'une diode Zener dans la fonction de réguler la tension; vous n'avez donc plus besoin de \textit{LabVIEW}. Les régulateurs de tension permettent de fixer la tension aux bornes d'une charge, indifféremment du reste du circuit. Il existe plusieurs façons de concevoir un régulateur de tension; seulement une version très simpliste est abordée ici.
+Après avoir caractérisé le comportement de composants à partir de leurs courbes $i$--$v$, on verra dans cette dernière partie comment il est possible de prendre avantage de ces comportements pour concevoir des fonctions utiles dans un circuit. L'exemple particulier de la régulation de tension avec une diode zener sera donné.
 
-a) Placez une diode Zener en série avec une résistance de 1~k$\Omega$, en utilisant comme source la sortie +25~V du bloc d'alimentation (figure~\ref{sch-reg-1}).
+Les régulateurs de tension sont utilisés pour fixer la tension aux bornes d'une charge, indifféremment du reste du circuit. Il existe plusieurs façons de concevoir un régulateur; vous avez dans votre coffre un modèle de régulateur NCV7805, qui est un exemple d'un circuit intégré accomplissant cette fonction.
+
+a) Pour comprendre la fonction du régulateur de tension, commencez par monter le circuit de la figure \ref{sch-reg-1} sur la plaquette de montage. Consultez la fiche technique du régulateur de tension afin de faire les bons branchements.
+
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,0) to[V=$v_{\textrm{s}}$] (0,2.5) to[R=1~k$\Omega$] (3,2.5) to[european resistor,l^=regulateur] (5,2.5) node[right]{$v_{\mathrm{out}}$}
+(0,0) node[ground]{} to[short] (4,0) to[short] (4,2.26)
+;\end{circuitikz}
+\caption{\label{sch-reg-1}Régulateur de tension avec puce. \\ \textit{Note: À partir d'ici, on n'indique plus toujours le branchement des instruments de mesure dans les schémas pour adopter une notation plus standard: $v_{\mathrm{out}}$ indique où mesurer une tension, mais 2 branchements sont nécessaires pour obtenir une différence de potentiel. Lorsqu'il n'est pas indiqué, le deuxième branchement est la référence de mise à la terre.}}
+\end{figure}
+
+b) Faites varier la source de 0~volt à 14~volts par incréments de 2~volts. À l'aide d'un multimètre en mode voltmètre (DCV), mesurez à chaque fois la tension $v_{\mathrm{out}}$. Notez qu'il n'est plus nécessaire d'utiliser \textit{LabVIEW} à ce stade-ci.
+
+Une version très simpliste de ce circuit intégré régulateur de tension sera maintenant conçue à partir d'une caractéristique de la courbe $i$--$v$ d'une diode Zener.
+
+c) Placez une diode Zener en série avec une résistance de 1~k$\Omega$, en utilisant comme source la sortie +25~V du bloc d'alimentation (figure~\ref{sch-reg-2}).
 
 \begin{figure}[h]
 \centering
@@ -232,10 +250,10 @@ a) Placez une diode Zener en série avec une résistance de 1~k$\Omega$, en util
 (0,0) to[short] (3,0) to[zD] (3,2.5)
 (3,2.5) to[short] (4,2.5) node[right]{$v_{\mathrm{out}}$}
 ;\end{circuitikz}
-\caption{\label{sch-reg-1}Régulateur de tension simple\\ \textit{Note: À partir d'ici, on n'indique plus toujours le branchement des instruments de mesure dans les schémas pour adopter une notation plus standard: $v_{\mathrm{out}}$ indique où mesurer une tension, mais 2 branchements sont nécessaires pour obtenir une différence de potentiel. Lorsqu'il n'est pas indiqué, le deuxième branchement est la référence de mise à la terre.}}
+\caption{\label{sch-reg-2}Régulateur de tension simple.}
 \end{figure}
 
-b) Faites varier la source de 0~volt à 15~volts par incréments de 1~volt. À l'aide d'un multimètre en mode voltmètre (DCV), mesurez à chaque fois la tension $v_{\mathrm{out}}$.
+d) Faites varier la source de 0~volt à 14~volts par incréments de 2~volts. À l'aide d'un multimètre en mode voltmètre (DCV), mesurez à chaque fois la tension $v_{\mathrm{out}}$. Comparez la performance des deux régulateurs en comparant vos mesures à celles obtenues en b).
 
 \noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\centering \textbf{Rappel}\\ Avez-vous transféré des copies de sauvegarde pour tous vos fichiers de données et de programmation de VI dans votre chaîne Teams d'équipe et/ou dans votre espace de stockage OneDrive personnel?}}
 

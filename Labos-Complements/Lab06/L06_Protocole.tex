@@ -123,8 +123,8 @@ a) Faites le circuit de la figure~\ref{sch-init}. Notez vos observations. Puisqu
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-(0,-2.1) to[sV=Hydro] (0,0)
-(2,0) node[transformer](T){}
+(0,-2.1) to[sV,l=Hydro] (0,0)
+(2,0) node[transformer,anchor=base](T){}
 (T.A1) to[short] (0,0)
 (T.A2) to[short] (0,-2.1)
 (T.B1) to[short,*-] (6,0) to[european resistor,l^=moteur] (6,-2.1) to[short] (4.5,-2.1) to[short] (4.5,-1.05) to[short,-*] (3,-1.05)
@@ -142,8 +142,8 @@ c) Rajoutez une diode standard en polarité directe avec la charge, tel qu'indiq
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-(0,-2.1) to[sV=Hydro] (0,0)
-(2,0) node[transformer](T){}
+(0,-2.1) to[sV, l=Hydro] (0,0)
+(2,0) node[transformer, anchor=base](T){}
 (T.A1) to[short] (0,0)
 (T.A2) to[short] (0,-2.1)
 (T.B1) to[D,*-] (6,0) to[R=1~M$\Omega$] (6,-2.1) to[short] (4.5,-2.1) to[short] (4.5,-1.05) to[short,-*] (3,-1.05)
@@ -159,8 +159,8 @@ d) Modifiez le circuit précédent en ajoutant une deuxième diode, tel qu'illus
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-(0,-2.1) to[sV=Hydro] (0,0)
-(2,0) node[transformer](T){}
+(0,-2.1) to[sV, l=Hydro] (0,0)
+(2,0) node[transformer, anchor=base](T){}
 (T.A1) to[short] (0,0)
 (T.A2) to[short] (0,-2.1)
 (T.B1) to[D,*-] (6,0) to[R=1~M$\Omega$] (6,-1.8) to[short] (5.4,-1.8) to[short] (5.4,-1.05) to[short,-*] (3,-1.05)
@@ -180,8 +180,8 @@ Malgré toutes ces améliorations, la tension aux bornes de la charge oscille to
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-(0,-2.1) to[sV=Hydro] (0,0)
-(2,0) node[transformer](T){}
+(0,-2.1) to[sV, l=Hydro] (0,0)
+(2,0) node[transformer, anchor=base](T){}
 (T.A1) to[short] (0,0)
 (T.A2) to[short] (0,-2.1)
 (T.B1) to[short,*-] (5,0) to[D] (7,2) to[short] (11,2) to[R=1~M$\Omega$] (11,-2) to[short] (7,-2) to[D] (5,0)
@@ -200,8 +200,8 @@ f) Ajoutez un condensateur à votre montage, en parallèle avec la charge, pour 
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-(0,-2.1) to[sV=Hydro] (0,0)
-(2,0) node[transformer](T){}
+(0,-2.1) to[sV,l=Hydro] (0,0)
+(2,0) node[transformer, anchor=base](T){}
 (T.A1) to[short] (0,0)
 (T.A2) to[short] (0,-2.1)
 (T.B1) to[short,*-] (5,0) to[D] (7,2) to[short] (11,2) to[R=1~M$\Omega$] (11,-2) to[short] (7,-2) to[D] (5,0)
@@ -257,7 +257,7 @@ b) Comparez à nouveau, à l'aide de l'oscilloscope, les tensions $v_{\mathrm{g}
 
 \subsection{Partie 4 --- Amplificateur opérationnel (ampli-op) \& son principe différentiel} \label{sec:ampli-diff}
 
-Le monde des circuits intégrés est extrêmement vaste et complexe\footnote{Sans pouvoir remplacer des programmes de baccalauréat complets entre le génie électrique et le génie informatique, je recommande la série télévisée de fiction \textit{Halt and Catch Fire} qui montre l'intense aspect humain et commercial dans les premiers temps de la microélectronique et des ordinateurs avec quelques bons aspects documentaires. Ne me révélez pas la fin, je n'ai visionné qu'une saison il y a un bout!}, d'où la leçon essentielle est qu'il faut se référer à la fiche technique du manufacturier pour chaque puce. Ceci dit, l'élégance fondamentale demeure que tous ces circuits, allant jusqu'à nos ordinateurs et téléphones(!), sont constitués de versions miniaturisées des composants étudiés jusqu'à maintenant: résistance, condensateur, bobine d'inductance, diode et transistor. Il existe à peine quelques exceptions dont les relais électromécaniques et les vibrations de cristaux de quartz. 
+Le monde des circuits intégrés est extrêmement vaste et complexe\footnote{Sans pouvoir remplacer des programmes de baccalauréat complets entre le génie électrique et le génie informatique, je recommande la série télévisée de fiction \textit{Halt and Catch Fire} qui montre l'intense aspect humain et commercial dans les premiers temps de la microélectronique et des ordinateurs avec quelques bons aspects documentaires.}, d'où la leçon essentielle est qu'il faut se référer à la fiche technique du manufacturier pour chaque puce. Ceci dit, l'élégance fondamentale demeure que tous ces circuits, allant jusqu'à nos ordinateurs et téléphones(!), sont constitués de versions miniaturisées des composants étudiés jusqu'à maintenant: résistance, condensateur, bobine d'inductance, diode et transistor. Il existe à peine quelques exceptions dont les relais électromécaniques et les vibrations de cristaux de quartz. 
 
 Nous sommes donc ici en transition vers la deuxième moitié du cours qui survole quelques fonctions de base réalisables avec les principaux circuits électroniques ainsi que leur conception. Lorsque possible, nous prendrons l'approche physique de se ramener aux composants fondamentaux pour focaliser sur le principe de fonctionnement des puces plutôt que le détail de leur design.
 
@@ -285,35 +285,35 @@ b) Pour vérifier que la tension est bien suivie, \textit{i.e.} théoriquement i
     \item Reliez l'entrée non inverseuse (+) au générateur de fonctions pour y envoyer une rampe [0,2]~V à une fréquence de 1~kHz. Observez à l'oscilloscope que cette tension en entrée se superpose à celle à la sortie $v_{\mathrm{out}}$, puis évaluez la pente entre les deux canaux à l'aide du mode XY (bouton du menu \textbf{Horiz}).
 \end{enumerate}
 
-\begin{center}
-    \large \textbf{Le reste de cette Partie 4 peut être complété avant ou après la séance de laboratoire.}
-\end{center}
+% \begin{center}
+%     \large \textbf{Le reste de cette Partie 4 peut être complété avant ou après la séance de laboratoire.}
+% \end{center}
 
-Revenez maintenant à la simulation que vous avez faite en préparation du laboratoire. En utilisant deux transistors simultanément dans le circuit de la figure~\ref{ampli-diff-simple}, l'un inverseur et l'autre non inverseur, il devient possible d'obtenir un courant constant amplifié\footnote{\url{https://www.allaboutcircuits.com/textbook/experiments/chpt-5/differential-amplifier/}}. Ce principe est à la base de l'amplificateur différentiel, qui est lui-même la pierre angulaire de l'amplificateur opérationnel dans la puce noire que vous venez d'étudier.
+% Revenez maintenant à la simulation que vous avez faite en préparation du laboratoire. En utilisant deux transistors simultanément dans le circuit de la figure~\ref{ampli-diff-simple}, l'un inverseur et l'autre non inverseur, il devient possible d'obtenir un courant constant amplifié\footnote{\url{https://www.allaboutcircuits.com/textbook/experiments/chpt-5/differential-amplifier/}}. Ce principe est à la base de l'amplificateur différentiel, qui est lui-même la pierre angulaire de l'amplificateur opérationnel dans la puce noire que vous venez d'étudier.
 
-c) Alimentez (\texttt{Add Voltage Source}) l'amplificateur différentiel dans votre simulation avec $v_{\mathrm{cc}+}=10$~V et $v_{\mathrm{cc}-}=-10$~V.
+% c) Alimentez (\texttt{Add Voltage Source}) l'amplificateur différentiel dans votre simulation avec $v_{\mathrm{cc}+}=10$~V et $v_{\mathrm{cc}-}=-10$~V.
 
-d) Vérifiez (\texttt{View in Scope}) à la sortie $v_{\mathrm{out}}$ de l'amplificateur que l'entrée $v_{\mathrm{in},+}$ est non inverseuse et l'entrée $v_{\mathrm{in},-}$ est inverseuse en y appliquant une tension CC fixe de 1~V et une rampe (\texttt{Sawtooth}) sur la plage [0,2]~V respectivement. Refaites la même vérification en échangeant les tensions sur les entrées.
+% d) Vérifiez (\texttt{View in Scope}) à la sortie $v_{\mathrm{out}}$ de l'amplificateur que l'entrée $v_{\mathrm{in},+}$ est non inverseuse et l'entrée $v_{\mathrm{in},-}$ est inverseuse en y appliquant une tension CC fixe de 1~V et une rampe (\texttt{Sawtooth}) sur la plage [0,2]~V respectivement. Refaites la même vérification en échangeant les tensions sur les entrées.
 
-%Voir si je ne pourrais pas améliorer la compréhension de la mise à la terre commune COM vs +/- potentiel en ramenant le ground dans la figure ici et en prep + exercice de batteries inspiré du vidéo que j'ai sauvegardé sur YouTube.
+% %Voir si je ne pourrais pas améliorer la compréhension de la mise à la terre commune COM vs +/- potentiel en ramenant le ground dans la figure ici et en prep + exercice de batteries inspiré du vidéo que j'ai sauvegardé sur YouTube.
 
-\begin{figure}[h]
-\centering
-\begin{circuitikz} \draw
-(0,8) node[left]{$v_{\mathrm{cc}+}$} to[short,*-] (6,8) to[R=100~k$\Omega$] (6,6) to[short,-*] (7,6) node[right]{sortie~($v_{\mathrm{out}}$)}
-(3.5,4) to[R=1~k$\Omega$] (6,4) to[Tnpn, mirror,n=Q2] (6,6)
-(Q2.B) to[short,-*] (7,5) node[right]{entrée~-~($v_{\mathrm{in},-}$)}
-(3.5,4) to[R,l_=1~k$\Omega$] (1,4) to[Tnpn,n=Q1] (1,6) to[short] (1,8)
-(Q1.B) to[short,-*] (0,5) node[left]{entrée~+~($v_{\mathrm{in},+}$)}
-(3.5,4) to[R=100~k$\Omega$,-*] (3.5,1.5) node[right]{$v_{\mathrm{cc}-}$}
-%(1,2.5) to[short,*-] (1.5,2.5) node[ground]{}
-;\end{circuitikz}
-\caption{\label{ampli-diff-simple}Amplificateur différentiel simpliste.}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \begin{circuitikz} \draw
+% (0,8) node[left]{$v_{\mathrm{cc}+}$} to[short,*-] (6,8) to[R=100~k$\Omega$] (6,6) to[short,-*] (7,6) node[right]{sortie~($v_{\mathrm{out}}$)}
+% (3.5,4) to[R=1~k$\Omega$] (6,4) to[Tnpn, mirror,n=Q2] (6,6)
+% (Q2.B) to[short,-*] (7,5) node[right]{entrée~-~($v_{\mathrm{in},-}$)}
+% (3.5,4) to[R,l_=1~k$\Omega$] (1,4) to[Tnpn,n=Q1] (1,6) to[short] (1,8)
+% (Q1.B) to[short,-*] (0,5) node[left]{entrée~+~($v_{\mathrm{in},+}$)}
+% (3.5,4) to[R=100~k$\Omega$,-*] (3.5,1.5) node[right]{$v_{\mathrm{cc}-}$}
+% %(1,2.5) to[short,*-] (1.5,2.5) node[ground]{}
+% ;\end{circuitikz}
+% \caption{\label{ampli-diff-simple}Amplificateur différentiel simpliste.}
+% \end{figure}
 
-e) Maintenant, rajoutez une rétroaction négative afin que l'amplificateur se comporte comme un suiveur de tension. Pour ce faire, remplacez la source de tension à l' entrée inverseuse - par un fil pour la relier à la sortie de l'amplificateur différentiel.
+% e) Maintenant, rajoutez une rétroaction négative afin que l'amplificateur se comporte comme un suiveur de tension. Pour ce faire, remplacez la source de tension à l' entrée inverseuse - par un fil pour la relier à la sortie de l'amplificateur différentiel.
 
-f) Vérifiez que la sortie suit effectivement la tension de votre choix à l'entrée non inverseuse. N'hésitez pas à essayer plusieurs formes de signal!
+% f) Vérifiez que la sortie suit effectivement la tension de votre choix à l'entrée non inverseuse. N'hésitez pas à essayer plusieurs formes de signal!
 %Capsule vidéo montrant que ça marche comme de la bouette en pratique! Checker la version "pré-faite" de falstad dans menu Draw->Transistor et celle de AllAboutCircuits <https://www.allaboutcircuits.com/textbook/experiments/chpt-5/differential-amplifier/>
 
 \subsection{Partie 5 --- Comparateur}
@@ -339,56 +339,56 @@ Pour l'instant, utilisez une fréquence de 500~mHz. Utilisez la plus petite éch
 
 b) Observez conjointement la LED et la valeur affichée à l'oscilloscope.
 
-c) Augmentez progressivement la fréquence du signal généré par l'oscilloscope. Trouvez la fréquence limite à partir de laquelle vos yeux ne peuvent plus détecter les oscillations. Rappelez-vous de cette valeur la prochaine fois que vous irez acheter un téléviseur ; si le vendeur vous assure que payer pour un téléviseur à trois milliards de hertz en vaut la peine, vous pourrez lever un sourcil montrant votre scepticisme\ldots
+c) Une dernière manipulation optionnelle: Augmentez progressivement la fréquence du signal généré par l'oscilloscope. Trouvez la fréquence limite à partir de laquelle vos yeux ne peuvent plus détecter les oscillations. Rappelez-vous de cette valeur la prochaine fois que vous irez acheter un téléviseur ; si le vendeur vous assure que payer pour un téléviseur à trois milliards de hertz en vaut la peine, vous pourrez lever un sourcil montrant votre scepticisme\ldots
 %%e) Manipulation avec l'accéléromètre, signal obtenu d'un téléphone intelligent.
 
 %%\subsection{Partie ? --- Contrôle, Circuit d'asservissement...}
-%%À voir si ça fitte un de ces quatre :(
+%%À voir si ça entre dans le temps pour ajouter un de ces quatre :(
+%LA PARTIE 6 CI-DESSOUS EST MAINTENANT RENDUE AU LABORATOIRE III, SUPPRIMER ÉVENTUELLEMENT ICI UN COUP QU'ON EST CONVAINCUS QUE ÇA FITTE :)
+% \subsection{Partie 6 optionnelle --- Régulateur de tension intégré}
 
-\subsection{Partie 6 optionnelle --- Régulateur de tension intégré}
+% a) Sur la plaquette de montage, montez le circuit suivant (figure~\ref{sch-reg-1}). Consultez la fiche technique du régulateur de tension afin de faire les bons branchements.
 
-a) Sur la plaquette de montage, montez le circuit suivant (figure~\ref{sch-reg-1}). Consultez la fiche technique du régulateur de tension afin de faire les bons branchements.
+% \begin{figure}[h]
+% \centering
+% \begin{circuitikz} \draw
+% (0,0) to[V=$v_{\textrm{s}}$] (0,2.5) to[R=1~k$\Omega$] (3,2.5) to[european resistor,l^=regulateur] (5,2.5) node[right]{$v_{\mathrm{out}}$}
+% (0,0) node[ground]{} to[short] (4,0) to[short] (4,2.26)
+% ;\end{circuitikz}
+% \caption{\label{sch-reg-1}Régulateur de tension avec puce.}
+% \end{figure}
 
-\begin{figure}[h]
-\centering
-\begin{circuitikz} \draw
-(0,0) to[V=$v_{\textrm{s}}$] (0,2.5) to[R=1~k$\Omega$] (3,2.5) to[european resistor,l^=regulateur] (5,2.5) node[right]{$v_{\mathrm{out}}$}
-(0,0) node[ground]{} to[short] (4,0) to[short] (4,2.26)
-;\end{circuitikz}
-\caption{\label{sch-reg-1}Régulateur de tension avec puce.}
-\end{figure}
-
-b) Faites varier la source de 0~volt à 15~volts par incréments de 1~volt. À l'aide d'un multimètre en mode voltmètre (DCV), mesurez à chaque fois la tension $v_{\mathrm{out}}$.
+% b) Faites varier la source de 0~volt à 15~volts par incréments de 1~volt. À l'aide d'un multimètre en mode voltmètre (DCV), mesurez à chaque fois la tension $v_{\mathrm{out}}$.
 
 
 \section{Questions d'analyse VI} \label{sec:grade}
 \vspace{-0.5cm}
 \noindent$\rightarrow$ À remettre en équipe sur \href{https://www.gradescope.com/}{Gradescope} en ajoutant votre \href{https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members}{binôme de laboratoire} $\leftarrow$
-
-\begin{enumerate}
-\item Pour chaque signal ci-après, dites si la tension efficace prise en mode CC est supérieure, inférieure ou égale à la tension efficace prise en mode CA.\\a) Signal sinusoïdal.\\b) Signal sinusoïdal redressé en simple alternance.\\c) Signal sinusoïdal redressé en double alternance.
-\item Dans la première partie du laboratoire, après avoir modifié le pont de diodes afin d'avoir un signal moyenné, vous avez sûrement remarqué, à l'aide de l'oscilloscope, que ce dernier n'était pas encore tout à fait constant : les oscillations étaient encore notables. Parmi les options suivantes, laquelle ou lesquelles permet(tent) de \textit{réduire} ces oscillations?\\a) Augmenter la capacité du condensateur.\\b) Augmenter la fréquence du signal.\\ c) Augmenter l'amplitude en tension du signal d'entrée.\\ d) Augmenter la teneur en fibres de votre alimentation.
-\item À la partie 2, le transistor est utilisé dans son mode d'amplification linéaire, parfois dit \textit{mode actif}. Quel est leur facteur d'amplification, défini par $\Delta v_{\mathrm{out}}/\Delta v_{\mathrm{in}}$, où $v_{\mathrm{in}}$ est la tension appliquée sur la base du transistor? %Ramener question sur partie 3 si possible, en faisant remarquer la pertinence des noms inverseur et non inverseur.
-\item Simuler le circuit de l'amplificateur différentiel à la figure~\ref{ampli-diff-simple} sur le site <\url{https://www.falstad.com/circuit/}> et exporter le lien via le menu \texttt{File → Export As Link...} pour le copier-coller dans votre cahier de recherche électronique.
-\item En pratique, un suiveur de tension est\dots\\a) \dots inutile puisqu'il ne fait rien concrètement, il ne fait que donner une tension de sortie égale à l'entrée.\\b) \dots utile puisqu'il sert de tampon (\textit{buffer}) pour fixer la tension à un point en fonction d'un autre sans en affecter le comportement du circuit, ce qui peut permettre de construire une source de tension commandée, par exemple.\\ c) \dots très utile puisqu'il permet de connaître la tension artérielle d'un patient.
-%\item Comparez les régulateurs de tension du laboratoire~III et de ce laboratoire. Tracez pour chacun la courbe de la tension de sortie $v_{\mathrm{out}}$ en fonction de la tension d'entrée $v_{\mathrm{s}}$. Afin de faire une meilleure comparaison, normalisez vos valeurs (divisez les tensions de sortie de chaque composant par la valeur maximale obtenue) et affichez les deux courbes sur le même graphique.
-\item Cette question met en contraste une approche déductive en (a) avec une approche de conception en (b) qui deviendra progressivement prépondérante pendant le reste du cours pour favoriser le développement de votre autonomie expérimentale.
-    \begin{enumerate}
-    \item Exprimez algébriquement la tension $v_{\mathrm{out}}$ en fonction de $v_1$, $v_2$ et $R$ pour le circuit ci-dessous à la figure~\ref{sch-prep}.
-    \begin{figure}[h]
-    \centering
-    \begin{circuitikz} \draw
-    (0,0) node[op amp](opamp){}
-    (opamp.+) to[short] (-1.2,-0.5) to[short] (-1.2,-1) node[ground]{}
-    (opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2)
-    (-4,0.5) node[left]{$v_2$} to[R=$R$] (-1.2,0.5)
-    (-4,2) node[left]{$v_1$} to[R=$R$] (-1.2,2) to[R=$R$] (1.2,2) to[short] (1.2,0)
-    (opamp.out) to[short,-o] (2,0) node[right]{$v_{\mathrm{out}}$}
-    ;\end{circuitikz}
-    \caption{\label{sch-prep} Circuit non linéaire d'ampli-op à analyser.}
-    \end{figure}
-    \item Soient deux points différents ayant des tensions $v_1$ et $v_2$. Dessinez un circuit utilisant un amplificateur opérationnel et quelques résistances pour lequel la tension de sortie de l'ampli-op serait définie par l'équation suivante: $v_{\mathrm{out}}=2\,v_1+0,\!5\,v_2.$
-    \end{enumerate}
-\end{enumerate}
+À VENIR.
+% \begin{enumerate}
+% \item Pour chaque signal ci-après, dites si la tension efficace prise en mode CC est supérieure, inférieure ou égale à la tension efficace prise en mode CA.\\a) Signal sinusoïdal.\\b) Signal sinusoïdal redressé en simple alternance.\\c) Signal sinusoïdal redressé en double alternance.
+% \item Dans la première partie du laboratoire, après avoir modifié le pont de diodes afin d'avoir un signal moyenné, vous avez sûrement remarqué, à l'aide de l'oscilloscope, que ce dernier n'était pas encore tout à fait constant : les oscillations étaient encore notables. Parmi les options suivantes, laquelle ou lesquelles permet(tent) de \textit{réduire} ces oscillations?\\a) Augmenter la capacité du condensateur.\\b) Augmenter la fréquence du signal.\\ c) Augmenter l'amplitude en tension du signal d'entrée.\\ d) Augmenter la teneur en fibres de votre alimentation.
+% \item À la partie 2, le transistor est utilisé dans son mode d'amplification linéaire, parfois dit \textit{mode actif}. Quel est leur facteur d'amplification, défini par $\Delta v_{\mathrm{out}}/\Delta v_{\mathrm{in}}$, où $v_{\mathrm{in}}$ est la tension appliquée sur la base du transistor? %Ramener question sur partie 3 si possible, en faisant remarquer la pertinence des noms inverseur et non inverseur.
+% \item Simuler le circuit de l'amplificateur différentiel à la figure~\ref{ampli-diff-simple} sur le site <\url{https://www.falstad.com/circuit/}> et exporter le lien via le menu \texttt{File → Export As Link...} pour le copier-coller dans votre cahier de recherche électronique.
+% \item En pratique, un suiveur de tension est\dots\\a) \dots inutile puisqu'il ne fait rien concrètement, il ne fait que donner une tension de sortie égale à l'entrée.\\b) \dots utile puisqu'il sert de tampon (\textit{buffer}) pour fixer la tension à un point en fonction d'un autre sans en affecter le comportement du circuit, ce qui peut permettre de construire une source de tension commandée, par exemple.\\ c) \dots très utile puisqu'il permet de connaître la tension artérielle d'un patient.
+% %\item Comparez les régulateurs de tension du laboratoire~III et de ce laboratoire. Tracez pour chacun la courbe de la tension de sortie $v_{\mathrm{out}}$ en fonction de la tension d'entrée $v_{\mathrm{s}}$. Afin de faire une meilleure comparaison, normalisez vos valeurs (divisez les tensions de sortie de chaque composant par la valeur maximale obtenue) et affichez les deux courbes sur le même graphique.
+% \item Cette question met en contraste une approche déductive en (a) avec une approche de conception en (b) qui deviendra progressivement prépondérante pendant le reste du cours pour favoriser le développement de votre autonomie expérimentale.
+%     \begin{enumerate}
+%     \item Exprimez algébriquement la tension $v_{\mathrm{out}}$ en fonction de $v_1$, $v_2$ et $R$ pour le circuit ci-dessous à la figure~\ref{sch-prep}.
+%     \begin{figure}[h]
+%     \centering
+%     \begin{circuitikz} \draw
+%     (0,0) node[op amp](opamp){}
+%     (opamp.+) to[short] (-1.2,-0.5) to[short] (-1.2,-1) node[ground]{}
+%     (opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2)
+%     (-4,0.5) node[left]{$v_2$} to[R=$R$] (-1.2,0.5)
+%     (-4,2) node[left]{$v_1$} to[R=$R$] (-1.2,2) to[R=$R$] (1.2,2) to[short] (1.2,0)
+%     (opamp.out) to[short,-o] (2,0) node[right]{$v_{\mathrm{out}}$}
+%     ;\end{circuitikz}
+%     \caption{\label{sch-prep} Circuit non linéaire d'ampli-op à analyser.}
+%     \end{figure}
+%     \item Soient deux points différents ayant des tensions $v_1$ et $v_2$. Dessinez un circuit utilisant un amplificateur opérationnel et quelques résistances pour lequel la tension de sortie de l'ampli-op serait définie par l'équation suivante: $v_{\mathrm{out}}=2\,v_1+0,\!5\,v_2.$
+%     \end{enumerate}
+% \end{enumerate}
 
 \end{document}
