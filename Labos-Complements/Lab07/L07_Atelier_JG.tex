@@ -4,7 +4,8 @@
 %Dernière modification CA: 4 novembre 2020
 %Dernière modification JG:
 %***ToDo***
-% - préparer un signal de bruit pour montrer comment on se rapproche de sinus/cosinus avec Q qui augmente dans un filtre passe-bande,
+% - préparer un signal de bruit pour montrer comment on se rapproche de sinus/cosinus avec Q qui augmente dans un filtre passe-bande + tout le stock ajouté par Jé ci-dessous.
+% -  recopier préparation & déroulement de l'atelier en ordre inverse en ligne dans le cours 6.
 
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -31,6 +32,7 @@
 \usepackage[letterpaper,headheight=15pt]{geometry}
 \usepackage{fancyhdr}
 \usepackage{setspace}
+\usepackage{float}
 %
 %----------------------------------------------------
 %Other configurations and layout
@@ -57,7 +59,7 @@
 
 \maketitle \vspace{-2cm}
 
-\section{Objectifs}
+%\section{Objectifs}
 
 %Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. On peut alors retirer des fréquences indésirables et généralement obtenir une mesure plus fidèle avec un meilleur rapport signal sur bruit, par exemple. L’effet de différents filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc examinée pour le filtre RC. 
 %Dans l'approche pédagogique de préparation et conception de ce laboratoire, l'étudiant.e développera progressivement une méthodologie de travail plus autonome en transition vers la pratique d'une profession de recherche en sciences et génie.
@@ -105,12 +107,12 @@ Lors de la séance de laboratoire de 2h à la date spécifiée dans la section \
 
 Nous recommandons de commencer la séance en délibérant sur l'optimisation des manipulations expérimentales et des analyses proposées dans vos cahiers de recherche respectifs avec l'assistance du membre de l'équipe d'enseignement et il vous faudra ensuite répartir les tâches dans votre groupe. Des exemples de tâches possibles sont la planification et l'organisation, la conception, la simulation, la réalisation expérimentale, la mesure, l'analyse, la communication, etc. et il peut bien sûr y avoir de la redondance pour vérifier l'exactitude des résultats de mesure et d'analyse. Notez que la fin de la section \texttt{Matériel didactique} sur le site de cours propose différents choix de logiciels et d'applications pour vous assister dans les tâches de conception et de simulation.
 
-La dernière activité de la séance sera de vous rendre sur le site Web du cours dans la section \texttt{Évaluations et résultats} pour l'atelier concerné et y évaluer vos pairs sur leur contribution respective au travail du groupe.
+%La dernière activité de la séance sera de vous rendre sur le site Web du cours dans la section \texttt{Évaluations et résultats} pour l'atelier concerné et y évaluer vos pairs sur leur contribution respective au travail du groupe.
  
 \section{Atelier}
 %\subsection{Partie 1 --- Mesures temporelles}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \begin{circuitikz} \draw
 (0,2) node[left]{$v_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
@@ -138,7 +140,7 @@ La dernière activité de la séance sera de vous rendre sur le site Web du cour
 
 %\subsection{Partie 2 --- Mesures fréquentielles et diagrammes de Bode}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \begin{circuitikz} \draw
 (0,2) node[left]{$V_{\mathrm{g}}$} to[R=270~$\Omega$,o-] (3,2) to[short] (3,2)
@@ -147,7 +149,7 @@ La dernière activité de la séance sera de vous rendre sur le site Web du cour
 \caption{\label{sch-RC2}\textbf{Sous-objectif} : démontrer que ce même circuit RC série agit en filtre passe-haut ou passe-bas en prenant les mesures appropriées pour construire les diagrammes de Bode du gain ET de la phase en fonction de la fréquence.}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \begin{circuitikz} \draw
 (0,2) node[left]{$V_{\mathrm{g}}$} to[L,l=$L$,a=1<\milli\henry>,o-] (2.5,2) to[C,l=$C$, a=1<\micro\farad>] (5,2) to[short,-o] (6.5,2) node[right]{$V_{\mathrm{out}}$}
@@ -208,12 +210,29 @@ La dernière activité de la séance sera de vous rendre sur le site Web du cour
 %\subsection{Partie 3 --- Coupures de différents filtres passe-bas}
 
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \subcaptionbox{}
 {\begin{circuitikz} \draw
 (0,2) node[left]{$V_{\mathrm{g}}$} to[R=270~$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$}
 (3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
+;\end{circuitikz}}
+\subcaptionbox{}
+{\begin{circuitikz} \draw
+(0,0) node[op amp](opamp){}
+(opamp.+) to[short] (-1.2,-0.5) to [C,l=1~$\mu$F] (-1.2,-2.5) node[ground]{}
+(opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,1.5) to[short] (1.2,1.5) to[short](1.2,0)
+(opamp.out) to[short,-o] (1.5,0) node[right]{$V_{\mathrm{out}}$}
+(-4,-0.5) node[left]{$V_{\mathrm{g}}$} to[R=270~$\Omega$,o-] (-1.2,-0.5) 
+;\end{circuitikz}}
+\subcaptionbox{}
+{\begin{circuitikz} \draw
+(0,0) node[op amp](opamp){}
+(opamp.+) to[short] (-1.2,-0.5) to[short] (-1.2,-1) node[ground]{}
+(opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,1.5) to[R=270~$\Omega$] (1.2,1.5) to[short] (1.2,0)
+(opamp.out) to[short,-o] (1.5,0) node[right]{$V_{\mathrm{out}}$}
+(-1.2,1.5) to[short] (-1.2,2.8) to[C=1~$\mu$F] (1.2,2.8) to[short] (1.2,1.5)
+(-2,-0.5) node[left]{$V_{\mathrm{g}}$} to[short,o-](-1.2,-0.5)
 ;\end{circuitikz}}
 \subcaptionbox{}
 {\begin{circuitikz} \draw
@@ -228,6 +247,10 @@ La dernière activité de la séance sera de vous rendre sur le site Web du cour
 (3,2) to[C=470~nF] (3,0) node[ground]{}
 (6,2) to[R=270~$\Omega$] (6,0) node[ground]{}
 ;\end{circuitikz}}
+\end{figure}
+
+\begin{figure}
+\ContinuedFloat
 \subcaptionbox{}
 {\begin{circuitikz} \draw
 (0,0) node[op amp](opamp){}
@@ -241,8 +264,10 @@ La dernière activité de la séance sera de vous rendre sur le site Web du cour
 (-10.5,-0.5) node[left]{$V_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (-7.5,-0.5) to[R=560~$\Omega$] (-4.5,-0.5) to[R=1~k$\Omega$] (-1.2,-0.5)
 (-7.5,-0.5) to[C=1~$\mu$F] (-7.5,-3) node[ground]{}
 ;\end{circuitikz}}
-\caption{\label{sch-RC-ordre3}\textbf{Sous-objectif} : examiner comment les filtres (a) RC série de premier ordre, (b) RC de troisième ordre, (c) Butterworth en topologie Cauer de troisième ordre et (d) Butterworth en topologie Sallen-Key de troisième ordre, vont dévier du comportement idéal d'un filtre passe-bas. Ce spectre idéal du gain est une fonction échelon de Heaviside en symétrie miroir centrée sur la fréquence de coupure. Cette symétrie de parité paire est seulement pour exprimer l'opération $H(-x)\rightarrow H(x)$.}
+\caption{\label{sch-RC-ordre3}\textbf{Sous-objectif} : examiner comment les filtres (a) RC série passif de premier ordre, (b) RC série actif non-inverseur, (c) RC parallèle actif inverseur, (d) RC passif de troisième ordre, (e) Butterworth passif en topologie Cauer de troisième ordre et (g) Butterworth actif en topologie Sallen-Key de troisième ordre, vont dévier du comportement idéal d'un filtre passe-bas. Ce spectre idéal du gain est une fonction échelon de Heaviside en symétrie miroir centrée sur la fréquence de coupure. Cette symétrie de parité paire est seulement pour exprimer l'opération $H(-x)\rightarrow H(x)$.}
 \end{figure}
+
+\noindent\textit{Pour vous aider à tracer rapidement les diagrammes de Bode, vous pouvez utiliser le VI LabVIEW disponible sur le site du cours dans la section dédiée à cet atelier.}
 %TO CHECK OUT TO HELP FORMATTING: https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures_in_multiple_parts
 
 % Vous pouvez remarquer à partir des diagrammes de Bode précédemment tracés que la transition entre la bande passante et la bande rejetée n'est pas parfaitement verticale. Il est toutefois possible de complexifier le design d'un filtre afin que cette transition soit plus abrupte. Cette analyse sera faite sur des filtres passe-bas.
@@ -287,6 +312,10 @@ La dernière activité de la séance sera de vous rendre sur le site Web du cour
 % ;\end{circuitikz}
 % \caption{\label{sch-Butter-Sallen-Key-ordre3}Filtre actif Butterworth en topologie Sallen-Key de troisième ordre.}
 % \end{figure}
+
+\section{Filtrage d'une source}
+Maintenant que vous avez déterminé les spectres du gain des filtres de la figure \ref{sch-RC-ordre3}, mettez-les à l'épreuve en les utilisant pour retirer les hautes fréquences d'un signal bruité. Pour ce, utilisez le générateur de fonctions d'un oscilloscope afin d'envoyer un signal de type \textit{bruit} dans votre filtre. Observez le spectre du signal avant et après son passage dans le filtre et déterminez quel(s) paramètre(s) du circuit vous pouvez modifier si vous voulez couper davantage de hautes fréquences.\\\\
+Maintenant, supposez que vous désirez fournir la tension à la sortie de vos filtres à une charge (résistance) de $1~\mathrm{k\Omega}$. Quel type de filtre, entre les filtres actifs et passifs, serait le plus approprié pour cette tâche? Montrez-le à partir de mesures de tension sur la charge de sortie, que vous pouvez comparer aux valeurs de tension attendues en l'absence de charge. 
 
 %\section{Questions et discussion}
 %

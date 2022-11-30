@@ -1,12 +1,12 @@
 %Créé par Claudine Allen en collaboration avec Jean-Raphaël Carrier
+%(Élimination du labo de résistivité des matériaux (IV) à la fin de l'ère JRC + regroupement des labos VI & VII en début de pandémie COVID-19 => renumérotation XI -> IX maintenant)
 %Dernière modification JRC: 13 janvier 2014
-%Élimination du labo de résistivité des matériaux (IV) à la fin de l'ère JRC + regroupement des labos VI & VII en début de pandémie COVID-19 => renumérotation XI -> IX maintenant
-%Dernière modification CA: 22 novembre 2020
-%Dernière modification JG:
+%Dernière modification CA: 29 novembre 2022
 %********************
 %ToDo:
-% - Tester le circuit astable avec l'oscillateur de porte NON-OU et rajouter si ça fait encore des attracteurs étrange en simulation... j'en doute. Pourrait aller avec les oscillateurs de l'atelier précédent pour gagner du temps?
-% - Essayer de ramener le travail de rétroingénierie, p-e à chevaucher dans le projet final pour avoir assez de temps?
+% - Essayer de ramener le travail de rétroingénierie sur le système de mesure de l'accélération gravitationnelle en ayant déjà introduit le calcul du temps avec oscillateurs à l'atelier précédent. Je pense diviser le circuit en 3 blocs délimités par des pointillés qui matchent un peu les autres sections du protocole DIY, en partant par la fin : Intro aux circuits logiques rétroactifs -> avec les comparateurs de début de circuit + bascule asynchrone ; Conception du voltmètre -> avec évaluer le résultat d'accélération gravitationnelle à partir de l'oscillateur + compteur (pas de lien conceptuel dans ce cas, juste pcq plus facile/court pour aller avec le voltmètre plus long) ; Construction de portes logiques -> avec les portes NOR ainsi que AND. Il y a deux hics dans tout ça: 1) difficile d'expliquer les portes NOR, AND sans l'info des autres équipes de bascule & oscillateur ; 2) c'est que c'est trop long/redondant de tout le faire en préparation... devrait être fait juste au labo, voir comment exclure de la préparation.
+% - Tester le circuit astable avec l'oscillateur de porte NON-OU et rajouter si ça fait encore des attracteurs étrange en simulation... j'en doute. Pourrait aller avec les oscillateurs de l'atelier précédent en remplaçant l'oscillateur à rétroaction qui bouette?
+% - Raccourcir en combinant les sections de préparation et déroulement de l'atelier vu que ça répète le début du lab 7 (à recopier au cours 6 aussi). Réviser et ramener les anciens objectifs en renommant "Thématique et objectifs" en voyant si ça ne serait pas mieux de renommer les sous-objectifs en "but à atteindre ou qqch du genre.
 
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -116,7 +116,7 @@ Lors de la séance de laboratoire de 2h à la date spécifiée dans la section \
 
 Nous recommandons de commencer la séance en délibérant sur l'optimisation des manipulations expérimentales et des analyses proposées dans vos cahiers de recherche respectifs avec l'assistance du membre de l'équipe d'enseignement et il vous faudra ensuite répartir les tâches dans votre groupe. Des exemples de tâches possibles sont la planification et l'organisation, la conception, la simulation, la réalisation expérimentale, la mesure, l'analyse, la communication, etc. et il peut bien sûr y avoir de la redondance pour vérifier l'exactitude des résultats de mesure et d'analyse. Notez que la fin de la section \texttt{Matériel didactique} sur le site de cours propose différents choix de logiciels et d'applications pour vous assister dans les tâches de conception et de simulation.
 
-La dernière activité de la séance sera de vous rendre sur le site Web du cours dans la section \texttt{Évaluations et résultats} pour l'atelier concerné et y évaluer vos pairs sur leur contribution respective au travail du groupe.
+%La dernière activité de la séance sera de vous rendre sur le site Web du cours dans la section \texttt{Évaluations et résultats} pour l'atelier concerné et y évaluer vos pairs sur leur contribution respective au travail du groupe.
 
 % \subsection{Partie 1-Mesure automatisée de l'accélération gravitationnelle}
 
@@ -147,16 +147,16 @@ La dernière activité de la séance sera de vous rendre sur le site Web du cour
 
 %a) Montez le circuit d'une porte NON-OU (figure~\ref{sch-NOR}) en utilisant les transistors. Appliquez une tension $v_{\mathrm{cc}}$ de 5~V.
 
- \noindent\textbf{1\textsuperscript{er} sous-objectif} : En utilisant seulement des puces de portes NON-ET (NAND), concevoir un circuit qui serait équivalent à une porte OU.
+ %\noindent\textbf{0\textsuperscript{e} sous-objectif} : En utilisant seulement des puces de portes NON-ET (NAND), concevoir un circuit qui serait équivalent à une porte OU.
  
 \begin{figure}[H]
 \centering
 \begin{circuitikz} \draw
 (0,0) node[ground]{} to[Tnpn,n=q1] (0,2) to[short,-*] (5,2) node[right]{$v_{\mathrm{out}}=\overline{A+B}$} to[leDo] (5,0) node[ground]{}
-(3,0) node[ground]{} to[Tnpn,n=q2] (3,2) to[R=270~$\Omega$,-o] (3,5) node[above]{$v_{\mathrm{cc}}$}
+(3,0) node[ground]{} to[Tnpn,n=q2] (3,2) to[R=270~$\Omega$,-o] (3,5) node[above]{$v_{\mathrm{cc}}=5\:\mathrm{V}$}
 (-3,1) node[left]{$A$} to[R=560~$\Omega$,o-] (q1.B)
 (-3,-2) node[left]{$B$} to[R=560~$\Omega$,o-] (2,-2) to[short] (2,1) to[short] (q2.B); \end{circuitikz}
-\caption{\textbf{2\textsuperscript{e} sous-objectif} : Déterminer comment ce circuit agit comme une porte NON-OU sur les entrées A et B en tension puis comment le modifier avec un inverseur à la sortie, constitué d'un transistor et de résistances, pour obtenir une porte OU.}
+\caption{\textbf{1\textsuperscript{er} sous-objectif} : À l'aide des entrées A et B en tension ($v_{\mathrm{cc}}\rightarrow$~1, \textit{ground}~$\rightarrow$~0) et de la sortie sur la diode électroluminescente (allumée~$\rightarrow$~1, éteinte~$\rightarrow$~0), consigner la table de vérité et déterminer quelle est la porte logique réalisée par ce circuit. Ajouter ensuite un inverseur à la sortie, constitué d'un transistor et de résistances, pour obtenir une porte OU.}
 \label{sch-NOR}
 \end{figure}
  
@@ -179,7 +179,7 @@ La dernière activité de la séance sera de vous rendre sur le site Web du cour
 
 \subsection{Conception d'un voltmètre en base 1}
 
-\noindent\textbf{3\textsuperscript{e} sous-objectif} : Réaliser une conversion analogique-numérique en base 1 à l'aide d'un circuit simple. Ce circuit est en fait un embryon de voltmètre à concevoir à partir d'une source d'alimentation DC, de la fonction comparateur d'ampli-ops, de résistances et de diodes électroluminescentes (DEL). Ces dernières afficheront la valeur d'un signal de tension dans le système de numérotation unaire, ce signal étant fourni par un générateur de fonctions ou autre source variable. Plus précisément, \textbf{aucune} DEL ne doit s'allumer lorsque la tension est inférieure à 1~V, \textbf{une} DEL doit s'allumer lorsque la tension fournie est supérieure à 1~V et \textbf{deux} DEL doivent s'allumer lorsque la tension devient supérieure à 2~V.
+\noindent\textbf{2\textsuperscript{e} sous-objectif} : Réaliser une conversion analogique-numérique en base 1 à l'aide d'un circuit simple. Ce circuit est en fait un embryon de voltmètre à concevoir à partir d'une source d'alimentation DC, de la fonction comparateur d'ampli-ops, de résistances et de diodes électroluminescentes (DEL). Ces dernières afficheront la valeur d'un signal de tension dans le système de numérotation unaire, ce signal étant fourni par un générateur de fonctions ou autre source variable. Plus précisément, \textbf{aucune} DEL ne doit s'allumer lorsque la tension est inférieure à 1~V, \textbf{une} DEL doit s'allumer lorsque la tension fournie est supérieure à 1~V et \textbf{deux} DEL doivent s'allumer lorsque la tension devient supérieure à 2~V.
 
 \subsection{Introduction aux circuits logiques rétroactifs}
 
@@ -209,7 +209,7 @@ La dernière activité de la séance sera de vous rendre sur le site Web du cour
 (norS.in 2) to[short] (-1.5,-0.28) node[left]{$S$}
 (norS.out) to[short] (1,0) node[right]{$\overline{Q}$}
 ;\end{circuitikz}
-\caption{\textbf{4\textsuperscript{e} sous-objectif} : Déterminer comment ce circuit bistable agit comme une bascule asynchrone sur les entrées S et R en tension.}%% modifier pour faire ressortir le comportement de mémoire vive et ajuster le critère correspondant dans ~Trucs pour dépanner.
+\caption{\textbf{3\textsuperscript{e} sous-objectif} : Déterminer comment ce circuit bistable agit comme une bascule asynchrone sur les entrées S et R en tension.}%% modifier pour faire ressortir le comportement de mémoire vive et ajuster le critère correspondant dans ~Trucs pour dépanner.
 \label{sch-RS}
 \end{figure}
 

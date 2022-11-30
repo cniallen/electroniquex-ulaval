@@ -3,25 +3,19 @@
 %------------------------------------------------------------------
 %Créé par Jérémie Guilbert, Louis-Philippe Dallaire & Marc-André Vigneault
 %Contributions par Claudine Nì. Allen
-%Compilateur pdfLaTeX, distribution TeX Live 2020
-%Dernière modification CA : 18 décembre 2021
+%Compilateur pdfLaTeX, distribution TeX Live 2022
+%Dernière modification CA : 22 novembre 2022
 %
 %%%ToDo
 %
 % - Pratiquement tout le monde conçoit totalement par essai-erreur, comment forcer des calculs "back of the envelope" avant de "tomber" dans les outils de simulation numérique et ECAD/EDA?
 %
-% - Comment forcer des mesures IRL pendant la présentation?
-%
-% - Source de lumière calibrée et alignée pour reproduire une illumination maximale identique sur les photorésistances de toutes les équipes difficile à implémenter pour nous au labo. Les parties sur le max de luminosité possible (slider Tinkercad notamment) sont donc commentées out. Voir s'il y a lieu de ramener ou pas éventuellement, mais à plus court terme, clarifier la bouette d'étalonnage: même Tinkercad n'a qu'un vague slider de luminosité, ce pkoi le graphe d'optimisation est demandé en fonction de la photorésistance et non pas de la luminosité, mais ce n'est malheureusement pas "catché" par toutes les équipes.
+% - Les deux dernières grosses difficulté hardware sont 1) le moteur n'a d'encodeur retournant la mesure de vitesse (pourra être acheté sur Adafruit ou autre inspiré des composants Fritzing ou TinkerCAD) et plus compliqué 2) Source de lumière calibrée et alignée pour reproduire une illumination maximale identique sur les photorésistances de toutes les équipes difficile à implémenter pour nous au labo. Les parties sur le max de luminosité possible (slider Tinkercad notamment) sont donc commentées out. Voir s'il y a lieu de ramener ou pas éventuellement, mais à plus court terme, clarifier la bouette d'étalonnage: même Tinkercad n'a qu'un vague slider de luminosité, ce pkoi le graphe d'optimisation est demandé en fonction de la photorésistance et non pas de la luminosité, mais ce n'est malheureusement pas "catché" par toutes les équipes.
 %
 % - J'ai beaucoup de commentaires à l'intérieur du texte ci-dessous, tout relire et modifier selon comment ça va dans l'adaptation au mode hybride de retour post-pandémie.
 %
-% - Stabilisation de la vitesse de rotation du moteur à laisser plus libre? Ça a si bien été :)
-%
 % - Éventuellement, intégrer l'annexe dans les compléments dont un nouveau spécifique à l'Arduino. Y mettre une à la fin de ce dernier à partir des ressources Arduino préférees des étudiants, à voter sur Teams. Développer un/des compléments séparés (éliminer l'annexe éventuellement) et/ou capsules vidéo à pour les outils des ateliers et ce projet: Arduino (la carte et le IDE), Fritzing, Tinkercad, Falstad(possiblement bien avant dans les cours asynchrones avec ce dernier). Mentionner seulement dans la section logiciel du site de cours (pas matériel didactique obligatoire) et aborder plus au cours 6 présentiel qui traite entre autres de la 2e partie de la session.
 %
-% - Voir pour tourner le début du document en titre ou first-page only header et inclure un logo ULaval (si ok avec comms) : https://tex.stackexchange.com/questions/238520/how-to-correctly-include-a-header-image-only-on-the-first-page
-% - Not sure I want this anymore... I'd like to reduce the bottom margin on the last page, I was fiddling with something like \AtEndDocument{\newgeometry{bmargin=0cm}}, but it doesn't work so far. See docs of fancyhdr package. Or try to work with "\thispagestyle{}" below the footer. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
@@ -91,7 +85,7 @@
 %### Settings ###
 %
 %## Configuring the layout and other format setups ##
-%\the\parindent{} , \the\value{equation} %%and other '\the' commands to see the current parameter, counter,... value
+%\the\parindent{}, \the\value{equation} %%and other '\the' commands to see the current parameter, counter,... value
 \geometry{  %%for geometry package
 %    showframe,  %%uncomment to see lines delimiting the dimension boxes
     letterpaper,
@@ -175,25 +169,27 @@
 \end{center}
 
 \vspace{-1em}
-\noindent Hiver 2022 \hfill Responsables: C. Allen \& D. Côté\par
+\noindent Automne 2022 \hfill Responsable: C. Allen\par
 \vspace{0.2ex}
 \hrule
-%\vspace{0.5ex}
+\vspace{0.5ex}
 \centering
-    \textsc{Projet de Conception\\
-    Contrôle Arduino d'un Ventilateur}\\
+    \textbf{PROJET DE CONCEPTION}\\
+    \textsc{Contrôle Arduino d'un Ventilateur}\\
 \vspace{1ex}
-Livrables sur Gradescope: 14 avril à 23h56 \hfill Présentations: 19 ou 26 avril selon la \href{https://docs.google.com/spreadsheets/d/1LGub_3wqdrQimRKcBehzTJtZB8x919ihIn0lVgxcRog/edit?usp=sharing}{plage horaire}\par %mettre le dépôt des livrables sur Gradescope un solide 2 jours avant la présentation.
-%\vspace{0.4em}
+\textsc{Fin: 9 décembre 2022}\par
+%\textsc{Début: 22 novembre 2022 \hfill Fin: 9 décembre 2022}\par
+\vspace{0.4em}
 \hrule
 \justify
 %------ END HOMEMADE TITLE ------%
 \vspace{-1ex}
-Pour progresser vers l'objectif d'autonomie et d'initiative nécessaires au travail de recherche, de développement et d'ingénierie, la dernière activité du cours ne donne aucun protocole ni schéma de circuit. Vous devez concevoir par vous-même le système électronique qui répondra aux besoins à identifier dans la problématique, mettant ainsi à profit votre capacité de compréhension de texte, tout en respectant les contraintes imposées et en préparant les éléments demandés dans la section \nameref{subsec:livrables}. Pour ce faire, vous devrez faire appel aux ressources étudiées dans l'ensemble du cours et au-delà, notamment vous initiant au monde des microcontrôleurs à l'interface entre l'électronique et l'informatique (voir \nameref{sec:annexe}). En plus des informations en provenance des manufacturiers (fiches techniques), faites aussi appel à l'entraide étudiante, notre encadrement pédagogique, ainsi qu'à toute votre débrouillardise et jugement critique pour dénicher des sources de renseignements FIABLES en ligne (\href{https://fr.wikipedia.org/wiki/Culture_maker}{culture \textit{maker}}, \href{https://www.reddit.com/r/diyelectronics/}{DIY}, \href{https://hackaday.com/about/}{\textit{hacking}} et \href{https://disboard.org/servers/tag/whitehat}{\textit{white hats}} par exemple).
+Pour progresser vers l'objectif d'autonomie et d'initiative nécessaires au travail de recherche, de développement et d'ingénierie, la dernière activité du cours ne donne aucun protocole ni schéma de circuit. Vous devez concevoir par vous-même le système électronique qui répondra aux besoins à identifier dans la problématique, mettant ainsi à profit votre capacité de compréhension de texte, tout en respectant les contraintes imposées et en préparant les éléments demandés dans la section \nameref{subsec:livrables}. Comme tout cas pratique, il n'existe pas de circuit idéal pouvant satisfaire parfaitement tous les besoins et contraintes, il faut plutôt viser le meilleur compromis possible avec le matériel disponible.
+
+Pour ce faire, vous devrez faire appel aux ressources étudiées dans l'ensemble du cours et au-delà, notamment en vous initiant au monde des microcontrôleurs à l'interface entre l'électronique et l'informatique (voir \nameref{sec:annexe}). En plus des informations en provenance des manufacturiers (fiches techniques), faites aussi appel à l'entraide étudiante, notre encadrement pédagogique, ainsi qu'à toute votre débrouillardise et jugement critique pour dénicher des sources de renseignements FIABLES en \href{https://www5.bibl.ulaval.ca}{bibliothèque} ou plus généralement en ligne\footnote{Voici quelques exemples de sources plus spécifiques à la conception qui s'ajoutent à toute la médiagraphie qu'on retrouve sur le site de cours: \href{https://fr.wikipedia.org/wiki/Culture_maker}{culture \textit{maker}}, \href{https://www.reddit.com/r/diyelectronics/}{DIY}, \href{https://hackaday.com/about/}{\textit{hacking}} et \href{https://disboard.org/servers/tag/whitehat}{\textit{white hats}}.}.
 %Éventuellement référer explicitement à ma médiagraphie sur le site de cours lorsque je l'aurai remise sur le sens du monde. D'ailleurs, voir si je transfère ces sources en médiagraphie ici et/ou sur le site de cours en y ajoutant d'autres forums d'intérêt comme <https://electronics.stackexchange.com/> et des familles-organisations-sociétés de journaux. voir la page GEL de la bibli itou! Ne pas oublier de mentionner les bons vieux livres de la bibliothèque! Il y a possiblement un gros questionnement philosophique à qqpart dans le coin... À discuter avec Éric et Aaron...
 \vspace{-1em}
 \subsection*{Problématique}
-%\vspace{-0.5em}
 L’été dernier, votre ami Itof Mèyacho a vécu la pire canicule de toute sa vie. En effet, comme il est étudiant, il ne peut se permettre d’avoir l’air conditionné tant convoité. Il doit se contenter d’un bon vieux ventilateur. Il souhaiterait trouver un moyen pour ajuster la vitesse de son ventilateur selon la luminosité du soleil qui entre dans son appartement, et ce, sans avoir à se lever de son sofa. Ses jeux vidéo ne peuvent attendre! De plus, bien qu’il fasse complètement noir dans sa chambre la nuit, il trouve essentiel que le ventilateur continue de tourner, mais à moindre vitesse, car le bruit du plein régime l’empêche de se reposer. Comme la prochaine canicule est à venir et qu’il semble trop occupé à jouer aux jeux vidéo, Itof Mèyacho vous demande votre aide. À l'aide de vos nouvelles connaissances en électronique, il est maintenant temps de lui donner un coup de main.
 
 Après un peu de recherche et expérimentation, vous avez réussi à déterminer que le moteur du ventilateur d’Itof fonctionne en courant continu (DC en anglais). Vous avez aussi remarqué que le moteur risque de se briser s'il tourne à une vitesse supérieure à 500~RPM, mais heureusement, la luminosité ambiante reste assez faible dans l'appartement même en plein jour. Après quelques tests, Itof a identifié qu’il était confortable la nuit seulement lorsque le ventilateur tourne à une vitesse de 200~RPM. Vous décidez donc de concevoir un système basé sur un microcontrôleur Arduino. Celui-ci sera utilisé pour lire l'irradiance de la lumière sur une photorésistance et ensuite ajuster la vitesse de rotation du moteur DC en fonction de cette luminosité mesurée. La vitesse de rotation doit donc varier progressivement de sa valeur minimale la nuit jusqu'à 500~RPM tout en s'ajustant le plus graduellement possible avec l'augmentation de luminosité.
@@ -218,30 +214,30 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 
 \subsection*{Contraintes supplémentaires}
 \begin{enumerate}
-    \item Vous pouvez utiliser autant de composants que nécessaires dans la liste ci-dessus. Toutefois, vous n’avez pas le droit d’utiliser des composants ou des sources d'alimentation qui ne figurent pas dans cette liste. Les instruments de mesure quant à eux, comme les multimètres et les oscilloscopes au laboratoire, ne font pas partie du circuit et il est très pertinent d'en faire usage pour sonder, tester et diagnostiquer votre système pendant son développement. Ils peuvent aussi aider à montrer comment certaines contraintes sont respectées pendant votre présentation finale.
+    \item Vous pouvez utiliser autant de composants que nécessaires dans la liste ci-dessus. Toutefois, vous n’avez pas le droit d’utiliser des composants ou des sources d'alimentation qui ne figurent pas dans cette liste. Les instruments de mesure quant à eux, comme les multimètres et les oscilloscopes au laboratoire, ne font pas partie du circuit et il est très pertinent d'en faire usage pour sonder, tester et diagnostiquer votre système pendant son développement. Ils peuvent aussi aider à montrer comment certaines contraintes sont respectées dans votre présentation vidéo (voir livrables).
     \item Concevez virtuellement et construisez expérimentalement votre circuit très clairement sur la plaquette de montage. Pour ce faire, employez un minimum de composants et de fils. Dans la mesure du possible, appliquez aussi le code de couleur suivant pour les fils à la même tension qu'une des alimentations: rouge -- positif, noir -- négatif et la mise à la terre (COM) -- blanche.
     \item Vous devez découpler l’impédance du circuit de la photorésistance de l’impédance du circuit ADC (convertisseur analogique-numérique) de l’Arduino à l'aide d'un suiveur de tension qui agit alors comme un tampon (\textit{buffer}).
-    \item Stabilisez la vitesse de rotation du moteur en éliminant le plus possible les oscillations de sa tension d'alimentation.
+    \item Éliminez autant que possible les oscillations de la tension d'alimentation du moteur pour maximiser la stabilisation de sa vitesse de rotation en ignorant son inertie. Comme vous n'avez pas d'instrument de mesure de cette vitesse, il faut plutôt utiliser la fiche technique du moteur pour l'estimer.
     \item Assurez-vous de ne pas briser la photorésistance. Comme la dissipation de puissance tolérée dépend significativement de la température selon la fiche technique de ce LDR, faites le choix prudent de ne pas dépasser une puissance maximale de \SI{0.1}{W}.
-    \item Recréez le minimum d'irradiance de nuit en bloquant la lumière arrivant sur la photorésistance au laboratoire et en mettant la glissière de luminosité du LDR à son minimum dans la simulation et le plan de conception.
+    \item Recréez le minimum d'irradiance de nuit en bloquant la lumière arrivant sur la photorésistance au laboratoire. %et en mettant la glissière de luminosité du LDR à son minimum dans la simulation et le plan de conception.
     %\item Le temps du jour doit être représenté par la position de l’indicateur de luminosité de la photorésistance sur Tinkercad tel qu'illustré à la Figure~\ref{fig:photoresistance} en annexe. Lorsque l’indicateur est à sa valeur maximale, il fait plein jour. Lorsqu’il est à sa valeur minimale, il fait nuit.
-    \item \textbf{BONUS VIRTUEL:} Utilisez un modèle de moteur DC avec un encodeur dans le plan de conception assistée par ordinateur afin de lire en temps réel la vitesse du moteur avec l’Arduino et affichez-la sur un écran LCD.
+    \item \textbf{BONUS VIRTUEL:} Seulement dans le plan de conception assistée par ordinateur EDA, utilisez un modèle de moteur DC avec un encodeur afin de lire en temps réel la vitesse du moteur avec l’Arduino et affichez-la sur un écran LCD.
 \end{enumerate}
 
 \subsection*{Livrables}
 \label{subsec:livrables}
 \begin{itemize}
-    \item Équipe de travail de 4 personnes formée sur le site de cours dans la section \texttt{Évaluations et résultats} en suivant le lien vers le \texttt{Projet de conception}.
-    \item Documentation de la conception du système où le format de chaque fichier est laissé libre\footnote{N'écrivez PAS de rapport, PAS de texte continu, l'objectif de rédaction scientifique du cours est déjà complété. Seuls des annotations ou des commentaires courts pourront clarifier vos documents. La communication complète de ce projet se fait de manière orale.} \textit{(Vous pouvez donc utiliser tout logiciel ou application de votre choix, des suggestions sont proposées dans le \texttt{Matériel didactique} sur le site de cours.)}:
+    \item Équipe de travail de 4 personnes formée sur \href{https://www.gradescope.com/}{Gradescope}. Si le nombre d'inscriptions au cours ne se factorise pas par 4, une seule équipe de moins de 4 membres sera permise avec l'autorisation d'un responsable.
+    \item Documentation de la conception du système où le format de chaque fichier est laissé libre\footnote{N'écrivez PAS de rapport, PAS de texte continu, l'objectif de rédaction scientifique du cours est déjà complété. Seuls des annotations ou des commentaires courts pourront clarifier vos documents. La communication complète de ce projet se fait de manière orale avec l'enregistrement vidéo.} \textit{(Vous pouvez donc utiliser tout logiciel ou application de votre choix, des suggestions sont proposées dans le \texttt{Matériel didactique} sur le site de cours.)}:
     \begin{itemize}[label=$\bullet$]
         \item simulation sur diagramme schématique pour chaque section de circuit reliée à la carte Arduino\footnote{La plupart des simulateurs électroniques gratuits, dont le \href{https://www.falstad.com/circuit/}{site Internet de Paul Falstad}, ne supportent pas directement des processeurs et des cartes informatiques, ce pourquoi des simulations séparées sont demandées seulement pour les parties analogues du circuit. Toutefois, des extensions ajoutant une interface de développement de code Arduino commencent \href{http://falstad.com/circuit/avr8js/}{à être publiées}, mais n'aideront \href{https://hackaday.com/2021/06/11/circuit-vr-arduino-virtually-meets-analog/}{peut-être pas} votre travail puisque les logiciels sont souvent déployés trop rapidement de nos jours, avant d'être complètement testés sans bogues.},
-        \item plan de conception assistée par ordinateur (ECAD, \textit{electronic computer-aided design}, ou EDA, \textit{Electronic design automation}, en anglais) illustrant le système\footnote{Nous avons testé la conception de ce projet surtout avec \href{https://www.tinkercad.com/login}{l'application Web Tinkercad} qui peut simuler l'exécution d'un programme Arduino, mais à notre connaissance, il n'est pas encore possible d'exporter/télécharger le plan du système. Les captures d'écrans bien résolues seront donc exceptionnellement acceptées, surtout que les liens de partage aux projets Tinkercad expirent rapidement, d'où l'accès ne sera peut-être plus possible lors de la correction. De nombreuses autres \href{https://fritzing.org/about/comparison}{alternatives} d'applications et de logiciels EDA s'offrent à vous tel que détaillé vers la fin de la page Web sur le \texttt{Matériel didactique} de notre site de cours, dont \href{https://fritzing.org/}{Fritzing} qui est déjà installé sur les ordinateurs du laboratoire.},
+        \item plan de conception assistée par ordinateur (ECAD, \textit{electronic computer-aided design}, ou EDA, \textit{Electronic design automation}, en anglais) illustrant le système\footnote{Nous avons testé le plan de conception de ce projet surtout avec \href{https://www.tinkercad.com/login}{l'application Web Tinkercad} où le format d'exportation \texttt{.brd} ne peut malheureusement pas être ré-importé dans l'application, mais une image du plan suffit à la correction. Bien que cette application puisse aussi faire des simulations, notez qu'elle n'est pas optimisée pour cela. De nombreuses autres alternatives sont détaillées vers la fin de la page Web sur le \texttt{Matériel didactique} de notre site de cours, dont \href{https://fritzing.org/}{Fritzing} qui est déjà installé sur les ordinateurs du laboratoire.},
         \item liste et quantité de composants électroniques utilisés; elle est produite automatiquement avec le plan de design par la plupart des logiciels EDA,
         \item script de programmation bien structurée et commentée pour contrôler/communiquer avec la carte Arduino.
     \end{itemize}
-    \item La réalisation concrète de ce circuit au laboratoire. Le matériel qui n'est pas dans votre coffre se retrouvera sur la tablette du haut de l'armoire contenant ces coffres.
-    \item Une présentation orale de \SI{10}{\min} avec diapositives comportant les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation et qui aura lieu pendant la plage horaire à réserver en inscrivant le nom de votre équipe dans le tableur en lien dans l'en-tête de cet énoncé. Cette présentation devra aussi démontrer la fonctionnalité du système réalisé au laboratoire ainsi que le respect des contraintes imposées à l'aide du plan de conception virtuelle. Des questions seront posées par le.les l'évaluateurs.trices pendant et/ou à la fin de la présentation.
-    \item Les différents documents et diapositives devront être déposés sur \href{https://www.gradescope.com/}{Gradescope} à la date indiquée en en-tête de cet énoncé.
+    \item La réalisation concrète de ce circuit au laboratoire pour votre tournage du livrable qui suit. Le matériel qui n'est pas dans votre coffre se retrouvera sur une tablette de l'armoire contenant ces coffres.
+    \item Un enregistrement vidéo d'environ \SI{10}{\min} avec diapositives pour présenter les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation. Cette présentation devra aussi démontrer la fonctionnalité du système réalisé au laboratoire ainsi que le respect des contraintes imposées à l'aide du plan de conception virtuel.
+    \item Les différents documents, diapositives et vidéo devront être déposés sur \href{https://www.gradescope.com/}{Gradescope}.
 \end{itemize}
 \vspace{-1em}
 
@@ -254,12 +250,12 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
     \begin{tabular}{l c}
     \hline
      \textsc{Éléments évalués} & \textsc{Pondération}\\
-     \rowcolor{black} \textcolor{white}{\textbf{Conception}} & \textcolor{white}{\textbf{70\%}}\\
+     \rowcolor{black} \textcolor{white}{\textbf{Conception}} & \textcolor{white}{\textbf{75\%}}\\
      \multicolumn{2}{c}{\textsc{Fonctions principales \& documentation}}\\
      \hline
      Simulations des sections de circuits analogues & 10\%\\
      Plan de conception EDA & 10\%\\
-     Script de contrôle Arduino avec code commenté & 5\%\\
+     Script de contrôle Arduino avec code commenté & 10\%\\
      Démonstration expérimentale du système électronique & 15\%\\
      \hline
      \multicolumn{2}{c}{\textsc{Contraintes supplémentaires}}\\
@@ -267,16 +263,15 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
      1. Respect des composants imposés & 5\%\\
      2. Clarté du circuit & 5\%\\
      3. Découplage de l'impédance à l'entrée analogique de l'Arduino & 5\%\\
-     4. Stabilisation de la vitesse de rotation & 5\%\\
+     4. Stabilisation de l'alimentation du moteur & 5\%\\
      5. Dépassement de la puissance maximale évité & 5\%\\
-     6. Vitesse minimale de nuit atteinte & 5\%\\
-     7. \textbf{Bonus virtuel}: Lecture en temps réel de la vitesse du moteur avec l'encodeur & +5\%\\
-     \rowcolor{black} \textcolor{white}{\textbf{Présentation du circuit comprenant:}} & \textcolor{white}{\textbf{30\%}}\\
+     6. Comportement de nuit respecté & 5\%\\
+     7. \textbf{Bonus virtuel}: Lecture en temps réel de la vitesse du moteur avec l'encodeur & +3\%\\
+     \rowcolor{black} \textcolor{white}{\textbf{Présentation vidéo du système comprenant:}} & \textcolor{white}{\textbf{25\%}}\\
      une liste identifiant les besoins de Itof Mèyacho (différents des contraintes), & 5\%\\
      une description du fonctionnement global du système, & 5\%\\
      la correspondance de chaque partie du circuit/code avec les besoins et contraintes, & 10\%\\
-     un graphe d'optimisation de vitesse du moteur en fonction de la photorésistance, & 5\%\\
-     les réponses aux questions. & 5\%\\
+     un graphe d'optimisation de vitesse du moteur en fonction de la photorésistance. & 5\%\\
      \hline
      %\rowcolor{black} \textcolor{white}{\textbf{Évaluation des pairs}} & \textcolor{white}{\textbf{20\%}}\\
     \end{tabular}
