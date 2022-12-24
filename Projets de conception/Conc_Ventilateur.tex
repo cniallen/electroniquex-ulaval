@@ -4,17 +4,18 @@
 %Créé par Jérémie Guilbert, Louis-Philippe Dallaire & Marc-André Vigneault
 %Contributions par Claudine Nì. Allen
 %Compilateur pdfLaTeX, distribution TeX Live 2022
-%Dernière modification CA : 22 novembre 2022
+%Dernière modification CA : 23 décembre 2022
 %
 %%%ToDo
+% - J'ai beaucoup de commentaires à l'intérieur du texte ci-dessous, tout relire et modifier selon comment ça va dans l'adaptation au mode hybride de retour post-pandémie.
 %
 % - Pratiquement tout le monde conçoit totalement par essai-erreur, comment forcer des calculs "back of the envelope" avant de "tomber" dans les outils de simulation numérique et ECAD/EDA?
 %
-% - Les deux dernières grosses difficulté hardware sont 1) le moteur n'a d'encodeur retournant la mesure de vitesse (pourra être acheté sur Adafruit ou autre inspiré des composants Fritzing ou TinkerCAD) et plus compliqué 2) Source de lumière calibrée et alignée pour reproduire une illumination maximale identique sur les photorésistances de toutes les équipes difficile à implémenter pour nous au labo. Les parties sur le max de luminosité possible (slider Tinkercad notamment) sont donc commentées out. Voir s'il y a lieu de ramener ou pas éventuellement, mais à plus court terme, clarifier la bouette d'étalonnage: même Tinkercad n'a qu'un vague slider de luminosité, ce pkoi le graphe d'optimisation est demandé en fonction de la photorésistance et non pas de la luminosité, mais ce n'est malheureusement pas "catché" par toutes les équipes.
+% - Les deux dernières grosses difficulté hardware s6ont 1) le moteur n'a pas d'encodeur retournant la mesure de vitesse (pourra être acheté sur Adafruit ou autre inspiré des composants Fritzing ou Tinkercad) : corollaire de faire le graphique de vitesse du moteur réelle au lieu de simulée deviendra possible. 2) Source de lumière calibrée et alignée pour reproduire une illumination maximale identique, et idéalement sa variation entre un max et un min, sur les photorésistances. Les parties sur le max de luminosité possible (slider Tinkercad notamment) sont donc commentées out ci-dessous. Voir s'il y a lieu de ramener ou pas éventuellement avec genre un laser + photorésistance dans une seule boîte noire utilisée par toutes les équipes, mais à plus court terme, clarifier la bouette d'étalonnage: même Tinkercad n'a qu'un vague slider de luminosité, ce pkoi le graphe d'optimisation est demandé en fonction de la photorésistance et non pas de la luminosité, mais ce n'est malheureusement pas "catché" par toutes les équipes.
 %
-% - J'ai beaucoup de commentaires à l'intérieur du texte ci-dessous, tout relire et modifier selon comment ça va dans l'adaptation au mode hybride de retour post-pandémie.
+% - contrainte pour forcer l'utilisation du transistor
 %
-% - Éventuellement, intégrer l'annexe dans les compléments dont un nouveau spécifique à l'Arduino. Y mettre une à la fin de ce dernier à partir des ressources Arduino préférees des étudiants, à voter sur Teams. Développer un/des compléments séparés (éliminer l'annexe éventuellement) et/ou capsules vidéo à pour les outils des ateliers et ce projet: Arduino (la carte et le IDE), Fritzing, Tinkercad, Falstad(possiblement bien avant dans les cours asynchrones avec ce dernier). Mentionner seulement dans la section logiciel du site de cours (pas matériel didactique obligatoire) et aborder plus au cours 6 présentiel qui traite entre autres de la 2e partie de la session.
+% - Éventuellement, intégrer l'annexe dans les compléments dont un nouveau spécifique à l'Arduino. Y mettre une à la fin de ce dernier à partir des ressources Arduino préférees des étudiants, à voter sur Teams. Développer un/des compléments séparés (éliminer l'annexe éventuellement) et/ou capsules vidéo à pour les outils des ateliers et ce projet: Arduino (la carte et le IDE), plan EDA (Fritzing, Tinkercad à p-e intégrer plus tôt dans  des protocoles ou quesstions d'analyse?), Falstad(ce dernier a un embyon de complément qui va plutôt avec la 1re fois qu'on l'utilise en Questions d'analyse, à développer avec ma réponse aux questions associées en PHY-2002-A22). Mentionner seulement dans la section logiciel du site de cours (pas matériel didactique obligatoire) et aborder plus au cours 6 présentiel qui traite entre autres de la 2e partie de la session. Voir note "For microcontroller documentation either in my labOMC wiki or the new complement for the course" dans mon Cahier d'enseignement ÉlectroniqueX.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -177,8 +178,7 @@
     \textbf{PROJET DE CONCEPTION}\\
     \textsc{Contrôle Arduino d'un Ventilateur}\\
 \vspace{1ex}
-\textsc{Fin: 9 décembre 2022}\par
-%\textsc{Début: 22 novembre 2022 \hfill Fin: 9 décembre 2022}\par
+\textsc{Début: 22 novembre 2022 \hfill Fin: 9 décembre 2022}\par
 \vspace{0.4em}
 \hrule
 \justify
@@ -228,16 +228,17 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 \label{subsec:livrables}
 \begin{itemize}
     \item Équipe de travail de 4 personnes formée sur \href{https://www.gradescope.com/}{Gradescope}. Si le nombre d'inscriptions au cours ne se factorise pas par 4, une seule équipe de moins de 4 membres sera permise avec l'autorisation d'un responsable.
-    \item Documentation de la conception du système où le format de chaque fichier est laissé libre\footnote{N'écrivez PAS de rapport, PAS de texte continu, l'objectif de rédaction scientifique du cours est déjà complété. Seuls des annotations ou des commentaires courts pourront clarifier vos documents. La communication complète de ce projet se fait de manière orale avec l'enregistrement vidéo.} \textit{(Vous pouvez donc utiliser tout logiciel ou application de votre choix, des suggestions sont proposées dans le \texttt{Matériel didactique} sur le site de cours.)}:
+    \item Documentation de la conception du système, où le format de chaque fichier est laissé libre\footnote{N'écrivez PAS de rapport, PAS de texte continu, l'objectif de rédaction scientifique du cours est déjà complété. Seuls des annotations ou des commentaires courts pourront clarifier vos documents. La communication complète de ce projet se fait de manière orale avec l'enregistrement vidéo.}\\ \textit{(Vous pouvez donc utiliser tout logiciel ou application de votre choix, des suggestions sont proposées dans le \texttt{Matériel didactique} sur le site de cours.)}:
     \begin{itemize}[label=$\bullet$]
         \item simulation sur diagramme schématique pour chaque section de circuit reliée à la carte Arduino\footnote{La plupart des simulateurs électroniques gratuits, dont le \href{https://www.falstad.com/circuit/}{site Internet de Paul Falstad}, ne supportent pas directement des processeurs et des cartes informatiques, ce pourquoi des simulations séparées sont demandées seulement pour les parties analogues du circuit. Toutefois, des extensions ajoutant une interface de développement de code Arduino commencent \href{http://falstad.com/circuit/avr8js/}{à être publiées}, mais n'aideront \href{https://hackaday.com/2021/06/11/circuit-vr-arduino-virtually-meets-analog/}{peut-être pas} votre travail puisque les logiciels sont souvent déployés trop rapidement de nos jours, avant d'être complètement testés sans bogues.},
         \item plan de conception assistée par ordinateur (ECAD, \textit{electronic computer-aided design}, ou EDA, \textit{Electronic design automation}, en anglais) illustrant le système\footnote{Nous avons testé le plan de conception de ce projet surtout avec \href{https://www.tinkercad.com/login}{l'application Web Tinkercad} où le format d'exportation \texttt{.brd} ne peut malheureusement pas être ré-importé dans l'application, mais une image du plan suffit à la correction. Bien que cette application puisse aussi faire des simulations, notez qu'elle n'est pas optimisée pour cela. De nombreuses autres alternatives sont détaillées vers la fin de la page Web sur le \texttt{Matériel didactique} de notre site de cours, dont \href{https://fritzing.org/}{Fritzing} qui est déjà installé sur les ordinateurs du laboratoire.},
+        \item photo haute résolution du circuit fait sur la plaquette de montage à partir des simulations et du plan de conception,
         \item liste et quantité de composants électroniques utilisés; elle est produite automatiquement avec le plan de design par la plupart des logiciels EDA,
         \item script de programmation bien structurée et commentée pour contrôler/communiquer avec la carte Arduino.
     \end{itemize}
-    \item La réalisation concrète de ce circuit au laboratoire pour votre tournage du livrable qui suit. Le matériel qui n'est pas dans votre coffre se retrouvera sur une tablette de l'armoire contenant ces coffres.
-    \item Un enregistrement vidéo d'environ \SI{10}{\min} avec diapositives pour présenter les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation. Cette présentation devra aussi démontrer la fonctionnalité du système réalisé au laboratoire ainsi que le respect des contraintes imposées à l'aide du plan de conception virtuel.
-    \item Les différents documents, diapositives et vidéo devront être déposés sur \href{https://www.gradescope.com/}{Gradescope}.
+    \item Démonstration du fonctionnement du système au laboratoire pour votre tournage du livrable qui suit. Le matériel qui n'est pas dans votre coffre se retrouvera sur une tablette de l'armoire contenant ces coffres.
+    \item Enregistrement vidéo d'environ \SI{15}{\min} avec diapositives pour présenter les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation.
+    \item Tous les différents documents et diapositives EN PLUS du vidéo devront être déposés sur \href{https://www.gradescope.com/}{Gradescope}.
 \end{itemize}
 \vspace{-1em}
 
@@ -271,11 +272,12 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
      une liste identifiant les besoins de Itof Mèyacho (différents des contraintes), & 5\%\\
      une description du fonctionnement global du système, & 5\%\\
      la correspondance de chaque partie du circuit/code avec les besoins et contraintes, & 10\%\\
-     un graphe d'optimisation de vitesse du moteur en fonction de la photorésistance. & 5\%\\
+     un graphique de la vitesse du moteur qui répond aux besoins. & 5\%\\
+     %ancienne version: un graphe de vitesse du moteur en fonction de la photorésistance. & 5\%\\
      \hline
      %\rowcolor{black} \textcolor{white}{\textbf{Évaluation des pairs}} & \textcolor{white}{\textbf{20\%}}\\
     \end{tabular}
-\caption{Liste des éléments qui seront évalués sur la conception, la simulation et la réalisation du système ainsi que sur sa présentation en direct.}
+\caption{Liste des éléments qui seront évalués sur la conception, la simulation et la réalisation du système ainsi que sur sa présentation audiovisuelle.}
 \label{tab:1}
 \end{table}
 
