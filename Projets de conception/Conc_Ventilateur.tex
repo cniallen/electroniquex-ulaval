@@ -4,7 +4,7 @@
 %Créé par Jérémie Guilbert, Louis-Philippe Dallaire & Marc-André Vigneault
 %Contributions par Claudine Nì. Allen
 %Compilateur pdfLaTeX, distribution TeX Live 2022
-%Dernière modification CA : 23 décembre 2022
+%Dernière modification CA : 29 décembre 2022
 %
 %%%ToDo
 % - J'ai beaucoup de commentaires à l'intérieur du texte ci-dessous, tout relire et modifier selon comment ça va dans l'adaptation au mode hybride de retour post-pandémie.
@@ -216,7 +216,7 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 \begin{enumerate}
     \item Vous pouvez utiliser autant de composants que nécessaires dans la liste ci-dessus. Toutefois, vous n’avez pas le droit d’utiliser des composants ou des sources d'alimentation qui ne figurent pas dans cette liste. Les instruments de mesure quant à eux, comme les multimètres et les oscilloscopes au laboratoire, ne font pas partie du circuit et il est très pertinent d'en faire usage pour sonder, tester et diagnostiquer votre système pendant son développement. Ils peuvent aussi aider à montrer comment certaines contraintes sont respectées dans votre présentation vidéo (voir livrables).
     \item Concevez virtuellement et construisez expérimentalement votre circuit très clairement sur la plaquette de montage. Pour ce faire, employez un minimum de composants et de fils. Dans la mesure du possible, appliquez aussi le code de couleur suivant pour les fils à la même tension qu'une des alimentations: rouge -- positif, noir -- négatif et la mise à la terre (COM) -- blanche.
-    \item Vous devez découpler l’impédance du circuit de la photorésistance de l’impédance du circuit ADC (convertisseur analogique-numérique) de l’Arduino à l'aide d'un suiveur de tension qui agit alors comme un tampon (\textit{buffer}).
+    \item Vous devez découpler l’impédance du circuit de la photorésistance de l’impédance du circuit ADC (convertisseur analogique-numérique) en entrée de l’Arduino à l'aide d'un suiveur de tension qui agit alors comme un tampon (\textit{buffer}).
     \item Éliminez autant que possible les oscillations de la tension d'alimentation du moteur pour maximiser la stabilisation de sa vitesse de rotation en ignorant son inertie. Comme vous n'avez pas d'instrument de mesure de cette vitesse, il faut plutôt utiliser la fiche technique du moteur pour l'estimer.
     \item Assurez-vous de ne pas briser la photorésistance. Comme la dissipation de puissance tolérée dépend significativement de la température selon la fiche technique de ce LDR, faites le choix prudent de ne pas dépasser une puissance maximale de \SI{0.1}{W}.
     \item Recréez le minimum d'irradiance de nuit en bloquant la lumière arrivant sur la photorésistance au laboratoire. %et en mettant la glissière de luminosité du LDR à son minimum dans la simulation et le plan de conception.
@@ -237,7 +237,7 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
         \item script de programmation bien structurée et commentée pour contrôler/communiquer avec la carte Arduino.
     \end{itemize}
     \item Démonstration du fonctionnement du système au laboratoire pour votre tournage du livrable qui suit. Le matériel qui n'est pas dans votre coffre se retrouvera sur une tablette de l'armoire contenant ces coffres.
-    \item Enregistrement vidéo d'environ \SI{15}{\min} avec diapositives pour présenter les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation.
+    \item Enregistrement vidéo d'environ \SI{12}{\min} avec diapositives pour présenter les éléments indiqués dans la Table~\ref{tab:1} qui liste les critères d'évaluation. La qualité de l'image n'est PAS évaluée d'où vous pouvez filmer avec un petit nombre de pixels, c'est-à-dire une basse résolution comme étudiée au début du cours, afin que la taille du vidéo soit inférieure à la limite de \SI{100}{Mo} pour soumettre sur le site Web \href{https://www.gradescope.com/}{Gradescope}. Si vous préférez, le vidéo peut être compressé\footnote{Des exemples d'outils en libre accès pour compresser et/ou convertir les vidéos sont l'application Web \href{http://www.mirovideoconverter.com/}{Miro Video Converter} et l'excellent logiciel \href{https://handbrake.fr/downloads.php}{HandBrake}. L'Université Laval offre aussi gratuitement le logiciel \href{https://www.ene.ulaval.ca/captation-numerique/tous-les-utilisateurs-installer-la-version-deluxe-du-logiciel}{Screencast-O-Matic} pour éditer votre enregistrement au besoin.} après le tournage ou encore hébergé sur un différent site Internet en écrivant l'adresse URL de celui-ci dans votre documentation.
     \item Tous les différents documents et diapositives EN PLUS du vidéo devront être déposés sur \href{https://www.gradescope.com/}{Gradescope}.
 \end{itemize}
 \vspace{-1em}
