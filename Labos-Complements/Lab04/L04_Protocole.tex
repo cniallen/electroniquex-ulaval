@@ -1,9 +1,11 @@
 %Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen
 %Dernière modification JRC: 13 janvier 2014
 %Élimination du labo de résistivité des matériaux (IV) à la fin de l'ère JRC => renumérotation V -> IV maintenant
-%Dernière modification CA: 29 septembre 2022
+%Dernière modification CA: 22 janvier 2023
 %
-% Ajouter d'une manière ou d'une autre de calculer la TF de fcts sinus ou cosinus tronquées (+ les maths du principe d'incertitude en tant que tel?) et dire comparer en partie 4c pour apprécier le principe d'incertitude au lieu de la question suivante. \item \texttt{[réponse courte]} Comment expliquez-vous les changements de largeur des pics ($\Delta f$) de cette FFT en fonction de l'échelle temporelle (\(\Delta t\))? Mettez à profit vos connaissances de la transformée de Fourier (et/ou celles d'une encyclopédie en ligne). Sachez que les variables \textit{temps} et \textit{fréquence} sont une paire conjuguée par la transformée de Fourier à laquelle s'applique par conséquent le principe d'incertitude.
+% ToDo:
+% - Ajouter d'une manière ou d'une autre de calculer la TF de fcts sinus ou cosinus tronquées (+ les maths du principe d'incertitude en tant que tel?) et dire comparer en partie 4c pour apprécier le principe d'incertitude au lieu de la question suivante. \item \texttt{[réponse courte]} Comment expliquez-vous les changements de largeur des pics ($\Delta f$) de cette FFT en fonction de l'échelle temporelle (\(\Delta t\))? Mettez à profit vos connaissances de la transformée de Fourier (et/ou celles d'une encyclopédie en ligne). Sachez que les variables \textit{temps} et \textit{fréquence} sont une paire conjuguée par la transformée de Fourier à laquelle s'applique par conséquent le principe d'incertitude.
+% - Les résultats des calculs de tension efficace & facteur de crête en Q1 d'analyse se retrouvent assez facilement dans wikipedia. Voir pour remplacer en (b) par qqch qui se retrouve moins bien comme le facteur de forme p-e?
 %
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -108,11 +110,11 @@ c) Appuyez sur \textbf{Cursors} pour utiliser les curseurs afin de prendre vos m
 
 d) Mesurez automatiquement avec l'oscilloscope (appuyez sur \textbf{Meas}) les paramètres suivants : la fréquence, l'amplitude crête à crête et la tension efficace. L'ajout de ce dernier se fait en deux étapes au bas de l'écran : \textbf{Type} et \textbf{Ajouter mesure}. Comparez les deux premières mesures avec celles que vous aviez obtenues à l'aide des curseurs à l'étape c).
 
-e) Refaites l'étape précédente avec un signal triangulaire (rampe) de tension conservant les mêmes fréquence et amplitude crête à crête, puis mesurez le facteur de crête.
+e) Refaites l'étape précédente avec un signal triangulaire (rampe) de tension conservant les mêmes fréquence et amplitude crête à crête.
 
 f) Envoyez maintenant le signal généré directement dans le multimètre à 4\textonehalf~chiffres. Utilisez un «T» pour que la sortie du générateur de fonctions soit envoyée simultanément au multimètre et à l'oscilloscope. Notez la tension efficace mesurée avec le multimètre --- utilisez le mode \textbf{ACV} puisqu'il s'agit d'une tension alternative.
 
-g) Refaites l'étape précédente avec un signal carré de tension conservant les mêmes fréquence et amplitude crête à crête.
+g) Refaites les étapes d) et f) avec un signal carré de tension conservant les mêmes fréquence et amplitude crête à crête.
 
 \vspace{1ex}
 \noindent\emph{\textbf{Note} -- Ne vous souciez plus des incertitudes pour la suite du laboratoire, mais gardez un {\oe}il sur les chiffres significatifs.}
@@ -168,10 +170,14 @@ g) Avec le générateur de fonctions, injectez dans la résistance et le fil iso
 \noindent$\rightarrow$ À remettre en équipe sur \href{https://www.gradescope.com/}{Gradescope} en ajoutant votre \href{https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members}{binôme de laboratoire} $\leftarrow$
 
 \begin{enumerate}
-    \item Calculez la valeur de tension efficace d'un signal carré et le facteur de crête d'un signal triangulaire avec la fréquence et l'amplitude crête à crête employées par le générateur de fonctions dans la première partie des expériences. À l'aide des incertitudes et du vocabulaire international de métrologie (VIM), comparez vos résultats de mesure à ces calculs.
+        \item Calculez la valeur de tension efficace d'un signal carré et celle d'un signal triangulaire avec la fréquence et l'amplitude crête à crête employées par le générateur de fonctions dans la première partie des expériences. 
+    \begin{enumerate}
+        \item À l'aide des incertitudes et du vocabulaire international de métrologie (VIM), comparez vos résultats de mesure en tension efficace à ces calculs.
+        \item Quel est le facteur de crête du signal triangulaire? Est-ce qu'il change avec la valeur crête du signal?
+    \end{enumerate}
     \item Dans la troisième partie, vous avez mesuré les paramètres de tension d'un signal sinusoïdal aux bornes de quatre composants en série.
     \begin{enumerate}
-        \item Si vous additionnez simplement les quatre valeurs crête à crête obtenues, obtenez-vous la valeur crête à crête de la tension à la source? Si, toutefois, vous additionnez vectoriellement les différentes tensions avec la forme polaire des nombres complexes (phaseur $v=v_0\,\textrm{e}^{j\phi}$ où on omet $\textrm{e}^{j\omega t}$ qui reste le même dans tout le circuit linéaire), obtenez-vous la tension de la source? Que pouvez-vous ainsi conclure sur la validité de la loi des mailles de Kirchhoff en courant alternatif?
+        \item Si vous additionnez simplement les quatre valeurs crête à crête obtenues, obtenez-vous la valeur crête à crête de la tension à la source? Si, toutefois, vous additionnez vectoriellement les différentes tensions avec la forme polaire des nombres complexes (phaseur $v=v_0\,\textrm{e}^{j\phi}$ où on omet le facteur $\textrm{e}^{j\omega t}$ qui reste le même dans tout le circuit linéaire), obtenez-vous la tension de la source? Que pouvez-vous ainsi conclure sur la validité de la loi des mailles de Kirchhoff en courant alternatif?
         \item Analysez ensuite les résultats obtenus à l'étape c). La somme algébrique des tensions des deux résistances donne-t-elle la tension conjointe des deux résistances? Est-ce qu'elles sont identiquement déphasées par rapport à la source? Qu'en est-il pour les condensateurs?
         \item Confirmez finalement que vous obtenez les mêmes observations sur le déphasage et l'amplitude entre les divers composants du circuit en le simulant sur le site de Paul Falstad. Le déplacement des points jaunes sur les fils (ajustez la barre \texttt{Current speed} sur la droite au besoin) illustre le flux du courant (ce n'est PAS la trajectoire des électrons dans les fils!) alors que l'alternance rouge/vert représente les changements en tension négative/positive par rapport à la mise à la terre (gris pour une référence de tension nulle).\par
         Dans un premier oscilloscope (\texttt{Clic droit} $\rightarrow$ \texttt{View in Scope}), affichez simultanément les tensions de la source, des deux résistances individuelles et de la résistance conjointe. Dans un second oscilloscope, faites de même avec la source et les deux condensateurs.\par
@@ -183,9 +189,15 @@ g) Avec le générateur de fonctions, injectez dans la résistance et le fil iso
     \begin{enumerate} 
         \item Lorsque vous avez affiché la FFT du signal sinusoïdal provenant du générateur de fonctions, vous avez remarqué que le pic correspondait à la fréquence dudit signal, soit 60~Hz. À quoi correspondent les pics subséquents que vous avez observés?
         \item À l'étape e), vous avez observé la présence d'une onde électromagnétique qui introduisait un signal parasite à 60~Hz. Donnez une hypothèse sur la provenance de cette onde qui serait conséquente avec la fréquence observée.
-        \item À l'étape g), vous avez remarqué que le signal passe d'un fil à un autre sans qu'ils soient pour autant connectés, puisqu'ils étaient séparés par une gaine isolante. Le mécanisme physique de ce transfert de signal est le même que celui d'un composant électrique linéaire. Lequel?\\(a) Résistance\\(b) Bobine d'inductance\\(c) Condensateur\\(d) Diode Zener
+        \item À l'étape g) de la quatrième partie, vous avez remarqué que le signal passe d'un fil à un autre sans qu'ils soient pour autant connectés, puisqu'ils étaient séparés par une gaine isolante. Le mécanisme physique de ce transfert d'énergie est le même que celui dans un ou des composant(s) électrique(s). Lequel ou lesquels parmi ceux ci-dessous?
+        \begin{itemize}
+        \item Résistance
+        \item Bobine d'inductance
+        \item Condensateur
+        \item Diode Zener
+        \end{itemize}
     \end{enumerate}
-    \item \textsc{Section de rapport - Abrégé:} Écrivez en moins de 200 mots l'abrégé \textit{(abstract)} d'un rapport de recherche qui porterait sur cette séance de laboratoire.
+    \item \textsc{Section de rapport - Abrégé:} Écrivez en moins de 200 mots l'abrégé \textit{(abstract)} d'un rapport scientifique qui porterait sur cette séance de laboratoire.
 \end{enumerate}
 
 \end{document}

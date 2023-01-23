@@ -1,12 +1,13 @@
 %Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen
 %Dernière modification JRC: 8 février 2014
-%Dernière modification CA: 29 septembre 2022
+%Dernière modification CA: 22 janvier 2023
 %%%%%%%%%
 %ToDo
 % -Changer les plages de balayage en tension de la diode de façon à permettre une meilleure analyse de la résistance dynamique R_D. La polarité inverse peut probablement être raccourcie pour ménager les diodes et ce serait bien d'aller assez loin en polarité directe pour tenter d'atteindre une plage assez linéaire avec un R_D pratiquement constant. Mais attention, nos diodes sont quasiment plus faciles à péter en forward bias qu'en reverse >_<
-% -Modifier le protocole pr faire le VI de caractérisation du transistor pour mesurer le courant injecté dans la base (i_{BE}) au lieu de la tension (i_{BE}), ce qui permettra de poser cette question ici: Est-ce que, oui ou non, le ratio de du courant de saturation au courant injecté dans la base demeure approximativement toujours le même? Présentement le transistor ne laisse pas passer de courant pour les 3 premières mesures, changer la première et la 3e pour des valeurs plus élevées où le courant passe!.
-% -Bonifier un peu le complément, entre autres avec les modes actif & interrupteur du transistor, cutoff & saturation, beta ratio, etc.
+% -Modifier le protocole pr faire le VI de caractérisation du transistor pour mesurer le courant injecté dans la base (i_{BE}) au lieu de la tension (i_{BE}), ce qui permettra de poser cette question ici: Est-ce que, oui ou non, le ratio de du courant de saturation au courant injecté dans la base demeure approximativement toujours le même? Présentement le transistor ne laisse pas passer de courant pour les 3 premières mesures, changer la première et la 3e pour des valeurs plus élevées où le courant passe!. Quand les tests de cette manip donneront de bons résultats, ajouter dans Gradescope une rubrique de "Métrologie: incertitudes de mesure" à la question sur i_sat si c'est assez un plateau et non pas une pente montante.
+% -Bonifier un peu le complément, entre autres avec les modes actif & interrupteur du transistor, analogie avec une valve, cutoff & saturation, beta ratio, etc.
 % -Modifier aussi le protocole au début pour faire une acquisition statistique d'entre 25 & 50 pts de V & I pour la résistance (dont la valeur devrait être CHANGÉE POUR BCP DE Mohms afin d'avoir un peu de fluctuations de bruit thermique, to check il me semble que Jérémie m'a dit que ça n'avait pas marché :()-> colonnes pour calculer la distribution de résistance => analyse statistique qui devrait bien poursuivre ce qui se fera dans le 2 laboratoires précédents.
+% -Est-ce que le format de Q1 d'analyse pourrait être converti en choix de réponses dans devenir trop facile? Ça prend certainement des choix mêlants qui contiennent L et/ou C par exemple. Mon indice devrait devenir alors juste un RAPPEL du cas alternatif.
 %
 \RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -262,7 +263,7 @@ d) Faites varier la source de 0~volt à 14~volts par incréments de 2~volts. À 
 \noindent$\rightarrow$ À remettre en équipe sur \href{https://www.gradescope.com/}{Gradescope} en ajoutant votre \href{https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members}{binôme de laboratoire} $\leftarrow$
 
 \begin{enumerate}
-    \item Quelle est la résistance
+    \item Quelle est la résistance en courant continu
         \begin{enumerate}
             \item d'un condensateur idéal?
             \item d'une bobine d'inductance idéale?
@@ -277,7 +278,7 @@ d) Faites varier la source de 0~volt à 14~volts par incréments de 2~volts. À 
     %**Autres possibilités de questions:**
     %\item À l'étape l) de la partie 1, vous avez mesuré trois résistances de 1,2~k$\Omega$ différentes. Avez-vous obtenu \textit{exactement} les mêmes valeurs de résistance pour chacune? Pourquoi? Indice : quelle est la tolérance des résistances de 1,2~k$\Omega$?
     %%\item Comparez les courbes $i$--$v$ des diodes «normale» et Zener. Pourquoi est-il préférable de limiter (réguler) la tension avec une diode Zener en polarité inverse au lieu d'une diode normale en polarité directe?
-    \item \textsc{Section de rapport - Analyse des résultats \& discussion:} Écrivez en moins de 400 mots une partie d'analyse des résultats et discussion d'un rapport de laboratoire sur la caractérisation et l'interprétation du comportement de la diode standard. Dans un TEXTE CONTINU, présentez et/ou discutez les éléments suivants en poursuivant l'utilisation du vocabulaire de métrologie (VIM) pour faire des comparaisons claires:
+    \item \textsc{Section de rapport - Analyse des résultats \& discussion:} Écrivez en moins de 400 mots une partie d'analyse des résultats et discussion d'un rapport scientifique sur la caractérisation et l'interprétation du comportement de la diode standard. Dans un TEXTE CONTINU, présentez et/ou discutez les éléments suivants tout en poursuivant l'utilisation du vocabulaire international de métrologie (VIM) pour faire des comparaisons claires:
 \begin{itemize}
     \item graphique de résistance dynamique $R_{D}=\frac{\mathrm{d}v}{\mathrm{d}i}$ mesurée en fonction de la tension \emph{(faites une différentiation numérique pour traiter directement vos données mesurées)},
     \item analyse des cas limites de $R_{D}$ mesurée en les comparant aux valeurs attendues selon le modèle de la diode idéale,
