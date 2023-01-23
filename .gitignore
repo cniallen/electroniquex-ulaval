@@ -1,4 +1,17 @@
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
 
+# LaTeX
 *.aux
 *.log
+*.toc
 *.out
+*.synctex.gz
+
+# Directories (and thus their content)
+
+
+# Operating system (OS)
+Thumbs.db
+*.DS_Store
