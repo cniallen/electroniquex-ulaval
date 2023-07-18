@@ -170,16 +170,16 @@
 \end{center}
 
 \vspace{-1em}
-\noindent Automne 2022 \hfill Responsable: C. Allen\par
+\noindent Hiver 2023 \hfill Responsable: C. Allen\par
 \vspace{0.2ex}
 \hrule
 \vspace{0.5ex}
 \centering
     \textbf{PROJET DE CONCEPTION}\\
-    \textsc{Contrôle Arduino d'un Ventilateur}\\
-\vspace{1ex}
-\textsc{Début: 22 novembre 2022 \hfill Fin: 9 décembre 2022}\par
-\vspace{0.4em}
+    \textsc{Contrôle Arduino d'un Ventilateur}\par
+\vspace{2ex}
+%\textsc{Début: 22 novembre 2022 \hfill Fin: 9 décembre 2022}\par
+%\vspace{0.4em}
 \hrule
 \justify
 %------ END HOMEMADE TITLE ------%
@@ -201,7 +201,7 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 \begin{itemize}
     \item Plaquette de montage
     \item Piles \SI{9}{\volt}
-    \item Carte \href{https://www.arduino.cc/en/Guide/ArduinoUno}{Arduino UNO} dont le fonctionnement est abordé en \nameref{sec:annexe}
+    \item Carte \href{https://www.arduino.cc/en/Guide/ArduinoUno}{Arduino UNO} dont le fonctionnement est présenté en \nameref{sec:annexe}
     \item Amplis-ops~UA741
     \item Transistors à jonction bipolaire NPN
     \item Moteurs DC
@@ -217,7 +217,7 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
     \item Vous pouvez utiliser autant de composants que nécessaires dans la liste ci-dessus. Toutefois, vous n’avez pas le droit d’utiliser des composants ou des sources d'alimentation qui ne figurent pas dans cette liste. Les instruments de mesure quant à eux, comme les multimètres et les oscilloscopes au laboratoire, ne font pas partie du circuit et il est très pertinent d'en faire usage pour sonder, tester et diagnostiquer votre système pendant son développement. Ils peuvent aussi aider à montrer comment certaines contraintes sont respectées dans votre présentation vidéo (voir livrables).
     \item Concevez virtuellement et construisez expérimentalement votre circuit très clairement sur la plaquette de montage. Pour ce faire, employez un minimum de composants et de fils. Dans la mesure du possible, appliquez aussi le code de couleur suivant pour les fils à la même tension qu'une des alimentations: rouge -- positif, noir -- négatif et la mise à la terre (COM) -- blanche.
     \item Vous devez découpler l’impédance du circuit de la photorésistance de l’impédance du circuit ADC (convertisseur analogique-numérique) en entrée de l’Arduino à l'aide d'un suiveur de tension qui agit alors comme un tampon (\textit{buffer}).
-    \item Éliminez autant que possible les oscillations de la tension d'alimentation du moteur pour maximiser la stabilisation de sa vitesse de rotation en ignorant son inertie. Comme vous n'avez pas d'instrument de mesure de cette vitesse, il faut plutôt utiliser la fiche technique du moteur pour l'estimer.
+    \item Éliminez autant que possible les oscillations de la tension d'alimentation du moteur pour maximiser la stabilisation de sa vitesse de rotation en ignorant son inertie. Comme vous n'avez pas d'instrument de mesure de cette vitesse, vous devez utiliser le graphique dans la fiche technique du moteur pour l'estimer.
     \item Assurez-vous de ne pas briser la photorésistance. Comme la dissipation de puissance tolérée dépend significativement de la température selon la fiche technique de ce LDR, faites le choix prudent de ne pas dépasser une puissance maximale de \SI{0.1}{W}.
     \item Recréez le minimum d'irradiance de nuit en bloquant la lumière arrivant sur la photorésistance au laboratoire. %et en mettant la glissière de luminosité du LDR à son minimum dans la simulation et le plan de conception.
     %\item Le temps du jour doit être représenté par la position de l’indicateur de luminosité de la photorésistance sur Tinkercad tel qu'illustré à la Figure~\ref{fig:photoresistance} en annexe. Lorsque l’indicateur est à sa valeur maximale, il fait plein jour. Lorsqu’il est à sa valeur minimale, il fait nuit.
@@ -227,10 +227,10 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 \subsection*{Livrables}
 \label{subsec:livrables}
 \begin{itemize}
-    \item Équipe de travail de 4 personnes formée sur \href{https://www.gradescope.com/}{Gradescope}. Si le nombre d'inscriptions au cours ne se factorise pas par 4, une seule équipe de moins de 4 membres sera permise avec l'autorisation d'un responsable.
+    \item Équipe de travail obligatoirement de 4 personnes formée sur \href{https://www.gradescope.com/}{Gradescope}. Si le nombre d'inscriptions au cours ne se factorise pas par 4, une seule équipe de moins de 4 membres sera permise avec l'autorisation d'un responsable.
     \item Documentation de la conception du système, où le format de chaque fichier est laissé libre\footnote{N'écrivez PAS de rapport, PAS de texte continu, l'objectif de rédaction scientifique du cours est déjà complété. Seuls des annotations ou des commentaires courts pourront clarifier vos documents. La communication complète de ce projet se fait de manière orale avec l'enregistrement vidéo.}\\ \textit{(Vous pouvez donc utiliser tout logiciel ou application de votre choix, des suggestions sont proposées dans le \texttt{Matériel didactique} sur le site de cours.)}:
     \begin{itemize}[label=$\bullet$]
-        \item simulation sur diagramme schématique pour chaque section de circuit reliée à la carte Arduino\footnote{La plupart des simulateurs électroniques gratuits, dont le \href{https://www.falstad.com/circuit/}{site Internet de Paul Falstad}, ne supportent pas directement des processeurs et des cartes informatiques, ce pourquoi des simulations séparées sont demandées seulement pour les parties analogues du circuit. Toutefois, des extensions ajoutant une interface de développement de code Arduino commencent \href{http://falstad.com/circuit/avr8js/}{à être publiées}, mais n'aideront \href{https://hackaday.com/2021/06/11/circuit-vr-arduino-virtually-meets-analog/}{peut-être pas} votre travail puisque les logiciels sont souvent déployés trop rapidement de nos jours, avant d'être complètement testés sans bogues.},
+        \item simulations sur diagramme schématique séparément pour le bloc de circuit en entrée et pour celui en sortie de la carte Arduino\footnote{La plupart des simulateurs électroniques gratuits, dont le \href{https://www.falstad.com/circuit/}{site Internet de Paul Falstad}, ne supportent pas directement des processeurs et des cartes informatiques, ce pourquoi des simulations séparées sont demandées seulement pour les parties analogues du circuit. Toutefois, des extensions ajoutant une interface de développement de code Arduino commencent \href{http://falstad.com/circuit/avr8js/}{à être publiées}, mais n'aideront \href{https://hackaday.com/2021/06/11/circuit-vr-arduino-virtually-meets-analog/}{peut-être pas} votre travail puisque les logiciels sont souvent déployés trop rapidement de nos jours, avant d'être complètement testés sans bogues.},
         \item plan de conception assistée par ordinateur (ECAD, \textit{electronic computer-aided design}, ou EDA, \textit{Electronic design automation}, en anglais) illustrant le système\footnote{Nous avons testé le plan de conception de ce projet surtout avec \href{https://www.tinkercad.com/login}{l'application Web Tinkercad} où le format d'exportation \texttt{.brd} ne peut malheureusement pas être ré-importé dans l'application, mais une image du plan suffit à la correction. Bien que cette application puisse aussi faire des simulations, notez qu'elle n'est pas optimisée pour cela. De nombreuses autres alternatives sont détaillées vers la fin de la page Web sur le \texttt{Matériel didactique} de notre site de cours, dont \href{https://fritzing.org/}{Fritzing} qui est déjà installé sur les ordinateurs du laboratoire.},
         \item photo haute résolution du circuit fait sur la plaquette de montage à partir des simulations et du plan de conception,
         \item liste et quantité de composants électroniques utilisés; elle est produite automatiquement avec le plan de design par la plupart des logiciels EDA,
@@ -257,7 +257,7 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
      Simulations des sections de circuits analogues & 10\%\\
      Plan de conception EDA & 10\%\\
      Script de contrôle Arduino avec code commenté & 10\%\\
-     Démonstration expérimentale du système électronique & 15\%\\
+     Photo et démonstration expérimentale vidéo du système électronique & 15\%\\
      \hline
      \multicolumn{2}{c}{\textsc{Contraintes supplémentaires}}\\
      \hline

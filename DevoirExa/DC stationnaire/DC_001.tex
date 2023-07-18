@@ -1,0 +1,34 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%DC_001.tex : 1 source de tension commandée, 1 source indépendante de 12 V et 3 résistances | Rectangulaire
+%------------------------------------------------------------------
+%SOURCE: Irwin, "Basic engineering circuit analysis" (? ed., ? year, cf ULaval library), Chap.3 p.121 #3.46
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): D-2014, D-2015, D-2017, D-2020, D-2023
+%DIFFICULTÉ courte et/ou simple? (Y/N): Y
+%
+%Créé par Claudine Nì. Allen
+%Contributions par -
+%Compilateur pdfLaTeX, distribution TeX Live 2023
+%Dernière modification : 5 février 2023
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[../ElectroX-Devoir.tex]{subfiles}
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}}
+%
+Déterminez le courant $i_0$ dans le circuit ci-dessous. Notez que la source de tension commandée fournit une différence de potentiel de 2$i_0$ : la constante 2 a donc des unités de $\Omega$.
+%
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) to[V,l^=12~V] (0,3) to[short] (3,3) to[R,l^=2~$\Omega$,i=$i_0$] (6,3) to[short] (9,3) to[R,l^=2~$\Omega$] (9,0) to[short] (0,0)
+(3,0) to[R,l_=2~$\Omega$] (3,3)
+(6,0) to[controlled voltage source,l_=2$i_0$] (6,3)
+;\end{circuitikz}
+\end{center}
+%
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------

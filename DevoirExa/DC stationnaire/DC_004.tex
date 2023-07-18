@@ -1,0 +1,35 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%DC_004.tex : 1 source indépendante de 4 A, 1 source indépendante de 2 A et 2 résistances | Rectangulaire
+%------------------------------------------------------------------
+%SOURCE: Irwin, "Basic engineering circuit analysis" (? ed., ? year, cf ULaval library), Chap.2 p.67 #2.21
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): D-2014, D-2015, D-2017, D-2023
+%DIFFICULTÉ courte et/ou simple? (Y/N): Y
+%
+%Créé par Claudine Nì. Allen
+%Contributions par -
+%Compilateur pdfLaTeX, distribution TeX Live 2023
+%Dernière modification : 5 février 2023
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[../ElectroX-Devoir.tex]{subfiles}
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}}
+%
+Trouvez le courant $i_0$ et le potentiel électrique $v_0$ par rapport au noeud de mise à la terre dans le circuit suivant.
+
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) to[R,l^=$6\,\Omega$] (0,3) to[short] (9,3) to[I,l^=$2\,\mathrm{A}$] (9,0) to[short] (0,0)
+(3,0) node[ground]{} to[I,l^=$4\,\mathrm{A}$,-o] (3,3.4) 
+{[anchor=south] (3,3.5) node{$v_0$}}
+(6,3) to[R,l^=$3\,\Omega$,i=$i_0$] (6,0)
+;\end{circuitikz}
+\end{center}
+%
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------

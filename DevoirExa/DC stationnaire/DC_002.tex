@@ -1,0 +1,38 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%DC_002.tex : 1 source indépendante de 4 A, 1 source indépendante de 12 V et 4 résistances | Rectangulaire
+%------------------------------------------------------------------
+%SOURCE: ? 
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): D-2013, D-2018, D-2020, D-2021
+%DIFFICULTÉ courte et/ou simple? (Y/N): Y
+%
+%Créé par Jean-Raphaël Carrier
+%Contributions par Claudine Nì. Allen
+%Compilateur pdfLaTeX, distribution TeX Live 2023
+%Dernière modification : 5 février 2023
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[../ElectroX-Devoir.tex]{subfiles}
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}}
+%
+En utilisant {\Large\textbf{la loi des n{\oe}uds}} et non PAS la loi des mailles, déterminez la différence de potentiel électrique $v_0$ dans le circuit suivant.
+
+\begin{center}
+\begin{circuitikz} \draw
+(8,0) to[short,o-] (0,0) node[ground]{} to[V,l^=$12\,\mathrm{V}$] (0,3) to[short] (2,3) to[R,l^=$2\,\Omega$] (5,3) to[short,-o] (8,3)
+(2,0) to[R,l_=$1\,\Omega$] (2,3) to[short] (2,4.5) to[I,l^=$4\,\mathrm{A}$] (5,4.5) to[short] (5,3) to[R,l_=$4\,\Omega$] (5,0)
+(7,3) to[R,l_=$2\,\Omega$] (7,0)
+{[anchor=west] (8,0) node{$-$} (8,1.5) node{$v_0$} (8,3) node{$+$}}
+;\draw[dashed]
+(8.3,0.3) to[short] (8.3,1.2)
+(8.3,1.8) to[short] (8.3,2.7)
+;\end{circuitikz}
+\end{center}
+
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------

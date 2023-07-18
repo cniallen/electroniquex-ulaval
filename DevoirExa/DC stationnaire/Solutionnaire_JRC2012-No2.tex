@@ -1,0 +1,68 @@
+\begin{subequations}
+
+On veut trouver $i_0$ dans le circuit suivant, en utilisant la loi des n{\oe}uds:
+\begin{center}
+\begin{circuitikz} \draw
+(0,3) to[R=$2~\Omega$,i=$i_0$] (0,0) to[short] (7,0) to[current source,l_=4~A] (7,3) to[short] (5,3) to[R=$2~\Omega$] (5,0)
+(5,3) to[current source=2~A] (2,3) to[R=$1~\Omega$] (2,0) node[ground]{}
+(0,3) to[short] (2,3) to[short] (2,4.5) to[R=$2~\Omega$] (5,4.5) to[short] (5,3)
+;\end{circuitikz}
+\end{center}
+Ce circuit contient trois n{\oe}uds, donc trois valeurs de potentiels distinctes, qu'on nommera arbitrairement $v_a$, $v_b$ et $v_c$. Sachant que le potentiel à la mise à la terre est nul ($v_b=0\,\mathrm{V}$), il ne restera que deux valeurs inconnues : il faudra deux équations. Afin de résoudre le problème, on posera des directions aux courants dans les composants où ce n'était pas déjà indiqué.
+\begin{center}
+\begin{circuitikz} \draw
+(0,3) to[R=$2~\Omega$,i=$i_0$] (0,0) to[short] (3.5,0) to[short] (7,0) to[current source,l_=4~A] (7,3) to[short] (5,3) to[R=$2~\Omega$] (5,0)
+(5,3) to[current source=2~A] (2,3) to[R=$1~\Omega$] (2,0) node[ground]{}
+(0,3) to[short] (2,3) to[short] (2,4.5) to[R=$2~\Omega$] (5,4.5) to[short] (5,3); \draw[color=blue]
+(2,0.7) to[short,i=$i_1$] (2,0.3)
+(5,0.7) to[short,i=$i_2$] (5,0.3)
+(4.3,4.5) to[short,i=$i_3$] (4.7,4.5)
+{[anchor=south east] (2,3) node{$v_a$}}
+{[anchor=north] (3.5,0) node{$v_b=0\,\mathrm{V}$}}
+{[anchor=south west] (5,3) node{$v_c$}}
+;\end{circuitikz}
+\end{center}
+À chaque n{\oe}ud du circuit, la somme des courants sortants égale la somme des courants entrants.
+
+\subsubsection{N{\oe}ud $A$}
+
+Au n{\oe}ud $A$, on obtient l'équation suivante:
+\begin{equation}
+i_0+i_1+i_3=2\,\mathrm{A}.
+\end{equation}
+Sachant que le courant traversant une résistance est égal au rapport de la tension à ses bornes et de sa résistance, on trouve:
+\begin{equation}
+\frac{v_a}{2\,\Omega}+\frac{v_a}{1\,\Omega}+\frac{v_a-v_c}{2\,\Omega}=2\,\mathrm{A}.
+\end{equation}
+En multipliant cette équation par 2~$\Omega$, on obtient la forme simplifiée suivante:
+\begin{equation}
+\label{eq:2.1}
+4\,v_a-v_c=4\,\mathrm{V}.
+\end{equation}
+
+
+\subsubsection{N{\oe}ud $C$}
+
+Au n{\oe}ud $C$, on obtient:
+\begin{gather}
+i_2+2\,\mathrm{A}=i_3+4\,\mathrm{A}\\
+i_2-i_3=2\,\mathrm{A}\\
+\frac{v_c}{2\,\Omega}-\frac{v_a-v_c}{2\,\Omega}=2\,\mathrm{A}\\
+\label{eq:2.2}
+-v_a+2\,v_c=4\,\mathrm{V}.
+\end{gather}
+
+
+\subsubsection{Résolution du système d'équations linéaires}
+
+Les équations~\ref{eq:2.1} et \ref{eq:2.2} forment un système de deux équations linéaires qui permettent de trouver les potentiels inconnus $v_a$ et $v_c$. Mais pour connaître $i_0$, nous n'avons besoin que de $v_a$.
+\begin{equation}
+v_a=\frac{\left|\begin{array}{ c c } 4\,\mathrm{V} & -1 \\ 4\,\mathrm{V} & 2 \end{array}\right|}{\left|\begin{array}{ c c } 4 & -1 \\ -1 & 2 \end{array}\right|}=\frac{12}{7}\,\mathrm{V}
+\end{equation}
+On peut alors trouver la valeur de $_0$:
+\begin{gather}
+i_0=\frac{v_a}{2\,\Omega}=\frac{12}{7}\,\mathrm{V}\cdot\frac{1}{2\,\Omega}.\\
+\boxed{i_0=\frac{6}{7}\,\mathrm{A}}
+\end{gather}
+
+\end{subequations}

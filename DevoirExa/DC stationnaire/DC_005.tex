@@ -1,0 +1,43 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%DC_005.tex : 1 source indépendante de 12 V et 6 résistances | Rectangulaire
+%------------------------------------------------------------------
+%SOURCE: se retrouvait de manière louche sur http://stuffle.net/EE%202240/practice, mais le domaine a été détourné (hijacked).
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): D-2018, D-2023
+%DIFFICULTÉ courte et/ou simple? (Y/N): N
+%
+%Créé par Claudine Nì. Allen
+%Contributions par -
+%Compilateur pdfLaTeX, distribution TeX Live 2023
+%Dernière modification : 5 février 2023
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[../ElectroX-Devoir.tex]{subfiles}
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}}
+%
+Quelle est la valeur du courant $i_0$ dans le circuit suivant?
+
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) to[R,l^=$4\,\mathrm{k}\Omega$, i=$i_0$]
+(0,3) to[R,l^=$12\,\mathrm{k}\Omega$]
+(3,3) to[R,l^=$4\,\mathrm{k}\Omega$]
+(6,3) to[R,l^=$6\,\mathrm{k}\Omega$]
+(9,3) to[short]
+(9,0) to[short]
+(0,0)
+(3,0) to[R,l^=$16\,\mathrm{k}\Omega$]
+(3,3)
+(6,0) node[ground]{} to[V,l_=$12\,$V]
+(6,1.5) to[R,l_=$2\,\mathrm{k}\Omega$]
+(6,3)
+;\end{circuitikz}
+\end{center}
+%
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------
