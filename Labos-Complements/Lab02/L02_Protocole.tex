@@ -29,6 +29,7 @@
 \usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
 \usetikzlibrary{babel}
 \usepackage{caption}
+\usepackage{enumitem}
 \usepackage[letterpaper,headheight=15pt]{geometry}
 \usepackage{fancyhdr}
 \usepackage{setspace}
@@ -38,6 +39,9 @@
 %
 \sisetup{separate-uncertainty}
 \captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\newlist{gradescope}{enumerate}{2}
+\setlist[gradescope,1]{label=Q\arabic{gradescopei},leftmargin=36pt,labelsep=18pt}
+\setlist[gradescope,2]{label=Q\arabic{gradescopei}.\arabic{gradescopeii},leftmargin=-2pt,labelsep=8pt}
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{\textsl{PHY-2002/GPH-2006~---~Laboratoire~II}}
@@ -98,7 +102,7 @@ Dans ce laboratoire, l’étudiant poursuivra l’apprentissage des notions de m
 
 \subsection{Partie 1 --- Mesures biaisées et non biaisées} \label{sec:part1}
 
-Faites les étapes de cette partie avec cinq résistances $R$ différentes: 12~$\Omega$, 270~$\Omega$, 560~$\Omega$, 100~k$\Omega$ et 1~M$\Omega$.
+Faites les étapes de cette partie avec cinq résistances $R_{ch}$ différentes: 12~$\Omega$, 270~$\Omega$, 560~$\Omega$, 100~k$\Omega$ et 1~M$\Omega$.
 
 a) Mesurez la valeur de chaque résistance en utilisant la fonction ohmmètre du multimètre à 6\textonehalf~chiffres. Tout d'abord, utilisez seulement deux fils. Ensuite, refaites les mesures en utilisant quatre fils. Notez vos mesures et leurs incertitudes dans un tableau.
 
@@ -116,7 +120,7 @@ c) Réalisez le circuit de la figure~\ref{L2-sch-tensionnb} sur la plaquette de 
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-(0,0) node[ground]{} to[V=$v_{\mathrm{s}}$] (0,3) to[ammeter] (3,3) to[short] (5,3) to[R=$R$] (5,0) to[short] (0,0)
+(0,0) node[ground]{} to[V=$v_{\mathrm{s}}$] (0,3) to[ammeter] (3,3) to[short] (5,3) to[R=$R_{ch}$] (5,0) to[short] (0,0)
 (3,0) to[voltmeter] (3,3)
 ;\end{circuitikz}
 \caption{\label{L2-sch-tensionnb}Mesure de la tension et du courant d'une résistance -- tension non biaisée.}
@@ -127,7 +131,7 @@ d) Réalisez le circuit de la figure~\ref{L2-sch-courantnb} sur la plaquette de 
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-(0,0) node[ground]{} to[V=$v_{\mathrm{s}}$] (0,3) to[short] (2,3) to[ammeter] (5,3) to[R=$R$] (5,0) to[short] (0,0)
+(0,0) node[ground]{} to[V=$v_{\mathrm{s}}$] (0,3) to[short] (2,3) to[ammeter] (5,3) to[R=$R_{ch}$] (5,0) to[short] (0,0)
 (2,0) to[voltmeter] (2,3)
 ;\end{circuitikz}
 \caption{\label{L2-sch-courantnb}Mesure de la tension et du courant d'une résistance -- courant non biaisé.}
@@ -173,17 +177,38 @@ h) À partir de vos résultats, déduisez la résistance interne de la source «
 \vspace{-0.5cm}
 \noindent$\rightarrow$ À remettre en équipe sur \href{https://www.gradescope.com/}{Gradescope} en ajoutant votre \href{https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members}{binôme de laboratoire} $\leftarrow$
 
-\begin{enumerate}
+\begin{gradescope}
 \item À partir des résultats de l'étape a) de la première partie,
-    \begin{enumerate}
-    \item présentez dans un tableau les mesures de résistance prises à deux fils et à quatre fils. Assurez-vous d'inclure les incertitudes et de présenter leur justification en légende.
-    \item calculez le pourcentage d'écart entre chaque mesure du tableau et la valeur nominale de référence correspondante, puis à l'aide du vocabulaire international de métrologie (VIM), comparez l'exactitude des deux types de mesure de résistance. Pour quelle valeur de résistance le pourcentage d'écart est-il le plus important et quelle en est la cause?\\\textit{Ces pourcentages d'écart représentent des erreurs systématiques par rapport aux valeurs de référence, ce ne sont donc pas des incertitudes. Toutefois, l'incertitude sur ces erreurs peut être estimée!}
-    \end{enumerate}
-\item À partir des résultats des étapes c) et d) de la première partie, quelles étaient les mesures indirectes de résistance les plus significativement biaisées? À partir de ces résultats biaisés, déduisez la valeur de la résistance interne du voltmètre et celle de l'ampèremètre.
-\item Les mesures en circuit fermé avec la pomme de terre au premier laboratoire étaient-elles biaisées a) en tension ou b) en courant?
-\item Est-ce que l'incertitude d'une mesure dépend \textit{uniquement} de l'exactitude de l'instrument utilisé? Supportez votre réponse à l'aide d'un exemple tiré de chacun des deux premiers laboratoires.
-\item Identifiez les étapes (a,b,c, etc.) dans chaque partie de la section "Manipulations" du protocole qui peuvent être faites en préparation avant le laboratoire.
+%Voir mon cahier d'enseignement pour comment aborder les moyennes d'ensemble disperses avec des éléments qui varient (vs une même meusre répétée) et travailler ça à partir de résistances avec les tolérances appropriées...
+    \begin{gradescope}
+    \item présentez dans un même tableau les résultats de mesure de résistance prises à deux fils et à quatre fils ainsi que le pourcentage d'écart entre chacune de ces mesures et la valeur nominale de référence correspondante. Assurez-vous d'inclure les incertitudes et de présenter leur justification en légende.\\\textit{\footnotesize Les pourcentages d'écart représentent des erreurs systématiques par rapport aux valeurs de référence, ce ne sont donc pas des incertitudes. Toutefois, l'incertitude sur ces erreurs doit être estimée!}
+    %Tester que la réponse de la prochaine sous-question n'est pas influencée par la trop poche tolérance des résistances ! Pis faudrait ben s'affranchir assez des tolérances pour démontrerle point principal que de petites résistances doivent être mesurées à 4 fils!
+    \item $\blacktriangleright$ Vrai ou $\blacktriangleright$ Faux : Le pourcentage d'écart pour la mesure à deux fils s'éloigne de plus en plus de celle à quatre fils avec l'augmentation de la résistance.
+    \item Sélectionnez le ou les énoncé(s) qui explique(nt) correctement pourquoi la mesure de résistance à deux fils avec le ohmmètre est biaisée :
+    \begin{itemize}[label=$\blacktriangleright$]
+    \item De nombreux bouts de fils coupés en biais peuvent être récupérés pour se fabriquer une cotte de maille.
+    \item La résistance des deux fils s'ajoute à celle du composant résistif.
+     %Les 2 items suivants sont p-e  trop facile en ressemblant à mon blabla vidéo, je pourrais raccourcir à "Le ohmmètre mesure la chute de tension dans toute la boucle de circuit avec la résistance." et son corrollaire. 
+    \item Le ohmmètre est constitué d'une source indépendante et étalonnée de courant et d'un voltmètre qui mesure la chute de tension dans toute la boucle de circuit avec la résistance.
+    \item Le ohmmètre est constitué d'une source indépendante et étalonnée de tension et d'un ampèremètre qui mesure le courant dans toute la boucle de circuit avec la résistance.  
+    \end{itemize}
+    \end{gradescope}
+\item Dans votre analyse des résultats des étapes c) et d) de la première partie, 
+    \begin{gradescope}
+    %Le pronom dans les phrases suivantes doit référer aux résistances, mais je ne suis pas certaine que c'Est réussi...
+    \item Est-ce que les mesures de tension non biaisée ont mené à des calculs de résistance plus justes pour leurs valeurs $\blacktriangleright$ élévées ou $\blacktriangleright$ basses?
+    \item Est-ce que les mesures de courant non biaisé ont mené à des calculs de résistance plus justes pour leurs valeurs $\blacktriangleright$ élévées ou $\blacktriangleright$ basses?
+    \item Laquelle des expressions suivantes représente la résistance interne $R_{volt}$ d'un voltmètre non idéal dans le circuit de la figure~\ref{L2-sch-tensionnb}?
+    \begin{itemize}[label=$\blacktriangleright$]
+    \item $R_{volt} = \frac{V_{ch}}{I_{tot}-\frac{V_{ch}}{R_{ch}}}$
+    %INTRODUIRE TOUS LES SYMBOLES QUI NE L'ONT PAS ÉTÉ JUSQU'À MAINTENANT puis Inspiration pour d'autres mauvais choix de réponse pour ajout par Annie-Claude à partir de celles en H23!
+    \end{itemize}
+    \item Quelle est la résistance interne de l'ampèremètre?
+    \end{gradescope}
+\item Les mesures en circuit fermé avec la pomme de terre au premier laboratoire étaient-elles biaisées en $\blacktriangleright$ tension ou en $\blacktriangleright$ courant?
+\item Est-ce que l'incertitude d'une mesure dépend \textit{uniquement} de l'exactitude de l'instrument utilisé? Supportez votre réponse à l'aide d'un exemple tiré de chacun des deux premiers laboratoires. % <- Pour Annie-Claude s'il y a vraiment moyen de tourner ça en choix de réponse intéressant!
+\item Identifiez les étapes dans chaque partie de la section "Manipulations" du protocole qui peuvent être faites en préparation avant le laboratoire :\\ $\blacktriangleright$ 1a) $\blacktriangleright$ 1b) $\blacktriangleright$ 1c) $\blacktriangleright$ 1d) $\blacktriangleright$ 2a) $\blacktriangleright$ 2b) $\blacktriangleright$ 2c) $\blacktriangleright$ 2d) $\blacktriangleright$ 2e) $\blacktriangleright$ 2f) $\blacktriangleright$ 2g) $\blacktriangleright$ 2h) %sauter toute étape avec le moindre potentiel d'ambiguïté, genre vérification par l'équipe d'enseignement? ou modifier l'étape concernée?
 \item \textsc{Section de rapport - Méthodes expérimentales:} Écrivez en moins de 200 mots les méthodes expérimentales d'un rapport scientifique portant sur la première partie de ce laboratoire. C'est en effet sur la \nameref{sec:part1} seulement.
-\end{enumerate}
+\end{gradescope}
 
 \end{document}
