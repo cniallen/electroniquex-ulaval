@@ -27,6 +27,7 @@
 \usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
 \usetikzlibrary{babel}
 \usepackage{caption}
+\usepackage{enumitem}
 \usepackage[letterpaper,headheight=15pt]{geometry}
 \usepackage{fancyhdr}
 \usepackage{setspace}
@@ -36,6 +37,9 @@
 %
 \sisetup{separate-uncertainty}
 \captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\newlist{gradescope}{enumerate}{2}
+\setlist[gradescope,1]{label=Q\arabic{gradescopei},leftmargin=36pt,labelsep=18pt}
+\setlist[gradescope,2]{label=Q\arabic{gradescopei}.\arabic{gradescopeii},leftmargin=-2pt,labelsep=8pt}
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{\textsl{PHY-2002/GPH-2006~---~Laboratoire~IV}}
@@ -145,7 +149,7 @@ a) Réalisez le circuit de la figure~\ref{phaseurs}, avec $R_1=560~\Omega$, $R_2
 
 b) En utilisant une sonde dans le canal 2 de l'oscilloscope, mesurez les tensions (crête à crête) aux bornes de chaque composant ainsi que le déphasage de chacun relativement à la source (menu \textbf{Meas}, Phase(2$\rightarrow$1)). Pour effectuer ces mesures à l'oscilloscope, une des deux bornes du composant doit être mise à la terre. Ainsi, pour le circuit illustré à la figure~\ref{phaseurs}, seule la mesure aux bornes du condensateur $C_4$ serait adéquate. Pour mesurer les autres composants, il vous suffira d'interchanger leur position dans le circuit. Changer l'ordre de composants en série ne modifie en rien le circuit ; ces permutations n'affecteront pas la validité de vos mesures.
 
-c) Mesurez la phase et la tension conjointes des deux résistances (\textit{i.e.} considérez que les deux résistances forment un seul tout) et faites de même par après pour les condensateurs.
+%c) Mesurez la phase et la tension conjointes des deux résistances (\textit{i.e.} considérez que les deux résistances forment un seul tout) et faites de même par après pour les condensateurs.
 
 
 \subsection{Partie 4 --- Antenne et transformée de Fourier}
@@ -158,7 +162,7 @@ c) Diminuez progressivement l'échelle temporelle afin d'afficher un nombre de p
 
 d) Éteignez le générateur de fonctions et débranchez le câble BNC le reliant au canal~1. Puis, reliez l'entrée du canal~1 à la mise à la terre de l'oscilloscope ainsi qu'à un long fil dénudé (matériel et exemple disponibles auprès des dépanneurs). Ce fil jouera le rôle d'antenne.
 
-e) Sans toucher sa partie dénudée, déplacez le fil dans les airs (sans jamais faire de contact) tout en observant à l'oscilloscope le comportement du signal et de sa FFT. Soyez particulièrement attentif à la hauteur du pic maximal (qui devrait encore une fois se situer près de 60~Hz) lorsque vous placez le bout dénudé du fil près des prises murales ou des prises de tout appareil en fonction. Faites attention pour éviter les contacts avec les appareils ou les prises de courant ; cela pourrait endommager l'oscilloscope! Notez la fréquence du pic maximal de la FFT et indiquez approximativement sur quelle plage sa hauteur varie lorsque vous déplacez votre antenne.
+e) Sans toucher sa partie dénudée, déplacez le fil dans les airs (sans jamais faire de contact) tout en observant à l'oscilloscope le comportement du signal et de sa FFT. Soyez particulièrement attentif à la hauteur du pic maximal lorsque vous placez le bout dénudé du fil près des prises murales ou des prises de tout appareil en fonction. Faites attention pour éviter les contacts avec les appareils ou les prises de courant ; cela pourrait endommager l'oscilloscope! Notez la fréquence du pic maximal de la FFT et indiquez approximativement sur quelle plage sa hauteur varie lorsque vous déplacez votre antenne.
 
 f) Entortillez (\textit{twistez}) votre bout de fil dénudé avec un bout de fil gainé d'environ 10~cm (exemple disponible auprès des dépanneurs). Le fil dénudé ne doit pas toucher les extrémités dénudées de l'autre fil. Reliez encore une fois le canal~1 à une extrémité du fil dénudé et à la mise à la terre de l'oscilloscope. Puis, ajoutez une résistance de 33~$\Omega$ en série avec le fil non dénudé et reliez le tout au générateur de fonctions. Le circuit doit rester ouvert pour mesurer un meilleur signal.
 
@@ -169,35 +173,59 @@ g) Avec le générateur de fonctions, injectez dans la résistance et le fil iso
 \vspace{-0.5cm}
 \noindent$\rightarrow$ À remettre en équipe sur \href{https://www.gradescope.com/}{Gradescope} en ajoutant votre \href{https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members}{binôme de laboratoire} $\leftarrow$
 
-\begin{enumerate}
+\begin{gradescope}
         \item Calculez la valeur de tension efficace d'un signal carré et celle d'un signal triangulaire avec la fréquence et l'amplitude crête à crête employées par le générateur de fonctions dans la première partie des expériences. 
     \begin{enumerate}
-        \item À l'aide des incertitudes et du vocabulaire international de métrologie (VIM), comparez vos résultats de mesure en tension efficace à ces calculs.
-        \item Quel est le facteur de crête du signal triangulaire? Est-ce qu'il change avec la valeur crête du signal?
+        \item À l'aide des incertitudes et du vocabulaire international de métrologie (VIM), comparez très brièvement vos résultats de mesure en tension efficace à ces calculs. %À ajuster quand la vision de métrologie & statistiques sera plus uniformisé,idéalement en collaboraant avec le NRC en n'oubliant pas la doc de technique pour l'ingénieur et du NIST.
+        \item Est-ce que le facteur de crête du signal triangulaire varie avec son amplitude (valeur crête)? $\blacktriangleright$ Oui ou $\blacktriangleright$ Non
     \end{enumerate}
     \item Dans la troisième partie, vous avez mesuré les paramètres de tension d'un signal sinusoïdal aux bornes de quatre composants en série.
-    \begin{enumerate}
-        \item Si vous additionnez simplement les quatre valeurs crête à crête obtenues, obtenez-vous la valeur crête à crête de la tension à la source? Si, toutefois, vous additionnez vectoriellement les différentes tensions avec la forme polaire des nombres complexes (phaseur $v=v_0\,\textrm{e}^{j\phi}$ où on omet le facteur $\textrm{e}^{j\omega t}$ qui reste le même dans tout le circuit linéaire), obtenez-vous la tension de la source? Que pouvez-vous ainsi conclure sur la validité de la loi des mailles de Kirchhoff en courant alternatif?
-        \item Analysez ensuite les résultats obtenus à l'étape c). La somme algébrique des tensions des deux résistances donne-t-elle la tension conjointe des deux résistances? Est-ce qu'elles sont identiquement déphasées par rapport à la source? Qu'en est-il pour les condensateurs?
+    \begin{gradescope}
+        \item Si vous additionnez simplement les quatre valeurs crête à crête mesurées, obtenez-vous la valeur crête à crête de la tension aux bornes de la source? 
+        \begin{itemize}[label=$\blacktriangleright$]
+            \item Non, la loi des mailles de Kirchhoff n'est donc pas respectée avec ces valeurs.
+            \item Oui, la loi des mailles de Kirchhoff est donc respectée avec ces valeurs.
+        \end{itemize}
+        \item À l'aide de la forme polaire des nombres complexes, présentez la démarche d'addition vectorielle des quatre signaux alternatifs en tension avec leurs fréquence $\omega$, phase $\phi$ et module $v_0$ qui est la moitié de l'amplitude crête à crête. Notez que le phaseur $v=v_0\,\textrm{e}^{j\phi}$ suffit, car le facteur $\textrm{e}^{j\omega t}$ reste le même dans tout le circuit linéaire.
+        \item Est-ce que le résultat de l'addition précédente   correspond à la tension mesurée aux bornes de la source?
+        \begin{itemize}[label=$\blacktriangleright$]
+            \item Non, la loi des mailles de Kirchhoff n'est toujours pas respectée dans ce cas.
+            \item Oui, la loi des mailles de Kirchhoff est alors respectée avec ce meilleur modèle mathématique des signaux.
+        \end{itemize}
+        %\item Analysez ensuite les résultats obtenus à l'étape c). La somme algébrique des tensions des deux résistances donne-t-elle la tension conjointe des deux résistances? Est-ce qu'elles sont identiquement déphasées par rapport à la source? Qu'en est-il pour les condensateurs? (N.B. La manipulation correspondante est aussi enlevée.)
         \item Confirmez finalement que vous obtenez les mêmes observations sur le déphasage et l'amplitude entre les divers composants du circuit en le simulant sur le site de Paul Falstad. Le déplacement des points jaunes sur les fils (ajustez la barre \texttt{Current speed} sur la droite au besoin) illustre le flux du courant (ce n'est PAS la trajectoire des électrons dans les fils!) alors que l'alternance rouge/vert représente les changements en tension négative/positive par rapport à la mise à la terre (gris pour une référence de tension nulle).\par
         Dans un premier oscilloscope (\texttt{Clic droit} $\rightarrow$ \texttt{View in Scope}), affichez simultanément les tensions de la source, des deux résistances individuelles et de la résistance conjointe. Dans un second oscilloscope, faites de même avec la source et les deux condensateurs.\par
         Pour l'évaluation, remettez un lien vers votre simulation complétée du circuit (\texttt{File} $\rightarrow$ \texttt{Export As Link...}) ainsi qu'une capture d'écran qui inclut les signaux en tension sur les oscilloscopes.\par
         \noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\textbf{Conseils pour bien visualiser les signaux:} En plus de la vitesse de simulation sur la droite, il est possible d'ajuster les échelles verticale (tension, courant) et horizontale (temps) des oscilloscopes avec \texttt{Clic droit} $\rightarrow$ \texttt{Properties...}. De plus dans \texttt{Plots}, (dé)cocher \texttt{Show current} permet d'afficher seulement le signal de tension.}}
-    \end{enumerate}
+    \end{gradescope}
     \vspace{1ex}
     \item Dans la quatrième partie, vous avez mesuré à l'oscilloscope des tensions dans les domaines temporel et fréquentiel (Fourier) tout en captant des signaux provenant de l'extérieur d'un fil.
-    \begin{enumerate} 
-        \item Lorsque vous avez affiché la FFT du signal sinusoïdal provenant du générateur de fonctions, vous avez remarqué que le pic correspondait à la fréquence dudit signal, soit 60~Hz. À quoi correspondent les pics subséquents que vous avez observés?
-        \item À l'étape e), vous avez observé la présence d'une onde électromagnétique qui introduisait un signal parasite à 60~Hz. Donnez une hypothèse sur la provenance de cette onde qui serait conséquente avec la fréquence observée.
+    \begin{gradescope} 
+        \item Lorsque vous avez affiché la FFT du signal sinusoïdal provenant du générateur de fonctions, vous avez remarqué que le pic correspondait à la fréquence fondamentale dudit signal. À quoi correspondent les pics subséquents que vous avez observés? Sélectionnez les énoncés ci-dessous qui sont applicables.
+        \begin{itemize}[label=$\blacktriangleright$]
+            \item Des harmoniques de la fréquence fondamentale.
+            \item Des multiples entiers de la fréquence fondamentale.
+            \item Les fréquences du signal développé en série de Taylor.
+            \item La fréquence dans les arguments des termes sinus \& cosinus, ou encore des exponentielles complexes, dans le développement en série de Fourier du signal (prolongé périodiquement).
+        \end{itemize}
+        \item $\blacktriangleright$ Vrai ou $\blacktriangleright$ Faux : En l'absence de bruit qui cause des imperfections du signal, un seul pic serait affiché dans la FFT.
+        %P-e éventuellement rajouter une question sur la variation de largeur des pics FFT en ayant une manip correspondante qui fait varier l'échelle horizontale.
+        \item À l'étape e), vous avez observé la présence d'une onde électromagnétique qui introduisait un signal parasite. Quelle est la source de ce signal?
+		\begin{itemize}[label=$\blacktriangleright$]
+        	\item Le réseau de distribution d'électricité \textit{Hydro-Québec} avec un courant alternatif à une fréquence de \qty{120}{\Hz}.
+        	\item Le réseau de distribution d'électricité \textit{Hydro-Québec} avec un courant alternatif à une fréquence de \qty{120}{\volt}.
+        	\item Le réseau de distribution d'électricité \textit{Hydro-Québec} avec un courant alternatif à une fréquence de \qty{60}{\volt}.
+            \item Le réseau de distribution d'électricité \textit{Hydro-Québec} avec un courant alternatif à une fréquence de \qty{60}{\Hz}.
+        	\end{itemize}
         \item À l'étape g) de la quatrième partie, vous avez remarqué que le signal passe d'un fil à un autre sans qu'ils soient pour autant connectés, puisqu'ils étaient séparés par une gaine isolante. Le mécanisme physique de ce transfert d'énergie est le même que celui dans un ou des composant(s) électrique(s). Lequel ou lesquels parmi ceux ci-dessous?
-        \begin{itemize}
+        \begin{itemize}[label=$\blacktriangleright$]
         \item Résistance
         \item Bobine d'inductance
         \item Condensateur
         \item Diode Zener
         \end{itemize}
-    \end{enumerate}
+    \end{gradescope}
     \item \textsc{Section de rapport - Abrégé:} Écrivez en moins de 200 mots l'abrégé \textit{(abstract)} d'un rapport scientifique qui porterait sur cette séance de laboratoire.
-\end{enumerate}
+\end{gradescope}
 
 \end{document}

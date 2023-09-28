@@ -1,6 +1,6 @@
 %Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen
 %Dernière modification JRC: 8 février 2014
-%Dernière modification CA: 13 août 2023
+%Dernière modification CA: 15 août 2023
 %%%%%%%%%
 %ToDo
 % -Changer les plages de balayage en tension de la diode de façon à permettre une meilleure analyse de la résistance dynamique R_D. La polarité inverse peut probablement être raccourcie pour ménager les diodes et ce serait bien d'aller assez loin en polarité directe pour tenter d'atteindre une plage assez linéaire avec un R_D pratiquement constant. Mais attention, nos diodes sont quasiment plus faciles à péter en forward bias qu'en reverse >_<
@@ -261,25 +261,25 @@ d) Faites varier la source de 0~volt à 14~volts par incréments de 2~volts. À 
 \section{Questions d'analyse III} \label{sec:grade}
 \vspace{-0.5cm}
 \noindent$\rightarrow$ À remettre en équipe sur \href{https://www.gradescope.com/}{Gradescope} en ajoutant votre \href{https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members}{binôme de laboratoire} $\leftarrow$
-
+\vspace{-0.4cm}
 \begin{gradescope}
     \item Quelle est la résistance en courant continu (régime stationnaire)
-        \begin{gradescope}
+        \begin{gradescope}[topsep=-1pt]
         \item $\,$ d'un condensateur idéal?
-            \begin{itemize}[label=$\blacktriangleright$]
+            \begin{itemize}[label=$\blacktriangleright$,topsep=0pt,itemsep=-1ex]
             \item \qty{0}{\ohm}
+            \item \qty{1000}{\ohm}
             \item \qty[parse-numbers = false]{\infty}{\ohm}
-            %ajouter 1 ou 2 autres bons choix
             \end{itemize}
         \item $\,$ d'une bobine d'inductance idéale?
-            \begin{itemize}[label=$\blacktriangleright$]
+            \begin{itemize}[label=$\blacktriangleright$, topsep=0pt,itemsep=-1ex]
             \item \qty{0}{\ohm}
+            \item \qty{1000}{\ohm}
             \item \qty[parse-numbers = false]{\infty}{\ohm}
-            %ajouter 1 ou 2 autres bons choix
             \end{itemize}
         \end{gradescope}
 \end{gradescope}
-\vspace{-1ex}
+\vspace{-0.5ex}
 \textit{\footnotesize Indice: Ces deux composants remplissent une fonction dans un circuit à courant alternatif, car leur relation entre tension et courant dépend d'un taux de VARIATION par rapport au temps. Ils ne servent donc à rien en courant continu et il s'agit de comprendre physiquement pourquoi.}
 
 \begin{gradescope}[resume]
@@ -292,10 +292,12 @@ d) Faites varier la source de 0~volt à 14~volts par incréments de 2~volts. À 
     \item Pour le transistor, faites un graphique superposant l'ensemble des courbes $i$--$v$ dont vous avez fait l'acquisition pendant le laboratoire. Indiquez explicitement au-dessus de chaque courbe la valeur de courant de saturation~$i_{\mathrm{sat}}$, \textit{i.e.} le plateau maximal de courant (avec incertitude par rapport à l'horizontale) qui entre dans le collecteur~$i_{\mathrm{ce}}$. %Je ne suis plus certaine si les étudiants trouvaient "incertitude par rapport à l'horizontale" clair ou pas...
     \item Comparez les courbes $i$--$v$ des diodes "standard" et Zener. Pourquoi avons-nous choisi une diode Zener pour appliquer la fonction de réguler la tension?
     \begin{itemize}[label=$\blacktriangleright$]
-    \item Le branchement en polarité inverse d'une diode est plus stable qu'en polarité directe.
     \item Le comportement de la tension d'une diode "standard" n'est pas suffisamment juste pour la fonction requise, soit de garder la tension constante pour différentes intensités du courant.
-    %Au moins un autre choix de réponse.
+    \item Le branchement en polarité inverse d'une diode Zener est plus stable en fonction du temps qu'en polarité directe.
+    \item La diode Zener n'est pas de la bonne couleur.
+    \item La diode "standard" ne peut pas opérer près de sa tension de claquage en polarité directe. 
     \end{itemize}
+    %\item Comparez les régulateurs de tension de la Partie 5. Tracez pour chacun la courbe de la tension de sortie $v_{\mathrm{out}}$ en fonction de la tension d'entrée $v_{\mathrm{s}}$. Afin de faire une meilleure comparaison, normalisez vos valeurs (divisez les tensions de sortie de chaque composant par la valeur maximale obtenue) et affichez les deux courbes sur le même graphique.
     \item \textsc{Section de rapport - Analyse des résultats \& discussion:} Écrivez en moins de 400 mots une partie d'analyse des résultats et discussion d'un rapport scientifique sur la caractérisation et l'interprétation du comportement de la diode standard. Dans un TEXTE CONTINU, présentez et/ou discutez les éléments suivants tout en poursuivant l'utilisation du vocabulaire international de métrologie (VIM) pour faire des comparaisons claires:
 \begin{itemize}
     \item graphique de résistance dynamique $R_{D}=\frac{\mathrm{d}v}{\mathrm{d}i}$ mesurée en fonction de la tension \emph{(faites une différentiation numérique pour traiter directement vos données mesurées)},

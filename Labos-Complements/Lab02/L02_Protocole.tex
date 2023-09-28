@@ -102,7 +102,7 @@ Dans ce laboratoire, l’étudiant poursuivra l’apprentissage des notions de m
 
 \subsection{Partie 1 --- Mesures biaisées et non biaisées} \label{sec:part1}
 
-Faites les étapes de cette partie avec cinq résistances $R_{ch}$ différentes: 12~$\Omega$, 270~$\Omega$, 560~$\Omega$, 100~k$\Omega$ et 1~M$\Omega$.
+Faites les étapes de cette partie avec cinq charges de résistances $R_{ch}$ différentes: 12~$\Omega$, 270~$\Omega$, 560~$\Omega$, 100~k$\Omega$ et 1~M$\Omega$.
 
 a) Mesurez la valeur de chaque résistance en utilisant la fonction ohmmètre du multimètre à 6\textonehalf~chiffres. Tout d'abord, utilisez seulement deux fils. Ensuite, refaites les mesures en utilisant quatre fils. Notez vos mesures et leurs incertitudes dans un tableau.
 
@@ -144,11 +144,12 @@ La source «boîte noire» est en fait une source fixe «parfaite» en série av
 
 a) Tout d'abord, prenez la source «boîte noire» et mesurez la différence de potentiel à ses bornes.
 
-b) Trouvez la puissance maximale tolérée par le potentiomètre (sa fiche technique est disponible sur le site du cours).
+b) Trouvez la puissance maximale tolérée par le potentiomètre. Sa fiche technique est dans la liste des Composants \& Instruments disponible en lien sur le site du cours.
 
 c) Soit un potentiomètre seul, tout nu. Calculez la valeur maximale du courant qui peut le traverser, sur toute sa longueur, pour respecter la limite imposée par la puissance tolérée trouvée en b).
 
-d) Calculez la valeur minimale de la résistance de protection $R_{\mathrm{prot}}$ nécessaire pour s'assurer que le courant traversant le potentiomètre n'excède jamais la valeur calculée en c), lorsque la source fournit la tension mesurée en a), et ce indifféremment de la position du curseur du potentiomètre (voir figure~\ref{sch-varR}). Vous pouvez faire vérifier votre valeur de $R_{\mathrm{prot}}$ par un.e auxiliaire dépanneur.euse.
+%Prochaine étape à revoir éventuellement, selon la discussion que j'ai eue avec Étienne.
+d) Calculez la valeur minimale de la résistance de protection $R_{\mathrm{prot}}$ nécessaire pour s'assurer que le courant traversant le potentiomètre n'excède jamais la valeur calculée en c), lorsque la source fournit la tension mesurée en a), et ce indifféremment de la position du curseur du potentiomètre (voir figure~\ref{sch-varR}).
 
 e) Sur la plaquette de montage, montez le circuit représenté à la figure~\ref{sch-varR}. Comme résistance de protection, utilisez la plus petite résistance supérieure à la valeur minimale que vous avez calculée en d).
 
@@ -182,32 +183,37 @@ h) À partir de vos résultats, déduisez la résistance interne de la source «
 %Voir mon cahier d'enseignement pour comment aborder les moyennes d'ensemble disperses avec des éléments qui varient (vs une même meusre répétée) et travailler ça à partir de résistances avec les tolérances appropriées...
     \begin{gradescope}
     \item présentez dans un même tableau les résultats de mesure de résistance prises à deux fils et à quatre fils ainsi que le pourcentage d'écart entre chacune de ces mesures et la valeur nominale de référence correspondante. Assurez-vous d'inclure les incertitudes et de présenter leur justification en légende.\\\textit{\footnotesize Les pourcentages d'écart représentent des erreurs systématiques par rapport aux valeurs de référence, ce ne sont donc pas des incertitudes. Toutefois, l'incertitude sur ces erreurs doit être estimée!}
-    %Tester que la réponse de la prochaine sous-question n'est pas influencée par la trop poche tolérance des résistances ! Pis faudrait ben s'affranchir assez des tolérances pour démontrerle point principal que de petites résistances doivent être mesurées à 4 fils!
+    %Lors de modification de la question s'assurer que la réponse n'est pas influencée par la trop poche tolérance des résistances ! J'aimerais éventuellement m'affranchir assez des tolérances pour démontrer le point principal que de petites résistances doivent être mesurées à 4 fils...
     \item $\blacktriangleright$ Vrai ou $\blacktriangleright$ Faux : Le pourcentage d'écart pour la mesure à deux fils s'éloigne de plus en plus de celle à quatre fils avec l'augmentation de la résistance.
     \item Sélectionnez le ou les énoncé(s) qui explique(nt) correctement pourquoi la mesure de résistance à deux fils avec le ohmmètre est biaisée :
     \begin{itemize}[label=$\blacktriangleright$]
     \item De nombreux bouts de fils coupés en biais peuvent être récupérés pour se fabriquer une cotte de maille.
     \item La résistance des deux fils s'ajoute à celle du composant résistif.
-     %Les 2 items suivants sont p-e  trop facile en ressemblant à mon blabla vidéo, je pourrais raccourcir à "Le ohmmètre mesure la chute de tension dans toute la boucle de circuit avec la résistance." et son corrollaire. 
+     %Les 2 items suivants sont p-e trop facile en ressemblant à mon blabla vidéo, je pourrais raccourcir à "Le ohmmètre mesure la chute de tension dans toute la boucle de circuit avec la résistance." et son corrollaire?
     \item Le ohmmètre est constitué d'une source indépendante et étalonnée de courant et d'un voltmètre qui mesure la chute de tension dans toute la boucle de circuit avec la résistance.
     \item Le ohmmètre est constitué d'une source indépendante et étalonnée de tension et d'un ampèremètre qui mesure le courant dans toute la boucle de circuit avec la résistance.  
     \end{itemize}
     \end{gradescope}
 \item Dans votre analyse des résultats des étapes c) et d) de la première partie, 
     \begin{gradescope}
-    %Le pronom dans les phrases suivantes doit référer aux résistances, mais je ne suis pas certaine que c'est réussi...
-    \item Est-ce que les mesures de tension non biaisée ont mené à des calculs de résistance plus justes pour leurs valeurs $\blacktriangleright$ élévées ou $\blacktriangleright$ basses?
-    \item Est-ce que les mesures de courant non biaisé ont mené à des calculs de résistance plus justes pour leurs valeurs $\blacktriangleright$ élévées ou $\blacktriangleright$ basses?
-    \item Laquelle des expressions suivantes représente la résistance interne $R_{volt}$ d'un voltmètre non idéal dans le circuit de la figure~\ref{L2-sch-tensionnb}?
+    \item Les mesures de tension non biaisée ont mené à des calculs de résistance. Est-ce que vos résultats de calculs étaient plus justes lorsque les résistances étaient $\blacktriangleright$ élevées ou $\blacktriangleright$ basses? 
+    \item Les mesures de courant non biaisé ont mené à des calculs de résistance. Est-ce que vos résultats de calculs étaient plus justes lorsque les résistances étaient $\blacktriangleright$ élevées ou $\blacktriangleright$ basses? 
+    \item Laquelle des expressions suivantes représente la résistance interne $R_{volt}$ d'un voltmètre non idéal dans le circuit de la figure~\ref{L2-sch-tensionnb}?\\ \textit{\small Définition des autres symboles: $V_{volt}\;-$ tension mesurée par le voltmètre, $I_{volt}\;- $ courant circulant dans le voltmètre non idéal, $V_{amp}\;-$ tension aux bornes de l'ampèremètre non idéal, $I_{amp}\;- $ courant mesuré par l'ampèremètre, $R_{amp}\;- $ résistance interne de l'ampèremètre.} 
     \begin{itemize}[label=$\blacktriangleright$]
-    \item $R_{volt} = \frac{V_{ch}}{I_{tot}-\frac{V_{ch}}{R_{ch}}}$
-    %INTRODUIRE TOUS LES SYMBOLES QUI NE L'ONT PAS ÉTÉ JUSQU'À MAINTENANT puis Inspiration pour d'autres mauvais choix de réponse pour ajout par Annie-Claude à partir de celles en H23!
+    \item $R_{volt}=R_{ch}-R_{amp}$
+    \item $R_{volt}=R_{ch}+R_{amp}$
+    \item $R_{volt}=R_{amp}+R_{volt}-R_{ch}$
+    \item $R_{volt} = \frac{V_{volt}}{I_{amp}-\frac{V_{volt}}{R_{amp}}}$
+    \item $R_{volt} = \frac{V_{amp}}{I_{amp}-\frac{V_{volt}}{R_{ch}}}$
+    \item $R_{volt} = \frac{V_{volt}}{I_{amp}-\frac{V_{volt}}{R_{ch}}}$
     \end{itemize}
-    \item Quelle est la résistance interne de l'ampèremètre?
+    \item Quelle est la résistance interne de l'ampèremètre? (PAS de texte, seulement le résultat de mesure qui comprend toujours l'incertitude.)
+    \item Présentez votre démarche de calcul d'incertitude de la sous-question précédente. %Le hic est que les étudiants n'ont probablement pas encore appris propager l'incertitude correctement à ce point-ci...
     \end{gradescope}
 \item Les mesures en circuit fermé avec la pomme de terre au premier laboratoire étaient-elles biaisées en $\blacktriangleright$ tension ou en $\blacktriangleright$ courant?
-\item Est-ce que l'incertitude d'une mesure dépend \textit{uniquement} de l'exactitude de l'instrument utilisé? Supportez votre réponse à l'aide d'un exemple tiré de chacun des deux premiers laboratoires. % <- Pour Annie-Claude s'il y a vraiment moyen de tourner ça en choix de réponse intéressant! Pour le solutionnaire : Laboratoire I : les fluctuations de la réaction chimique instable dans la patate ou encore l’assèchement de son électrolyte ; Laboratoire II : les résistances intrinsèques des fils ou internes des instruments.
-\item Identifiez les étapes dans chaque partie de la section "Manipulations" du protocole qui peuvent être faites en préparation avant le laboratoire :\\ $\blacktriangleright$ 1a) $\blacktriangleright$ 1b) $\blacktriangleright$ 1c) $\blacktriangleright$ 1d) $\blacktriangleright$ 2a) $\blacktriangleright$ 2b) $\blacktriangleright$ 2c) $\blacktriangleright$ 2d) $\blacktriangleright$ 2e) $\blacktriangleright$ 2f) $\blacktriangleright$ 2g) $\blacktriangleright$ 2h) %sauter toute étape avec le moindre potentiel d'ambiguïté, genre vérification par l'équipe d'enseignement? ou modifier l'étape concernée?
+ %Ajouter la question suivante seulement s'il y a vraiment moyen de tourner ça en choix de réponse intéressant! (Pour le solutionnaire : Laboratoire I : les fluctuations de la réaction chimique instable dans la patate ou encore l’assèchement de son électrolyte ; Laboratoire II : les résistances intrinsèques des fils ou internes des instruments.)
+%\item Est-ce que l'incertitude d'une mesure dépend \textit{uniquement} de l'exactitude de l'instrument utilisé? Supportez votre réponse à l'aide d'un exemple tiré de chacun des deux premiers laboratoires.
+\item Identifiez les étapes dans chaque partie de la section "Manipulations" du protocole qui peuvent être faites en préparation avant le laboratoire :\\ $\blacktriangleright$ 1a) $\blacktriangleright$ 1b) $\blacktriangleright$ 1c) $\blacktriangleright$ 1d) $\blacktriangleright$ 2a) $\blacktriangleright$ 2b) $\blacktriangleright$ 2c) $\blacktriangleright$ 2d) $\blacktriangleright$ 2e) $\blacktriangleright$ 2f) $\blacktriangleright$ 2g) $\blacktriangleright$ 2h) %solutionnaire: 1b), 2b), 2c), 2d)
 \item \textsc{Section de rapport - Méthodes expérimentales:} Écrivez en moins de 200 mots les méthodes expérimentales d'un rapport scientifique portant sur la première partie de ce laboratoire. C'est en effet sur la \nameref{sec:part1} seulement.
 \end{gradescope}
 
