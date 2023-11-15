@@ -1,7 +1,7 @@
 %Créé par Claudine Allen en collaboration avec Jean-Raphaël Carrier
 %Dernière modification JRC: 13 janvier 2014
 %Élimination du labo de résistivité des matériaux (IV) à la fin de l'ère JRC + regroupement des labos VI & VII en début de pandémie COVID-19 => renumérotation IX -> VII maintenant
-%Dernière modification CA: 4 novembre 2020
+%Dernière modification CA: 14 novembre 2023
 %Dernière modification JG:
 %***ToDo***
 % - préparer un signal de bruit pour montrer comment on se rapproche de sinus/cosinus avec Q qui augmente dans un filtre passe-bande,... voir version JG.
@@ -58,7 +58,15 @@
 
 \maketitle \vspace{-2cm}
 
-\section{Objectifs}
+\noindent\textit{\textbf{Prélude de structure et déroulement des ateliers}}
+
+\textit{Lors de la séance de laboratoire de 2h à la date spécifiée dans la section \texttt{Contenu et activités} sur le site de cours, nous nous diviserons en grands groupes, chacun animé par un membre de l’équipe d’enseignement. Une partie des sous-objectifs et circuits sera attribuée à chaque groupe dans le but d'en faire une présentation orale éducative de 5~minutes pour le reste de la classe à la fin de la séance. La méthodologie de travail en groupe vous appartient alors entièrement pour réussir la meilleure présentation possible qui sera évaluée sur une base ordinale tel qu'expliqué dans la partie synchrone du cours~6.}
+
+\textit{Nous recommandons de commencer la séance en délibérant sur l'optimisation des manipulations expérimentales et des analyses proposées dans vos cahiers de recherche respectifs avec l'assistance du membre de l'équipe d'enseignement et il vous faudra ensuite répartir les tâches dans votre groupe. Des exemples de tâches possibles sont la planification et l'organisation, la conception, la simulation, la réalisation expérimentale, la mesure, l'analyse, la communication, etc. et il peut bien sûr y avoir de la redondance pour vérifier l'exactitude des résultats de mesure et d'analyse. Notez que la fin de la section \texttt{Matériel didactique} sur le site de cours propose différents choix de logiciels et d'applications pour vous assister dans les tâches de conception et de simulation.}
+
+\textit{Il n'y a pas d'autres remises à faire pour chaque atelier afin de vous donner le temps de travailler sur votre projet de conception final.}
+
+%\section{Objectifs}
 
 %Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. On peut alors retirer des fréquences indésirables et généralement obtenir une mesure plus fidèle avec un meilleur rapport signal sur bruit, par exemple. L’effet de différents filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc examinée pour le filtre RC. 
 %Dans l'approche pédagogique de préparation et conception de ce laboratoire, l'étudiant.e développera progressivement une méthodologie de travail plus autonome en transition vers la pratique d'une profession de recherche en sciences et génie.
@@ -76,6 +84,7 @@
 \section{Lectures préparatoires}
 
 \begin{itemize}
+\item cours \textit{Analyse de circuits résistifs et réactifs}
 \item complément \textit{Analyse temporelle};
 \item complément \textit{Analyse fréquentielle}.
 \end{itemize}
@@ -99,14 +108,6 @@
 
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 Les ateliers se rapprochent d'un mode de travail expérimental plus professionnel, car vous devez vous-même préparer votre propre protocole avant d'arriver au laboratoire afin d'atteindre chaque sous-objectif énoncé ci-dessous. Ces sous-objectifs sont généralement accompagnés d'une figure de circuits, mais il y a toutefois progression vers une conception de plus en plus libre où vous devrez proposer vos propres design de circuits. Pour vous assister dans cette rédaction de protocole, les compléments en lecture préparatoire ci-dessus détaillent la théorie et les modèles pour comprendre le fonctionnement des circuits et les analyser expérimentalement. Concrètement dans votre cahier de recherche avec votre coéquipier.ère, écrivez des manipulations et des analyses à faire pour chaque sous-objectif afin de les mettre en commun en plus grand groupe lors de votre arrivée à la séance de laboratoire. 
-
-\section{Déroulement de l’atelier}
-
-Lors de la séance de laboratoire de 2h à la date spécifiée dans la section \texttt{Contenu et activités} sur le site de cours, nous nous diviserons en grands groupes, chacun animé par un membre de l’équipe d’enseignement. Une partie des sous-objectifs et circuits sera attribuée à chaque groupe dans le but d'en faire une présentation orale éducative de 5~minutes pour le reste de la classe à la fin de la séance. La méthodologie de travail en groupe vous appartient alors entièrement pour réussir la meilleure présentation possible qui sera évaluée sur une base ordinale tel qu'expliqué dans la partie synchrone du cours~6.
-
-Nous recommandons de commencer la séance en délibérant sur l'optimisation des manipulations expérimentales et des analyses proposées dans vos cahiers de recherche respectifs avec l'assistance du membre de l'équipe d'enseignement et il vous faudra ensuite répartir les tâches dans votre groupe. Des exemples de tâches possibles sont la planification et l'organisation, la conception, la simulation, la réalisation expérimentale, la mesure, l'analyse, la communication, etc. et il peut bien sûr y avoir de la redondance pour vérifier l'exactitude des résultats de mesure et d'analyse. Notez que la fin de la section \texttt{Matériel didactique} sur le site de cours propose différents choix de logiciels et d'applications pour vous assister dans les tâches de conception et de simulation.
-
-La dernière activité de la séance sera de vous rendre sur le site Web du cours dans la section \texttt{Évaluations et résultats} pour l'atelier concerné et y évaluer vos pairs sur leur contribution respective au travail du groupe. Il n'y a pas d'autres remises à faire pour chaque atelier afin de vous donner le temps de travailler sur votre projet de conception final.
  
  \section{Atelier}
 %\subsection{Partie 1 --- Mesures temporelles}
@@ -147,7 +148,7 @@ La dernière activité de la séance sera de vous rendre sur le site Web du cour
 ;\end{circuitikz}
 \caption{\label{sch-RC2}\textbf{Sous-objectif} : démontrer que ce même circuit RC série agit en filtre passe-haut ou passe-bas en prenant les mesures appropriées pour construire les diagrammes de Bode du gain ET de la phase en fonction de la fréquence.}
 \end{figure}
-
+%\noindent\textit{Pour vous aider à tracer rapidement les diagrammes de Bode, vous pouvez utiliser le VI LabVIEW disponible sur le site du cours dans la section dédiée à cet atelier.}
 \begin{figure}[h!]
 \centering
 \begin{circuitikz} \draw
