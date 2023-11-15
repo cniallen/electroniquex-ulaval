@@ -194,7 +194,7 @@ i) Réinsérez les tiges d'inox et de zinc dans votre pomme de terre et connecte
 
 Modifiez votre VI afin qu'il puisse acquérir simultanément deux mesures de tension. Pour ce faire, allez dans les propriétés de l'Assistant DAQ et rajoutez une voie. Sélectionnez \textbf{Tension} puis \textbf{ai1} et faites \textbf{OK}. Laissez les mêmes paramètres que pour la voie \textbf{ai0} et cliquez sur \textbf{OK}. Sur le diagramme, mettez la valeur de la constante numérique à 10. Ainsi, les données seront recueillies pendant dix secondes au lieu de cinquante.
 
-Maintenant, faites une acquisition des données. Sur votre logiciel d'analyse numérique choisi, divisez les valeurs de tension obtenues par la voie \textbf{ai1} par 12~$\Omega$ afin d'avoir le courant\footnote{Négligez l'incertitude de la résistance de 12~$\Omega$ pour ce calcul.} : ce courant est le même qui traverse la plus grosse résistance.
+Maintenant, faites une acquisition des données. Pour appliquer la loi d'Ohm avec votre logiciel d'analyse numérique choisi, divisez par 12~$\Omega$ les valeurs de tension enregistrées pour la voie \textbf{ai1} afin de calculer le courant\footnote{Négligez l'incertitude de la résistance de 12~$\Omega$ pour ce calcul.}. Vous avez alors l'équivalent d'un (mauvais) ampèremetre puisque ce courant calculé est le même qui traverse la plus grosse résistance.
 
 \begin{figure}[h]
 \centering
@@ -225,7 +225,7 @@ Maintenant, faites une acquisition des données. Sur votre logiciel d'analyse nu
         \item \qty{4.9}{\mV}
         \item \qty{0.49}{\mV}
         \end{itemize}
-    \item Vous devriez observer un effet indésirable de cette limite de résolution dans au moins un de vos graphiques pour visualiser vos données. À laquelle des formes suivantes cela correspond-il le mieux? $\blacktriangleright$ Triangles $\blacktriangleright$ Rampes $\blacktriangleright$ Paliers %ou marches?
+    \item Avez-vous observé un effet indésirable de cette limite de résolution dans au moins un de vos graphiques pour visualiser vos données? À laquelle des formes suivantes cet effet correspond-il le mieux? $\blacktriangleright$ Triangles $\blacktriangleright$ Rampes $\blacktriangleright$ Paliers %ou marches?
     \end{gradescope}
 %\item À l'étape g) de la deuxième partie, vous avez probablement remarqué que la différence de potentiel entre les électrodes dépendait des métaux choisis. Quelle combinaison permet d'obtenir la plus haute tension?
     \begin{gradescope}

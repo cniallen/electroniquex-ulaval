@@ -174,11 +174,11 @@ g) Avec le générateur de fonctions, injectez dans la résistance et le fil iso
 \noindent$\rightarrow$ À remettre en équipe sur \href{https://www.gradescope.com/}{Gradescope} en ajoutant votre \href{https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members}{binôme de laboratoire} $\leftarrow$
 
 \begin{gradescope}
-        \item Calculez la valeur de tension efficace d'un signal carré et celle d'un signal triangulaire avec la fréquence et l'amplitude crête à crête employées par le générateur de fonctions dans la première partie des expériences. 
-    \begin{enumerate}
+        \item Calculez la valeur de tension efficace $v_{\mathrm{RMS}}$ d'un signal carré et celle d'un signal triangulaire avec la fréquence et l'amplitude crête à crête employées par le générateur de fonctions dans la première partie des expériences. 
+    \begin{gradescope}
         \item À l'aide des incertitudes et du vocabulaire international de métrologie (VIM), comparez très brièvement vos résultats de mesure en tension efficace à ces calculs. %À ajuster quand la vision de métrologie & statistiques sera plus uniformisé,idéalement en collaboraant avec le NRC en n'oubliant pas la doc de technique pour l'ingénieur et du NIST.
-        \item Est-ce que le facteur de crête du signal triangulaire varie avec son amplitude (valeur crête)? $\blacktriangleright$ Oui ou $\blacktriangleright$ Non
-    \end{enumerate}
+        \item Est-ce que le facteur de crête $f_{\mathrm{c}}$ du signal triangulaire varie avec son amplitude (valeur crête $v_{\mathrm{p}}$)? $\blacktriangleright$ Oui ou $\blacktriangleright$ Non
+    \end{gradescope}
     \item Dans la troisième partie, vous avez mesuré les paramètres de tension d'un signal sinusoïdal aux bornes de quatre composants en série.
     \begin{gradescope}
         \item Si vous additionnez simplement les quatre valeurs crête à crête mesurées, obtenez-vous la valeur crête à crête de la tension aux bornes de la source? 
@@ -186,8 +186,8 @@ g) Avec le générateur de fonctions, injectez dans la résistance et le fil iso
             \item Non, la loi des mailles de Kirchhoff n'est donc pas respectée avec ces valeurs.
             \item Oui, la loi des mailles de Kirchhoff est donc respectée avec ces valeurs.
         \end{itemize}
-        \item À l'aide de la forme polaire des nombres complexes, présentez la démarche d'addition vectorielle des quatre signaux alternatifs en tension avec leurs fréquence $\omega$, phase $\phi$ et module $v_0$ qui est la moitié de l'amplitude crête à crête. Notez que le phaseur $v=v_0\,\textrm{e}^{j\phi}$ suffit, car le facteur $\textrm{e}^{j\omega t}$ reste le même dans tout le circuit linéaire.
-        \item Est-ce que le résultat de l'addition précédente   correspond à la tension mesurée aux bornes de la source?
+        \item À l'aide de la forme polaire des nombres complexes, présentez la démarche d'addition vectorielle des quatre signaux alternatifs en tension $v(t)$ avec leurs fréquence $\omega$, phase $\varphi$ et module $v_0$ qui est la moitié de la valeur crête à crête. Notez que le phaseur $v=v_0\,\mathrm{e}^{j\varphi}$ suffit, car le facteur $\mathrm{e}^{j\omega t}$ se simplifie de l'équation grâce à la fréquence qui reste la même dans tout le circuit linéaire\footnote{Vous aurez déduit que l'unité imaginaire est notée $j$ plutôt que $i$ dans notre contexte afin d'éviter toute confusion avec l'intensité du courant.}.
+        \item Est-ce que le résultat de l'addition précédente correspond à la tension mesurée aux bornes de la source?
         \begin{itemize}[label=$\blacktriangleright$]
             \item Non, la loi des mailles de Kirchhoff n'est toujours pas respectée dans ce cas.
             \item Oui, la loi des mailles de Kirchhoff est alors respectée avec ce meilleur modèle mathématique des signaux.
@@ -201,7 +201,7 @@ g) Avec le générateur de fonctions, injectez dans la résistance et le fil iso
     \vspace{1ex}
     \item Dans la quatrième partie, vous avez mesuré à l'oscilloscope des tensions dans les domaines temporel et fréquentiel (Fourier) tout en captant des signaux provenant de l'extérieur d'un fil.
     \begin{gradescope} 
-        \item Lorsque vous avez affiché la FFT du signal sinusoïdal provenant du générateur de fonctions, vous avez remarqué que le pic correspondait à la fréquence fondamentale dudit signal. À quoi correspondent les pics subséquents que vous avez observés? Sélectionnez les énoncés ci-dessous qui sont applicables.
+        \item Lorsque vous avez affiché la FFT du signal sinusoïdal provenant du générateur de fonctions, vous avez remarqué que le pic correspondait à la fréquence fondamentale dudit signal, soit \qty{60}{\Hz}. À quoi correspondent les pics subséquents que vous avez observés? Sélectionnez les énoncés ci-dessous qui sont applicables.
         \begin{itemize}[label=$\blacktriangleright$]
             \item Des harmoniques de la fréquence fondamentale.
             \item Des multiples entiers de la fréquence fondamentale.
@@ -210,7 +210,7 @@ g) Avec le générateur de fonctions, injectez dans la résistance et le fil iso
         \end{itemize}
         \item $\blacktriangleright$ Vrai ou $\blacktriangleright$ Faux : En l'absence de bruit qui cause des imperfections du signal, un seul pic serait affiché dans la FFT.
         %P-e éventuellement rajouter une question sur la variation de largeur des pics FFT en ayant une manip correspondante qui fait varier l'échelle horizontale.
-        \item À l'étape e), vous avez observé la présence d'une onde électromagnétique qui introduisait un signal parasite. Quelle est la source de ce signal?
+        \item À l'étape e) de la quatrième partie, vous avez observé la présence d'une onde électromagnétique qui introduisait un signal parasite à \qty{60}{\Hz}. Quelle est la source de ce signal?
 		\begin{itemize}[label=$\blacktriangleright$]
         	\item Le réseau de distribution d'électricité \textit{Hydro-Québec} avec un courant alternatif à une fréquence de \qty{120}{\Hz}.
         	\item Le réseau de distribution d'électricité \textit{Hydro-Québec} avec un courant alternatif à une fréquence de \qty{120}{\volt}.

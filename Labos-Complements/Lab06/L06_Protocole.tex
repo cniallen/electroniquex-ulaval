@@ -103,7 +103,7 @@ Le laboratoire revient aux composants non linéaires pour explorer de nouvelles 
 %\item résistances de 12~$\Omega$, 1~k$\Omega$ (deux fois), 100~k$\Omega$ (deux fois) et 1~M$\Omega$;
 \item un gros paquet de résistances; %(une de 270~$\Omega$, une de 560~$\Omega$, quatre de 1~k$\Omega$, quatre de 10~k$\Omega$ et deux de 100~k$\Omega$);
 %\item deux potentiomètres linéaires de 1~k$\Omega$ (code 102);
-%\item un condensateur de 1~$\mu\mathrm{F}\pm20$~\% et un condensateur de précision de $1~\mu\mathrm{F}\pm5$~\%;
+\item un condensateur de 1~$\mu\mathrm{F}$;%\pm20$~\% et un condensateur de précision de $1~\mu\mathrm{F}\pm5$~\%;
 %\item une bobine de 1~mH;
 \item quatre diodes standards 914;
 \item une diode électroluminescente (LED);
@@ -122,9 +122,9 @@ Le laboratoire revient aux composants non linéaires pour explorer de nouvelles 
 
 Dans cette partie, vous convertirez le signal alternatif d'Hydro-Québec en un signal continu quasi constant. Votre but est de faire tourner un moteur qui ne tourne pas lorsqu'il est alimenté par une tension alternative.
 
-Le transformateur que vous utiliserez fournit une tension efficace (RMS) allant d'environ $-8$~V à 8~V, oscillant à la même fréquence que la tension fournie à son entrée. Par mesure de sécurité, ne mettez le transformateur sous tension que lorsque votre circuit est monté. Avant de le modifier, ouvrez toujours l'interrupteur du transformateur. Et faites attention si vous laissez le circuit alimenté pendant une longue période de temps ; certains composants peuvent devenir assez chauds, notamment les diodes!
+Le transformateur que vous utiliserez fournit une tension efficace (RMS) allant d'environ $-8$~V à $8$~V, oscillant à la même fréquence que la tension fournie à son entrée. Par mesure de sécurité, ne mettez le transformateur sous tension que lorsque votre circuit est monté. Avant de le modifier, ouvrez toujours l'interrupteur du transformateur. Et faites attention si vous laissez le circuit alimenté pendant une longue période de temps ; certains composants peuvent devenir assez chauds, notamment les diodes!
 
-a) Faites le circuit de la figure~\ref{sch-init}. Notez vos observations. Puisque la tension est alternative, le petit moteur devrait osciller autour d'un même point, au lieu d'effectuer des rotations complètes. Ensuite, remplacez le moteur par une résistance de 1~M$\Omega$.
+a) Faites le circuit de la figure~\ref{sch-init} en notant vos observations sur le comportement du moteur. Puisque la tension est alternative, le petit moteur devrait osciller autour d'un même point, au lieu d'effectuer des rotations complètes. Ensuite, remplacez le moteur par une résistance de 1~M$\Omega$.
 
 \begin{figure}[h]
 \centering
@@ -141,7 +141,7 @@ a) Faites le circuit de la figure~\ref{sch-init}. Notez vos observations. Puisqu
 \caption{\label{sch-init}Branchement initial.}
 \end{figure}
 
-b) À l'aide de l'oscilloscope, affichez la tension aux bornes de la résistance de 1~M$\Omega$ pour mesurer la tension moyenne et la tension efficace en modes continu CC et alternatif CA. Vous referez ces mesures après chaque modification du circuit.
+b) À l'aide de l'oscilloscope, affichez la tension aux bornes de la résistance de 1~M$\Omega$ pour mesurer la tension efficace en modes continu CC et alternatif CA et la tension moyenne. Vous referez ces mesures après chaque modification du circuit.
 
 c) Rajoutez une diode standard en polarité directe avec la charge, tel qu'indiqué à la figure~\ref{sch-half}. Rappelez-vous que la diode ne laisse passer que le courant circulant dans un sens, celui de son symbole en flèche, pas dans l'autre. Refaites l'étape b).
 
@@ -333,7 +333,7 @@ Un comparateur, comme son nom l'indique, permet de comparer deux signaux.  Il s'
 (opamp.out) to[leD] (4,0) to[R,l_=1~k$\Omega$] (4,-2.5) node[ground]{}
 (opamp.down) ++ (0,-0.5) node[below]{$-5$~V} -- (opamp.down)
 (opamp.up) ++ (0,0.5) node[above]{$+5$~V} -- (opamp.up)
-(-3,-2.5) node[ground]{} to[sV=0~V~--~2~V] (-3,-0.5) to[short] (-1.2,-0.5)
+(-1.2,-0.5) to[short] (-4.3,-0.5) to[sV=0~V~--~2~V] (-4.3,-2.5) node[ground]{}
 (-6,-2.5) node[ground]{} to[V=1~V] (-6,0.5) to[short] (-1.2,0.5)
 ;\end{circuitikz}
 \caption{\label{comparateur-1}Circuit pour l'analyse du comparateur.}

@@ -170,7 +170,7 @@
 \end{center}
 
 \vspace{-1em}
-\noindent Hiver 2023 \hfill Responsable: C. Allen\par
+\noindent Automne 2023 \hfill Responsable: C. Allen\par
 \vspace{0.2ex}
 \hrule
 \vspace{0.5ex}
@@ -197,7 +197,7 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 %En plein jour, quand la luminosité est maximale, le moteur ne doit pas dépasser sa vitesse maximale de 437~RPM. Si la luminosité diminue, la vitesse du moteur doit ralentir en conséquence jusqu’à atteindre la valeur attendue en pleine nuit. Entre les deux valeurs de luminosité extrêmes, la vitesse du moteur doit pouvoir prendre le plus de valeurs possibles. Notez finalement qu'avant de procéder à l’assemblage de votre système en pratique, vous allez simuler et tester virtuellement son fonctionnement pour réduire les essais-erreurs, le débogage et la frustration(!) au laboratoire.
 %\vspace{-1em}
 
-\subsection*{Matériel électronique permis\footnote{Si du matériel brise ou manque à l'appel en l'absence de l'équipe d'enseignement, n'hésitez pas à contacter le personnel de support technique. Vous retrouverez M. François Latouche, qui est attitré à notre cours, en face du laboratoire au VCH-0646 ou au téléphone (418) 656-2131 p.413146 pendant les heures de bureau, ou vous pouvez toujours le rejoindre par courriel \href{mailto:francois.latouche@phy.ulaval.ca}{ <francois.latouche@phy.ulaval.ca>}.}} 
+\subsection*{Matériel électronique permis\footnote{Si du matériel brise ou manque à l'appel en l'absence de l'équipe d'enseignement, n'hésitez pas à contacter notre précieuse équipe de support de laboratoire au VCH-0646 ou au téléphone (418) 656-2131 p.413146 pendant les heures de bureau.}} 
 \begin{itemize}
     \item Plaquette de montage
     \item Piles \SI{9}{\volt}
@@ -227,11 +227,11 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 \subsection*{Livrables}
 \label{subsec:livrables}
 \begin{itemize}
-    \item Équipe de travail obligatoirement de 4 personnes formée sur \href{https://www.gradescope.com/}{Gradescope}. Si le nombre d'inscriptions au cours ne se factorise pas par 4, une seule équipe de moins de 4 membres sera permise avec l'autorisation d'un responsable.
+    \item Équipe de travail obligatoirement de 4 personnes formée sur \href{https://www.gradescope.com/}{Gradescope}. Si le nombre d'inscriptions au cours ne se factorise pas par 4, une seule équipe de moins de 4 membres sera permise avec l'autorisation d'une responsable.
     \item Documentation de la conception du système, où le format de chaque fichier est laissé libre\footnote{N'écrivez PAS de rapport, PAS de texte continu, l'objectif de rédaction scientifique du cours est déjà complété. Seuls des annotations ou des commentaires courts pourront clarifier vos documents. La communication complète de ce projet se fait de manière orale avec l'enregistrement vidéo.}\\ \textit{(Vous pouvez donc utiliser tout logiciel ou application de votre choix, des suggestions sont proposées dans le \texttt{Matériel didactique} sur le site de cours.)}:
     \begin{itemize}[label=$\bullet$]
         \item simulations sur diagramme schématique séparément pour le bloc de circuit en entrée et pour celui en sortie de la carte Arduino\footnote{La plupart des simulateurs électroniques gratuits, dont le \href{https://www.falstad.com/circuit/}{site Internet de Paul Falstad}, ne supportent pas directement des processeurs et des cartes informatiques, ce pourquoi des simulations séparées sont demandées seulement pour les parties analogues du circuit. Toutefois, des extensions ajoutant une interface de développement de code Arduino commencent \href{http://falstad.com/circuit/avr8js/}{à être publiées}, mais n'aideront \href{https://hackaday.com/2021/06/11/circuit-vr-arduino-virtually-meets-analog/}{peut-être pas} votre travail puisque les logiciels sont souvent déployés trop rapidement de nos jours, avant d'être complètement testés sans bogues.},
-        \item plan de conception assistée par ordinateur (ECAD, \textit{electronic computer-aided design}, ou EDA, \textit{Electronic design automation}, en anglais) illustrant le système\footnote{Nous avons testé le plan de conception de ce projet surtout avec \href{https://www.tinkercad.com/login}{l'application Web Tinkercad} où le format d'exportation \texttt{.brd} ne peut malheureusement pas être ré-importé dans l'application, mais une image du plan suffit à la correction. Bien que cette application puisse aussi faire des simulations, notez qu'elle n'est pas optimisée pour cela. De nombreuses autres alternatives sont détaillées vers la fin de la page Web sur le \texttt{Matériel didactique} de notre site de cours, dont \href{https://fritzing.org/}{Fritzing} qui est déjà installé sur les ordinateurs du laboratoire.},
+        \item plan de conception assistée par ordinateur (ECAD, \textit{electronic computer-aided design}, ou EDA, \textit{Electronic design automation}, en anglais) illustrant le système\footnote{Nous avons testé le plan de conception de ce projet surtout avec \href{https://www.tinkercad.com/login}{l'application Web Tinkercad} où le format d'exportation \texttt{.brd} ne peut malheureusement pas être ré-importé dans l'application, mais une image du plan suffit à la correction. Bien que cette application puisse aussi faire des simulations, notez qu'elle n'est PAS optimisée pour cela. De nombreuses autres alternatives sont détaillées vers la fin de la page Web sur le \texttt{Matériel didactique} de notre site de cours, dont \href{https://fritzing.org/}{Fritzing} qui est déjà installé sur les ordinateurs du laboratoire.},
         \item photo haute résolution du circuit fait sur la plaquette de montage à partir des simulations et du plan de conception,
         \item liste et quantité de composants électroniques utilisés; elle est produite automatiquement avec le plan de design par la plupart des logiciels EDA,
         \item script de programmation bien structurée et commentée pour contrôler/communiquer avec la carte Arduino.
@@ -299,15 +299,17 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 \justify
 \section*{ANNEXE}
 \label{sec:annexe}
-
+%TODO
+%\subsection*{RÉCAPITULATIF DE TOUTES LES FONCTIONS SURVOLÉES DANS LE COURS}
+%\include{Projets-de-conception/RevueFonctions} OR \import{}{} (REVOIR DOC DE OVERLEAF ET SEARCH STACKEXCHANGE FOR WHICH ONE, for preanble too)
 \subsection*{Carte de contrôle et d'acquistion Arduino UNO}
 Un survol rapide de la carte Arduino UNO, raccourci à Arduino par la suite, est présenté dans cette section, mais de nombreuses autres ressources se retrouvent facilement sur Internet. Un bon point de départ dans le cadre de ce projet de conception est la liste de \href{https://www.youtube.com/playlist?list=PLV6cmKvnKRs5geApVORPW79U6s3wpa0Ht}{vidéos préparés par l'équipe de Tinkercad}. Ces vidéos initient à l'utilisation d'Arduino via la réalisation de quelques projets de base, alors que le texte qui suit, avec plusieurs liens d'informations complémentaires, expliquera la composition de la carte et la base de son fonctionnement. 
 
 \subsubsection*{Qu'est qu'un Arduino?}
-À la base, c'est un circuit imprimé sur une carte (\textit{printed circuit board}, PCB) fabriqués par la \href{https://www.arduino.cc/}{ compagnie Arduino}\footnote{La force de la compagnie Arduino est sa mission de développer de l'électronique totalement en accès libre (\textit{open source}), des diagrammes de circuits à la programmation, et de faciliter son usage par tous.tes les utilisateurs.trices et créateurs.trices indépendamment du niveau d'expérience.} (Figure~\ref{fig:ArduinoUNO}). Le niveau de complexité d'une telle carte (\href{https://content.arduino.cc/assets/UNO-TH_Rev3e_sch.pdf}{diagramme}) change notre mode de travail en passant progressivement de l'électronique à l'informatique, mais le programme est directement téléversé et exécuté sur la carte au lieu de la connecter à un ordinateur pour chaque exécution. Ce type de circuits imprimés est donc dans la catégorie d'électronique ou système embarqué.
+À la base, c'est un circuit imprimé sur une carte (\textit{printed circuit board}, PCB) fabriqués par la \href{https://www.arduino.cc/}{ compagnie Arduino}\footnote{La force de la compagnie Arduino est sa mission de développer de l'électronique totalement en accès libre (\textit{open source}), des diagrammes de circuits à la programmation, et de faciliter son usage par tous.tes les utilisateurs.trices et créateurs.trices indépendamment du niveau d'expérience.} (Figure~\ref{fig:ArduinoUNO}). Le niveau de complexité d'une telle carte (\href{https://content.arduino.cc/assets/UNO-TH_Rev3e_sch.pdf}{diagramme}) change notre mode de travail en passant progressivement de l'électronique à l'informatique, mais le programme est en principe directement téléversé et exécuté sur la carte au lieu de la connecter à un ordinateur pour chaque exécution. Ce type de circuit imprimé est donc optimisé pour le développement de systèmes embarqués.
 
 %horloge 2 fois dans le paragraphe suivant?
-Les principaux composants d’un Arduino sont: le \href{https://en.wikipedia.org/wiki/Microcontroller}{microcontrôleur} (\textit{microcontroller unit}, MCU), la \href{https://electronics.stackexchange.com/questions/26484/how-arduino-power-supply-works}{source de tension} (\textit{power supply}) et l’\href{https://en.wikipedia.org/wiki/Clock_signal}{horloge interne} (\textit{clock}) basée sur un oscillateur. Le microcontrôleur s’occupe de réaliser tous les calculs. Celui-ci contient donc tous les éléments nécessaires pour être un ordinateur miniature. En effet, ces microcontrôleurs contiennent un microprocesseur (\textit{central processing unit}, CPU), de la mémoire vive, de la mémoire cache, des dizaines de périphériques et une horloge.
+Les principaux composants d’un Arduino sont: le \href{https://en.wikipedia.org/wiki/Microcontroller}{microcontrôleur} (\textit{microcontroller unit}, MCU), la \href{https://electronics.stackexchange.com/questions/26484/how-arduino-power-supply-works}{source de tension} (\textit{power supply}) et l’\href{https://en.wikipedia.org/wiki/Clock_signal}{horloge interne} (\textit{clock}) basée sur un oscillateur. Le microcontrôleur comprend tous les éléments nécessaires pour être un ordinateur miniature, soit un microprocesseur (\textit{central processing unit}, CPU) qui contient les portes logiques pour faire les calculs, de la mémoire vive, de la mémoire cache, des dizaines de périphériques et une horloge.
 
 \begin{figure}[h]
     \centering
@@ -320,16 +322,16 @@ Les principaux composants d’un Arduino sont: le \href{https://en.wikipedia.org
 Cela dépend des périphériques disponibles sur le MCU utilisé, soit ATmega328P de Atmel pour la carte Arduino UNO. Quelques exemples sont de l’acquisition de données, de la synchronisation de signaux, du traitement de données en temps réel, etc. Parmi les périphériques du MCU que l’Arduino utilise, deux (au minimum) seront utiles à la conception du système:
 \begin{itemize}
     \item le \href{https://en.wikipedia.org/wiki/Analog-to-digital_converter}{convertisseur analogique-numérique} (\textit{analog-to-digital converter}, ADC) qui permet de lire une tension analogique, par exemple aux bornes d’une photorésistance ou celle qui était fournie par une pomme de terre au début du cours(!),
-    \item le générateur de signaux en   \href{https://en.wikipedia.org/wiki/Pulse-width_modulation}{modulation de largeur d'impulsions} (\textit{pulse-width modulation}, PWM) qui permet de contrôler certains composants qui ne nécessitent pas un courant élevé, par exemple la base d’un transistor.
+    \item le générateur de signaux en \href{https://en.wikipedia.org/wiki/Pulse-width_modulation}{modulation de largeur d'impulsions} (\textit{pulse-width modulation}, PWM) qui permet de contrôler certains composants qui ne nécessitent pas un courant élevé, par exemple la base d’un transistor.
 \end{itemize}
 
  Pour utiliser ces fonctionnalités, Arduino a implémenté des fonctions simples à utiliser, soit les fonctions \texttt{AnalogRead}  et \texttt{DigitalWrite/AnalogWrite}. Afin de faire l’acquisition d’un signal avec l’Arduino, les entrées qui sont identifiées \textbf{ADC} ou encore \textbf{A0, A1, A2,} … devront être utilisées. Pour générer un signal, les sorties qui sont identifiées \textbf{PWM} seront utilisées. Arduino, voulant simplifier la tâche, a indiqué que certaines entrées étaient dédiées à des fonctions spécifiques, mais en réalité, c’est le MCU qui décide ce qui se passe sur une entrée et plusieurs fonctions différentes peuvent être utilisées sur une seule et même entrée.
  
 \subsubsection*{Comment utiliser un Arduino?}
-Il faut le programmer, sauf que les MCU n'acceptent pas directement des langages interprétés de haut niveau\footnote{Des librairies se développent cependant dans plusieurs langages tels Python (\href{https://github.com/tino/pyFirmata}{pyFirmata}, \href{https://pypi.org/project/pyserial/}{pyserial}, ...) et \href{https://www.mathworks.com/help/supportpkg/arduinoio/examples/getting-started-with-matlab-support-package-for-arduino-hardware.html}{MATLAB} pour communiquer avec une carte Arduino à partir d'un ordinateur ou encore être exécutées directement sur d'autres types de MCU avec \href{https://www.digikey.ca/en/maker/blogs/2018/python-on-hardware}{CircuitPython} par exemple.}. Le C et le C++ sont les langages majoritairement utilisés pour cette programmation puisqu’ils sont rapides d’exécution tout en étant relativement simples à coder pour des langages compilés. Heureusement, la compagnie Arduino offre une \href{https://www.arduino.cc/en/software}{interface de programmation conviviale} qui contient déjà plusieurs fonctions "pré-codées" (\href{https://www.arduino.cc/en/Tutorial/BuiltInExamples}{
-didacticiels ici}) et Tinkercad offre même en parallèle une \href{https://scientiffic.medium.com/tinkercad-circuits-code-blocks-9953d47b5a3f}{programmation visuelle avec des briques Scratch} si désiré. 
+ En principe, il faut le programmer avec un rapide langage compilé comme le C ou le C++ qui permettra de téléverser le code du programme sur la carte Arduino. Dans notre contexte pédagogique ou toute autre situation se prêtant à laisser l'Arduino branché à un ordinateur complet, vous pouvez alors utiliser des langages interprétés de haut niveau\footnote{Des librairies se développent dans plusieurs langages tels Python (\href{https://github.com/tino/pyFirmata}{pyFirmata}, \href{https://pypi.org/project/pyserial/}{pyserial}, ...) et \href{https://www.mathworks.com/help/supportpkg/arduinoio/examples/getting-started-with-matlab-support-package-for-arduino-hardware.html}{MATLAB} pour communiquer avec une carte Arduino à partir d'un ordinateur ou encore être exécutées directement sur d'autres types de MCU avec \href{https://micropython.org/}{MicroPython} ou \href{https://www.digikey.ca/en/maker/blogs/2018/python-on-hardware}{CircuitPython} par exemple.}. Nous testons cette année l'installation et la configuration du module pyFirmata pour programmer l'Arduino avec le langage Python. La documentation de base du module se trouve \href{https://pyfirmata.readthedocs.io/en/latest/index.html}{ici}, accompagnée de cette \href{https://pyfirmata.readthedocs.io/en/latest/pyfirmata.html}{liste de classes}. Comme elle est peu détaillée, nous vous recommandons de commencer par consulter ce \textit{\href{https://realpython.com/arduino-python/}{How to}} et n'hésitez pas à partager toute autre ressource que vous trouvez pour faciliter l'usage du module pyFirmata.
 
-\noindent Quelques conseils avant de se lancer dans la programmation Arduino:
+La compagnie Arduino offre aussi une \href{https://www.arduino.cc/en/software}{interface de programmation}, aussi installée sur les ordinateurs du laboratoire, qui contient déjà plusieurs fonctions "pré-codées" (\href{https://www.arduino.cc/en/Tutorial/BuiltInExamples}{
+didacticiels ici}). Voici quelques conseils si vous souhaitez vous lancer dans cette programmation :
 \begin{itemize}
     \item Toutes les variables doivent toutes être déclarées au début, ainsi que leur \href{https://en.wikipedia.org/wiki/C_data_types}{type} avant de les utiliser ailleurs dans le code.
     \item La fonction \texttt{void functionName()~\{\}} signifie seulement que la fonction ne retourne rien, car il faut aussi déclarer ce que la fonction retourne. Si la fonction retourne un entier, il faut plutôt écrire \texttt{int functionName()~\{\}}.
@@ -337,16 +339,18 @@ didacticiels ici}) et Tinkercad offre même en parallèle une \href{https://scie
     \item Le code dans la fonction \texttt{setup()~\{\}} ne sera exécuté qu’une fois au démarrage de l’Arduino.
     \item Le moniteur série dans Tinkercad permet de faire des actions équivalentes à la commande \texttt{print} rencontrée en Python et bien d'autres langages; cela pourrait simplifier la tâche.
 \end{itemize}
+%Tinkercad offre même en parallèle une \href{https://scientiffic.medium.com/tinkercad-circuits-code-blocks-9953d47b5a3f}{programmation visuelle avec des briques Scratch} si désiré. 
 
 \subsection*{Photorésistance}
-Une photorésistance est un composant électrique dont la résistance varie en fonction de l'irradiance, c'est-à-dire l’intensité lumineuse mesurée en \si[inter-unit-product=\ensuremath{{}\cdot{}}]{\watt\per\meter\squared}. Ces photorésistances sont fabriquées à partir de matériaux semiconducteurs dont la conductivité augmente lorsqu’ils sont exposés à la lumière. Par conséquent, la résistance de celles-ci varie à l'inverse de l'irradiance. La Figure~\ref{fig:photoresistance} montre la représentation de la photorésistance dans l’environnement Tinkercad.
+Une photorésistance est un composant électrique dont la résistance varie en fonction de l'irradiance, c'est-à-dire l’intensité lumineuse mesurée en \si[inter-unit-product=\ensuremath{{}\cdot{}}]{\watt\per\meter\squared}. Ces photorésistances sont fabriquées à partir de matériaux semiconducteurs dont la conductivité augmente lorsqu’ils sont exposés à la lumière. Par conséquent, la résistance de celles-ci varie à l'inverse de l'irradiance. 
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Photoresistance.png}
-    \caption{Photorésistance dans l’environnement Tinkercad. La glissière au-dessus permet d’ajuster l’irradiance en démarrant la simulation, puis en sélectionnant la photorésistance. Dans le cadre de ce projet de conception, la période du jour est représentée par la position de l’indicateur sur la glissière, avec la position la plus à gauche représentant la nuit.}
-    \label{fig:photoresistance}
-\end{figure}
+%La Figure~\ref{fig:photoresistance} montre la représentation de la photorésistance dans l’environnement Tinkercad.
+%\begin{figure}[h]
+%    \centering
+%    \includegraphics[width=0.4\textwidth]{Photoresistance.png}
+%    \caption{Photorésistance dans l’environnement Tinkercad. La glissière au-dessus permet d’ajuster l’irradiance en démarrant la simulation, puis en sélectionnant la photorésistance. Dans le cadre de ce projet de conception, la période du jour est représentée par la position de l’indicateur sur la glissière, avec la position la plus à gauche représentant la nuit.}
+%    \label{fig:photoresistance}
+%\end{figure}
 
 \subsection*{Conseils d'utilisation de transistor}
 Finalement, le.s transistor.s peut.vent être utilisé.s dans la conception du circuit pour contrôler une charge (le moteur DC) qui serait placée entre le collecteur et l'émetteur et alimentée par une tension $V_{CE}$. Le mode interrupteur, donné en exemple à la Figure~\ref{fig:InterrupteurMoteur}, ou le mode amplificateur peut être utilisé. La tension de contrôle $V_{BE}$ peut être générée par la carte Arduino UNO, ce qui permettrait d’adapter l’alimentation du moteur en fonction de la résistance d’une photorésistance qui pourra également être lue par l’Arduino.

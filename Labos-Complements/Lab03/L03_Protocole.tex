@@ -68,6 +68,7 @@ La courbe $i$--$v$ est le pont principal entre la multidisciplinarité de la sci
 \end{itemize}
 
 \vspace{1ex}
+%%Une tcolorbox serait encore plus sympa pour ça :) :)
 \noindent\framebox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{En plus de ces lectures, n'hésitez pas à noter vos réflexions et avancer votre préparation dans le cahier de recherche. Le chemin du fichier VI pour retrouver votre programmation \textit{LabVIEW} débutée à l'avance, qui vous permettra d'avoir le temps nécessaire pour compléter et déboguer le code pendant la séance de laboratoire, devrait déjà être noté dans votre cahier et peut même s'accompagner de captures d'écran.}}
 
 \section{Matériel}
@@ -220,9 +221,9 @@ g) Enfin, rajoutez une deuxième fonction Configure Output, cette fois à l'ext�
 
 h) Désormais, vous pouvez acquérir les données qui vous seront nécessaires pour tracer plusieurs courbes $i$--$v$ avec le transistor. En double-cliquant sur le sous-VI, vous pourrez configurer la plage et le nombre d'itérations pour la tension entre le collecteur et l'émetteur. Avec la face-avant du VI lui-même, vous pourrez faire de même pour la tension entre la base et l'émetteur.
 
-Ainsi, vous obtiendrez les données pour tracer les courbes du courant $i_{\mathrm{ce}}$ en fonction de la tension $v_{\mathrm{ce}}$ pour différentes valeurs de tension $v_{\mathrm{be}}$.
+Ainsi, vous obtiendrez les données pour tracer les courbes du courant $i_{\mathrm{c}}$ en fonction de la tension $v_{\mathrm{c}}$ pour différentes valeurs de tension $v_{\mathrm{b}}$. Comme l'étape suivante d'acquisition de ces courbes prend un certain temps, n'hésitez pas à débuter en parallèle la prochaine et dernière partie du laboratoire dès que l'enregistrement correct de vos données est confirmé.
 
-i) Réalisez une acquisition pour une tension $v_{\mathrm{ce}}$ allant de 0~V à 4~V et une tension $v_{\mathrm{be}}$ allant de 0~V à 1,2~V. Dans les deux cas, utilisez des incréments de 0,2~V.
+i) Réalisez une acquisition pour une tension $v_{\mathrm{c}}$ allant de 0~V à 4~V et une tension $v_{\mathrm{b}}$ allant de 0~V à 1,2~V. Dans les deux cas, utilisez des incréments de 0,2~V.
 
 
 \subsection{Partie 5 --- Régulateurs de tension}
@@ -280,7 +281,7 @@ d) Faites varier la source de 0~volt à 14~volts par incréments de 2~volts. À 
         \end{gradescope}
 \end{gradescope}
 \vspace{-0.5ex}
-\textit{\footnotesize Indice: Ces deux composants remplissent une fonction dans un circuit à courant alternatif, car leur relation entre tension et courant dépend d'un taux de VARIATION par rapport au temps. Ils ne servent donc à rien en courant continu et il s'agit de comprendre physiquement pourquoi.}
+%\textit{\footnotesize Indice: Ces deux composants remplissent une fonction dans un circuit à courant alternatif, car leur relation entre tension et courant dépend d'un taux de VARIATION par rapport au temps. Ils ne servent donc à rien en courant continu et il s'agit de comprendre physiquement pourquoi.} Je le donne maintenant en explication de correction sur Gradescope.
 
 \begin{gradescope}[resume]
     \item La courbe $i$--$v$ que vous avez mesurée pour un de ces deux composants ne correspond pas du tout au modèle idéal. De quel composant s'agit-il et quelle est la cause d'erreur expliquant cette déviation?
@@ -289,7 +290,7 @@ d) Faites varier la source de 0~volt à 14~volts par incréments de 2~volts. À 
             \item La bobine d'inductance puisque la résistance n'est pas nulle et provient essentiellement de la résistance interne du multimètre qui change à chaque échelle de mesure.
             %p-e ajouter un ou deux autres choix... ou pas?
     \end{itemize}
-    \item Pour le transistor, faites un graphique superposant l'ensemble des courbes $i$--$v$ dont vous avez fait l'acquisition pendant le laboratoire. Indiquez explicitement au-dessus de chaque courbe la valeur de courant de saturation~$i_{\mathrm{sat}}$, \textit{i.e.} le plateau maximal de courant (avec incertitude par rapport à l'horizontale) qui entre dans le collecteur~$i_{\mathrm{ce}}$. %Je ne suis plus certaine si les étudiants trouvaient "incertitude par rapport à l'horizontale" clair ou pas...
+    \item Pour le transistor, faites un graphique superposant l'ensemble des courbes $i_{\mathrm{C}}$--$v_{\mathrm{C}}$ dont vous avez fait l'acquisition pendant le laboratoire. Indiquez explicitement au-dessus de chaque courbe la valeur de courant qui devrait plafonner~$i_{\mathrm{pla}}$, en estimant le plateau maximal de courant (avec incertitude par rapport à l'horizontale) qui entre dans le collecteur~$i_{\mathrm{C}}$. %Je ne suis plus certaine si les étudiants trouvaient "incertitude par rapport à l'horizontale" clair ou pas...
     \item Comparez les courbes $i$--$v$ des diodes "standard" et Zener. Pourquoi avons-nous choisi une diode Zener pour appliquer la fonction de réguler la tension?
     \begin{itemize}[label=$\blacktriangleright$]
     \item Le comportement de la tension d'une diode "standard" n'est pas suffisamment juste pour la fonction requise, soit de garder la tension constante pour différentes intensités du courant.
