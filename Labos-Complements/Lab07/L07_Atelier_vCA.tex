@@ -58,35 +58,25 @@
 
 \maketitle \vspace{-2cm}
 
-\noindent\textit{\textbf{Prélude de structure et déroulement des ateliers}}
+\noindent\textit{\textbf{Prélude de contexte et déroulement des ateliers}}
 
-\textit{Lors de la séance de laboratoire de 2h à la date spécifiée dans la section \texttt{Contenu et activités} sur le site de cours, nous nous diviserons en grands groupes, chacun animé par un membre de l’équipe d’enseignement. Une partie des sous-objectifs et circuits sera attribuée à chaque groupe dans le but d'en faire une présentation orale éducative de 5~minutes pour le reste de la classe à la fin de la séance. La méthodologie de travail en groupe vous appartient alors entièrement pour réussir la meilleure présentation possible qui sera évaluée sur une base ordinale tel qu'expliqué dans la partie synchrone du cours~6.}
+\textit{Les ateliers se rapprochent d'un mode de travail expérimental plus autonome, s'éloignant du contexte pédagogique pour se rapprocher du milieu professionnel. En effet après avoir étudié tous les éléments de la section \nameref{sec:lectures} et selon les consignes en \nameref{sec:prep}, vous devez concevoir votre propre protocole avant d'arriver au laboratoire afin d'atteindre chaque sous-objectif de la section \nameref{sec:atelier}. Ces sous-objectifs sont généralement accompagnés d'illustrations de circuits, mais il y a toutefois progression vers une conception de plus en plus libre où vous devrez proposer vos propres designs de circuits.}
 
-\textit{Nous recommandons de commencer la séance en délibérant sur l'optimisation des manipulations expérimentales et des analyses proposées dans vos cahiers de recherche respectifs avec l'assistance du membre de l'équipe d'enseignement et il vous faudra ensuite répartir les tâches dans votre groupe. Des exemples de tâches possibles sont la planification et l'organisation, la conception, la simulation, la réalisation expérimentale, la mesure, l'analyse, la communication, etc. et il peut bien sûr y avoir de la redondance pour vérifier l'exactitude des résultats de mesure et d'analyse. Notez que la fin de la section \texttt{Matériel didactique} sur le site de cours propose différents choix de logiciels et d'applications pour vous assister dans les tâches de conception et de simulation.}
-
-\textit{Il n'y a pas d'autres remises à faire pour chaque atelier afin de vous donner le temps de travailler sur votre projet de conception final.}
+\textit{Lors de la séance d'atelier de 2 heures à la date spécifiée dans la section {\normalfont \texttt{Contenu et activités}} sur le site de cours, nous nous diviserons en grands groupes de recherche et design, chacun animé par un membre de l’équipe d’enseignement. Une partie des sous-objectifs et circuits sera attribuée à chaque groupe dans le but d'en faire une présentation orale éducative de 5~minutes pour le reste de la classe à la fin de la séance. La méthodologie de travail en groupe vous appartiendra alors entièrement pour réussir la meilleure présentation possible qui sera évaluée sur une base ordinale, tel qu'expliqué dans la partie synchrone du cours au retour de la semaine de lecture. Il n'y aura pas d'autres remises à faire pour les ateliers afin de vous donner le temps de travailler sur votre projet de conception final.}
 
 %\section{Objectifs}
 
 %Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. On peut alors retirer des fréquences indésirables et généralement obtenir une mesure plus fidèle avec un meilleur rapport signal sur bruit, par exemple. L’effet de différents filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc examinée pour le filtre RC. 
-%Dans l'approche pédagogique de préparation et conception de ce laboratoire, l'étudiant.e développera progressivement une méthodologie de travail plus autonome en transition vers la pratique d'une profession de recherche en sciences et génie.
-%
-%Sous-objectif: observer et quantifier le délai temporel du signal en tension aux bornes des différents composants de ce circuit RC série.
-%
-% \textbf{Sous-objectif} : démontrer que ce même circuit RC série agit en filtre passe-haut ou passe-bas en prenant les mesures appropriées pour construire les diagrammes de Bode du gain ET de la phase en fonction de la fréquence.
-%
-% \textbf{Sous-objectif} : démontrer, à l'aide des diagrammes de Bode, qu'un circuit RLC série agit en filtre passe-bande dont le facteur de qualité $Q$ varie avec d'autres valeurs de $R, L$ et $C$.
-%
-% \textbf{Sous-objectif} : examiner comment les filtres (a) RC série de premier ordre, (b) RC de troisième ordre, (c) Butterworth en topologie Cauer de troisième ordre et (d) Butterworth en topologie Sallen-Key de troisième ordre, vont dévier du comportement idéal d'un filtre passe-bas, c'est-à-dire une fonction échelon de Heaviside centrée sur la fréquence de coupure. 
+%Dans l'approche pédagogique de préparation et conception de ce laboratoire, l'étudiant.e développera progressivement une méthodologie de travail plus autonome en transition vers la pratique d'une profession de recherche en sciences et génie. 
 
 %Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 4, 5, 7, 9, 10, 11 et 12 du plan de cours.
 
-\section{Lectures préparatoires}
+\section{Lectures préparatoires}\label{sec:lectures}
 
 \begin{itemize}
 \item cours \textit{Analyse de circuits résistifs et réactifs}
-\item complément \textit{Analyse temporelle};
-\item complément \textit{Analyse fréquentielle}.
+\item complément \textit{Analyse temporelle}
+\item complément \textit{Analyse fréquentielle}
 \end{itemize}
 
 
@@ -103,19 +93,19 @@
 % \item une plaquette de montage.
 % \end{itemize}
 
+%\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\section{Préparation}\label{sec:prep}
 
-\section{Préparation}
+ AVANT la séance d'atelier, écrivez sommairement dans votre cahier de recherche avec votre coéquipier.ère tout ce que vous prévoyez faire au laboratoire pour atteindre chaque sous-objectif de la prochaine section. En plus des manipulations expérimentales, des mesures à prendre et de leur analyse, n'oubliez pas de considérer si des étapes de modélisation, conception et simulation\footnote{N'hésitez pas à explorer les possibilités du menu \texttt{Dessiner~>~Sorties et étiquettes} de l'application Web de Paul Falstad, entre autres pour exporter des données de simulation.} peuvent être faites. Plusieurs logiciels spécialisés pour l'électronique sont listés sur le site de cours, dans la section \texttt{Logiciels} de l'onglet \texttt{Matériel didactique}, et vous pouvez les employer pour bonifier ces étapes préliminaires si vous le souhaitez. Comme la programmation LabVIEW s'avère souvent chronophage, vous pouvez être soulagés qu'aucun VI n'est demandé pour les ateliers. Toutefois pour mieux caractériser les filtres avec des diagrammes de Bode lorsqu'ils sont mentionnés en sous-objectifs ci-dessous, vous pouvez télécharger et utiliser le VI LabVIEW déjà prêt dans le module de cet atelier.
 
-\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-Les ateliers se rapprochent d'un mode de travail expérimental plus professionnel, car vous devez vous-même préparer votre propre protocole avant d'arriver au laboratoire afin d'atteindre chaque sous-objectif énoncé ci-dessous. Ces sous-objectifs sont généralement accompagnés d'une figure de circuits, mais il y a toutefois progression vers une conception de plus en plus libre où vous devrez proposer vos propres design de circuits. Pour vous assister dans cette rédaction de protocole, les compléments en lecture préparatoire ci-dessus détaillent la théorie et les modèles pour comprendre le fonctionnement des circuits et les analyser expérimentalement. Concrètement dans votre cahier de recherche avec votre coéquipier.ère, écrivez des manipulations et des analyses à faire pour chaque sous-objectif afin de les mettre en commun en plus grand groupe lors de votre arrivée à la séance de laboratoire. 
- 
- \section{Atelier}
+En arrivant au laboratoire, vérifiez quels sous-objectifs vous sont attribués et prenez un moment pour comparer et choisir les meilleurs éléments de toutes les préparations correspondantes du grand groupe où vous serez affectés.es. En faisant vos choix, n'oubliez pas que vous avez seulement 1\unit{\hour}45 de laboratoire et que le délégué de l'équipe d'enseignement peut vous conseiller en tout temps. Répartissez les tâches sélectionnées ainsi que les préparatifs de l'exposé oral entre les membres du groupe, puis lancez-vous!
+ \vspace{-0.5cm}
+ \section{Atelier}\label{sec:atelier}
 %\subsection{Partie 1 --- Mesures temporelles}
-
 \begin{figure}[h!]
 \centering
 \begin{circuitikz} \draw
-(0,2) node[left]{$v_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
+(0,2) node[left]{$v_{\mathrm{in}}$} to[R=1~k$\Omega$,o-] (3,2) %to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
 (3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
 ;\end{circuitikz}
 \caption{\label{sch-RC}\textbf{Sous-objectif}: observer et quantifier le délai temporel du signal en tension aux bornes des différents composants de ce même circuit RC série.}
@@ -143,19 +133,20 @@ Les ateliers se rapprochent d'un mode de travail expérimental plus professionne
 \begin{figure}[h!]
 \centering
 \begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{g}}$} to[R=270~$\Omega$,o-] (3,2) to[short] (3,2)
+(0,2) node[left]{$V_{\mathrm{in}}$} to[R=270~$\Omega$,o-] (3,2) to[short] (3,2) %to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
 (3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
 ;\end{circuitikz}
 \caption{\label{sch-RC2}\textbf{Sous-objectif} : démontrer que ce même circuit RC série agit en filtre passe-haut ou passe-bas en prenant les mesures appropriées pour construire les diagrammes de Bode du gain ET de la phase en fonction de la fréquence.}
 \end{figure}
-%\noindent\textit{Pour vous aider à tracer rapidement les diagrammes de Bode, vous pouvez utiliser le VI LabVIEW disponible sur le site du cours dans la section dédiée à cet atelier.}
+
+
 \begin{figure}[h!]
 \centering
 \begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{g}}$} to[L,l=$L$,a=1<\milli\henry>,o-] (2.5,2) to[C,l=$C$, a=1<\micro\farad>] (5,2) to[short,-o] (6.5,2) node[right]{$V_{\mathrm{out}}$}
+(0,2) node[left]{$V_{\mathrm{in}}$} to[L,l=$L$,a=1<\milli\henry>,o-] (2.5,2) to[C,l=$C$, a=1<\micro\farad>] (5,2) to[short,-o] (6.5,2) node[right]{$V_{\mathrm{out}}$}
 (5.5,2) to[R,l_=$R$,a^=270<\ohm>] (5.5,0) node[ground]{}
 ;\end{circuitikz}
-\caption{\textbf{Sous-objectif} : démontrer, à l'aide des diagrammes de Bode, qu'un circuit RLC série agit en filtre passe-bande dont le facteur de qualité $Q$ varie avec d'autres valeurs de $R, L$ et $C$.}
+\caption{\textbf{Sous-objectif} : démontrer, à l'aide des diagrammes de Bode, qu'un circuit RLC série agit en filtre passe-bande dont le facteur de qualité $Q$ varie en changeant les valeurs de $R, L$ et $C$.}
 \label{sch-RLC}
 \end{figure}
 
@@ -209,24 +200,24 @@ Les ateliers se rapprochent d'un mode de travail expérimental plus professionne
 
 %\subsection{Partie 3 --- Coupures de différents filtres passe-bas}
 
-
+%Pour répartir cette grosse figure sur plusieurs pages au besoin: https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures_in_multiple_parts
 \begin{figure}[h!]
 \centering
 \subcaptionbox{}
 {\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{g}}$} to[R=270~$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$}
+(0,2) node[left]{$V_{\mathrm{in}}$} to[R=270~$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$}
 (3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
 ;\end{circuitikz}}
 \subcaptionbox{}
 {\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{g}}$} to[R=135~$\Omega$,o-] (3,2) to[R=270~$\Omega$] (6,2) to[R=560~$\Omega$] (9,2) to[short,-o] (10,2) node[right]{$V_{\mathrm{out}}$}
+(0,2) node[left]{$V_{\mathrm{in}}$} to[R=135~$\Omega$,o-] (3,2) to[R=270~$\Omega$] (6,2) to[R=560~$\Omega$] (9,2) to[short,-o] (10,2) node[right]{$V_{\mathrm{out}}$}
 (3,2) to[C=2~$\mu$F] (3,0) node[ground]{}
 (6,2) to[C=1~$\mu$F] (6,0) node[ground]{}
 (9,2) to[C=470~nF] (9,0) node[ground]{}
 ;\end{circuitikz}}
 \subcaptionbox{}
 {\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{g}}$} to[L=1~mH,o-] (3,2) to[L=1~mH] (6,2) to[short,-o] (7,2) node[right]{$V_{\mathrm{out}}$}
+(0,2) node[left]{$V_{\mathrm{in}}$} to[L=1~mH,o-] (3,2) to[L=1~mH] (6,2) to[short,-o] (7,2) node[right]{$V_{\mathrm{out}}$}
 (3,2) to[C=470~nF] (3,0) node[ground]{}
 (6,2) to[R=270~$\Omega$] (6,0) node[ground]{}
 ;\end{circuitikz}}
@@ -240,12 +231,11 @@ Les ateliers se rapprochent d'un mode de travail expérimental plus professionne
 (opamp.up) ++ (0,0.5) node[above]{3~V} -- (opamp.up)
 (-3.2,2.2) node[ground]{} to[R=10~k$\Omega$] (-1.2,2.2) to[R=20~k$\Omega$] (1.2,2.2)
 (1.2,0) to[short] (1.2,3.5) to[short] (-4.5,3.5) to[C,l_=470~nF] (-4.5,-0.5)
-(-10.5,-0.5) node[left]{$V_{\mathrm{g}}$} to[R=1~k$\Omega$,o-] (-7.5,-0.5) to[R=560~$\Omega$] (-4.5,-0.5) to[R=1~k$\Omega$] (-1.2,-0.5)
+(-10.5,-0.5) node[left]{$V_{\mathrm{in}}$} to[R=1~k$\Omega$,o-] (-7.5,-0.5) to[R=560~$\Omega$] (-4.5,-0.5) to[R=1~k$\Omega$] (-1.2,-0.5)
 (-7.5,-0.5) to[C=1~$\mu$F] (-7.5,-3) node[ground]{}
 ;\end{circuitikz}}
 \caption{\label{sch-RC-ordre3}\textbf{Sous-objectif} : examiner comment les filtres (a) RC série de premier ordre, (b) RC de troisième ordre, (c) Butterworth en topologie Cauer de troisième ordre et (d) Butterworth en topologie Sallen-Key de troisième ordre, vont dévier du comportement idéal d'un filtre passe-bas. Ce spectre idéal du gain est une fonction échelon de Heaviside en symétrie miroir centrée sur la fréquence de coupure. Cette symétrie de parité paire est seulement pour exprimer l'opération $H(-x)\rightarrow H(x)$.}
 \end{figure}
-%TO CHECK OUT TO HELP FORMATTING: https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures_in_multiple_parts
 
 % Vous pouvez remarquer à partir des diagrammes de Bode précédemment tracés que la transition entre la bande passante et la bande rejetée n'est pas parfaitement verticale. Il est toutefois possible de complexifier le design d'un filtre afin que cette transition soit plus abrupte. Cette analyse sera faite sur des filtres passe-bas.
 %

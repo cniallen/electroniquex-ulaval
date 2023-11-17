@@ -1,0 +1,197 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%ElectroX_Devoir.tex : Devoir des cours de Physique électronique & Électronique et mesures expérimentales au Département de physique, de génie physique et d'optique - FSG - Université Laval. Les fichiers de chaque exercice sélectionné sont insérés à l'aide du module subfiles.
+%------------------------------------------------------------------
+%Créé par Claudine Nì. Allen
+%Contributions par -
+%Compilateur pdfLaTeX, distribution TeX Live 2023
+%Dernière modification : 28 septembre 2023
+%
+%ToDo : voir le Template correspondant.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
+\documentclass[english,french,12pt]{article}
+
+%----------------------------------------------------------------
+%### Loading Packages ###
+%
+%## Encoding, Typography & Language ##
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} %%is globally set to French, switch to English by inverting order in the '\documentclass' options
+\usepackage{lmodern,csquotes} %%extended support for proper typesetting of accented letters & quotes with '\textquote{}' and the '\begin{displayquote}...\end{displayquote}' environment
+\PassOptionsToPackage{mathscr}{eucal}\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%math fonts and more symbols, extensively listed in the 'latex-AllSymbolList.pdf' of the 'Templates_labOMC' repo
+\usepackage{ulem} %%underlining with '\uline{}', '\uwave{}' etc. and strikeout with '\sout{}'
+\normalem
+%\usepackage{newtxtext} %%for a Times New Roman text font output.
+
+%## Colors, Boxes & Figures ##
+\usepackage[usenames,x11names,table]{xcolor} %%colour names in 'xcolor-palettes.pdf' of the 'Templates_labOMC' repo. For printing, the [cmyk,dvipsnames] colour model is preferred.
+%\usepackage{fancybox} %%more framed boxes
+%\usepackage[breakable]{tcolorbox} %%coloured boxes with optional title
+%\usepackage{float} %%more control on any floating environments 
+%\usepackage{array,dcolumn,tabularx,multirow,longtable,booktabs} %%more control of 'tabular' and 'array' environments
+\usepackage{graphicx,wrapfig,caption,sidecap} %%compiling with 'pdfLaTeX' supports .pdf,.pdf_tex .png, .jpg and .eps(indirectly) files. %Use '\includeinkscape' for .pdf_tex files exported from Inkscape or convert directly to TiKZ code with the 'svg2tikz' extension.
+
+%## Maths & Physics ##
+\usepackage{amsmath,amsthm,amssymb}
+%\usepackage{cancel,trfsigns} %%math simplifications & signs for transforms respectively
+%\usepackage[all]{xy} %%nice math diagrams
+\usepackage{siunitx} %scientific & complex numbers, measurement & uncertainty, see 'latex-SIunitx.pdf' in the 'Templates_labOMC' repo.
+\usepackage{physics} %typesetting for mathematical physics, see 'latex-PhysicsPack.pdf' in the 'Templates_labOMC' repo.
+\usepackage{pgfplots} %graphs of symbolic functions and equations
+%\usepackage{tikz-network} %%crystal lattice & complex networks drawing
+%\usepackage{tikz-optics} %%optical drawing
+%\usepackage{pstricks,pst-optexp,pst-optic} %%neat PSTricks optical drawing
+%\usepackage{tikzorbital,chemfig,chemmacros,mhchem} %%chemical drawings/diagrams and formulae & safety
+%\usepackage{pstricks,pst-labo} %%laboratory chemical glassware
+%\usepackage{pstricks,dsptricks,pst-sigsys} %%signal processing plots/drawings
+\usepackage[oldvoltagedirection,americanvoltages,americancurrents]{circuitikz} %%electrical circuit drawing with Rising Potential voltages CHECKOUT RPvoltages when update from the old voltage direction.
+\usetikzlibrary{babel} %%needed for electrical circuit drawing when running babel-french
+%\usepackage{yquant} %%quantum circuit drawing
+
+%## Miscellaneous Nice Tools ##
+\usepackage{ccicons} %%Creative Commons icons, reusable content at <https://search.creativecommons.org/>
+%\usepackage{media9,animate,tikz} %%tools for multimedia and general drawing
+%\usepackage{pythontex} %%runs Python code in the LaTeX source files and typeset the output
+
+%## Bibliography ##
+%\usepackage[backend=biber,sorting=none]{biblatex} %%see 'cheatsheet-BibLaTeX.tex' in the 'Templates_labOMC' repo.
+%\addbibresource{} %%import your .bib file in BibLaTeX format from Zotero
+
+%## Hyperlinks ##
+\usepackage{hyperref,xurl} %%'\href{_URL_}{_hypertext_}' to link the hypertext & '\url{_URL_}' to link the displayed web address, each internal '~\ref{_label_}' is also hyperlinked ; xurl for more line breaks.
+\usepackage{doi} %%automatically resolves object identifiers such as IDs from doi, arXiv, OCLC, etc., use '\doi{}' if the former bugs.
+
+%## Layout ##
+%%Watch for conflicts with the overall document class.
+\usepackage{geometry} %%page layout, see configuration below
+\usepackage{fancyhdr} %%headers & footers, see configuration below
+\usepackage{setspace} %%interline spacing tools ; unit relative to current font: em ~width of an 'M' (uppercase), typically equal to the font size in pt
+\usepackage{enumitem} %%tools to change list format
+%\usepackage{tasks,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries}
+
+%## Subdividing a document ##
+\usepackage{import} %%\import{_path_}{_filename_} includes the desired file.
+\usepackage{subfiles} %also allows standalone compilation.
+%\graphicspath{{9-TreillisSymetries/}} %The relative path to images, starting from each compilation file call, must be listed here otherwise the \includegraphics command will not work. The ../ stipulate one level up in the file tree.{../folder/}{folder/}{../folder/}
+\newcommand{\onlyinsubfile}[1]{#1} %%for content compiled only in the subfile.
+\usepackage[inactive,tightpage]{preview} %output cropped just around the content. For the whole document, option active->inactive.
+\setlength\PreviewBorder{20pt}
+
+%---------------------------------------------------------
+%### Settings ###
+%
+%## Configuring the layout and other format setups ##
+%\the\parindent{} , \the\value{equation} %%and other '\the' commands to see the current parameter, counter,... value
+\geometry{  %%for geometry package
+%    showframe,  %%uncomment to see lines delimiting the dimension boxes
+    letterpaper,
+    margin=0.75in}
+\fancypagestyle{Devoir}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \fancyfoot[C]{-\thepage-} %%bottom center page numbering
+    \AtEndDocument{\thispagestyle{empty}}} %%removes the last page number
+\pagestyle{Devoir}
+%\interfootnotelinepenalty=10000 %%uncomment if long footnotes are incorrectly spreading on several pages
+\widowpenalty=300 %%increase for less likely widow lines
+\clubpenalty=300  %%increase for less likely orphan lines
+\setlength{\parskip}{1em plus0.4em minus0.2em} %%changing space between paragraphs
+%\setlength\parindent{3em} %%uncomment to force indentation of all paragraphs or remove completely with 0em
+%\setlist[enumerate]{wide=0pt,widest=99,leftmargin=\parindent,labelsep=*} %%Global changes of the [enumerate] list
+\setcounter{equation}{0} %%ensure resetting of the equation counter
+\captionsetup{  %%for figure and table captions
+    font=footnotesize,
+    labelfont=bf,
+    labelsep=period,
+    margin=5em}
+    
+%## Global settings for packages ##
+\sisetup{separate-uncertainty=true} %%for SIunitx package
+\hypersetup{   %%for hyperref package
+    breaklinks=true,
+    linktocpage=true,
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=blue}
+\pgfplotsset{compat=1.9,width=5cm} %%for pgfplots package, backwards compatibility with 'compat'
+\usetikzlibrary{arrows} %%for PGF/TikZ
+
+%---------------------------------------------------------
+%### Defining command shortcuts & macros ###
+%
+\newcommand{\be}{\begin{equation}} %%for numbered equations, use instead \[...\] to display without numbering or $...$ to include directly inline.
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{align}} %%number each equation and align them on &= the equal sign and more generally on the ampersand & character. 
+\newcommand{\eea}{\end{align}}
+\newenvironment{eqsplit}{\equation\aligned}{\endaligned\endequation}
+\newcommand{\bes}{\begin{eqsplit}} %%defined the same way as the align environment, but considered as one equation on multiple lines with one number overall.
+\newcommand{\ees}{\end{eqsplit}}
+\newcommand{\beg}{\begin{gather}} %%gathering equations one below another without aligning.
+\newcommand{\eeg}{\end{gather}}
+\DeclareMathOperator{\TLs}{\mathscr{L}} %%Laplace transform symbol \TLs
+\newcommand{\TLd}[1]{\TLs\!\left[#1\right]} %%Laplace transform operator \TLd{}
+\DeclareMathOperator{\TLsi}{\mathscr{L}^{-1}} %%inverse Laplace transform symbol \TLsi
+\newcommand{\TLi}[1]{\TLsi\!\left[#1\right]} %%inverse Laplace transform operator \TLi{}
+\DeclareMathOperator{\TFsi}{\mathscr{F}^{-1}} %%inverse Fourier transform \TFsi
+\newcommand{\TFi}[1]{\TFsi\!\left[#1\right]} %%inverse Fourier transform operator \TFi{}
+\DeclareMathOperator{\TFs}{\mathscr{F}} %%Fourier transform \TFs
+\newcommand{\TFd}[1]{\TFs\!\left[#1\right]} %%Fourier transform operator \TFd{}
+\renewcommand*{\Re}{\mathop{}\!\mathfrak{Re}} %%Real part \Re redefined with 2 characters fraktur typesetting
+\renewcommand*{\Im}{\mathop{}\!\mathfrak{Im}} %%Imaginary part \Im redefined with 2 characters fraktur typesetting
+
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\renewcommand{\onlyinsubfile}[1]{}
+%
+%------ BEGIN HOMEMADE TITLE ------%
+%inspiré de l'équipe du Prof. L.J. Dubé
+%
+\begin{center}
+    \textbf{\large{Électronique et mesures expérimentales / Physique électronique}}\\
+    \vspace{0.2em}
+    \textbf{GPH-2006 / PHY-2002}\par
+    \textsc{Département de Physique, de Génie Physique et d'Optique\\
+    Faculté des Sciences et de Génie, Université Laval}
+\end{center}
+%\vspace{-1em}
+\noindent Hiver 2023 \hfill Responsable: C. Allen
+\vspace{0.2em}
+\hrule
+\vspace{-1.5ex}
+%\centering 
+\begin{center}
+    \textsc{Devoir \# 1}
+\end{center}
+\vspace{-4ex}
+Début: 15 novembre 2023 \hfill Fin: 28 novembre 2023\par
+\vspace{0.4em}
+\hrule
+\justify
+%------ END HOMEMADE TITLE ------%
+%
+%\vspace{-0.5em}
+
+\begin{enumerate}[label=\Roman*., itemsep=3ex, wide, labelwidth=!, labelindent=0pt]
+    \setcounter{enumi}{0}
+    \vspace{3ex}
+    \item \subfile{DevoirExa/AC stationnaire/AC_00}
+    \vspace{6ex}
+    \item \subfile{DevoirExa/AC stationnaire/AC_00}
+\end{enumerate}
+ 
+ %------ BEGIN HOMEMADE FOOTER ------%
+\vfill
+\hrule
+\vspace{0.3em}
+\centering
+\textbf{N'oubliez pas d'expliciter votre démarche et/ou de citer vos références.}\par
+\vspace{-0.3em}
+La collaboration est permise en formant une équipe de \textcolor{red}{3 personnes} au maximum. Sur \href{https://www.gradescope.com/}{Gradescope}, ajoutez vos coéquipiers.ières après avoir sélectionné les pages correspondant à chaque numéro en soumettant le devoir une première fois.\par
+\vspace{1em}
+\hrule
+\end{document}
