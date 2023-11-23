@@ -1,0 +1,43 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%AC_002.tex : 1 inductance, 1 condensateur et 2 résistances | Coupe-bande, Signal d'entrée
+%------------------------------------------------------------------
+%SOURCE: ?
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): D-2015, D-2017, D-2018, D-2023
+%DIFFICULTÉ courte et/ou simple? (Y/N): N
+%
+%Créé par Claudine Nì. Allen
+%Contributions par -
+%Compilateur pdfLaTeX, distribution TeX Live 2023
+%Dernière modification : 17 novembre 2023
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[../ElectroX-DevoirAC.tex]{subfiles}
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}}
+%
+Soit le filtre illustré à la figure~\ref{fig:circuit-q1}.\\[4mm]
+\textbf{a)} Évaluez sa fonction de transfert $H\!\left(s\right)$ dans le domaine de Laplace.\\[4mm]
+\textbf{b)} Tracez le diagramme de Bode du gain $\displaystyle G\!\left(\omega\right)=\left|H\!\left(\omega\right)\right|$ en régime permanent. Mettez l'axe des fréquences en échelle logarithmique pour couvrir une plage de \qty{1}{\hertz} à \qty{15}{\mega\hertz}.\\[4mm]
+\textbf{c)} Est-ce qu'il s'agit d'un filtre passe-haut, passe-bas, passe-bande ou coupe-bande?\\[4mm]
+\textbf{d)} Déterminez s'il est possible de trouver une ou deux fréquence(s) de coupure correspondant à $-3$~dB de la valeur maximale de $G\!\left(\omega\right)$. Évaluez cette(ces) valeur(s) $\omega_{c1}$ (, $\omega_{c2}$), puis identifiez-les(la) sur le graphique en \textbf{b)}.\\[4mm]
+À REVOIR \textbf{e)} Déterminez la période d'un signal appliqué à l'entrée du filtre $v_{\mathrm{in}}\!\left(t\right)=2 \sin (1600\pi t) \cos (1400\pi t)$, puis écrivez la représentation analytique de la série de Fourier de cette fonction. Quel est le signal de sortie $v_{\mathrm{out}}\!\left(t\right)$ si, sans tenir compte de la phase, on néglige tous les termes de la série qui ont perdu plus de 50\% de leur amplitude initiale?\\[2mm]
+\emph{Note: Le comportement du signal de sortie est très approximatif, puisque nous ne tenons pas compte de l'effet du filtre sur la phase des signaux.}
+\vspace{4ex}
+
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,3) node[left]{$v_{\mathrm{in}}\!\left(t\right)$} to[R,l^=$270\,\Omega$,o-] (3,3) to[short] (6,3) to[short,-o] (8,3) node[right]{$v_{\mathrm{out}}\!\left(t\right)$}
+(3,3) to[L,l_=1~mH] (3,1.5) to[C,l_=$1\,\mu\mathrm{F}$] (3,0) node[ground]{}
+(6,3) to[R,l^=1~k$\Omega$] (6,0) node[ground]{}
+;\end{circuitikz}
+\caption{Filtre du signal d'entrée $v_{\mathrm{in}}\!\left(t\right)$, dont la fonction est à déterminer.}\label{fig:circuit-q1}
+\end{figure}
+%
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------

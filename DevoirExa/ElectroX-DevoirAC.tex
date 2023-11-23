@@ -39,6 +39,7 @@
 %\usepackage[all]{xy} %%nice math diagrams
 \usepackage{siunitx} %scientific & complex numbers, measurement & uncertainty, see 'latex-SIunitx.pdf' in the 'Templates_labOMC' repo.
 \usepackage{physics} %typesetting for mathematical physics, see 'latex-PhysicsPack.pdf' in the 'Templates_labOMC' repo.
+\AtBeginDocument{\RenewCommandCopy\qty\SI} %to fix the command \qty used by both siunitx & physics packages, favoring the former.
 \usepackage{pgfplots} %graphs of symbolic functions and equations
 %\usepackage{tikz-network} %%crystal lattice & complex networks drawing
 %\usepackage{tikz-optics} %%optical drawing
@@ -159,16 +160,16 @@
     Faculté des Sciences et de Génie, Université Laval}
 \end{center}
 %\vspace{-1em}
-\noindent Hiver 2023 \hfill Responsable: C. Allen
+\noindent Automne 2023 \hfill Responsable: C. Allen
 \vspace{0.2em}
 \hrule
 \vspace{-1.5ex}
 %\centering 
 \begin{center}
-    \textsc{Devoir \# 1}
+    \textsc{Devoir \# 2}
 \end{center}
 \vspace{-4ex}
-Début: 15 novembre 2023 \hfill Fin: 28 novembre 2023\par
+Début: 17 novembre 2023 \hfill Fin: 28 novembre 2023\par
 \vspace{0.4em}
 \hrule
 \justify
@@ -176,12 +177,12 @@ Début: 15 novembre 2023 \hfill Fin: 28 novembre 2023\par
 %
 %\vspace{-0.5em}
 
-\begin{enumerate}[label=\Roman*., itemsep=3ex, wide, labelwidth=!, labelindent=0pt]
+\begin{enumerate}[label=\Roman*., wide, labelwidth=!, labelindent=0pt]
     \setcounter{enumi}{0}
-    \vspace{3ex}
-    \item \subfile{DevoirExa/AC stationnaire/AC_00}
+%    \vspace{2ex}
+    \item \subfile{DevoirExa/AC transitoire ou permanent/AC_002}
     \vspace{6ex}
-    \item \subfile{DevoirExa/AC stationnaire/AC_00}
+    \item \subfile{DevoirExa/AC transitoire ou permanent/AC_001}
 \end{enumerate}
  
  %------ BEGIN HOMEMADE FOOTER ------%

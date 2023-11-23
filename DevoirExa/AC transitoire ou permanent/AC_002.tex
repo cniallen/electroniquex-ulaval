@@ -1,0 +1,42 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%AC_002.tex : 1 inductance, 1 condensateur et 2 résistances | Coupe-bande, Phase
+%------------------------------------------------------------------
+%SOURCE: ?
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): D-2015, D-2017, D-2018, D-2023
+%DIFFICULTÉ courte et/ou simple? (Y/N): O
+%
+%Créé par Claudine Nì. Allen
+%Contributions par -
+%Compilateur pdfLaTeX, distribution TeX Live 2023
+%Dernière modification : 17 novembre 2023
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[../ElectroX-DevoirAC.tex]{subfiles}
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}}
+%
+Soit le filtre illustré à la figure~\ref{fig:circuit-q1}.\\[4mm]
+\textbf{a)} Évaluez sa fonction de transfert $H\!\left(s\right)$ dans le domaine de Laplace.\\[4mm]
+\textbf{b)} Tracez le diagramme de Bode du gain $\displaystyle G\!\left(\omega\right)=\left|H\!\left(\omega\right)\right|$ en régime permanent. Mettez l'axe des fréquences en échelle logarithmique pour couvrir une plage de \qty{1}{\hertz} à \qty{15}{\mega\hertz}.\\[4mm]
+\textbf{c)} Similairement, tracez le diagramme de Bode de la phase $\varphi\!\left(\omega\right)$.\\[4mm]
+\textbf{d)} Est-ce qu'il s'agit d'un filtre passe-haut, passe-bas, passe-bande ou coupe-bande?\\[4mm]
+\textbf{e)} Déterminez s'il est possible de trouver une ou deux fréquence(s) de coupure correspondant à $-3$~dB de la valeur maximale de $G\!\left(\omega\right)$. Évaluez cette(ces) valeur(s) $\omega_{c1}$ (, $\omega_{c2}$), puis identifiez-les(la) sur le graphique en \textbf{b)}.
+\vspace{4ex}
+
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,3) node[left]{$v_{\mathrm{in}}\!\left(t\right)$} to[R,l^=$270\,\Omega$,o-] (3,3) to[short] (6,3) to[short,-o] (8,3) node[right]{$v_{\mathrm{out}}\!\left(t\right)$}
+(3,3) to[L,l_=1~mH] (3,1.5) to[C,l_=$1\,\mu\mathrm{F}$] (3,0) node[ground]{}
+(6,3) to[R,l^=1~k$\Omega$] (6,0) node[ground]{}
+;\end{circuitikz}
+\caption{Filtre du signal d'entrée $v_{\mathrm{in}}\!\left(t\right)$, dont la fonction est à déterminer.}\label{fig:circuit-q1}
+\end{figure}
+%
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------

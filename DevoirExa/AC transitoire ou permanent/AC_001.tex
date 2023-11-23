@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%DC_001.tex : 3 condensateurs et 3 résistances | Passe-bande, signal d'entrée  ...constante de temps (fonction de transfert)
+%AC_001.tex : 3 condensateurs et 3 résistances | Passe-bande, Signal d'entrée
 %------------------------------------------------------------------
 %SOURCE: ?
 %UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): D-2013, D-2015, D-2022, D-2023
@@ -18,15 +18,28 @@
 \begin{preview}
 \onlyinsubfile{\import{./}{HeaderCustom.tex}}
 %
-Déterminez le courant $i_0$ dans le circuit ci-dessous. Notez que la source de tension commandée fournit une différence de potentiel de 2$i_0$ : la constante 2 a donc des unités de $\Omega$.
-%
+Soit le filtre illustré à la figure~\ref{fig:circuit-q2}.\\[4mm]
+\textbf{a)} Évaluez sa fonction de transfert $H\!\left(s\right)$ dans le domaine de Laplace.\\[4mm]
+\textbf{b)} Tracez le diagramme de Bode du gain $G\!\left(\omega\right)= \left|H\!\left(\omega\right)\right|$ en régime permanent. Mettez l'axe des fréquences en échelle logarithmique pour couvrir une plage de \qty{1}{\hertz} à \qty{15}{\mega\hertz}.\\[1mm]
+\emph{Indice: L'analyse du circuit se fait plus simplement avec la loi des mailles après simplification.}\\[4mm]
+\textbf{c)} S'agit-il d'un filtre passe-bas, passe-haut, passe-bande ou coupe-bande?\\[4mm]
+\textbf{d)} Pour un signal périodique $v_{\mathrm{in}}\!\left(t\right)=4.44\cos(222\pi t)$ en entrée du filtre, quelle sera la fréquence du signal à la sortie, $v_{\mathrm{out}}\!\left(t\right)$, en régime permanent?
+\vspace{4ex}
+
+\begin{figure}[h]
 \begin{center}
 \begin{circuitikz} \draw
-(0,0) to[V,l^=12~V] (0,3) to[short] (3,3) to[R,l^=2~$\Omega$,i=$i_0$] (6,3) to[short] (9,3) to[R,l^=2~$\Omega$] (9,0) to[short] (0,0)
-(3,0) to[R,l_=2~$\Omega$] (3,3)
-(6,0) to[controlled voltage source,l_=2$i_0$] (6,3)
+(2,5) to[short] (2,8) to[R,l^=270~$\Omega$] (12,8) to[short] (12,5)
+(6,5) to[short,-o] (6,6)
+(8,5) to[short,-o] (8,6)
+{[anchor=north] (6,6.5) node{$+$} (7.7,6.3) node[left]{$v_{\mathrm{out}}\!\left(t\right)$} (8,6.5) node{$-$}}
+(0,5) node[left]{$v_{\mathrm{in}}\!\left(t\right)$} to[short,o-] (2,5) to[C, l^=1~$\mu$F] (5,5) to[R,l_=12~$\Omega$] (9,5) to[C,l^=1~$\mu$F] (12,5)
+(2,5) to[short] (2,3) to[C,l_=1~$\mu$F] (12,3)
+(12,5) to[short] (12,3) to[R,l^=12~$\Omega$] (12,0.5) node[ground]{}
 ;\end{circuitikz}
 \end{center}
+\caption{Filtre du signal d'entrée $v_{\mathrm{in}}\!\left(t\right)$, dont la fonction est à déterminer. La tension de sortie $v_{\mathrm{out}}\!\left(t\right)$ est la différence de potentiel aux bornes de la résistance centrale de 12~$\Omega$.}\label{fig:circuit-q2}
+\end{figure}
 %
 \end{preview}
 %---------------------------------------------------------
