@@ -105,10 +105,9 @@ axis lines=left,
 axis line style=thick,
 xmin=0,xmax=6,
 ymin=0,ymax=1.4,
-xtick={0,1,...,6},xticklabels={,,},
-ytick={0,0.2,...,1},yticklabels={,,},
-x label style={at={(axis description cs:0.5,-0.05)},anchor=north},xlabel={Fréquence [Hz]},
-y label style={at={(axis description cs:-0.02,0.5)},anchor=south},ylabel={Gain [dB]}
+ticks=none,
+x label style={at={(axis description cs:0.5,-0.025)},anchor=north},xlabel={Fréquence [Hz]},
+ylabel={Gain [-]}
 ]
 \addplot[-,domain=0:3,color=BlueViolet,line width=2pt]{1};
 \addplot[only marks,mark=*,color=BlueViolet,fill=white]coordinates{(3,1)};
