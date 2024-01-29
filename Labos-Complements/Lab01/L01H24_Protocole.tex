@@ -1,6 +1,6 @@
 %%%Écrit par Jean-Raphaël Carrier en collaboration avec Claudine Allen%%%
 %Dernière modification JRC: 10 janvier 2014
-%Dernière modification CA: 15 janvier 2024
+%Dernière modification CA: 29 janvier 2024
 %
 %**ToDo**: 
 % - Voir si je recopie ou déplace les instructions de transfert de fichiers sur Teams et OneDrive dans le premier laboratoire au lieu de lab suivants. (P-e déjà fait).
@@ -178,7 +178,7 @@ j) Le VI est maintenant terminé. Si ce n'était pas déjà fait, enregistrez-le
 
 \subsection{Partie 2 --- Mesures en tension de sources d'alimentation}
 
-Avant d'étudier les sources d'alimentation électrochimiques que sont la patate et la pile, vous ferez l'acquisition de données de tension pour les cas de circuit ouvert avec et sans convertisseur CA/CC. N'hésitez pas à amener de vieux chargeurs inutiles de chez vous qui font cette rectification CA~$\rightarrow$~CC, tant que leur sortie de courant continu (\textit{direct current, DC}) fournit une tension inférieure à 10~V. Vous pourrez alors les ouvrir à la fin du laboratoire, avec l'assistance de notre merveilleuse équipe technique, pour voir comment ils sont faits à l'intérieur! Mais d'abord:
+Avant d'étudier les sources d'alimentation électrochimiques que sont la patate et la pile, vous ferez l'acquisition de données de tension pour les cas de circuit ouvert avec et sans convertisseur CA/CC. N'hésitez pas à amener de vieux chargeurs inutiles de chez vous qui font cette rectification CA~$\rightarrow$~CC, tant que leur sortie de courant continu (\textit{direct current, DC}) fournit une tension inférieure à 20~V. Vous pourrez alors les ouvrir à la fin du laboratoire, avec l'assistance de notre merveilleuse équipe technique, pour voir comment ils sont faits à l'intérieur! Mais d'abord:
 
 a) À l'aide du multimètre à 4\textonehalf~chiffres, de fils bananes et de pinces crocodiles, mesurez la différence de potentiel entre les bornes d'un convertisseur CA/CC. Il s'agit ici de votre premier résultat de mesure expérimentale à écrire dans votre cahier de recherche, celui-ci comme tous les autres à venir doit comporter une estimation de l'incertitude et des explications justifiant les causes de cette dernière.
 
@@ -221,18 +221,14 @@ d) Pour appliquer la loi d'Ohm avec votre logiciel d'analyse numérique choisi, 
 \subsection{Début d'analyse de la partie 2 directement au laboratoire}
 Il est fortement recommandé de commencer à traiter et visualiser ses données expérimentales avant de quitter cette première séance de laboratoire. Vous bénéficierez alors du support de l'équipe d'enseignement en se lançant dans votre analyse avec de nouveaux outils informatiques d'analyse.
 
-\begin{itemize}
+\begin{itemize} \itemsep3pt
     \item Consultez les consignes à appliquer pour tout graphique, elles sont données dans le module de cours 2 de la section "Contenu et activités" sur notre site.
-    \item En ignorant la colonne de référence de bruit pour l'instant dans vos 2 premiers fichiers \texttt{.lvm}, faites un graphique\footnote{Le choix de logiciel n'est pas imposé à ce point-ci, mais une liste de possibilités recommandées se retrouve aussi dans le module de cours 2. Il est recommandé d'évoluer progressivement vers les outils du langage \textit{Python} libres d'accès et bien adaptés aux travaux de physique. L'équipe d'enseignement peut vous conseiller dans ce choix en fonction de votre niveau actuel de connaissances informatiques.} de la tension en nuages de points (\textit{scatter}) pour chaque source de la partie 2 et ajoutez à chaque graphique les données de référence d'un signal nul mesuré à l'étape e) de cette partie. Notez que l'abscisse des graphiques est simplement le numéro d'index de la mesure et non pas strictement en fonction du temps, car nous n'avons pas inclus de fonctions dans notre VI pour interroger les horloges du module d'acquisition et de l'ordinateur.
-    \item Les graphiques où la tension fluctue, mais ne varie pas significativement dans le temps sont dans un régime dit (statistiquement) stationnaire, d'où l'acquisition de données devient équivalente à répéter la même mesure. Pour ces graphiques, évaluez numériquement la moyenne de tension $\Bar{v}$ fournie par la source ainsi que sa variance $\sigma_v^2$.
-    \item Le rapport signal sur bruit, $SNR$, se définit en prenant le ratio du carré de la moyenne sur la variance, \textit{i.e.} \(\displaystyle SNR\equiv \frac{\Bar{v}^2}{\sigma_v^2}\). Calculez ce rapport avec les moyennes et variances obtenues au point précédent pour les sources en régime stationnaire et déterminez laquelle a le meilleur SNR.
+    \item En ignorant la colonne de référence de bruit pour l'instant dans vos deux premiers fichiers \texttt{.lvm}, faites un graphique\footnote{Le choix de logiciel n'est pas imposé à ce point-ci, mais une liste de possibilités recommandées se retrouve aussi dans le module de cours 2. Il est recommandé d'évoluer progressivement vers les outils du langage \textit{Python} libres d'accès et bien adaptés aux travaux de physique. L'équipe d'enseignement peut vous conseiller dans ce choix en fonction de votre niveau actuel de connaissances informatiques.} de la tension en nuages de points (\textit{scatter}) pour chaque source de la partie 2 et ajoutez à chaque graphique les données de référence d'un signal nul mesuré à l'étape e) de cette partie. Notez que l'abscisse des graphiques est simplement le numéro d'index de la mesure et non pas strictement en fonction du temps, car il n'y a pas de fonctions dans le VI pour interroger les horloges du module d'acquisition et de l'ordinateur afin d'étalonner les acquisitions en temps.
+    \item Les graphiques où la tension fluctue, mais ne varie pas significativement dans le temps sont dans un régime dit (statistiquement) stationnaire, d'où l'acquisition de données devient équivalente à répéter la même mesure. Pour ces graphiques, évaluez numériquement la moyenne de tension $\bar{v}$ fournie par la source ainsi que sa variance $\sigma_v^2$.
+    \item Le rapport signal sur bruit, SNR, se définit en prenant le ratio du carré de la moyenne sur la variance, \textit{i.e.} \(\displaystyle \text{SNR}\equiv \frac{\bar{v}^2}{\sigma_v^2}\). Calculez ce rapport avec les moyennes et variances obtenues au point précédent pour les sources en régime stationnaire et déterminez laquelle a le meilleur SNR.
     %Ajouter un/des paramètres associés à la matrice de covariance pour caller la nonstationnarité. Idéalement lier à corrélation n'est pas causation.
-    \item Comparez graphiquement les deux séries de données de l'étape e), donc en incluant le signal bruyant généré par \textit{LabVIEW}. Observez aussi ces données sous forme d'histogramme, \textit{i.e.} en représentant en colonnes le nombre de données mesurées par intervalle de tension. Ajustez le nombre d'intervalles afin d'obtenir un histogramme significatif: trop ou trop peu d'intervalles ne permettent pas de bien voir la distribution statistique des données.
+    \item Comparez graphiquement les deux séries de données acquises à l'étape e), donc en incluant maintenant le signal bruyant généré par \textit{LabVIEW}. Il s'agit des deux colonnes de nombres dans le même fichier \texttt{.lvm} enregistré à cette étape. Observez aussi ces données sous forme d'histogramme, \textit{i.e.} en représentant en colonnes le nombre de données mesurées par intervalle de tension. Ajustez le nombre d'intervalles afin d'obtenir un histogramme significatif: trop ou trop peu d'intervalles ne permettent pas de bien voir la distribution statistique des données.
 \end{itemize}
-
-%Partie 3 : Pour appliquer la loi d'Ohm avec votre logiciel d'analyse numérique choisi, divisez par 12~$\Omega$ les valeurs de tension enregistrées pour la voie \textbf{ai1} afin de calculer le courant\footnote{Négligez l'incertitude de la résistance de 12~$\Omega$ pour ce calcul.}. Vous avez alors l'équivalent d'un (mauvais) ampèremetre puisque ce courant calculé est le même qui traverse la plus grosse résistance.
-
-%NE PAS OUBLIER DE RÉVISER LA QUESTION D'ANALYSE DE BIAIS DE MESURE DU LAB II
 
 %...) Si le temps le permet, n'hésitez pas à ... plus de tiges, pile usée vs pile neuve etc. la créativité va ici :)
 
@@ -242,24 +238,24 @@ Il est fortement recommandé de commencer à traiter et visualiser ses données 
 \vspace{-0.5cm}
 \noindent$\rightarrow$ À remettre en équipe sur \href{https://www.gradescope.com/}{Gradescope} en ajoutant votre \href{https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members}{binôme de laboratoire} $\leftarrow$
 
-%New QAs ->  QUALITÉ D'UTILISATION INSTRUMENT -> MULTIMÈTRE POUR PATATE VS POWER ADAPTER, PERMET QUESTION ANALYSE SUR QUEL CAS APPROPRIÉ DE PRENDRE MULTIMÈTRE!  Avec les 2 résultats de mesure de multimètre, prep le terrain moitié plus petite incertitude marche pas, manufacturier et autre causes que l'instrument, p-e voir pour mettre la capsule de simon et daniel au lab II. Mais surtout ne pas oublier de faire une question de choix d'instrument tenant compte de la non stationnarité.
+%New QAs ->  QUALITÉ D'UTILISATION INSTRUMENT -> MULTIMÈTRE POUR PATATE VS POWER ADAPTER, PERMET QUESTION ANALYSE SUR QUEL CAS APPROPRIÉ DE PRENDRE MULTIMÈTRE: STATIONNAIRE! QUOIQU'AVEC NOS MESURES MAINTENANT RAPIDES, LA PATATE DONNE PARFOIS UNE ACQUISITION ASSEZ STABLE. Avec les 2 résultats de mesure de multimètre, prep le terrain moitié plus petite incertitude marche pas, manufacturier et autre causes que l'instrument, p-e voir pour mettre la capsule de simon et daniel au lab II. Mais surtout ne pas oublier de faire une question de choix d'instrument tenant compte de la non stationnarité.
 
 \begin{gradescope}
-\item Remettez les graphiques faits dans l'analyse précédente pour les sources de tension stationnaires en indiquant en légende la moyenne $\Bar{v}$ et la variance $\sigma_v^2$ de la distribution de tension ainsi que le $SNR$ correspondant.
-\item Quelle est la résolution de numérisation (conversion analogique-numérique, échantillonnage) du module d'acquisition lors d'une mesure de tension dans l'intervalle de \qty{-1}{\volt} à \qty{1}{\volt}, sachant que cette mesure est une différence (\textit{differential}) de potentiel entre deux points du circuit?\\ \textit{\footnotesize N.B. On fait appel à vos capacités de chercheur, dans le sens littéral de chercher par vous-même, pour comprendre le rôle du module d'acquisition avec son manuel et autres sources d'information (\emph{e.g.} dictionnaire!) sur la numérisation. Des discussions à ce sujet avec l'équipe d'enseignement et sur la chaîne de \texttt{Questions} du \texttt{Teams} de cours sont encouragées.}
-    %\begin{gradescope}
-    %\item Quelle est la résolution calculée pour l'intervalle de \qty{-1}{\volt} à \qty{1}{\volt}?
+\item Remettez les graphiques faits dans l'analyse précédente pour les sources de tension stationnaires, en indiquant en légende la moyenne $\bar{v}$ et la variance $\sigma_v^2$ de la distribution de tension ainsi que le SNR correspondant.
+    \begin{gradescope}
+    \setcounter{gradescopei}{2}
+    \item Quelle est la résolution de numérisation (conversion analogique-numérique, échantillonnage) du module d'acquisition lors d'une mesure de tension dans l'intervalle de \qty{-1}{\volt} à \qty{1}{\volt}, sachant que cette mesure est une différence (\textit{differential}) de potentiel entre deux points du circuit?\\ \textit{\footnotesize N.B. On fait appel à vos capacités de chercheur, dans le sens littéral de chercher par vous-même, pour comprendre le rôle du module d'acquisition avec son manuel et autres sources d'information (\emph{e.g.} dictionnaire!) sur la numérisation. Des discussions à ce sujet avec l'équipe d'enseignement et sur la chaîne de \texttt{Questions} du \texttt{Teams} de cours sont encouragées.}
         \begin{itemize}[label=$\blacktriangleright$]
         \item \qty{490}{\mV}
         \item \qty{49}{\mV}
         \item \qty{4.9}{\mV}
         \item \qty{0.49}{\mV}
         \end{itemize}
-    \item Avez-vous observé un effet indésirable de cette limite de résolution dans au moins un des graphiques d'analyse pour visualiser vos données? À laquelle des formes suivantes cet effet correspond-il le mieux? $\blacktriangleright$ Triangles $\blacktriangleright$ Rampes $\blacktriangleright$ Paliers %ou marches?
-    %\end{gradescope}
+    \item Avez-vous observé un effet indésirable de cette limite de résolution dans au moins un des graphiques d'analyse pour visualiser vos données? À laquelle des formes suivantes cet effet correspond-il le mieux? $\blacktriangleright$ Triangles $\blacktriangleright$ Rampes $\blacktriangleright$ Paliers
+    \end{gradescope}
 %\item À l'étape g) de la deuxième partie, vous avez probablement remarqué que la différence de potentiel entre les électrodes dépendait des métaux choisis. Quelle combinaison permet d'obtenir la plus haute tension?
     \begin{gradescope}
-    \setcounter{gradescopei}{2}
+    \setcounter{gradescopei}{3}
     \item Avez-vous mesuré une tension qui fluctuait autour de zéro pour la combinaison acier--aluminium? $\blacktriangleright$ Oui $\blacktriangleright$ Non
     \item Si oui, pourquoi en est-il ainsi?
         \begin{itemize}[label=$\blacktriangleright$]
@@ -269,7 +265,8 @@ Il est fortement recommandé de commencer à traiter et visualiser ses données 
         \end{itemize}
     \end{gradescope}
 %\item Comparez l’histogramme de l’étape~f) pour la combinaison inox-aluminium à celui de l’étape~h) en explicitant en légende lequel des deux correspond le mieux au modèle de la loi normale (distribution gaussienne). Pour le cas où cette loi ne s’applique PAS, présentez aussi graphiquement les données de tension d'une manière différente qui met en lumière le manque de stabilité de la mesure.
-\item À partir des mesures de la partie 3 avec la pile en circuit fermé, calculez la valeur de la grosse résistance en utilisant une \textit{évaluation de Type A de l'incertitude} tel que présentée dans l’introduction aux bases de la métrologie. Concrètement, divisez la colonne \textit{tension} par la colonne \textit{courant} pour obtenir une distribution de la mesure de résistance. Puis, comparez la moyenne et la médiane de cette distribution de résistance.%\\ \textit{N.B. Dans cette situation instable, il vaut mieux définir un intervalle d'incertitude très élargi en multipliant par 3 l'écart type~$\sigma$ de votre distribution de données.}
+\item À partir des mesures de la partie 3 avec la pile en circuit fermé, calculez la valeur de la grosse résistance en utilisant une \textit{évaluation de Type A de l'incertitude} tel que présentée dans l’introduction aux bases de la métrologie. Concrètement, divisez la colonne \textit{tension} par la colonne \textit{courant} pour obtenir une distribution de la mesure de résistance. Puis, comparez brièvement la moyenne et la médiane de cette distribution de résistance à la valeur de référence nominale de \qty{1}{\kilo\ohm}.
+%\\ \textit{N.B. Dans cette situation instable, il vaut mieux définir un intervalle d'incertitude très élargi en multipliant par 3 l'écart type~$\sigma$ de votre distribution de données.}
 %\item Laquelle ou lesquelles des questions précédentes peuvent être répondues en préparation avant le laboratoire? $\;\blacktriangleright$ Q1.1 $\;\blacktriangleright$ Q1.2 $\;\blacktriangleright$ Q1.3 $\;\blacktriangleright$ Q2.1 $\;\blacktriangleright$ Q2.2 $\;\blacktriangleright$ Q3 $\;\blacktriangleright$ Q4
 \item \textsc{Sections de rapport - Introduction \& Conclusion:} Écrivez en moins de 350 mots (combinés) l'introduction et la conclusion d'un rapport scientifique portant sur l'ensemble du laboratoire.\footnote{Les instructions et explications d'écriture pour chaque section sont détaillées dans le document \texttt{Guide de rédaction de rapports scientifiques.}}
 \end{gradescope}
