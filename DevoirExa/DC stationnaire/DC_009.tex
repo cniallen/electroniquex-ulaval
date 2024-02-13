@@ -1,9 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%DC_001.tex : source de tension commandée, source indépendante de 12 V et 3 résistances | rectangulaire
+%DC_009.tex : 11 résistances équivalentes |
 %------------------------------------------------------------------
-%SOURCE: Irwin, "Basic engineering circuit analysis" (? ed., ? year, cf ULaval library), Chap.3 p.121 #3.46
-%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): D-2014, D-2015, D-2017, D-2020, D-2023
-%DIFFICULTÉ courte et/ou simple? (Y/N): Y
+%SOURCE: Steck, "Analog and Digital Electronics" (2020 ed. online), section 1.6, p.39, exemple 1.6.1
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): D-2021, D-2024
+%DIFFICULTÉ courte et/ou simple? (Y/N): N
 %
 %Créé par Claudine Nì. Allen
 %Contributions par -
@@ -18,13 +18,19 @@
 \begin{preview}
 \onlyinsubfile{\import{./}{HeaderCustom.tex}}
 %
-Déterminez le courant $i_0$ dans le circuit ci-dessous. Notez que la source de tension commandée fournit une différence de potentiel de 2$i_0$ : la constante 2 a donc des unités de $\Omega$.
+Sachant que toutes les résistances du circuit ci-dessous sont identiques et de valeur R, quelle est la résistance équivalente entre les points \textbf{A} et \textbf{B}?
 %
 \begin{center}
 \begin{circuitikz} \draw
-(0,0) to[V,l^=12~V] (0,3) to[short] (3,3) to[R,l^=2~$\Omega$,i=$i_0$] (6,3) to[short] (9,3) to[R,l^=2~$\Omega$] (9,0) to[short] (0,0)
-(3,0) to[R,l_=2~$\Omega$] (3,3)
-(6,0) to[controlled voltage source,l_=2$i_0$] (6,3)
+(0,0) to[R] (4.5,2) node[above]{\textbf{A}}
+(3,0) to[R] (4.5,2)
+(6,0) to[R] (4.5,2)
+(9,0) to[R] (4.5,2)
+(0,0) to[R] (3,0) to[R] (6,0) to[R] (9,0)
+(0,0) to[R] (4.5,-2)
+(3,0) to[R] (4.5,-2)
+(6,0) to[R] (4.5,-2)
+(9,0) to[R] (4.5,-2) node[below]{\textbf{B}}
 ;\end{circuitikz}
 \end{center}
 %
