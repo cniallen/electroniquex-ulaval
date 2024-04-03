@@ -21,7 +21,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{siunitx}
 \usepackage{xcolor}
-\usepackage{hyperref}
+\usepackage[colorlinks=true]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
 \usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
@@ -60,17 +60,17 @@
 
 \noindent\textit{\textbf{Prélude de contexte et déroulement des ateliers}}
 
-\textit{Les ateliers se rapprochent d'un mode de travail expérimental plus autonome, s'éloignant du contexte pédagogique pour se rapprocher du milieu professionnel. En effet après avoir étudié tous les éléments de la section \nameref{sec:lectures} et selon les consignes en \nameref{sec:prep}, vous devez concevoir votre propre protocole avant d'arriver au laboratoire afin d'atteindre chaque sous-objectif de la section \nameref{sec:atelier}. Ces sous-objectifs sont généralement accompagnés d'illustrations de circuits, mais il y a toutefois progression vers une conception de plus en plus libre où vous devrez proposer vos propres designs de circuits.}
+\textit{Les ateliers se rapprochent d'un mode de travail expérimental plus autonome, s'éloignant du contexte pédagogique pour se rapprocher du milieu professionnel. En effet, après avoir étudié tous les éléments de la section \nameref{sec:lectures} et selon les consignes en \nameref{sec:prep}, vous devez concevoir votre propre protocole afin d'atteindre les sous-objectifs sélectionnés de la section \nameref{sec:atelier}. Ces sous-objectifs sont généralement accompagnés d'illustrations de circuits, mais il y a toutefois progression vers une conception de plus en plus libre où vous devrez proposer vos propres designs de circuits.}
 
-\textit{Lors de la séance d'atelier de 3 heures à la date spécifiée dans la section {\normalfont \texttt{Contenu et activités}} sur le site de cours, nous nous diviserons en grands groupes de recherche et design, chacun animé par un membre de l’équipe d’enseignement. Une partie des sous-objectifs et circuits sera attribuée à chaque groupe dans le but d'en faire une présentation orale éducative de 5~minutes pour le reste de la classe à la fin de la séance. La méthodologie de travail en groupe vous appartiendra alors entièrement pour réussir la meilleure présentation possible qui sera évaluée sur une base ordinale, tel qu'expliqué dans la partie synchrone du cours au retour de la semaine de lecture. Il n'y aura pas d'autres remises à faire pour les ateliers afin de vous donner le temps de travailler sur votre projet de conception final.}
+\textit{Les équipes pour ces ateliers et le projet de conception passent de 2 à 4 personnes et les évaluations se font simplement sur la réussite ou l'échec des sous-objectifs indiqués comme livrables. Il n'y a aucune remise à faire pour les ateliers afin de vous donner le temps de travailler sur votre projet de conception final.}
 
-%\section{Objectifs}
+\section{Objectifs principaux}
 
-%Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. On peut alors retirer des fréquences indésirables et généralement obtenir une mesure plus fidèle avec un meilleur rapport signal sur bruit, par exemple. L’effet de différents filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc examinée pour le filtre RC. 
-%Dans l'approche pédagogique de préparation et conception de ce laboratoire, l'étudiant.e développera progressivement une méthodologie de travail plus autonome en transition vers la pratique d'une profession de recherche en sciences et génie. 
+Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. On peut alors retirer des fréquences indésirables et généralement obtenir une mesure plus fidèle avec un meilleur rapport signal sur bruit, par exemple. L’effet de différents filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc examinée pour le filtre RC. 
+Dans l'approche pédagogique de préparation et conception de ce laboratoire, l'étudiant.e développera progressivement une méthodologie de travail plus autonome en transition vers la pratique d'une profession de recherche ou développement en sciences et génie. 
 
 %Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 4, 5, 7, 9, 10, 11 et 12 du plan de cours.
-
+\vspace{-2ex}
 \section{Lectures préparatoires}\label{sec:lectures}
 
 \begin{itemize}
@@ -94,13 +94,17 @@
 % \end{itemize}
 
 %\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-
+\vspace{-2ex}
 \section{Préparation}\label{sec:prep}
- \vspace{-3ex}
- AVANT la séance d'atelier, écrivez sommairement dans votre cahier de recherche avec votre coéquipier.ère tout ce que vous prévoyez faire au laboratoire pour atteindre chaque sous-objectif de la prochaine section. En plus des manipulations expérimentales, des mesures à prendre et de leur analyse, n'oubliez pas de considérer si des étapes de modélisation, conception et simulation\footnote{N'hésitez pas à explorer les possibilités du menu \texttt{Dessiner~>~Sorties et étiquettes} de l'application Web de Paul Falstad, entre autres pour exporter des données de simulation.} peuvent être faites. Avec un temps limité en laboratoire, assurez-vous de calculer à l'avance toute valeur qui pourra se comparer aux expériences. Plusieurs logiciels spécialisés pour l'électronique sont listés sur le site de cours, dans la section \texttt{Logiciels} de l'onglet \texttt{Matériel didactique}, et vous pouvez les employer pour bonifier ces étapes préliminaires si vous le souhaitez. Comme la programmation LabVIEW s'avère souvent chronophage, vous pouvez être soulagés qu'aucun VI n'est demandé pour les ateliers. Toutefois pour mieux caractériser les filtres avec des diagrammes de Bode lorsqu'ils sont mentionnés en sous-objectifs ci-dessous, vous pouvez télécharger et utiliser le VI LabVIEW déjà prêt dans le module de cet atelier.\\[1ex]
-En arrivant au laboratoire, vérifiez quels sous-objectifs vous sont attribués et prenez un moment pour comparer et choisir les meilleurs éléments de toutes les préparations correspondantes du grand groupe où vous serez affectés.es. En faisant vos choix, n'oubliez pas que vous avez seulement 3h de laboratoire et que le.la délégué.e de l'équipe d'enseignement peut vous conseiller en tout temps. Répartissez les tâches sélectionnées ainsi que les préparatifs de l'exposé oral entre les membres du groupe, puis lancez-vous!
- \vspace{-5ex}
- \section{Atelier}\label{sec:atelier}
+\vspace{-3ex}
+Pour gagner du temps et être efficace lors de la séance d'atelier, écrivez sommairement dans votre cahier de recherche tout ce que vous prévoyez faire au laboratoire pour accomplir les livrables de la prochaine section. En plus des manipulations expérimentales, des mesures à prendre et de leur analyse, n'oubliez pas de considérer si des étapes de modélisation, conception et simulation\footnote{N'hésitez pas à explorer les possibilités du menu \texttt{Dessiner~>~Sorties et étiquettes} de l'application Web de Paul Falstad, entre autres pour exporter des données de simulation.} peuvent être faites. Vous pouvez aussi calculer à l'avance toute valeur qui pourra se comparer aux expériences. Plusieurs logiciels spécialisés pour l'électronique sont listés sur le site de cours, dans la section \texttt{Logiciels} de l'onglet \texttt{Matériel didactique}, et vous pouvez les employer pour bonifier ces étapes préliminaires si vous le souhaitez. Comme la programmation LabVIEW s'avère souvent chronophage, vous pouvez être soulagés qu'aucun VI n'est demandé pour les ateliers. Toutefois pour mieux caractériser les filtres avec des diagrammes de Bode lorsqu'ils sont mentionnés en sous-objectifs ci-dessous, vous pouvez télécharger et utiliser le VI LabVIEW déjà prêt dans le module de cet atelier.
+
+\vspace{-2ex}
+\section{Livrables}\label{sec:prep}
+\vspace{-3ex}
+Le minimum de simulations, expériences et analyses à être accomplies par équipe de 4 personnes dans cet atelier doivent satisfaire les sous-objectifs des figures~\ref{sch-RC2} et~\ref{sch-RC-ordre3} ainsi que qu'un des deux autres sous-objectifs à votre choix. Assurez-vous qu'un membre de l'équipe d'enseignement valide l'accomplissement de ces livrables avec vos montages et votre cahier de recherche avant de quitter. S'il y a lieu, le temps restant à l'atelier peut être consacré à avancer le projet de conception final.
+
+\section{Atelier}\label{sec:atelier}
 %\subsection{Partie 1 --- Mesures temporelles}
 \begin{figure}[h!]
 \centering
@@ -203,11 +207,11 @@ En arrivant au laboratoire, vérifiez quels sous-objectifs vous sont attribués 
 %Pour répartir cette grosse figure sur plusieurs pages au besoin: https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures_in_multiple_parts
 \begin{figure}[h!]
 \centering
-\subcaptionbox{}
-{\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{in}}$} to[R=270~$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$}
-(3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
-;\end{circuitikz}}
+%\subcaptionbox{}
+%{\begin{circuitikz} \draw
+%(0,2) node[left]{$V_{\mathrm{in}}$} to[R=270~$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$}
+%(3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
+%;\end{circuitikz}}
 \subcaptionbox{}
 {\begin{circuitikz} \draw
 (0,2) node[left]{$V_{\mathrm{in}}$} to[R=135~$\Omega$,o-] (3,2) to[R=270~$\Omega$] (6,2) to[R=560~$\Omega$] (9,2) to[short,-o] (10,2) node[right]{$V_{\mathrm{out}}$}
@@ -234,7 +238,7 @@ En arrivant au laboratoire, vérifiez quels sous-objectifs vous sont attribués 
 (-10.5,-0.5) node[left]{$V_{\mathrm{in}}$} to[R=1~k$\Omega$,o-] (-7.5,-0.5) to[R=560~$\Omega$] (-4.5,-0.5) to[R=1~k$\Omega$] (-1.2,-0.5)
 (-7.5,-0.5) to[C=1~$\mu$F] (-7.5,-3) node[ground]{}
 ;\end{circuitikz}}
-\caption{\label{sch-RC-ordre3}\textbf{Sous-objectif} : examiner comment les filtres (a) RC série de premier ordre, (b) RC de troisième ordre, (c) Butterworth en topologie Cauer de troisième ordre et (d) Butterworth en topologie Sallen-Key de troisième ordre, vont dévier du comportement idéal d'un filtre passe-bas. Ce spectre idéal du gain est une fonction échelon de Heaviside en symétrie miroir centrée sur la fréquence de coupure. Cette symétrie de parité paire est seulement pour exprimer l'opération $H(-x)\rightarrow H(x)$.}
+\caption{\label{sch-RC-ordre3}\textbf{Sous-objectif} : examiner comment le gain du filtre RC série passe-bas de premier ordre fait au début se compare à 1 des 3 filtres ci-dessus, soit (a) RC de troisième ordre, (b) Butterworth en topologie Cauer de troisième ordre et (c) Butterworth en topologie Sallen-Key de troisième ordre. Quantifier aussi les déviations du spectre de gain idéal d'un filtre passe-bas qui est une fonction échelon de Heaviside en symétrie miroir centrée sur la fréquence de coupure. Cette symétrie de parité paire est seulement pour exprimer l'opération $H(-x)\rightarrow H(x)$.}
 \end{figure}
 
 % Vous pouvez remarquer à partir des diagrammes de Bode précédemment tracés que la transition entre la bande passante et la bande rejetée n'est pas parfaitement verticale. Il est toutefois possible de complexifier le design d'un filtre afin que cette transition soit plus abrupte. Cette analyse sera faite sur des filtres passe-bas.
