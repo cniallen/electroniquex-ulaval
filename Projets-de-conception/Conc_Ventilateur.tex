@@ -170,7 +170,7 @@
 \end{center}
 
 \vspace{-1em}
-\noindent Automne 2023 \hfill Responsable: C. Allen\par
+\noindent Hiver 2024 \hfill Responsable: C. Allen\par
 \vspace{0.2ex}
 \hrule
 \vspace{0.5ex}
@@ -192,7 +192,7 @@ Pour ce faire, vous devrez faire appel aux ressources étudiées dans l'ensemble
 \subsection*{Problématique}
 L’été dernier, votre ami Itof Mèyacho a vécu la pire canicule de toute sa vie. En effet, comme il est étudiant, il ne peut se permettre d’avoir l’air conditionné tant convoité. Il doit se contenter d’un bon vieux ventilateur. Il souhaiterait trouver un moyen pour ajuster la vitesse de son ventilateur selon la luminosité du soleil qui entre dans son appartement, et ce, sans avoir à se lever de son sofa. Ses jeux vidéo ne peuvent attendre! De plus, bien qu’il fasse complètement noir dans sa chambre la nuit, il trouve essentiel que le ventilateur continue de tourner, mais à moindre vitesse, car le bruit du plein régime l’empêche de se reposer. Comme la prochaine canicule est à venir et qu’il semble trop occupé à jouer aux jeux vidéo, Itof Mèyacho vous demande votre aide. À l'aide de vos nouvelles connaissances en électronique, il est maintenant temps de lui donner un coup de main.
 
-Après un peu de recherche et expérimentation, vous avez réussi à déterminer que le moteur du ventilateur d’Itof fonctionne en courant continu (DC en anglais). Vous avez aussi remarqué que le moteur risque de se briser s'il tourne à une vitesse supérieure à 500~RPM, mais heureusement, la luminosité ambiante reste assez faible dans l'appartement même en plein jour. Après quelques tests, Itof a identifié qu’il était confortable la nuit seulement lorsque le ventilateur tourne à une vitesse de 200~RPM. Vous décidez donc de concevoir un système basé sur un microcontrôleur Arduino. Celui-ci sera utilisé pour lire l'irradiance de la lumière sur une photorésistance et ensuite ajuster la vitesse de rotation du moteur DC en fonction de cette luminosité mesurée. La vitesse de rotation doit donc varier progressivement de sa valeur minimale la nuit jusqu'à 500~RPM tout en s'ajustant le plus graduellement possible avec l'augmentation de luminosité.
+Après un peu de recherche et expérimentation, vous avez réussi à déterminer que le moteur du ventilateur d’Itof fonctionne en courant continu (DC en anglais). Vous avez aussi remarqué que le moteur risque de se briser s'il tourne à une vitesse supérieure à 1500~RPM, mais heureusement, la luminosité ambiante reste assez faible dans l'appartement même en plein jour. Après quelques tests, Itof a identifié qu’il était confortable la nuit seulement lorsque le ventilateur tourne à une vitesse de 500~RPM. Vous décidez donc de concevoir un système basé sur un microcontrôleur Arduino. Celui-ci sera utilisé pour lire l'irradiance de la lumière sur une photorésistance et ensuite ajuster la vitesse de rotation du moteur DC en fonction de cette luminosité mesurée. La vitesse de rotation doit donc varier progressivement de sa valeur minimale la nuit jusqu'à 1500~RPM tout en s'ajustant le plus graduellement possible avec l'augmentation de luminosité.
 
 %En plein jour, quand la luminosité est maximale, le moteur ne doit pas dépasser sa vitesse maximale de 437~RPM. Si la luminosité diminue, la vitesse du moteur doit ralentir en conséquence jusqu’à atteindre la valeur attendue en pleine nuit. Entre les deux valeurs de luminosité extrêmes, la vitesse du moteur doit pouvoir prendre le plus de valeurs possibles. Notez finalement qu'avant de procéder à l’assemblage de votre système en pratique, vous allez simuler et tester virtuellement son fonctionnement pour réduire les essais-erreurs, le débogage et la frustration(!) au laboratoire.
 %\vspace{-1em}
@@ -208,7 +208,6 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
     \item Résistances de \SIlist[list-final-separator = {, }]{12;33;270;560}{\ohm}, \SIlist[list-final-separator = {, }]{1;1.2;10; 18;100}{\kilo\ohm} et \SI{1}{\mega\ohm}
     \item Condensateurs de \SI{470}{\nano\farad} et \SI{1}{\micro\farad}
     \item Photorésistances, aussi connues sous le nom de \textit{light-dependent resistors} (LDR) ou \textit{photocells} en anglais (NE PAS confondre avec une cellule solaire)
-    \item Pour le bonus, un écran à cristaux liquides virtuel, se traduisant \textit{liquid-crystal display} (LCD)
 \end{itemize}
 %\vspace{-1ex}
 
@@ -217,11 +216,10 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
     \item Vous pouvez utiliser autant de composants que nécessaires dans la liste ci-dessus. Toutefois, vous n’avez pas le droit d’utiliser des composants ou des sources d'alimentation qui ne figurent pas dans cette liste. Les instruments de mesure quant à eux, comme les multimètres et les oscilloscopes au laboratoire, ne font pas partie du circuit et il est très pertinent d'en faire usage pour sonder, tester et diagnostiquer votre système pendant son développement. Ils peuvent aussi aider à montrer comment certaines contraintes sont respectées dans votre présentation vidéo (voir livrables).
     \item Concevez virtuellement et construisez expérimentalement votre circuit très clairement sur la plaquette de montage. Pour ce faire, employez un minimum de composants et de fils. Dans la mesure du possible, appliquez aussi le code de couleur suivant pour les fils à la même tension qu'une des alimentations: rouge -- positif, noir -- négatif et la mise à la terre (COM) -- blanche.
     \item Vous devez découpler l’impédance du circuit de la photorésistance de l’impédance du circuit ADC (convertisseur analogique-numérique) en entrée de l’Arduino à l'aide d'un suiveur de tension qui agit alors comme un tampon (\textit{buffer}).
-    \item Éliminez autant que possible les oscillations de la tension d'alimentation du moteur pour maximiser la stabilisation de sa vitesse de rotation en ignorant son inertie. Comme vous n'avez pas d'instrument de mesure de cette vitesse, vous devez utiliser le graphique dans la fiche technique du moteur pour l'estimer.
     \item Assurez-vous de ne pas briser la photorésistance. Comme la dissipation de puissance tolérée dépend significativement de la température selon la fiche technique de ce LDR, faites le choix prudent de ne pas dépasser une puissance maximale de \SI{0.1}{W}.
-    \item Recréez le minimum d'irradiance de nuit en bloquant la lumière arrivant sur la photorésistance au laboratoire. %et en mettant la glissière de luminosité du LDR à son minimum dans la simulation et le plan de conception.
-    %\item Le temps du jour doit être représenté par la position de l’indicateur de luminosité de la photorésistance sur Tinkercad tel qu'illustré à la Figure~\ref{fig:photoresistance} en annexe. Lorsque l’indicateur est à sa valeur maximale, il fait plein jour. Lorsqu’il est à sa valeur minimale, il fait nuit.
-    \item \textbf{BONUS VIRTUEL:} Seulement dans le plan de conception assistée par ordinateur EDA, utilisez un modèle de moteur DC avec un encodeur afin de lire en temps réel la vitesse du moteur avec l’Arduino et affichez-la sur un écran LCD.
+    \item Recréez le minimum d'irradiance de nuit en bloquant la lumière arrivant sur la photorésistance au laboratoire.
+    \item Éliminez autant que possible les oscillations de la tension d'alimentation du moteur pour maximiser la stabilisation de sa vitesse de rotation en ignorant son inertie. Vous pouvez utiliser le graphique dans la fiche technique du moteur pour faire une estimation approximative de la vitesse ou faire le bonus qui suit. 
+    \item \textbf{BONUS :} Mesurez la vitesse de rotation avec un composant dédié qui s'attache ou moteur: c'est un encodeur rotatif. Consulter l'équipe technique si ce composant n'est pas disponible dans l'armoire des coffres.
 \end{enumerate}
 
 \subsection*{Livrables}
@@ -242,7 +240,7 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
 \end{itemize}
 \vspace{-1em}
 
-\newpage
+%\newpage
 \subsection*{Critères d'évaluation}
 
 \renewcommand{\arraystretch}{1.5}
@@ -267,7 +265,7 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
      4. Stabilisation de l'alimentation du moteur & 5\%\\
      5. Dépassement de la puissance maximale évité & 5\%\\
      6. Comportement de nuit respecté & 5\%\\
-     7. \textbf{Bonus virtuel}: Lecture en temps réel de la vitesse du moteur avec l'encodeur & +3\%\\
+     7. \textbf{Bonus}: Mesure de la vitesse du moteur avec l'encodeur rotatif & +3\%\\ 
      \rowcolor{black} \textcolor{white}{\textbf{Présentation vidéo du système comprenant:}} & \textcolor{white}{\textbf{25\%}}\\
      une liste identifiant les besoins de Itof Mèyacho (différents des contraintes), & 5\%\\
      une description du fonctionnement global du système, & 5\%\\
