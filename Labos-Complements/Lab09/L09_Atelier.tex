@@ -57,18 +57,18 @@
 
 \maketitle \vspace{-17ex}
 
-%\section{Objectif}
-%
-% La dernière fonction de circuits électroniques, mais non la moindre, abordée dans ce cours est le calcul informatique. La fonction d’interrupteur ouvert/fermé du transistor est la clef pour obtenir deux niveaux discrets en tension et ainsi générer un signal numérique binaire permettant des opérations logiques (algèbre de Boole). L’étudiant.e réalisera donc des circuits de portes logiques NON-OU et OU à partir de transistors. En plus de ces opérations logiques, l’ordinateur doit aussi se rappeler rapidement des états binaires entre chaque opération. On introduit alors la rétroaction entre portes logiques, ici en circuits intégrés, pour obtenir une mémoire volatile très rapide d’accès avec une bascule asynchrone SR. Il s’agit d’une mémoire vive (\textit{static random-access memory}, SRAM) de l’ordinateur qui se perd lorsque l’alimentation est coupée, à l’opposé des mémoires de stockage non volatil de l’information binaire. 
+\section{Objectifs principaux}\label{sec:objectifs}
+\vspace{-2ex}
+La dernière fonction de circuits électroniques, mais non la moindre, abordée dans ce cours est le calcul informatique. La fonction d’interrupteur ouvert/fermé du transistor est la clef pour obtenir deux niveaux discrets en tension et ainsi générer un signal numérique binaire permettant des opérations logiques (algèbre de Boole). L’étudiant.e réalisera donc des circuits de portes logiques NON-OU et OU à partir de transistors. En plus de ces opérations logiques, l’ordinateur doit aussi se rappeler rapidement des états binaires entre chaque opération. On introduit alors la rétroaction entre portes logiques, ici en circuits intégrés, pour obtenir une mémoire volatile très rapide d’accès avec une bascule asynchrone SR. Il s’agit d’une mémoire vive (\textit{static random-access memory}, SRAM) de l’ordinateur qui se perd lorsque l’alimentation est coupée, à l’opposé des mémoires de stockage non volatil de l’information binaire. 
 
 
 % Au lieu de compléter le cours en complexifiant les circuits logiques réalisés à partir d’un schéma, ce laboratoire tentera plutôt d’aider l’étudiant.e à intégrer des connaissances tout en s’exerçant au raisonnement inductif. Concrètement, l’étudiant.e fera la rétro-ingénierie d’un circuit automatisant la mesure du temps de chute d’une masse avec une emphase sur le conditionnement du signal: cette fonction requiert souvent la conception et fabrication de circuits en recherche expérimentale. On bouclera finalement le cours en revenant à la conversion analogique-numérique avec la conception d’un voltmètre à trois niveaux discrets.
 
 
 % Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 3, 5, 6, 7, 11 et 12 du plan de cours.
-
+\vspace{-2ex}
 \section{Lecture préparatoire}
-\vspace{-2.5ex}
+\vspace{-2ex}
 \begin{itemize}
 \item complément \textit{Introduction aux signaux numériques}
 \end{itemize}
@@ -102,13 +102,15 @@
 % \item lire le protocole de ce laboratoire;
 % \item débuter, avec un schéma, la conception d'un circuit simple de conversion analogique-numérique en base 1. Ce circuit sera en fait un embryon de voltmètre que vous devrez construire à partir d'une source d'alimentation DC (ou deux au maximum), de la fonction comparateur d'ampli-ops, de résistances et de diodes électroluminescentes (DEL). Ces dernières afficheront la valeur d'un signal de tension dans le système numérotation unaire. Plus précisément, \textbf{aucune} DEL ne doit s'allumer lorsque la tension est inférieure à 1~V, \textbf{une} DEL doit s'allumer lorsque la tension fournie est supérieure à 1~V et \textbf{deux} DEL doivent s'allumer lorsque la tension devient supérieure à 2~V.
 % \end{itemize}
+\vspace{-2ex}
+\section{Préparation}\label{sec:prep}
+\vspace{-2ex}
+AVANT la séance d'atelier, écrivez sommairement dans votre cahier de recherche tout ce que vous prévoyez faire au laboratoire pour accomplir les livrables de la prochaine section sans oublier de calculer toute valeur de référence donnée en complément aux fins de comparaison à l'expérience. En plus des manipulations expérimentales, des mesures à prendre et de leur analyse, n'oubliez pas de considérer des étapes de modélisation, conception et simulation. Plusieurs logiciels spécialisés pour l'électronique listés sur le site de cours, dans la section \texttt{Logiciels} de l'onglet \texttt{Matériel didactique}, vous aideront dans cette préparation. En particulier, l'onglet \texttt{Circuits} de \href{https://www.falstad.com/circuit/}{l'application Web de Paul Falstad} contient tous les blocs en atelier, montrant directement les "réponses" des comportements idéaux attendus. 
 
-\section{Préparation}
-
-\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-Les ateliers se rapprochent d'un mode de travail expérimental plus professionnel et d'un à l'autre, ils vous mèneront vers une conception de plus en plus libre de vos propres designs de circuits. Pour vous y préparer, lisez le complément en lecture préparatoire et, dans votre cahier de recherche, écrivez les manipulations et les analyses à faire pour atteindre chaque sous-objectif. N'oubliez pas de considérer des étapes de modélisation, conception et simulation s'il y a lieu, sans oublier de calculer à l'avance toute valeur qui pourra se comparer aux expériences.
-
-En arrivant au laboratoire, vérifiez quels sous-objectifs vous sont attribués et prenez un moment pour comparer et choisir les meilleurs éléments de toutes les préparations correspondantes du grand groupe où vous serez affectés.es. En faisant vos choix, n'oubliez pas que vous avez seulement 3h de laboratoire et que le.la délégué.e de l'équipe d'enseignement peut vous conseiller en tout temps. Répartissez les tâches sélectionnées ainsi que les préparatifs de l'exposé oral entre les membres du groupe, puis lancez-vous!
+\vspace{-2ex}
+\section{Livrables}\label{sec:livrables}
+\vspace{-2ex}
+Le minimum de simulations, expériences et analyses à être accomplies par équipe de 4 personnes doivent satisfaire tous les trois sous-objectifs. Divisez les tâches afin que personne ne se tourne les pouces en atelier et utilisez un maximum de plaquettes de montage sans rien démonter : un membre de l'équipe d'enseignement doit valider l'accomplissement des livrables avec tous vos montages et votre cahier de recherche juste AVANT votre départ. Finalement, nous vous encourageons fortement à consacrer tout temps restant à l'atelier pour avancer votre projet de conception final.
 
 %La dernière activité de la séance sera de vous rendre sur le site Web du cours dans la section \texttt{Évaluations et résultats} pour l'atelier concerné et y évaluer vos pairs sur leur contribution respective au travail du groupe.
 
@@ -136,7 +138,7 @@ En arrivant au laboratoire, vérifiez quels sous-objectifs vous sont attribués 
 % \end{enumerate}
 
 % Complétez l'expérience en écrivant au tableau votre résultat de mesure d'accélération gravitationnelle pour bâtir une distribution statistique avec vos collègues.
-
+\section{Atelier}\label{sec:atelier}
 \subsection{Construction de portes logiques}
 
 %a) Montez le circuit d'une porte NON-OU (figure~\ref{sch-NOR}) en utilisant les transistors. Appliquez une tension $v_{\mathrm{cc}}$ de 5~V.
@@ -176,6 +178,7 @@ En arrivant au laboratoire, vérifiez quels sous-objectifs vous sont attribués 
 \noindent\textbf{2\textsuperscript{e} sous-objectif} : Réaliser une conversion analogique-numérique en base 1 à l'aide d'un circuit simple. Ce circuit est en fait un embryon de voltmètre à concevoir à partir d'une source d'alimentation DC, de la fonction comparateur d'ampli-ops, de résistances et de diodes électroluminescentes (DEL). Ces dernières afficheront la valeur d'un signal de tension dans le système de numérotation unaire, ce signal étant fourni par un générateur de fonctions ou autre source variable. Plus précisément, \textbf{aucune} DEL ne doit s'allumer lorsque la tension est inférieure à 1~V, \textbf{une} DEL doit s'allumer lorsque la tension fournie est supérieure à 1~V et \textbf{deux} DEL doivent s'allumer lorsque la tension devient supérieure à 2~V.
 
 \subsection{Introduction aux circuits logiques rétroactifs}
+
 
 % a) Un circuit logique très simple avec rétroaction est constitué uniquement d'un inverseur (porte NON) dont la sortie est retournée à l'entrée. Lorsque l'entrée est \textit{zéro}, la sortie est \textit{un}. Alors l'entrée devient \textit{un} et la sortie \textit{zéro}, et ainsi de suite. On dit que ce circuit est astable, puisqu'il ne possède aucun niveau stable : il s'agit en fait d'un oscillateur. Construisez cet oscillateur (figure~\ref{sch-osc-astable}) et mesurez au mieux, à l'aide de l'oscilloscope, la fréquence des oscillations. Soyez impressionnés de la valeur mesurée.
 % \begin{figure}[h]

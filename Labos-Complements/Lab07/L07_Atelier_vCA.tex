@@ -21,7 +21,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{siunitx}
 \usepackage{xcolor}
-\usepackage[colorlinks=true]{hyperref}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
 \usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
@@ -65,7 +65,7 @@
 \textit{Les équipes pour ces ateliers et le projet de conception passent de 2 à 4 personnes et les évaluations se font simplement au laboratoire sur la réussite ou l'échec des sous-objectifs indiqués comme livrables. Pour consigner votre préparation et vos expériences dans votre cahier de recherche, choisissez-en un à partager avec vos nouveaux.elles coéquipiers.ères. Il n'y a aucune autre remise à faire pour les ateliers afin de vous donner le temps de travailler sur votre projet de conception final.}
 
 \vspace{-2.5ex}
-\section{Objectifs principaux}
+\section{Objectifs principaux}\label{sec:objectifs}
 \vspace{-1.5ex}
 Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. On peut alors retirer des fréquences indésirables et généralement obtenir une mesure plus fidèle avec un meilleur rapport signal sur bruit, par exemple. L’effet de différents filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc examinée pour le filtre RC.
 
@@ -97,7 +97,7 @@ Une fonction essentielle accomplie par des circuits électriques dans le travail
 \vspace{-2ex}
 \section{Préparation}\label{sec:prep}
 \vspace{-3ex}
-AVANT la séance d'atelier, écrivez sommairement dans votre cahier de recherche tout ce que vous prévoyez faire au laboratoire pour accomplir les livrables de la prochaine section sans oublier de calculer toute valeur de référence donnée en complément aux fins de comparaison. En plus des manipulations expérimentales, des mesures à prendre et de leur analyse, n'oubliez pas de considérer des étapes de modélisation, conception et simulation\footnote{N'hésitez pas à explorer les possibilités du menu \texttt{Dessiner~>~Sorties et étiquettes} de l'application Web de Paul Falstad, entre autres pour exporter des données de simulation.}. Plusieurs logiciels spécialisés pour l'électronique listés sur le site de cours, dans la section \texttt{Logiciels} de l'onglet \texttt{Matériel didactique}, vous aideront dans cette préparation. En particulier, l'onglet \texttt{Circuits} de \href{https://www.falstad.com/circuit/}{l'app par P. Falstad} contient tous les blocs en atelier, montrant directement les "réponses" des comportements idéaux attendus. Comme la programmation LabVIEW s'avère souvent chronophage, vous pouvez être soulagés qu'aucun VI n'est demandé pour les ateliers. Toutefois pour mieux caractériser les filtres avec des diagrammes de Bode lorsqu'ils sont mentionnés en sous-objectifs ci-dessous, téléchargez et utilisez le VI LabVIEW déjà prêt dans le module de cet atelier.
+AVANT la séance d'atelier, écrivez sommairement dans votre cahier de recherche tout ce que vous prévoyez faire au laboratoire pour accomplir les livrables de la prochaine section. N'oubliez pas de calculer toute valeur de référence donnée en complément aux fins de comparaison à l'expérience. En plus des manipulations expérimentales, des mesures à prendre et de leur analyse, n'oubliez pas de considérer des étapes de modélisation, conception et simulation. Plusieurs logiciels spécialisés pour l'électronique listés sur le site de cours, dans la section \texttt{Logiciels} de l'onglet \texttt{Matériel didactique}, vous aideront dans cette préparation. En particulier, l'onglet \texttt{Circuits} de \href{https://www.falstad.com/circuit/}{l'application Web de Paul Falstad} contient tous les blocs en atelier, montrant directement les "réponses" des comportements idéaux attendus\footnote{Une liste des circuits se trouve \href{https://www.falstad.com/circuit/directions.html}{ici} et des réponses en fréquence (diagrammes de Bode du gain) de différents filtres selon le menu \texttt{Circuits} sont même disponibles \href{https://www.falstad.com/afilter/}{ici}. N'hésitez pas à explorer les possibilités du menu \texttt{Dessiner~>~Sorties et étiquettes} de l'app, entre autres pour exporter des données de simulation.}. Comme la programmation LabVIEW s'avère souvent chronophage, vous pouvez être soulagés qu'aucun VI n'est demandé pour les ateliers. Toutefois pour mieux caractériser les filtres avec des diagrammes de Bode lorsqu'ils sont mentionnés en sous-objectifs ci-dessous, utilisez le VI LabVIEW déjà prêt dans le module de cet atelier.
 
 \vspace{-2ex}
 \section{Livrables}\label{sec:livrables}
