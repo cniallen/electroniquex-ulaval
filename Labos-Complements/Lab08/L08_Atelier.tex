@@ -27,7 +27,7 @@
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
-\usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
+\usepackage[americanvoltages,americancurrents,siunitx]{circuitikz}
 \usetikzlibrary{babel}
 \usepackage{caption}
 \usepackage[letterpaper,headheight=15pt]{geometry}
@@ -159,15 +159,21 @@ Le minimum de simulations, expériences et analyses à être accomplies par équ
 \begin{circuitikz} \draw[thick]
 (0,0) to[short,-*] (0,1) node[right]{2} to[short] (0,2) node[right]{6} to[short,*-*] (0,3) node[right]{7} to[short] (0,4) to[short] (1,4) node[below]{4} to[short,*-*] (2,4) node[below]{8} to[short] (3,4) to[short] (3,3) node[left]{3} to[short,*-*] (3,1) node[left]{5} to[short] (3,0) to[short,-*] (1.5,0) node[above]{1} to[short] (0,0)
 ;\draw
-(3,3) to[short,-o] (3.5,3) node[right]{$v_{\mathrm{out}}$}
+(3,3) to[short,-o] 
+(3.5,3) node[right]{$v_{\mathrm{out}}$}
 (1.5,0) to[short] (1.5,-0.5)
-(-2,-0.5) to[C=$C$] (-2,1) to[R=$R_B$] (-2,3) to[R=$R_A$] (-2,5) to[short] (2,5)
+(-2,-0.5) to[C=$C$] 
+(-2,1) to[R=$R_B$] 
+(-2,3) to[R=$R_A$] 
+(-2,5) to[short] (2,5)
 (-2,1) to[short] (0,1)
 (-1,1) to[short] (-1,2) to[short] (0,2)
 (-2,3) to[short] (0,3)
 (1,4) to[short] (1,5)
 (2,4) to[short] (2,5)
-(-4,-0.5) node[ground]{} to[V=$v_{\mathrm{s}}$] (-4,5) to[short] (-2,5)
+(-4,5) to[V, l_=$v_{\mathrm{s}}$] (-4,-0.5)
+(-4,-0.5) node[ground]{} 
+(-4,5) to[short] (-2,5)
 (-4,-0.5) to[short] (1.5,-0.5)
 ;\end{circuitikz}
 \caption{\label{sch-alarme-1}\textbf{Sous-objectif:} Connecter un haut-parleur à la sortie $v_\mathrm{out}$ de la puce 555. On souhaite ainsi faire la \textit{transduction} du signal $v_\mathrm{out}$, c'est-à-dire le convertir d'un signal électrique à un signal mécanique (sonore). Déterminer un ensemble de valeurs de $R_A$, $R_B$ et $C$ qui donneront un signal de sortie à une fréquence audible par l'oreille humaine, puis à partir d'une mesure à l'oscilloscope, écrire une équation simple pour évaluer un temps écoulé.}
@@ -179,12 +185,20 @@ Le minimum de simulations, expériences et analyses à être accomplies par équ
 \centering
 \begin{circuitikz} \draw
 (0,0) node[op amp](opamp){}
-(opamp.+) to[short] (-1.2,-0.5) to[short] (-1.2,-2.2)
-(opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2.2)
-(opamp.out) to[short,-o] (2.1,0) node[right]{$v_{\mathrm{out}}$}
+(opamp.+) to[short] 
+(-1.2,-0.5) to[short] (-1.2,-2.2)
+(opamp.-) to[short] 
+(-1.2,0.5) to[short] (-1.2,2.2)
+(opamp.out) to[short,-o] 
+(2.1,0) node[right]{$v_{\mathrm{out}}$}
 (opamp.down) ++ (0,-0.5) node[below]{$-5$~V} -- (opamp.down)
 (opamp.up) ++ (0,0.5) node[above]{5~V} -- (opamp.up)
-(-4,2.2) node[ground]{} to[C=$C$] (-1.2,2.2) to[R=$R$] (1.6,2.2) to[short] (1.6,-2.2) to[R=10~k$\Omega$] (-1.2,-2.2) to[R=10~k$\Omega$] (-4,-2.2) node[ground]{}
+(-4,2.2) node[ground]{} to[C=$C$] 
+(-1.2,2.2) to[R=$R$] 
+(1.6,2.2) to[short] 
+(1.6,-2.2) to[R=10~k$\Omega$] 
+(-1.2,-2.2) to[R=10~k$\Omega$] 
+(-4,-2.2) node[ground]{}
 ;\end{circuitikz}
 \caption{\label{sch-osc-relax}\textbf{Sous-objectif:} Déterminer la forme du signal à la sortie de l'amplificateur et étudier l'impact des paramètres R et C sur celui-ci.}
 \end{figure}
@@ -249,12 +263,19 @@ Faites la conception d'un circuit oscillateur basé sur l'utilisation d'un ampli
 \centering
 \begin{circuitikz} \draw
 (0,0) node[op amp](opamp){}
-(opamp.+) to[short] (-1.2,-0.5) to[short] (-1.2,-2.2)
-(opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2.2)
-(opamp.out) to[short,-o] (2.1,0) node[right]{$v_{\mathrm{out}}$}
+(opamp.+) to[short] 
+(-1.2,-0.5) to[short] (-1.2,-2.2)
+(opamp.-) to[short] 
+(-1.2,0.5) to[short] (-1.2,2.2)
+(opamp.out) to[short,-o] 
+(2.1,0) node[right]{$v_{\mathrm{out}}$}
 (opamp.down) ++ (0,-0.5) node[below]{$-5$~V} -- (opamp.down)
 (opamp.up) ++ (0,0.5) node[above]{5~V} -- (opamp.up)
-(-4,2.2) node[ground]{} to[R=$R_1$] (-1.2,2.2) to[R=$R_2$] (1.6,2.2) to[short] (1.6,-2.2) to[R=$R_3$] (-1.2,-2.2) to[short] (-2.2,-2.2)
+(-4,2.2) node[ground]{} to[R=$R_1$] 
+(-1.2,2.2) to[R=$R_2$] 
+(1.6,2.2) to[short] 
+(1.6,-2.2) to[R=$R_3$] 
+(-1.2,-2.2) to[short] (-2.2,-2.2)
 node[draw,minimum width=2cm,minimum height=2cm, dashed] at (-3.2,-2.2){?} (-4.2,-2.2) to[short] (-5,-2.2) node[ground]{};
 \end{circuitikz}
 \caption{\label{sch-osc-relax}\textbf{Sous-objectif:} Compléter le circuit avec les composants de votre choix afin d'obtenir les spécifications demandées.}
@@ -297,10 +318,15 @@ Vous pouvez obtenir un son d'alarme rudimentaire en ajoutant un deuxième oscill
 (-2,3) to[short] (0,3)
 (1,4) to[short] (1,5)
 (2,4) to[short] (2,5)
-(-11,-0.5) node[ground]{} to[V=4~V] (-11,5) to[short] (-2,5) to[short] (2,5)
+(-11, 5) to[V, l_=4~V] (-11,-0.5)
+(-11,-0.5) node[ground]{} 
+(-11,5) to[short] 
+(-2,5) to[short] (2,5)
 (-4,3) to[R=270~$\Omega$] (-2,3)
 (-5.5,0) to[short] (-5.5,-0.5)
-(-9,-0.5) to[C=1~$\mu$F] (-9,1) to[R=1~M$\Omega$] (-9,3) to[R=100~k$\Omega$] (-9,5)
+(-9,-0.5) to[C=1~$\mu$F] 
+(-9,1) to[R=1~M$\Omega$] 
+(-9,3) to[R=100~k$\Omega$] (-9,5)
 (-9,1) to[short] (-7,1)
 (-8,1) to[short] (-8,2) to[short] (-7,2)
 (-9,3) to[short] (-7,3)

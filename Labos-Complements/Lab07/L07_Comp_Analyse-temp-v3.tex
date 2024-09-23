@@ -1,0 +1,148 @@
+\documentclass[12pt,oneside,letterpaper]{article}
+
+\usepackage[canadien]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[letterpaper]{geometry}
+\usepackage[americanvoltages,americancurrents, siunitx]{circuitikz}
+\usetikzlibrary{babel}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{myheadings}
+\markboth{GPH-2006/PHY-2002~---~Analyse~temporelle}{GPH-2006/PHY-2002~---~Analyse~temporelle}
+
+
+\begin{document}
+
+
+\title{\textbf{Complément}\\Analyse temporelle}
+\author{Jean-Raphaël Carrier \& Claudine Allen}
+\date{}
+\maketitle
+
+
+Lorsque la tension (ou courant) est subitement modifiée dans un circuit électrique ou électronique, ce dernier va prendre un certain temps afin de s'ajuster complètement. Ce délai, qui dépend du circuit en question, est habituellement quantifié avec un des deux paramètres suivants : le \textit{temps de montée} ou la \textit{constante de temps}.
+
+Comme pour tout système dynamique avec un état d'équilibre, l'état final est appelé le \textit{régime permanent}, alors que l'intervalle dans lequel le système varie entre ses états initial et final s'appelle le \textit{régime transitoire}.
+
+
+\section{Temps de montée}
+
+Soit un signal qui passe d'une valeur $v_{\mathrm{i}}$ à une valeur $v_{\mathrm{f}}$ supérieure. Le temps de montée, noté $t_{\mathrm{m}}$, est défini comme l'intervalle entre les temps où 10~\% et 90~\% de la transition est complétée. Ainsi, le temps de montée est donné par la relation:
+\begin{subequations}
+\begin{equation}
+t_{\mathrm{m}}=t_{90\%}-t_{10\%},
+\end{equation}
+où les deux temps de référence sont donnés par
+\begin{gather}
+v\!\left(t_{10\%}\right)=v_{\mathrm{i}}+0,\!1\left(v_{\mathrm{f}}-v_{\mathrm{i}}\right)\\
+v\!\left(t_{90\%}\right)=v_{\mathrm{i}}+0,\!9\left(v_{\mathrm{f}}-v_{\mathrm{i}}\right).
+\end{gather}
+\end{subequations}
+
+Si la valeur du signal diminue au lieu d'augmenter, on parle alors de \textit{temps de descente} et la définition est inversée.
+
+
+\section{Constante de temps}
+
+La constante de temps, notée $\tau$, est un autre paramètre qui permet de quantifier le temps nécessaire à un circuit pour atteindre son régime permanent. Elle est égale au temps nécessaire pour que la transition soit effectuée à environ 63,21~\% ($1-\mathrm{e}^{-1}$ pour être exact). Dans le cas d'un signal qui \textit{augmente} de $V_i$ à $V_f$, la constante de temps est définie par:
+\begin{equation}
+v\!\left(\tau\right)=v_{\mathrm{f}}-\frac{v_{\mathrm{f}}-v_{\mathrm{i}}}{\mathrm{e}}.
+\end{equation}
+Si le signal \textit{diminue} de $v_{\mathrm{i}}$ à $V_{\mathrm{f}}$, la constante de temps est alors définie par:
+\begin{equation}
+v\!\left(\tau\right)=v_{\mathrm{f}}+\frac{v_{\mathrm{i}}-v_{\mathrm{f}}}{\mathrm{e}}.
+\end{equation}
+
+Si la transition suit une fonction exponentielle (comme c'est très souvent le cas), 95~\% de la transition sera effectuée lorsque $t=3\,\tau$ et 99~\% lorsque $t=5\,\tau$. Dans la plupart des applications, le régime permanent est considéré comme atteint à partir de $5\,\tau$.
+
+
+\section{Exemple}
+
+Considérons le circuit RC représenté à la figure~\ref{circuitRC-int}. Depuis très longtemps, l'interrupteur~1 est fermé et l'interrupteur~2 est ouvert. On considère qu'au temps $t=0$, alors que le condensateur est pleinement chargé, l'interrupteur~1 s'ouvre et l'interrupteur~2 se ferme.
+
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(0,3) to[V, l_=$V_S$~(\textsc{dc})] (0,0)
+(0,3) to[opening switch=int.~1] 
+(3,3) to[closing switch,l_=int.~2] (3,0)
+(3,3) to[C=$C$] 
+(6,3) to[R=$R$] 
+(6,0) to[short] (0,0)
+;\end{circuitikz}
+\end{center}
+\caption{\label{circuitRC-int}Circuit RC où le condensateur se charge pour $-\infty<t<0$ et se décharge pour $0<t<\infty$.}
+\end{figure}
+
+En tout temps, la charge accumulée dans un condensateur est égale au produit de la tension à ses bornes et de sa capacité.
+\begin{equation}
+\label{charge}
+q=C\,v
+\end{equation}
+
+À partir du temps $t=0$, le condensateur se décharge en fournissant de l'énergie à la résistance ; il agit ainsi comme une source de tension. Par définition, le courant équivaut au taux de variation de la charge.
+\begin{equation}
+\label{courant}
+i=-\frac{\mathrm{d}q}{\mathrm{d}t}
+\end{equation}
+Le signe négatif est dû au fait que le condensateur se décharge.
+
+En combinant les équations~\ref{charge} et \ref{courant}, on obtient l'équation du courant circulant dans le circuit en fonction du temps $t>0$.
+\begin{equation}
+\label{courant-tension}
+i=-C\,\frac{\mathrm{d}v}{\mathrm{d}t}
+\end{equation}
+
+Puisqu'il ne s'agit que de deux composants reliés ensemble, le courant et la tension sont en tout temps les mêmes pour le condensateur et pour la résistance. En appliquant la loi d'Ohm, l'équation~\ref{courant-tension} devient:
+\begin{equation}
+\label{tension-tension}
+v=-R\,C\,\frac{\mathrm{d}v}{\mathrm{d}t}.
+\end{equation}
+
+L'équation~\ref{tension-tension} est une équation différentielle du premier ordre. En la résolvant, l'équation de la tension aux bornes de chaque élément en fonction du temps est obtenue:
+\begin{equation}
+\label{tension}
+v=v_0\,\mathrm{e}^{\frac{-t}{R\,C}}.
+\end{equation}
+où $V_0$ est la tension initiale aux bornes du condensateur ($v_0=v_{\mathrm{s}}$).
+
+Puisqu'il s'agit d'une décharge, la tension diminue avec le temps ; le temps de descente est alors égal à:
+\begin{subequations}
+\begin{equation}
+t_{\mathrm{d}}=t_{90\%}-t_{10\%}.
+\end{equation}
+Les valeurs des deux temps de référence sont:
+\begin{gather}
+t_{90\%}=-R\,C\,\mathrm{ln}\!\left(0,\!1\right)\\
+t_{10\%}=-R\,C\,\mathrm{ln}\!\left(0,\!9\right).
+\end{gather}
+\end{subequations}
+
+La constante de temps, quant à elle, est donnée par:
+\begin{subequations}
+\begin{gather}
+v_0\,\mathrm{e}^{\frac{-\tau}{R\,C}}=v_0\,\mathrm{e}^{-1}\\
+\tau=R\,C.
+\end{gather}
+\end{subequations}
+
+Ainsi, pour que le condensateur soit considéré comme complètement déchargé, il faut un temps égal à $5\,R\,C$.
+
+
+\end{document}
+
+Écrit par Jean-Raphaël Carrier
+Dernière modification : 11 janvier 2014
+
+Reste à faire:
+
+- déphasage (à voir?) 

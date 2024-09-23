@@ -1,0 +1,284 @@
+\documentclass[12pt,oneside,letterpaper]{article}
+
+\usepackage[canadien]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[letterpaper]{geometry}
+\usepackage[americanvoltages,americancurrents,siunitx]{circuitikz}
+\usetikzlibrary{babel}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{myheadings}
+\markboth{GPH-2006/PHY-2002~---~Lois~et~théorèmes~de~base~en~électricité}{GPH-2006/PHY-2002~---~Lois~et~théorèmes~de~base~en~électricité}
+
+
+\begin{document}
+
+
+\title{\textbf{Complément}\\Lois et théorèmes de base en électricité}
+\author{Jean-Raphaël Carrier \& Claudine Allen}
+\date{}
+\maketitle
+
+
+\section{Introduction}
+
+Il existe un très grand nombre de lois et théorèmes en physique électrique, mais seulement les lois plus fondamentales sont décrites ici.
+
+
+\section{Puissance instantanée}
+
+La puissance instantanée dans un composant électrique est égale au produit de la tension aux bornes de l'élément et du courant qui le traverse:
+\begin{equation}
+\label{eq-loi-joule}
+p\!\left(t\right)=v\!\left(t\right)\cdot i\!\left(t\right).
+\end{equation}
+La puissance d'une résistance est donc:
+\begin{equation}
+\label{eq-puissance-R}
+p_{R}\!\left(t\right)=v\!\left(t\right)\cdot i\!\left(t\right)=\frac{v^2}{R}=R \, i^2.
+\end{equation}
+Puisque la résistance $R$ est toujours positive, il va de soi que la puissance instantanée dans une résistance est aussi toujours positive. Ceci signifie que la résistance \textit{dissipe} son énergie (en chaleur).
+
+Les condensateurs et les bobines d'inductance peuvent autant accumuler de l'énergie (puissance positive) qu'en fournir au circuit (puissance négative). La puissance instantanée dans ces deux composants se calcule ainsi:
+\begin{gather}
+\label{eq-puissance-L}
+p_{L}\!\left(t\right)=L \, i\!\left(t\right) \, \frac{\mathrm{d}i\!\left(t\right)}{\mathrm{d}t}\\
+\label{eq-puissance-C}
+p_{C}\!\left(t\right)=C \, v\!\left(t\right) \, \frac{\mathrm{d}v\!\left(t\right)}{\mathrm{d}t}.
+\end{gather}
+
+
+\section{Lois de Kirchhoff}
+
+Les deux lois de Kirchhoff permettent de relier tous les composants d'un circuit. Ce sont \textbf{la loi des n{\oe}uds} et \textbf{la loi des mailles}.
+\begin{description}
+\item[N{\oe}ud:] Un n{\oe}ud est une jonction entre deux ou plusieurs composants d'un circuit. Deux points qui sont reliés entre eux, sans être séparés par un composant, font en fait partie du même n{\oe}ud. Par exemple, dans le circuit de la figure~\ref{circuit}, les points \textit{b}, \textit{d} et \textit{e} forment un seul n{\oe}ud, de même pour les points \textit{c} et \textit{f}.
+\end{description}
+\begin{description}
+\item[Maille:] Une maille est une boucle fermée dans un circuit électrique. Par exemple, il existe six mailles différentes dans le circuit de la figure~\ref{circuit} : \textit{abeda}, \textit{abcfeda}, \textit{abcfegda}, \textit{abegda}, \textit{bcfeb} et \textit{degd}.
+\end{description}
+
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(0,4) to[V, l_=$v_s$,*-*] (0,2) to[R,l_=$R_1$,*-*] (0,0) 
+to[I,l_=$i_s$,*-*] (2,2) to[short,*-*] (0,2)
+(0,4) to[L=$L$,*-*] (2,4)
+(4,4) to[R,l_=$R_2$,*-*] (2,4) to[short,*-*] (2,2)
+(4,2) node[ground]{} to[short,*-*] (4,4) 
+(4,2) to[C, l_=$C$,*-*] (2,2)
+{[anchor=east] (0,0) node {g} (0,2) node {d} (0,4) node {a}}
+{[anchor=west] (4,4) node {c} (4,2) node {f}}
+{[anchor=north west] (2,2) node {e}}
+{[anchor=south] (2,4) node {b}}
+;
+\end{circuitikz}
+\end{center}
+\caption{\label{circuit}Exemple de circuit électrique linéaire.}
+\end{figure}
+
+
+\subsection{Loi des n{\oe}uds (loi des courants)}
+
+La loi des n{\oe}uds stipule que la somme algébrique des courants entrant $i_e$ et sortant $i_s$ en un n{\oe}ud est nulle en tout temps:
+\begin{equation}
+\sum_{n=1}^N i_{e,n} - \sum_{m=1}^M i_{s,m} = 0.
+\end{equation}
+Cette loi découle directement du principe de conservation de la charge. En gros, ce qui entre doit égaler ce qui sort : il ne peut pas y avoir d'accumulation de charges en un point.
+
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) to[short,i^<=$i_3$,-*] (2,2) to[short,i^<=$i_1$] (4.5,2)
+(0,4) to[short,i^>=$i_2$] (2,2)
+(2,4.5) to[short,i^<=$i_4$] (2,2)
+;\end{circuitikz}
+\end{center}
+\caption{\label{loi-noeuds}Schéma pour la loi des n{\oe}uds : la somme des courants sortant égale la somme des courants entrant.}
+\end{figure}
+
+En appliquant la loi des n{\oe}uds à la figure~\ref{loi-noeuds}, on obtient l'équation suivante:
+\begin{equation}
+\label{eq-loi-noeuds}
+i_1+i_2=i_3+i_4.
+\end{equation}
+
+Par analogie, on peut voir le circuit électrique comme une grosse tuyauterie étanche (aucune fuite d'eau). Toute l'eau qui entre dans un embranchement doit en ressortir.
+
+
+\subsection{Loi des mailles (loi des tensions)}
+
+La loi des mailles dit que la somme algébrique des tensions $v$ dans un parcours fermé (une maille) est nulle en tout temps:
+\begin{equation}
+\sum_{p=1}^P v_p = 0.
+\end{equation}
+Cette loi découle quant à elle du principe de conservation de l'énergie. Ceci signifie qu'une charge qui part d'un point, parcourt un chemin quelconque et revient à son point de départ aura le même potentiel qu'au départ.
+
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} 
+\draw
+(0,3) to[R,v^>=$v_R$] (3,3)
+(3,0) to[C,v^>=$v_C$] (0,0)
+(3,3) to[L,v^>=$v_L$] (3,0)
+(0,3) to[V, l_=$v_s$] (0,0);
+\end{circuitikz}
+\end{center}
+\caption{\label{loi-mailles}Schéma pour la loi des mailles : la somme des gains en tension égale la somme des chutes de tension.}
+\end{figure}
+
+En appliquant la loi des mailles à la figure~\ref{loi-mailles}, on obtient l'équation suivante:
+\begin{equation}
+\label{eq-loi-mailles}
+v_s=v_R+v_L+v_C.
+\end{equation}
+
+Une analogie entre le potentiel électrique et le potentiel gravitationnel permet de bien comprendre cette loi. Si vous êtes à un endroit quelconque, à une hauteur $h$ par rapport au niveau de la mer, que vous parcourez le chemin que vous voulez et que vous revenez à votre point de départ, vous serez alors revenu à la même hauteur $h$ qu'initialement.
+
+
+\section{Théorèmes de Thévenin et Norton}
+
+Les théorèmes de Thévenin et Norton permettent de convertir une partie de circuit résistif compliquée en un dipôle simple, en se basant sur les propriétés de linéarité dont découle le principe de superposition. Conséquemment, ces deux théorèmes ne sont valides que si tous les éléments du circuit sont des résistances ou des sources d'alimentation.
+
+
+\subsection{Théorème de Thévenin}
+
+\emph{Un réseau électrique linéaire vu de deux points est équivalent à une source de tension dont la force électromotrice est égale à la différence de potentiel à vide entre ces deux points, en série avec une résistance égale à celle que l'on mesure entre les deux points lorsque les sources d'alimentation indépendantes sont rendues passives.}
+
+En d'autres mots, le théorème de Thévenin stipule que, du point de vue de deux points, une source de tension (notée $v_T$) et une résistance (notée $R_T$) en série sont équivalentes à n'importe quel circuit résistif linéaire. La source de tension $v_T$ est égale à la différence de potentiel entre les deux points en circuit ouvert. La résistance $R_T$ est la résistance équivalente du circuit lorsque toutes les sources d'alimentation indépendantes sont annulées. Pour annuler les sources d'alimentation, on remplace chaque source de tension par un court-circuit et chaque source de courant par un circuit ouvert.
+
+
+\subsection{Théorème de Norton}
+
+\emph{Un réseau électrique linéaire vu de deux points est équivalent à une source de courant dont l'intensité est égale au courant mesuré entre ces deux points lorsqu'ils sont court-circuités, en parallèle avec une résistance égale à celle que l'on mesure entre les deux points lorsque les sources d'alimentation indépendantes sont rendues passives.}
+
+En gros, le théorème de Norton est identique au théorème de Thévenin, sauf qu'il s'agit d'une source de courant ($i_N$) en parallèle avec une résistance ($R_N$), au lieu d'une source de tension en série avec une résistance.
+
+Il est facile de passer directement d'un équivalent Thévenin à un équivalent Norton et \textit{vice versa}, puisque:
+\begin{subequations}
+\label{transformation}
+\begin{gather}
+v_T=i_N \, R_N\\
+R_T=R_N.
+\end{gather}
+\end{subequations}
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(3,3) to[short,o-]
+(3,3) to[R=$R_T$]
+(0,3) to[V=$v_T$]
+(0,0) 
+(3,0) to[short,o-]
+
+(9,0) to[short,o-] (6,0) to[I=$i_N$] (6,3) to[short,-o] (9,3)
+(8,3) to[R=$R_N$] (8,0)
+;\end{circuitikz}
+\end{center}
+\caption{\label{sch-transformation}Équivalents Thévenin (gauche) et Norton (droite).}
+\end{figure}
+
+
+\subsection{Exemple}
+
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} 
+\draw
+(0,0) to[R,l_=8~$\Omega$] (3,0)
+to[R, l_=7~$\Omega$] (6,0)
+to[R, l_=$R_1$,*-*] (6,3)
+to[short] (3,3)
+to[R=16~$\Omega$] (0,3)
+to[V=12~V] (0,0)
+(3,3) to[R=24~$\Omega$] (3,0)
+(0,3) to[short] (0,4)
+to[I=500~mA] (3,4)
+to[short] (3,3)
+
+(9,3) to[V, l_=$v_T$] (9,0)
+(9,3) to[R=$R_T$] 
+(12,3) to[R=$R_1$,*-*] 
+(12,0) to[short] (9,0)
+{[anchor=west] (12,3) node {a} (12,0) node {b}}
+\end{circuitikz}
+\end{center}
+\caption{\label{exemple-thevenin-1}Simplification du dipôle vu par $R_1$ (gauche) avec un équivalent Thévenin (droite).}
+\end{figure}
+
+Soit le circuit représenté par la figure~\ref{exemple-thevenin-1} où on ne s'intéresse qu'à la résistance $R_1$. On utilise alors le théorème de Thévenin pour remplacer le dipôle vu par la charge $R_1$ avec une source de tension et une résistance équivalentes.
+
+Tout d'abord, pour faciliter l'analyse, remplaçons la source de courant par une source de tension équivalente. Comme il a été énoncé dans la section précédente (équation~\ref{transformation}), une source de courant en parallèle avec une résistance est équivalente à une source de tension en série avec cette même résistance. Ainsi, on remplace la source de courant de 0,5~A en parallèle avec la résistance de 16~$\Omega$ par une source de tension de 8~V en série avec cette même résistance. Le circuit de départ est alors analogue au circuit suivant:
+
+\begin{center}
+\begin{circuitikz} \draw
+(2,3) to[V, l_=8~V] (0,3)
+(0,3) to[V, l_=12~V] (0,0)
+(2,3) to[R=16~$\Omega$] 
+(4,3) to[short] 
+(6,3) to[R=$R_1$,*-*] 
+(6,0) to[R=7~$\Omega$] 
+(4,0) to[R=8~$\Omega$] (0,0)
+(4,3) to[R=24~$\Omega$] (4,0)
+{[anchor=west] (6,3) node {a} (6,0) node {b}}
+;\end{circuitikz}
+\end{center}
+
+La valeur de la tension de Thévenin est égale à la différence de potentiel entre les bornes de la charge lorsque celle-ci est retirée:
+\begin{center}
+\begin{circuitikz} \draw
+(2,3) to[V, l_=8~V] (0,3)
+(0,3) to[V, l_=12~V] (0,0)
+(2,3) to[R=16~$\Omega$] 
+(4,3) to[short,-o] (6,3)
+(6,0) to[R=7~$\Omega$,o-] 
+(4,0) to[R=8~$\Omega$] (0,0)
+(4,3) to[R=24~$\Omega$] (4,0)
+{[anchor=west] (6,3) node {a} (6,0) node {b}}
+;\end{circuitikz}
+\end{center}
+\begin{equation}
+v_T=10~V
+\end{equation}
+
+La valeur de la résistance de Thévenin est égale à la résistance équivalente entre les bornes de la charge lorsque celle-ci est retirée et lorsque les sources d'alimentation indépendantes sont annulées:
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) to[short] 
+(0,3) to[R=$16~\Omega$] 
+(3,3) to[short,-o] (6,3)
+(6,0) to[R=$7~\Omega$,o-] 
+(3,0) to[R=$8~\Omega$] (0,0)
+(3,3) to[R=$24~\Omega$] (3,0)
+{[anchor=west] (6,3) node {a} (6,0) node {b}}
+;\end{circuitikz}
+\end{center}
+\begin{equation}
+R_T=R_{eq}=19~\Omega
+\end{equation}
+
+L'équivalent Thévenin est donc:
+
+\begin{center}
+\begin{circuitikz} \draw
+(0,3) to[V, l_=10~V] (0,0)
+(0,3) to[R=19~$\Omega$] 
+(3,3) to[R=$R_1$,*-*] 
+(3,0) to[short] (0,0)
+{[anchor=west] (3,3) node {a} (3,0) node {b}}
+;\end{circuitikz}
+\end{center}
+
+\end{document}
+
+Écrit par Jean-Raphaël Carrier
+Dernière modification : 10 janvier 2014

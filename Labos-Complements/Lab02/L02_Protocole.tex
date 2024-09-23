@@ -26,7 +26,7 @@
 \PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
-\usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
+\usepackage[americanvoltages,americancurrents,siunitx]{circuitikz}
 \usetikzlibrary{babel}
 \usepackage{caption}
 \usepackage{enumitem}
@@ -120,7 +120,12 @@ c) Réalisez le circuit de la figure~\ref{L2-sch-tensionnb} sur la plaquette de 
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-(0,0) node[ground]{} to[V=$v_{\mathrm{s}}$] (0,3) to[ammeter] (3,3) to[short] (5,3) to[R=$R_{ch}$] (5,0) to[short] (0,0)
+(0,0) node[ground]{} 
+(0,3) to[V, l_=$v_{\mathrm{s}}$] (0,0) 
+(0,3) to[ammeter] 
+(3,3) to[short] 
+(5,3) to[R=$R_{ch}$] 
+(5,0) to[short] (0,0)
 (3,0) to[voltmeter] (3,3)
 ;\end{circuitikz}
 \caption{\label{L2-sch-tensionnb}Mesure de la tension et du courant d'une résistance -- tension non biaisée.}
@@ -131,7 +136,12 @@ d) Réalisez le circuit de la figure~\ref{L2-sch-courantnb} sur la plaquette de 
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-(0,0) node[ground]{} to[V=$v_{\mathrm{s}}$] (0,3) to[short] (2,3) to[ammeter] (5,3) to[R=$R_{ch}$] (5,0) to[short] (0,0)
+(0,0) node[ground]{} 
+(0,3) to[V, l_=$v_{\mathrm{s}}$] (0,0)
+(0,3) to[short] 
+(2,3) to[ammeter] 
+(5,3) to[R=$R_{ch}$] 
+(5,0) to[short] (0,0)
 (2,0) to[voltmeter] (2,3)
 ;\end{circuitikz}
 \caption{\label{L2-sch-courantnb}Mesure de la tension et du courant d'une résistance -- courant non biaisé.}

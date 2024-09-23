@@ -23,7 +23,7 @@
 \usepackage{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{graphicx}
-\usepackage[nooldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
+\usepackage[americanvoltages,americancurrents,siunitx]{circuitikz}
 \usetikzlibrary{babel}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.15}
@@ -109,7 +109,10 @@ On peut déterminer la fréquence de résonance $\omega_0=2\pi f_0$ d'un circuit
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-(0,0) to[V=$V_S$,invert] (0,3) to[C=$C$] (3,3) to[R=$R$,i>^=$I$] (3,0) to[L=$L$] (0,0);
+(0,3) to[V, l_=$V_S$] (0,0)
+(0,3) to[C=$C$] 
+(3,3) to[R=$R$,i>^=$I$] 
+(3,0) to[L=$L$] (0,0);
 \end{circuitikz}
 \caption{Circuit RLC en série.}
 \label{circuitRLC-serie}
@@ -222,17 +225,35 @@ La figure~\ref{sch-alarme-1} illustre comment utiliser la puce 555 pour génére
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw[thick]
-(0,0) to[short,-*] (0,1) node[right]{2} to[short] (0,2) node[right]{6} to[short,*-*] (0,3) node[right]{7} to[short] (0,4) to[short] (1,4) node[below]{4} to[short,*-*] (2,4) node[below]{8} to[short] (3,4) to[short] (3,3) node[left]{3} to[short,*-*] (3,1) node[left]{5} to[short] (3,0) to[short,-*] (1.5,0) node[above]{1} to[short] (0,0)
+(0,0) to[short,-*] 
+(0,1) node[right]{2} to[short] 
+(0,2) node[right]{6} to[short,*-*] 
+(0,3) node[right]{7} to[short] 
+(0,4) to[short] 
+(1,4) node[below]{4} to[short,*-*] 
+(2,4) node[below]{8} to[short] 
+(3,4) to[short] 
+(3,3) node[left]{3} to[short,*-*] 
+(3,1) node[left]{5} to[short] 
+(3,0) to[short,-*] 
+(1.5,0) node[above]{1} to[short] (0,0)
 ;\draw
-(3,3) to[short,-o] (3.5,3) node[right]{$v_{\mathrm{out}}$}
+(3,3) to[short,-o] 
+(3.5,3) node[right]{$v_{\mathrm{out}}$}
 (1.5,0) to[short] (1.5,-0.5)
-(-2,-0.5) to[C=$C$] (-2,1) to[R=$R_B$] (-2,3) to[R=$R_A$] (-2,5) to[short] (2,5)
+(-2,-0.5) to[C=$C$] 
+(-2,1) to[R=$R_B$] 
+(-2,3) to[R=$R_A$] 
+(-2,5) to[short] (2,5)
 (-2,1) to[short] (0,1)
-(-1,1) to[short] (-1,2) to[short] (0,2)
+(-1,1) to[short] 
+(-1,2) to[short] (0,2)
 (-2,3) to[short] (0,3)
 (1,4) to[short] (1,5)
 (2,4) to[short] (2,5)
-(-4,-0.5) node[ground]{} to[V=$v_{\mathrm{s}}$] (-4,5) to[short] (-2,5)
+(-4,5) to[V, l_=$v_{\mathrm{s}}$] (-4,-0.5)
+(-4,-0.5) node[ground]{} 
+(-4,5) to[short] (-2,5)
 (-4,-0.5) to[short] (1.5,-0.5)
 ;\end{circuitikz}
 \caption{Circuit d'une puce 555 en mode astable. Les numéros des entrées de la puce sont définis à la figure~\ref{sch-555}.}

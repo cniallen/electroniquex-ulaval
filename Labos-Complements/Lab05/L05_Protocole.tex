@@ -21,7 +21,7 @@
 \usepackage[all]{hypcap}
 \usepackage{enumitem}
 \usepackage{graphicx}
-\usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
+\usepackage[americanvoltages,americancurrents,siunitx]{circuitikz}
 \usetikzlibrary{babel}
 \usepackage{caption}
 \usepackage[letterpaper,headheight=15pt]{geometry}
@@ -115,13 +115,23 @@ Enfin, votre VI \textit{LabVIEW} doit:
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-%Les signes +,- du générateur de fonction $V_g$  sont inversés! À régler.
-(3,0) to[short,o-] (0,0) node[ground]{} to[sV=$V_g$] (0,4) to[european resistor,l^=$Z_g$] (2,4) to[short,-o] (3,4)
-(5.5,0.5) to[pR,n=pR1] (5.5,2.5) to[R=12~$\Omega$] (5.5,4) to[short,-o] (4.5,4)
-(9,0.5) to[pR,n=pR2] (9,2.5) to[R,l_=12~$\Omega$] (9,4) to[short,-o] (7,4)
+(3,0) to[short,o-] (0,0)
+(0,4) to[sV=$V_g$] 
+(0,0) node[ground]{} 
+(0,4) to[european resistor,l^=$Z_g$] 
+(2,4) to[short,-o] (3,4)
+(5.5,0.5) to[pR,n=pR1] 
+(5.5,2.5) to[R=12~$\Omega$] 
+(5.5,4) to[short,-o] (4.5,4)
+(9,0.5) to[pR,n=pR2] 
+(9,2.5) to[R,l_=12~$\Omega$] 
+(9,4) to[short,-o] (7,4)
 (8,1) to[C=4~$\mu$F] (8,4)
-(pR1.wiper) to[short] (4.5,1.5) to[short,-o] (4.5,0)
-(pR2.wiper) to[short] (8,1.5) to[short] (8,0) to[short,-o] (7,0)
+(pR1.wiper) to[short] 
+(4.5,1.5) to[short,-o] (4.5,0)
+(pR2.wiper) to[short] 
+(8,1.5) to[short] 
+(8,0) to[short,-o] (7,0)
 {[anchor=south] (1.3,-1) node{générateur} (5,-1) node{c)} (8,-1) node{f)}}
 {[anchor=south west] (4.5,1.5) node{$R_{p}$} (8,1.5) node{$R_{p}$}}
 {[anchor=west] (3,4) node{\textbf{a}} (3,0) node{\textbf{b}}}
@@ -227,8 +237,14 @@ Les points suivants font partie d'une analyse \textbf{minimale} des expériences
 \begin{figure}[h]
 \centering
 \begin{circuitikz} \draw
-(0,0) node[ground]{} to[V=$V_{\mathrm{source}}$] (0,3) to[european resistor,l^=$Z_{\mathrm{source}}$] (2,3) to[short] (3,3) to[european resistor,l^=$Z_{\mathrm{charge}}$] (3,0) to[short] (0,0)
+(0,3) to[V, l_=$V_{\mathrm{source}}$]
+(0,0) node[ground]{} 
+(0,3) to[european resistor,l^=$Z_{\mathrm{source}}$] 
+(2,3) to[short] 
+(3,3) to[european resistor,l^=$Z_{\mathrm{charge}}$] 
+(3,0) to[short] (0,0)
 {[anchor=south] (0.5,-1) node{source alimentation}}
+
 ;\draw[dotted] (-2,-1) -- (-2,4) -- (2.3,4) -- (2.3,-1) -- (-2,-1)
 ;\end{circuitikz}
 \caption{\label{sch-prep}Charge simple reliée à une source de tension.}

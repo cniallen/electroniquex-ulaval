@@ -1,0 +1,186 @@
+\documentclass[12pt,oneside,letterpaper]{article}
+
+\usepackage[canadien]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[letterpaper]{geometry}
+\usepackage[americanvoltages,americancurrents, siunitx]{circuitikz}
+\usetikzlibrary{babel}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+
+\captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
+\pagestyle{myheadings}
+\markboth{GPH-2006/PHY-2002~---~Circuits~de~base}{GPH-2006/PHY-2002~---~Circuits~de~base}
+
+
+\begin{document}
+
+
+\title{\textbf{Complément}\\Circuits de base}
+\author{Jean-Raphaël Carrier \& Claudine Allen}
+\date{}
+\maketitle
+
+
+\section{Pont de Wheatstone}
+
+Le pont de Wheatstone est un circuit électrique permettant de mesurer avec précision la valeur d'une résistance (voir figure~\ref{wheatstone}).
+
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(0, 5.5) to[V, l_=$v_{\mathrm{s}}$] 
+(0,0.5) node[ground]{} 
+(0,5.5) to[short] 
+(4,5.5) to[short] 
+(4,5) to[R,l_=$R_2$,-*] 
+(2,3) to[R,l_=$R_3$] 
+(4,1) to[short] 
+(4,0.5) to[short] (0,0.5)
+(4,5) to[R=$R_1$,-*] (6,3)
+(4,1) to[vR, l_=$R_4$] (6,3)
+(2,3) to[voltmeter] (6,3)
+{[anchor=east] (2,3) node {a}}
+{[anchor=west] (6,3) node {b}}
+;\end{circuitikz}
+\end{center}
+\caption{\label{wheatstone}Pont de Wheatstone avec $R_1$ inconnue.}
+\end{figure}
+
+Supposons que la résistance à mesurer est $R_1$. Les résistances $R_2$ et $R_3$ sont fixes et connues avec une (autant que possible) grande précision. La résistance $R_4$ est une résistance variable dont sa valeur peut elle aussi être connue avec une grande précision.
+
+Pour pouvoir calculer $R_1$, le pont de Wheatstone doit être à l'équilibre, c'est-à-dire que la différence de potentiel entre les points \textit{a} et \textit{b} doit être nulle. Pour ce faire, $R_4$ doit être ajustée pour que le voltmètre affiche une tension nulle. Par la suite, connaissant la valeur des trois autres résistances, $R_1$ peut être facilement calculée:
+\begin{equation}
+R_1=\frac{R_2\,R_4}{R_3}.
+\end{equation}
+
+\subsection{Démonstration}
+
+À l'équilibre, la différence de potentiel entre les points \textbf{a} et \textbf{b} est nulle, il n'y a alors aucun courant qui traverse le voltmètre. Ainsi, le courant qui traverse $R_2$ est le même que celui qui traverse $R_3$. Aussi, le courant qui traverse $R_1$ est le même que celui qui traverse $R_4$. Et sachant que $v_a=v_b$, ceci mène aux deux équations suivantes:
+\begin{equation}
+\frac{v_{\mathrm{s}}-v_a}{R_2}=\frac{v_a}{R_3}
+\end{equation}
+\begin{equation}
+\frac{v_{\mathrm{s}}-v_a}{R_1}=\frac{v_a}{R_4}.
+\end{equation}
+Puis, on divise ces deux équations pour obtenir:
+\begin{equation}
+\frac{R_1}{R_2}=\frac{R_4}{R_3}.
+\end{equation}
+
+
+\section{Pont de Maxwell}
+
+Le pont de Maxwell est en quelque sorte un pont de Wheatstone modifié afin de mesurer la valeur d'une bobine d'inductance inconnue. Ce circuit fonctionne en courant alternatif.
+
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(0,0.5) node[ground]{} 
+(0, 7.5) to[V, l_=$v_{\mathrm{s}}$] (0, 0.5) 
+(0,7.5) to[short] 
+(6,7.5) to[R=$R_1$] 
+(6,3.5) to[short] 
+(6,3) to[short] 
+(7,3) to[C=$C_4$] 
+(7,1) to[short] 
+(6,1) to[short] 
+(6,0.5) to[short] (0,0.5)
+(5,1) to(6,1) 
+(5,3) to[vR, l_=$R_4$] (5,1)
+(5,3) to[short] (6,3)
+(2,3.5) to[vR, l_=$R_3$] (2,0.5)
+(2,3.5) to[L=$L_2$] 
+(2,5.5) to[R=$R_2$] (2,7.5)
+(2,3.5) to[voltmeter,*-*] (6,3.5)
+{[anchor=east] (2,3.5) node {a}}
+{[anchor=west] (6,3.5) node {b}}
+;\end{circuitikz}
+\end{center}
+\caption{\label{maxwell}Pont de Maxwell avec $L_2$ et $R_2$ inconnues.}
+\end{figure}
+
+Lorsque le pont est à l'équilibre, soit lorsque les points \textbf{a} et \textbf{b} sont au même potentiel électrique ($v_{ab}=0$), la valeur de l'inductance $L_2$ peut être calculée ainsi:
+\begin{equation}
+L_2=R_1 \, R_3 \, C_4.
+\end{equation}
+Ce résultat est indépendant de la fréquence de la source.
+
+Lorsque le pont de Maxwell est utilisé avec un courant constant (source DC), le condensateur $C_4$ devient équivalent à un circuit ouvert et la bobine $L_2$ à un court-circuit ; le circuit est alors parfaitement équivalent à un pont de Wheatstone. Ainsi, le pont de Maxwell peut aussi être utilisé pour mesurer la valeur d'une résistance inconnue (e.g. $R_2$ dans le cas de la figure~\ref{maxwell}).
+
+
+\section{Pont de diodes (pont de Graetz)}
+
+Aussi appelé pont de Graetz, un pont de diodes est un montage constitué de quatre diodes disposées en pont. Le montage est quasi-identique à celui d'un pont de Wheatstone, après avoir remplacé les quatre résistances par des diodes (voir figure~\ref{graetz}).
+
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(4,2) to[D] (2,4) to[D] (4,6)
+(4,2) to[D] (6,4) to[D] (4,6)
+(0,1) to[short,o-] (8,1) to[short] (8,4) to[short] (6,4)
+(0,4) to[short,o-] (2,4)
+(4,2) to[short,-o] (7,2)
+(4,6) to[short,-o] (7,6)
+{[anchor=east] (0,4) node {a} (0,1) node{b}}
+{[anchor=west] (7,6) node {c} (7,2) node{d}}
+;\end{circuitikz}
+\end{center}
+\caption{\label{graetz}Pont de diodes : la partie négative du signal alternatif d'entrée $v_{ab}$ est redressée pour donner un signal de sortie $v_{cd}$ strictement positif.}
+\end{figure}
+
+Un pont de diodes permet de transformer un courant alternatif en un courant continu. Plus spécifiquement, il agit comme une fonction \textit{valeur absolue} : la partie négative du signal est redressée et devient positive. Un pont de diodes est un circuit redresseur de courant.
+
+Les ponts de diodes peuvent aussi être utilisés pour redresser des signaux DC négatifs. Ainsi, en plaçant un pont de diodes à l'entrée d'un circuit, ce dernier pourra fonctionner peu importe le sens du branchement de la source DC. Ceci est pratique pour permettre le fonctionnement normal (et prévenir les bris) du circuit d'un jouet, par exemple, lorsque la pile a été installée à l'envers.
+
+Il est primordial de différencier les expressions \textit{courant continu} et \textit{courant constant}. Le signal à la sortie d'un pont de diodes oscille entre zéro et une valeur maximale à la même fréquence que le signal d'entrée : il ne s'agit pas d'un courant constant (tel que fourni par une source DC). Toutefois, le signal de sortie est positif, c'est-à-dire que le courant circule toujours dans la même direction : c'est pourquoi on parle de courant continu.
+
+Il est toutefois possible, en modifiant le pont de diodes, d'obtenir un courant constant.
+
+
+\subsection{Obtention d'un signal continu constant}
+
+Il existe différentes façons de modifier le pont de diodes afin que la tension convertie soit quasi constante. La plus simple consiste à placer un condensateur en parallèle avec la sortie du pont de diodes, comme l'illustre la figure~\ref{graetz-modif1}.
+
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(4,2) to[D] (2,4) to[D] (4,6)
+(4,2) to[D] (6,4) to[D] (4,6)
+(0,1) to[short,o-] (8,1) to[short] (8,4) to[short] (6,4)
+(0,4) to[short,o-] (2,4)
+(4,2) to[short,-o] (7,2)
+(4,6) to[short,-o] (7,6)
+(4,2) to[C] (4,6)
+{[anchor=east] (0,4) node {a} (0,1) node{b}}
+{[anchor=west] (7,6) node {c} (7,2) node{d}}
+;\end{circuitikz}
+\end{center}
+\caption{\label{graetz-modif1}Pont de diodes modifié pour fournir un signal plus constant.}
+\end{figure}
+
+Lorsque que la tension $v_{cd}$ est supérieure à sa moyenne, le condensateur va utiliser ce surplus de tension pour se charger. Inversement, lorsque la tension $v_{cd}$ est inférieure à la moyenne, le condensateur va se décharger en fournissant une tension au circuit. Ainsi, la sortie $v_{cd}$ devient moyennée. La valeur du condensateur doit être choisie en fonction de la fréquence du signal d'entrée et de la charge sur laquelle est appliquée le signal de sortie selon:
+\begin{equation}
+C\gg\frac{1}{R_{\mathrm{ch}}\,f}.
+\end{equation}
+
+Le désavantage de ce circuit est qu'il peut devenir dangereux lorsque le signal d'entrée est sous haute tension. Dans ce cas, la charge aux bornes du condensateur peut devenir momentanément très élevée. Celle-ci sera proportionnelle à la capacité du condensateur ainsi qu'à la tension d'entrée.
+
+Si la sortie est devenue beaucoup plus stable grâce à l'addition du condensateur, elle n'est pas devenue parfaitement constante pour autant. Pour perfectionner le circuit, il est peut être pertinent d'ajouter un régulateur de tension en série avec la sortie du pont.
+
+
+\end{document}
+
+Écrit par Jean-Raphaël Carrier
+Dernière modification : 11 janvier 2014
+
+Reste à faire:
+
+- (à voir) Parler de la tension non nulle requise pour que le courant traverse une diode (par rapport au redressement)
+- (à voir) Modifier le dessin des ponts de diodes pour avoir un filage moins broche-à-foin, en utilisant des grounds 

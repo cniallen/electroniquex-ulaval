@@ -8,7 +8,7 @@
 \usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage[letterpaper]{geometry}
-\usepackage[oldvoltagedirection,americanvoltages,americancurrents,siunitx]{circuitikz}
+\usepackage[americanvoltages,americancurrents,siunitx]{circuitikz}
 \usetikzlibrary{babel}
 \usepackage{amsmath}
 \usepackage{caption}
@@ -235,9 +235,20 @@ v_{\mathrm{out}}=\frac{\frac{v_1}{R_1}+\frac{v_2}{R_2}+\frac{v_3}{R_3}}{\frac{1}
 \begin{figure}[h]
 \begin{center}
 \begin{circuitikz} \draw
-(-2,1.5) to[short] (-2,3) to[V=$v_1$] (0,3) to[R=$R_1$] (3,3) to[short] (3,1.5)
-(-3,1.5) node[ground]{} to[short] (-2,1.5) to[V=$v_2$] (0,1.5) to[R=$R_2$] (3,1.5) to[short,-o] (4,1.5) node[right]{$v_{\mathrm{out}}$}
-(-2,1.5) to[short] (-2,0) to[V=$v_3$] (0,0) to[R=$R_3$] (3,0) to[short] (3,1.5)
+(-2,1.5) to(-2,3) 
+(0,3) to[V, l_=$v_1$] (-2,3)
+(0,3) to[R=$R_1$] 
+(3,3) to[short] (3,1.5)
+(-3,1.5) node[ground]{}
+(-3,1.5) to(-2,1.5)
+(0,1.5) to[V, l_=$v_2$] (-2,1.5)
+(0,1.5) to[R=$R_2$] 
+(3,1.5) to[short,-o] 
+(4,1.5) node[right]{$v_{\mathrm{out}}$}
+(-2,1.5) to(-2,0)
+(0,0) to[V, l_=$v_3$] (-2,0)
+(0,0) to[R=$R_3$] 
+(3,0) to[short] (3,1.5)
 ;\end{circuitikz}
 \end{center}
 \caption{\label{moy}Application du théorème de Millman.}
@@ -346,9 +357,17 @@ Dans sa forme plus générale, la résistance $R$ est remplacée par une résist
 \begin{center}
 \begin{circuitikz} \draw
 (0,0) node[op amp](opamp){}
-(opamp.+) to[short] (-1.2,-0.5) to[short] (-1.2,-1.5) to[short] (-4,-1.5)
+(opamp.+) to[short] 
+(-1.2,-0.5) to[short] 
+(-1.2,-1.5) to[short] (-4,-1.5)
 (opamp.-) to[short] (-1.2,0.5)
-(opamp.out) to[short] (1.2,0) to[short] (1.2,1.5) to[european resistor,l_=charge~quelconque] (-1.2,1.5) to[short] (-1.2,0.5) to[R,l_=$R$] (-4,0.5) to[V,l_=$v_{\textrm{in}}$] (-4,-1.5) node[ground]{}
+(opamp.out) to[short] 
+(1.2,0) to[short] 
+(1.2,1.5) to[european resistor,l_=charge~quelconque] 
+(-1.2,1.5) to[short] 
+(-1.2,0.5) to[R,l_=$R$] (-4,0.5)
+(-4, -1.5) to[V,l_=$v_{\textrm{in}}$] (-4,0.5)
+(-4,-1.5) node[ground]{}
 ;\end{circuitikz}
 \end{center}
 \caption{\label{sch-source-courant}Circuit pour envoyer un courant constant à une charge quelconque.}
