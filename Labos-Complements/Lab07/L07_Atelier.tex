@@ -67,7 +67,7 @@
 \vspace{-2.5ex}
 \section{Objectifs principaux}\label{sec:objectifs}
 \vspace{-1.5ex}
-Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. On peut alors retirer des fréquences indésirables et généralement obtenir une mesure plus fidèle avec un meilleur rapport signal sur bruit, par exemple. L’effet de différents filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc examinée pour le filtre RC.
+Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. On peut alors retirer des fréquences indésirables et généralement obtenir une mesure plus fidèle avec un meilleur rapport signal sur bruit, par exemple. L’effet de différents filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc examinée pour le filtre RC.\\
 
 %Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 4, 5, 7, 9, 10, 11 et 12 du plan de cours + BAIC?
 \vspace{-2ex}
@@ -80,20 +80,6 @@ Une fonction essentielle accomplie par des circuits électriques dans le travail
 \end{itemize}
 
 
-% \section{Matériel}
-
-% La réalisation de ce laboratoire requiert l'utilisation de:
-% \begin{itemize}
-% \item un oscilloscope avec générateur de fonctions;
-% \item un bloc d'alimentation;
-% \item deux condensateurs de 0,47~$\mu$F et quatre condensateurs de 1~$\mu$F, dont un ayant une précision de $\pm5$~\%;
-% \item deux bobines d'inductance de 1~mH;
-% \item plusieurs résistances : 270~$\Omega$ (trois fois), 560~$\Omega$, 1~k$\Omega$ (trois fois), 10~k$\Omega$ (trois fois) et 100~k$\Omega$;
-% \item un amplificateur opérationnel;
-% \item une plaquette de montage.
-% \end{itemize}
-
-%\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 \vspace{-2ex}
 \section{Préparation}\label{sec:prep}
 \vspace{-3ex}
@@ -104,17 +90,117 @@ AVANT la séance d'atelier, écrivez sommairement dans votre cahier de recherche
 \vspace{-3ex}
 Le minimum de simulations, expériences et analyses à être accomplies par équipe de 4 personnes doivent satisfaire les sous-objectifs des figures~\ref{sch-RC2} et~\ref{sch-RC-ordre3} ainsi qu'un des deux autres sous-objectifs à votre choix. Divisez les tâches afin que personne ne se tourne les pouces en atelier et utilisez un maximum de plaquettes de montage sans rien démonter : un membre de l'équipe d'enseignement doit valider l'accomplissement des livrables avec tous vos montages et votre cahier de recherche juste AVANT votre départ. Finalement, nous vous encourageons fortement à consacrer tout temps restant à l'atelier pour avancer votre projet de conception final afin de mieux respirer en fin de session!
 
-\section{Atelier}\label{sec:atelier}
+%%Partie que j'avais commencé à modifier
+%-------------------------------------------------------
+%\section{Atelier}
+
+%%Filtre basic RC
+%\begin{figure}[h!]
+%\centering
+%\begin{circuitikz} \draw
+%(0,2) node[left]{$V_{\mathrm{in}}$} to[R=270~$\Omega$,o-] (3,2) to[short] 
+%(3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$}
+%(3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
+%;\end{circuitikz}
+%\label{sch-RC2}
+%\caption{Premier circuit à réaliser}
+%\end{figure}
+
+
+%%Filtre passe-bande
+%\begin{figure}[h!]
+%\centering
+%\begin{circuitikz} \draw
+%(0,2) node[left]{$V_{\mathrm{in}}$} to[L,l=$L$,a=1<\milli\henry>,o-] (2.5,2) to[C,l=$C$, a=1<\micro\farad>] (5,2) to[short,-o] (6.5,2) node[right]{$V_{\mathrm{out}}$}
+%(5.5,2) to[R,l_=$R$,a^=270<\ohm>] (5.5,0) node[ground]{}
+%;\end{circuitikz}
+%\caption{Deuxième circuit à réaliser} 
+%\label{sch-RLC}
+%\end{figure}
+
+
+
+%\section{Questions ouvertes}
+%\textbf{Circuit 1:}
+%\begin{itemize}
+%    \item Quelle est la réponse en fréquence et la réponse en phase du circuit?
+%    \item De quel type de filtre s'agit-il?
+%    \item Qu'arrive-t-il au comportement du premier circuit lorsqu'on inverse les deux %composants? S'agit-il encore du même type de filtre? Si ce n'est pas le cas, nommez le.
+%\end{itemize}
+%\textbf{Circuit 2:}
+%\begin{itemize}
+%    \item Quelle est la réponse en fréquence et la réponse en phase du circuit?
+%    \item De quel type de filtre s'agit-il?
+%    \item Quel est l'influence des valeurs de $R$, $L$ et $C$ sur le facteur de qualité $Q$?
+%\end{itemize}
+%\vspace{36pt}
+
+
+%%Autres filtres
+%\begin{figure}[htbp] 
+%\centering 
+%\subcaptionbox{}{\begin{circuitikz} \draw 
+%(0,2) node[left]{$V_{\mathrm{in}}$} to[R=270~$\Omega$,o-] 
+%(3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$} 
+%(3,2) to[C=1~$\mu$F] (3,0) node[ground]{} 
+%;\end{circuitikz}}
+%\end{figure} 
+
+%\begin{figure}[htbp] 
+%\ContinuedFloat 
+%\centering 
+%\subcaptionbox{}{\begin{circuitikz} \draw 
+%(0,2) node[left]{$V_{\mathrm{in}}$} to[R=135~$\Omega$,o-] 
+%(3,2) to[R=270~$\Omega$] (6,2) to[R=560~$\Omega$] 
+%(9,2) to[short,-o] (10,2) node[right]{$V_{\mathrm{out}}$} 
+%(3,2) to[C=2~$\mu$F] (3,0) node[ground]{} 
+%(6,2) to[C=1~$\mu$F] (6,0) node[ground]{} 
+%(9,2) to[C=470~nF] (9,0) node[ground]{} 
+%;\end{circuitikz}} 
+%\end{figure}
+
+%\begin{figure}[htbp]
+%\ContinuedFloat
+%\centering
+%\subcaptionbox{}{\begin{circuitikz} \draw 
+%(0,2) node[left]{$V_{\mathrm{in}}$} to[L=1~mH,o-] 
+%(3,2) to[L=1~mH] (6,2) to[short,-o] (7,2) node[right]{$V_{\mathrm{out}}$} 
+%(3,2) to[C=470~nF] (3,0) node[ground]{} 
+%(6,2) to[R=270~$\Omega$] (6,0) node[ground]{} 
+%;\end{circuitikz}}
+%\caption{} 
+%\end{figure}
+%------------------------------------------------
+%%Fin des modifications
+
+
+
+\section{Mini projet de conception}\label{sec:projet}
+En télécommunication, l'encryption et la décryption de signaux sont des concepts fondamentaux qui permettent la transmission de l'information. Par exemple, la modulation en amplitude et la modulation en fréquence sont deux formes d'encryption qui sont utilisés par les stations de radio afin de transmettre des signaux de manière efficace sur de grandes distances. Il est donc nécessaire que la radio qui reçoit le signal soit capable de décrypter celui-ci avant de le convertir sous forme audio. L'objectif de cette partie de l'atelier est de concevoir un circuit de manière à décrypter un signal électrique quelconque. Le signal électrique sera généré par un Moku:Go.(Choisir entre Python ou driver Moku??). Le code pour la génération du signal est déjà fourni, vous n'avez qu'à alimenter le Moku:Go, le brancher dans votre ordinateur et exécuter le code pour commencer à générer le signal. Le signal en question est une combinaison de deux sinus de fréquences différentes avec la même amplitude. (2 circuits, un pour chaque fréquence ou on demande seulement un? Si un seul, fréquence basse ou fréquence haute? Donner les fréquences?)
+
+\subsection{Questions ouvertes}
+\begin{itemize}
+    \item Quelles sont les fréquences dominantes qu'on retrouve dans le signal non-décrypté?
+    \item Quel type de circuit avez-vous besoin de créer pour décrypter le signal et quel sera la valeur théorique idéale pour chaque composant de votre circuit? 
+    \item La valeur expérimentale idéale de chacun des composants est-elle différente des valeurs théoriques calculées? Si oui, qu'est-ce qui peut engendrer cette différence?
+    \item À quel point votre circuit est-il efficace pour décrypter le signal? Décrivez qualitativement. 
+    \item Quel est la réponse en fréquence de votre circuit? (Mentionner diagramme de Bode ou non?)
+    \item Quels améliorations ou changements peuvent être faits au circuit pour l'optimiser? 
+\end{itemize}
+
+%Sections originales
+%---------------------------------------------------------------------
 %\subsection{Partie 1 --- Mesures temporelles}
-\begin{figure}[h!]
-\centering
-\begin{circuitikz} \draw
-(0,2) node[left]{$v_{\mathrm{in}}$} to[R=1~k$\Omega$,o-] (3,2) %to[short,-o] (4,2) node[right]{$v_{\mathrm{out}}$}
-(3,2) to[C=1~$\mu$F] 
-(3,0) node[ground]{}
-;\end{circuitikz}
-\caption{\label{sch-RC}\textbf{Sous-objectif}: observer et quantifier le délai temporel du signal en tension aux bornes des différents composants de ce circuit RC série.}
-\end{figure}
+
+%\begin{figure}[h!]
+%\centering
+%\begin{circuitikz} \draw
+%(0,2) node[left]{$v_{\mathrm{in}}$} to[R=1~k$\Omega$,o-] (3,2) %to[short,-%o] (4,2) node[right]{$v_{\mathrm{out}}$}
+%(3,2) to[C=1~$\mu$F] 
+%(3,0) node[ground]{}
+%;\end{circuitikz}
+%\caption{\label{sch-RC}\textbf{Sous-objectif}: observer et quantifier le délai temporel du signal en tension aux bornes des différents composants de ce circuit RC série.}
+%\end{figure}
 
 % a) Sur la plaquette de montage, réalisez le filtre RC de la figure~\ref{sch-RC} en utilisant le condensateur de précision ($\pm5$~\%).
 % \begin{figure}[h]
@@ -133,27 +219,29 @@ Le minimum de simulations, expériences et analyses à être accomplies par équ
 % d) Mesurez le temps de montée (de 10~\% à 90~\%) et la constante de temps du circuit. Comparez avec les valeurs attendues.
 
 
+
 %\subsection{Partie 2 --- Mesures fréquentielles et diagrammes de Bode}
 
-\begin{figure}[h!]
-\centering
-\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{in}}$} to[R=270~$\Omega$,o-] (3,2) to[short] (3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$}
-(3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
-;\end{circuitikz}
-\caption{\label{sch-RC2}\textbf{Sous-objectif} : démontrer que ce même circuit RC série agit d'abord en filtre passe-haut, puis en filtre passe-bas en inversant les deux composants. Il faut construire les diagrammes de Bode du gain ET de la phase en fonction de la fréquence pour faire cette démonstration.}
-\end{figure}
+%Filtre 2
+%\begin{figure}[h!]
+%\centering
+%\begin{circuitikz} \draw
+%(0,2) node[left]{$V_{\mathrm{in}}$} to[R=270~$\Omega$,o-] (3,2) to[short] %(3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$}
+%(3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
+%;\end{circuitikz}
+%\caption{\label{sch-RC2}\textbf{Sous-objectif} : démontrer que ce même %circuit RC série agit d'abord en filtre passe-haut, puis en filtre passe-%bas en inversant les deux composants. Il faut construire les diagrammes de %Bode du gain ET de la phase en fonction de la fréquence pour faire cette %démonstration.}
+%\end{figure}
 
 
-\begin{figure}[h!]
-\centering
-\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{in}}$} to[L,l=$L$,a=1<\milli\henry>,o-] (2.5,2) to[C,l=$C$, a=1<\micro\farad>] (5,2) to[short,-o] (6.5,2) node[right]{$V_{\mathrm{out}}$}
-(5.5,2) to[R,l_=$R$,a^=270<\ohm>] (5.5,0) node[ground]{}
-;\end{circuitikz}
-\caption{\textbf{Sous-objectif} : démontrer, à l'aide des diagrammes de Bode, qu'un circuit RLC série agit en filtre passe-bande dont le facteur de qualité $Q$ varie en changeant les valeurs de $R, L$ et $C$.}
-\label{sch-RLC}
-\end{figure}
+%\begin{figure}[h!]
+%\centering
+%\begin{circuitikz} \draw
+%(0,2) node[left]{$V_{\mathrm{in}}$} to[L,l=$L$,a=1<\milli\henry>,o-] (2.5,2) to[C,l=$C$, a=1<\micro\farad>] (5,2) to[short,-o] (6.5,2) node[right]{$V_{\mathrm{out}}$}
+%(5.5,2) to[R,l_=$R$,a^=270<\ohm>] (5.5,0) node[ground]{}
+%;\end{circuitikz}
+%\caption{\textbf{Sous-objectif} : démontrer, à l'aide des diagrammes de Bode, qu'un circuit RLC série agit en filtre passe-bande dont le facteur de qualité $Q$ varie en changeant les valeurs de $R, L$ et $C$.}
+%\label{sch-RLC}
+%\end{figure}
 
 % \textbf{Note 1:} L'étudiant.e est dispensé.e d'évaluer les incertitudes pour le reste de ce laboratoire.
 
@@ -203,44 +291,45 @@ Le minimum de simulations, expériences et analyses à être accomplies par équ
 % g) Refaites l'étape précédente, mais cette fois avec une fréquence de 1~kHz. S'il y a lieu, comparez vos résultats avec le filtrage du signal «\texttt{labo\_8\_carre\_1kHz}».
 
 
+
 %\subsection{Partie 3 --- Coupures de différents filtres passe-bas}
 
 %Pour répartir cette grosse figure sur plusieurs pages au besoin: https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures_in_multiple_parts
-\begin{figure}[h!]
-\centering
+%\begin{figure}[h!]
+%\centering
 %\subcaptionbox{}
 %{\begin{circuitikz} \draw
 %(0,2) node[left]{$V_{\mathrm{in}}$} to[R=270~$\Omega$,o-] (3,2) to[short,-o] (4,2) node[right]{$V_{\mathrm{out}}$}
 %(3,2) to[C=1~$\mu$F] (3,0) node[ground]{}
 %;\end{circuitikz}}
-\subcaptionbox{}
-{\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{in}}$} to[R=135~$\Omega$,o-] (3,2) to[R=270~$\Omega$] (6,2) to[R=560~$\Omega$] (9,2) to[short,-o] (10,2) node[right]{$V_{\mathrm{out}}$}
-(3,2) to[C=2~$\mu$F] (3,0) node[ground]{}
-(6,2) to[C=1~$\mu$F] (6,0) node[ground]{}
-(9,2) to[C=470~nF] (9,0) node[ground]{}
-;\end{circuitikz}}
-\subcaptionbox{}
-{\begin{circuitikz} \draw
-(0,2) node[left]{$V_{\mathrm{in}}$} to[L=1~mH,o-] (3,2) to[L=1~mH] (6,2) to[short,-o] (7,2) node[right]{$V_{\mathrm{out}}$}
-(3,2) to[C=470~nF] (3,0) node[ground]{}
-(6,2) to[R=270~$\Omega$] (6,0) node[ground]{}
-;\end{circuitikz}}
-\subcaptionbox{}
-{\begin{circuitikz} \draw
-(0,0) node[op amp](opamp){}
-(opamp.+) to[short] (-1.2,-0.5) to[C,l_=470~nF] (-1.2,-3) node[ground]{}
-(opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2.2)
-(opamp.out) to[short,-o] (2,0) node[right]{$V_{\mathrm{out}}$}
-(opamp.down) ++ (0,-0.5) node[below]{$-3$~V} -- (opamp.down)
-(opamp.up) ++ (0,0.5) node[above]{3~V} -- (opamp.up)
-(-3.2,2.2) node[ground]{} to[R=10~k$\Omega$] (-1.2,2.2) to[R=20~k$\Omega$] (1.2,2.2)
-(1.2,0) to[short] (1.2,3.5) to[short] (-4.5,3.5) to[C,l_=470~nF] (-4.5,-0.5)
-(-10.5,-0.5) node[left]{$V_{\mathrm{in}}$} to[R=1~k$\Omega$,o-] (-7.5,-0.5) to[R=560~$\Omega$] (-4.5,-0.5) to[R=1~k$\Omega$] (-1.2,-0.5)
-(-7.5,-0.5) to[C=1~$\mu$F] (-7.5,-3) node[ground]{}
-;\end{circuitikz}}
-\caption{\label{sch-RC-ordre3}\textbf{Sous-objectif} : examiner comment le gain du filtre RC série passe-bas de premier ordre fait au début se compare à 1 des 3 filtres ci-dessus, soit (a) RC de troisième ordre, (b) Butterworth en topologie Cauer de troisième ordre et (c) Butterworth en topologie Sallen-Key de troisième ordre. Quantifier aussi les déviations du spectre de gain idéal d'un filtre passe-bas qui est une fonction échelon de Heaviside en symétrie miroir centrée sur la fréquence de coupure. Cette symétrie de parité paire est seulement pour exprimer l'opération $H(-x)\rightarrow H(x)$.}
-\end{figure}
+%\subcaptionbox{}
+%{\begin{circuitikz} \draw
+%(0,2) node[left]{$V_{\mathrm{in}}$} to[R=135~$\Omega$,o-] (3,2) to[R=270~$\Omega$] (6,2) to[R=560~$\Omega$] (9,2) to[short,-o] (10,2) node[right]{$V_{\mathrm{out}}$}
+%(3,2) to[C=2~$\mu$F] (3,0) node[ground]{}
+%(6,2) to[C=1~$\mu$F] (6,0) node[ground]{}
+%(9,2) to[C=470~nF] (9,0) node[ground]{}
+%;\end{circuitikz}}
+%\subcaptionbox{}
+%{\begin{circuitikz} \draw
+%(0,2) node[left]{$V_{\mathrm{in}}$} to[L=1~mH,o-] (3,2) to[L=1~mH] (6,2) to[short,-o] (7,2) node[right]{$V_{\mathrm{out}}$}
+%(3,2) to[C=470~nF] (3,0) node[ground]{}
+%(6,2) to[R=270~$\Omega$] (6,0) node[ground]{}
+%;\end{circuitikz}}
+%\subcaptionbox{}
+%{\begin{circuitikz} \draw
+%(0,0) node[op amp](opamp){}
+%(opamp.+) to[short] (-1.2,-0.5) to[C,l_=470~nF] (-1.2,-3) node[ground]{}
+%(opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2.2)
+%(opamp.out) to[short,-o] (2,0) node[right]{$V_{\mathrm{out}}$}
+%(opamp.down) ++ (0,-0.5) node[below]{$-3$~V} -- (opamp.down)
+%(opamp.up) ++ (0,0.5) node[above]{3~V} -- (opamp.up)
+%(-3.2,2.2) node[ground]{} to[R=10~k$\Omega$] (-1.2,2.2) to[R=20~k$\Omega$] (1.2,2.2)
+%(1.2,0) to[short] (1.2,3.5) to[short] (-4.5,3.5) to[C,l_=470~nF] (-4.5,-0.5)
+%(-10.5,-0.5) node[left]{$V_{\mathrm{in}}$} to[R=1~k$\Omega$,o-] (-7.5,-0.5) to[R=560~$\Omega$] (-4.5,-0.5) to[R=1~k$\Omega$] (-1.2,-0.5)
+%(-7.5,-0.5) to[C=1~$\mu$F] (-7.5,-3) node[ground]{}
+%;\end{circuitikz}}
+%\caption{\label{sch-RC-ordre3}\textbf{Sous-objectif} : examiner comment le gain du filtre RC série passe-bas de premier ordre fait au début se compare à 1 des 3 filtres ci-dessus, soit (a) RC de troisième ordre, (b) Butterworth en topologie Cauer de troisième ordre et (c) Butterworth en topologie Sallen-Key de troisième ordre. Quantifier aussi les déviations du spectre de gain idéal d'un filtre passe-bas qui est une fonction échelon de Heaviside en symétrie miroir centrée sur la fréquence de coupure. Cette symétrie de parité paire est seulement pour exprimer l'opération $H(-x)\rightarrow H(x)$.}
+%\end{figure}
 
 % Vous pouvez remarquer à partir des diagrammes de Bode précédemment tracés que la transition entre la bande passante et la bande rejetée n'est pas parfaitement verticale. Il est toutefois possible de complexifier le design d'un filtre afin que cette transition soit plus abrupte. Cette analyse sera faite sur des filtres passe-bas.
 %

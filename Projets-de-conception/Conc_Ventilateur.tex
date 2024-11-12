@@ -170,7 +170,7 @@
 \end{center}
 
 \vspace{-1em}
-\noindent Hiver 2024 \hfill Responsable: C. Allen\par
+\noindent Automne 2024 \hfill Responsable: C. Allen\par
 \vspace{0.2ex}
 \hrule
 \vspace{0.5ex}
@@ -178,7 +178,7 @@
     \textbf{PROJET DE CONCEPTION}\\
     \textsc{Contrôle Arduino d'un Ventilateur}\par
 \vspace{2ex}
-%\textsc{Début: 22 novembre 2022 \hfill Fin: 9 décembre 2022}\par
+%\textsc{Début: 12 novembre 2024 \hfill Fin: 18 décembre 2024}\par
 %\vspace{0.4em}
 \hrule
 \justify
@@ -186,13 +186,13 @@
 \vspace{-1ex}
 Pour progresser vers l'objectif d'autonomie et d'initiative nécessaires au travail de recherche, de développement et d'ingénierie, la dernière activité du cours ne donne aucun protocole ni schéma de circuit. Vous devez concevoir par vous-même le système électronique qui répondra aux besoins à identifier dans la problématique, mettant ainsi à profit votre capacité de compréhension de texte, tout en respectant les contraintes imposées et en préparant les éléments demandés dans la section \nameref{subsec:livrables}. Comme tout cas pratique, il n'existe pas de circuit idéal pouvant satisfaire parfaitement tous les besoins et contraintes, il faut plutôt viser le meilleur compromis possible avec le matériel disponible.
 
-Pour ce faire, vous devrez faire appel aux ressources étudiées dans l'ensemble du cours et au-delà, notamment en vous initiant au monde des microcontrôleurs à l'interface entre l'électronique et l'informatique (voir \nameref{sec:annexe}). En plus des informations en provenance des manufacturiers (fiches techniques), faites aussi appel à l'entraide étudiante, notre encadrement pédagogique, ainsi qu'à toute votre débrouillardise et jugement critique pour dénicher des sources de renseignements FIABLES en \href{https://www5.bibl.ulaval.ca}{bibliothèque} ou plus généralement en ligne\footnote{Voici quelques exemples de sources plus spécifiques à la conception qui s'ajoutent à toute la médiagraphie qu'on retrouve sur le site de cours: \href{https://fr.wikipedia.org/wiki/Culture_maker}{culture \textit{maker}}, \href{https://www.reddit.com/r/diyelectronics/}{DIY}, \href{https://hackaday.com/about/}{\textit{hacking}} et \href{https://disboard.org/servers/tag/whitehat}{\textit{white hats}}.}.
+Pour ce faire, vous devrez faire appel aux ressources étudiées dans l'ensemble du cours et au-delà, notamment en vous initiant au monde des microcontrôleurs à l'interface entre l'électronique et l'informatique (voir \nameref{sec:annexe} et le tutoriel sur le site de cours). En plus des informations en provenance des manufacturiers (fiches techniques), faites aussi appel à l'entraide étudiante, notre encadrement pédagogique, ainsi qu'à toute votre débrouillardise et jugement critique pour dénicher des sources de renseignements FIABLES en \href{https://www5.bibl.ulaval.ca}{bibliothèque} ou plus généralement en ligne\footnote{Voici quelques exemples de sources plus spécifiques à la conception qui s'ajoutent à toute la médiagraphie qu'on retrouve sur le site de cours: \href{https://fr.wikipedia.org/wiki/Culture_maker}{culture \textit{maker}}, \href{https://www.reddit.com/r/diyelectronics/}{DIY}, \href{https://hackaday.com/about/}{\textit{hacking}} et \href{https://disboard.org/servers/tag/whitehat}{\textit{white hats}}.}.
 %Éventuellement référer explicitement à ma médiagraphie sur le site de cours lorsque je l'aurai remise sur le sens du monde. D'ailleurs, voir si je transfère ces sources en médiagraphie ici et/ou sur le site de cours en y ajoutant d'autres forums d'intérêt comme <https://electronics.stackexchange.com/> et des familles-organisations-sociétés de journaux. voir la page GEL de la bibli itou! Ne pas oublier de mentionner les bons vieux livres de la bibliothèque! Il y a possiblement un gros questionnement philosophique à qqpart dans le coin... À discuter avec Éric et Aaron...
 \vspace{-1em}
 \subsection*{Problématique}
 L’été dernier, votre ami Itof Mèyacho a vécu la pire canicule de toute sa vie. En effet, comme il est étudiant, il ne peut se permettre d’avoir l’air conditionné tant convoité. Il doit se contenter d’un bon vieux ventilateur. Il souhaiterait trouver un moyen pour ajuster la vitesse de son ventilateur selon la luminosité du soleil qui entre dans son appartement, et ce, sans avoir à se lever de son sofa. Ses jeux vidéo ne peuvent attendre! De plus, bien qu’il fasse complètement noir dans sa chambre la nuit, il trouve essentiel que le ventilateur continue de tourner, mais à moindre vitesse, car le bruit du plein régime l’empêche de se reposer. Comme la prochaine canicule est à venir et qu’il semble trop occupé à jouer aux jeux vidéo, Itof Mèyacho vous demande votre aide. À l'aide de vos nouvelles connaissances en électronique, il est maintenant temps de lui donner un coup de main.
 
-Après un peu de recherche et expérimentation, vous avez réussi à déterminer que le moteur du ventilateur d’Itof fonctionne en courant continu (DC en anglais). Vous avez aussi remarqué que le moteur risque de se briser s'il tourne à une vitesse supérieure à 1500~RPM, mais heureusement, la luminosité ambiante reste assez faible dans l'appartement même en plein jour. Après quelques tests, Itof a identifié qu’il était confortable la nuit seulement lorsque le ventilateur tourne à une vitesse de 500~RPM. Vous décidez donc de concevoir un système basé sur un microcontrôleur Arduino. Celui-ci sera utilisé pour lire l'irradiance de la lumière sur une photorésistance et ensuite ajuster la vitesse de rotation du moteur DC en fonction de cette luminosité mesurée. La vitesse de rotation doit donc varier progressivement de sa valeur minimale la nuit jusqu'à 1500~RPM tout en s'ajustant le plus graduellement possible avec l'augmentation de luminosité.
+Après un peu de recherche et expérimentation, vous avez réussi à déterminer que le moteur du ventilateur d’Itof fonctionne en courant continu (DC en anglais). Vous avez aussi remarqué que le moteur risque de se briser s'il tourne à une vitesse supérieure à 1000~RPM, mais heureusement, la luminosité ambiante reste assez faible dans l'appartement même en plein jour. Après quelques tests, Itof a identifié qu’il était confortable la nuit seulement lorsque le ventilateur tourne à une vitesse de 300~RPM. Vous décidez donc de concevoir un système basé sur un microcontrôleur Arduino. Celui-ci sera utilisé pour lire l'irradiance de la lumière sur une photorésistance et ensuite ajuster la vitesse de rotation du moteur DC en fonction de cette luminosité mesurée. La vitesse de rotation doit donc varier progressivement de sa valeur minimale la nuit jusqu'à 1000~RPM tout en s'ajustant le plus graduellement possible avec l'augmentation de luminosité.
 
 %En plein jour, quand la luminosité est maximale, le moteur ne doit pas dépasser sa vitesse maximale de 437~RPM. Si la luminosité diminue, la vitesse du moteur doit ralentir en conséquence jusqu’à atteindre la valeur attendue en pleine nuit. Entre les deux valeurs de luminosité extrêmes, la vitesse du moteur doit pouvoir prendre le plus de valeurs possibles. Notez finalement qu'avant de procéder à l’assemblage de votre système en pratique, vous allez simuler et tester virtuellement son fonctionnement pour réduire les essais-erreurs, le débogage et la frustration(!) au laboratoire.
 %\vspace{-1em}
@@ -203,7 +203,7 @@ Après un peu de recherche et expérimentation, vous avez réussi à déterminer
     \item Piles \SI{9}{\volt}
     \item Carte \href{https://www.arduino.cc/en/Guide/ArduinoUno}{Arduino UNO} dont le fonctionnement est présenté en \nameref{sec:annexe}
     \item Amplis-ops~UA741
-    \item Transistors à jonction bipolaire NPN
+    \item Transistors à jonction bipolaire NPN de différents modèles (selon leur puissance maximale qu'ils peuvent dissiper)
     \item Moteurs DC
     \item Résistances de \SIlist[list-final-separator = {, }]{12;33;270;560}{\ohm}, \SIlist[list-final-separator = {, }]{1;1.2;10; 18;100}{\kilo\ohm} et \SI{1}{\mega\ohm}
     \item Condensateurs de \SI{470}{\nano\farad} et \SI{1}{\micro\farad}
