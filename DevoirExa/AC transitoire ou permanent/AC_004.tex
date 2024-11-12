@@ -1,0 +1,51 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%AC_004.tex : 2 inductances, 2 condensateurs et 1 résistances | Passe-X, signal d'entrée, constante de temps
+%------------------------------------------------------------------
+%SOURCE: 
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): 
+%DIFFICULTÉ courte et/ou simple? (Y/N): 
+%
+%Créé par 
+%Contributions par 
+%Compilateur pdfLaTeX, distribution TeX Live 202X
+%Dernière modification : 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[../ElectroX-DevoirAC.tex]{subfiles}
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}}
+%
+Soit le filtre illustré à la figure~\ref{circuit-q2}.
+
+\textbf{a)} Évaluez sa fonction de transfert $H\!\left(s\right)$ dans le domaine de Laplace.
+
+\textbf{b)} En régime permanent, évaluez et tracez le diagramme de Bode du gain $G\!\left(\omega\right)=\left|H\!\left(\omega\right)\right|$. Mettez l'axe des fréquences en échelle logarithmique.
+
+\textbf{c)} Déterminez s'il est possible de trouver une ou deux fréquences de coupure sur la plage de fréquence mesurable au laboratoire VIII. Évaluez cette(ces) valeur(s) $\omega_{c1}$ (et $\omega_{c2}$), définies à $-3$~dB de la valeur maximale de $G\!\left(\omega\right)$, puis identifiez-les(la) sur le graphique précédent s'il y a lieu.
+
+\textbf{d)} Tracez le graphique de $v_{\mathrm{out}}\!\left(t\right)$ en posant que la tension de la source est $v_{\mathrm{in}}\!\left(t\right)=u\!\left(t\right)$, où $u\!\left(t\right)$ est la fonction de Heaviside (\textit{i.e.} la fonction échelon unitaire). Quelle est la constante de temps du circuit?
+
+\textbf{e)} Soit un signal périodique appliqué à l'entrée $v_{\mathrm{in}}\!\left(t\right)= 3\sin(222\pi t)$, quelle sera la fréquence du signal à la sortie $v_{\mathrm{out}}\!\left(t\right)$?
+
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,6) to[vsourcesin,l_=$v_{\mathrm{in}}\!\left(t\right)$] (0,0)
+(0,6) to[short] (3,6) to[L,l_=$22~\mathrm{mH}$](3,3)
+(2.5,3)node[left]{$v_{\mathrm{out}}\!\left(t\right)$} to[short,o-] 
+(3,3) to[C,l_=$1~\mu\mathrm{F}$] (3,0) to[short] (0,0)
+(3,0) to[short] (6,0) to[L,l_=$22~\mathrm{mH}$] (6,3) to[C,l_=$1~\mu\mathrm{F}$] (6,6) to[short] (3,6)
+(3,3) to[R,l_=$1~\mathrm{k}\Omega$] (6,3)
+to[short](7,3)
+(7,3) node[ground]{}
+;\end{circuitikz}
+\caption{\label{circuit-q2} Filtre RLC pour adultes.}
+\end{figure}
+%
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------

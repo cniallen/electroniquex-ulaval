@@ -1,0 +1,49 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%AC_XXX.tex : X inductances, Y condensateurs et Z résistances | Passe-bande, signal d'entrée, constante de temps (garder tout ce qui s'applique)
+%------------------------------------------------------------------
+%SOURCE: 
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): 
+%DIFFICULTÉ courte et/ou simple? (Y/N): 
+%
+%Créé par 
+%Contributions par 
+%Compilateur pdfLaTeX, distribution TeX Live 202X
+%Dernière modification : 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[../ElectroX-DevoirAC.tex]{subfiles}
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}}
+%
+Soit le filtre illustré à la figure~\ref{circuit-q1}.
+
+\textbf{a)} Est-ce qu'il s'agit d'un filtre passe-haut, passe-bas, passe-bande ou coupe-bande?
+
+\textbf{b)} Quelle valeur d'inductance $L$ est nécessaire pour faire résonner ce circuit à une fréquence angulaire naturelle de $\omega_0=10^4$ rad/s?
+
+\vspace{-1.5ex}
+\textbf{c)} Tracez le diagramme de bode du gain en régime permanent $\displaystyle G\!\left(\omega\right)= \left|H\!\left(\omega\right)\right|=\left|\frac{I_{\mathrm{out}}\!\left(\omega\right)}{I_{\mathrm{in}}\!\left(\omega\right)}\right|$ en mettant l'axe des fréquences en échelle logarithmique. Notez que les concepts définis en tension lors de l'exposé en classe sur la fonction de transfert se transposent directement en courant tel qu'indiqué.
+
+\textbf{d)} Déterminez s'il est possible de trouver une ou deux fréquences de coupure sur la plage de fréquence mesurable au laboratoire VIII. Évaluez cette(ces) valeur(s) $\omega_{c1}$ (et $\omega_{c2}$), définies à $-3$~dB de la valeur maximale de $G\!\left(\omega\right)$, puis identifiez-les(la) sur le graphique précédent s'il y a lieu.
+
+\textbf{e)} Si deux fréquences de coupures sont obtenues à l'étape précédente, évaluez le facteur de qualité du filtre $\displaystyle Q=\frac{\omega_0}{2\pi B}$.
+
+\bigskip
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,3) node[left]{$v_{\mathrm{in}}(t)$} to[short, o-] (7,3) to[short,-o] (8,3) node[right]{$v_{\mathrm{out}}(t)$}
+(1,3) to[C=20~nF] (1,0)
+(4,3) to[L=$L$] (4,0)
+(7,3) to[R=10~k$\Omega$] (7,0) to (1,0) node[ground]{}
+;\end{circuitikz}
+\caption{\label{circuit-q1}Filtre résonnant.}
+\end{figure}
+%
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------
