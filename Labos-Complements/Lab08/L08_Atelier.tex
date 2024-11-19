@@ -243,65 +243,9 @@ Le minimum de simulations, expériences et analyses à être accomplies par équ
 % Le signal à l'entrée non inverseuse (\textit{a priori} ce signal n'est que du bruit) est amplifié, puis il passe au travers d'un pont de Wien qui le filtre, avant de retourner à l'entrée de l'amplificateur, pour être à nouveau amplifié et filtré, et ainsi de suite, \textit{ad infinitum}. Le pont de Wien est \textit{grosso modo} l'addition d'un filtre passe-bas et d'un filtre passe-haut, pour former un filtre passe-bande. La fréquence du signal de sortie est $f=\left(2\,\pi\,R\,C\right)^{-1}$. L'amplitude finale du signal est fixée par la source d'alimentation. % Cet oscillateur doit son oscillation au chargement/déchargement du condensateur qui relie l'entrée non inverseuse de l'amplificateur au \textit{ground}.
 
 %\vspace{ \stretch{3} }
-\subsection{Oscillateur harmonique à rétroaction - LC}
-% Un autre oscillateur reposant sur le principe de filtrage et amplification en boucle du signal est l'oscillateur LC. Vous avez étudié au dernier atelier le filtre RLC passe-bande dont la fréquence de résonance correspond à une oscillation, tel qu'attendu pour tout système linéaire qui se modélise par une équation différentielle ordinaire d'ordre 2. Ce filtre peut donc jouer le rôle du pont de Wien. 
-  
-% Faites la conception d'un tel oscillateur en plaçant un circuit LC parallèle (\textit{tank circuit}) à l'entrée non inverseuse d'un amplificateur non inverseur. Le circuit devra respecter les spécifications suivantes à démontrer à l'oscilloscope:
 
-%\vspace{ \stretch{1} }
-Faites la conception d'un circuit oscillateur basé sur l'utilisation d'un ampli-op en rétroaction. En utilisant le circuit approprié placé à l'entrée non inverseuse de l'amplificateur, vous devez pouvoir obtenir les spécifications suivantes pour le signal de sortie $v_\mathrm{out}$ :  
-%\vspace{ \stretch{1} }
-\vspace{2ex}
-\begin{itemize}
-     \setlength{\itemsep}{1ex}
-     \item gain d'au moins un facteur 10,
-     \item fréquence minimale d'oscillation de 7 kHz.
- \end{itemize}
- \vspace{5ex}
- %\vspace{ \stretch{1} }
-\begin{figure}[h]
-\centering
-\begin{circuitikz} \draw
-(0,0) node[op amp](opamp){}
-(opamp.+) to[short] 
-(-1.2,-0.5) to[short] (-1.2,-2.2)
-(opamp.-) to[short] 
-(-1.2,0.5) to[short] (-1.2,2.2)
-(opamp.out) to[short,-o] 
-(2.1,0) node[right]{$v_{\mathrm{out}}$}
-(opamp.down) ++ (0,-0.5) node[below]{$-5$~V} -- (opamp.down)
-(opamp.up) ++ (0,0.5) node[above]{5~V} -- (opamp.up)
-(-4,2.2) node[ground]{} to[R=$R_1$] 
-(-1.2,2.2) to[R=$R_2$] 
-(1.6,2.2) to[short] 
-(1.6,-2.2) to[R=$R_3$] 
-(-1.2,-2.2) to[short] (-2.2,-2.2)
-node[draw,minimum width=2cm,minimum height=2cm, dashed] at (-3.2,-2.2){?} (-4.2,-2.2) to[short] (-5,-2.2) node[ground]{};
-\end{circuitikz}
-\caption{\label{sch-osc-relax}\textbf{Sous-objectif:} Compléter le circuit avec les composants de votre choix afin d'obtenir les spécifications demandées.}
-\end{figure}
 
-%%%CORRIGÉ%%%
-%  \begin{figure}[h]
-% \centering
-% \begin{circuitikz} \draw
-% (0,0) node[op amp](opamp){}
-% (opamp.+) to[short] (-1.2,-0.5) to[short] (-1.2,-2.2)
-% (opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2.2)
-% (opamp.out) to[short,-o] (2.1,0) node[right]{$v_{\mathrm{out}}$}
-% (opamp.down) ++ (0,-0.5) node[below]{$-5$~V} -- (opamp.down)
-% (opamp.up) ++ (0,0.5) node[above]{5~V} -- (opamp.up)
-% (-4,2.2) node[ground]{} to[R=$1~\Omega$] (-1.2,2.2) to[R=$11~\Omega$] (1.6,2.2) to[short] (1.6,-2.2) to[R=$560~\Omega$] (-1.2,-2.2) to[short] (-2.2,-2.2);
-% \draw (-2.2,-2.2) to[short] (-2.2,-1.2) to[C,l_=$1~\mathrm{nF}$] (-4.2,-1.2) to[short] (-4.2,-3.2) to[L=$1~\mathrm{mH}$] (-2.2,-3.2) -- (-2.2,-2.2);
-% \draw (-4.2,-2.2) to[short] (-5,-2.2) node[ground];
-% %node[draw,minimum width=2cm,minimum height=2cm, dashed] at (-3.2,-2.2){?} (-4.2,-2.2) to[short] (-5,-2.2) node[ground]{};
-% \end{circuitikz}
-% \caption{Oscillateur LC--Exemple fonctionnel}
-% \end{figure}
-
- %La recherche sur Internet en particulier filtrée par images, ou oserons-nous dans la littérature en bibliothèque(!), est la meilleure amie du concepteur en herbe. Vous pouvez aussi simuler le circuit si désiré, avec <\url{http://www.falstad.com/circuit/>} par exemple.
-
-\subsubsection{Optionnel: fabrication d'une alarme}
+\subsection{Optionnel: fabrication d'une alarme}
 
 Vous pouvez obtenir un son d'alarme rudimentaire en ajoutant un deuxième oscillateur qui viendra moduler beaucoup plus lentement le son de votre premier oscillateur. Avec le circuit de la figure~\ref{sch-alarme-2}, la sortie de la nouvelle puce (B) commande en effet directement directement l'autre (A). Notez que les deux nouvelles résistances sont nettement plus grandes, afin de fournir un signal oscillant beaucoup plus lentement.
 \begin{figure}[h]
@@ -338,6 +282,10 @@ Vous pouvez obtenir un son d'alarme rudimentaire en ajoutant un deuxième oscill
 ;\end{circuitikz}
 \caption{\label{sch-alarme-2}Circuit d'une alarme.}
 \end{figure}
+
+\begin{itemize}
+    \item Le circuit utilisé pour l'alarme peut-il être utilisé pour créer une horloge numérique? Pensez à l'oscilloscope.
+\end{itemize}
 
 % Initialement, lorsque le bloc d'alimentation s'allume, la tension à l'entrée \textbf{TRIG} est basse, donc la sortie est élevée ($v_{\mathrm{out}}=v_{\mathrm{s}}=\mathrm{V_{CC}}$) et le condensateur $C$ se charge avec une constante de temps $\tau=\left(R_A+R_B\right)\,C$. La tension aux bornes du condensateur, \textit{i.e.} la tension aux terminaux \textbf{TRIG} et \textbf{THRES}, augmente jusqu'à atteindre le niveau de seuil, soit $\frac{2}{3}\,v_{\mathrm{s}}$. À ce moment, la sortie devient basse ($v_{\mathrm{out}}=0$~V), le terminal \textbf{DISCH} devient mis à la terre et le condensateur se décharge avec une constante de temps plus petite $\tau=R_B\,C$. Lorsque la différence de potentiel aux bornes du condensateur a diminué jusqu'à atteindre $\frac{1}{3}\,v_{\mathrm{s}}$, alors la sortie redevient élevée, le terminal \textbf{DISCH} est déconnecté de la masse et le condensateur recommence à se charger. Ainsi, la sortie passe de 0~V à $v_{\mathrm{s}}$ puis retourne à 0~V et ainsi de suite, avec une période de $T=\mathrm{ln}\!\left(2\right)\left(R_A+2\,R_B\right)C$\label{eq:alarme}.
 
