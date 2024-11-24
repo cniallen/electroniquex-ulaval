@@ -68,7 +68,7 @@
 \vspace{-2.5ex}
 \section{Thématique}\label{sec:theme}
 \vspace{-1.5ex}
-Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. En télécommunications par exemple, le concept de filtrage est à la base de la décryption des signaux. Plus généralement, il est également possible d'utiliser les filtres pour retirer des fréquences indésirables et généralement obtenir des mesures plus fidèles avec un meilleur rapport signal sur bruit. L’effet de filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc aussi examinée pour le filtre RC.\\
+Une fonction essentielle accomplie par des circuits électriques dans le travail expérimental est celle de filtrer un signal. En télécommunications par exemple, le concept de filtrage est à la base de la décryption des signaux. Plus généralement, il est également possible d'utiliser les filtres pour retirer des fréquences indésirables et d'obtenir des mesures plus fidèles avec un meilleur rapport signal sur bruit. L’effet de filtres sur le gain et la phase de signaux en tension sera donc étudié dans ce laboratoire à l’aide du diagramme de Bode. En particulier, les performances de différents design de filtres avec des composants uniquement passifs seront comparées à un design intégrant un amplificateur opérationnel actif. Ce laboratoire, en association avec le deuxième devoir, a aussi pour objectif d’approfondir la compréhension de l’étudiant.e des domaines temporel et fréquentiel dans le cadre des transformations de Laplace et Fourier. La relation entre délai temporel et déphasage sera donc aussi examinée pour le filtre RC.\\
 
 %Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 4, 5, 7, 9, 10, 11 et 12 du plan de cours + BAIC?
 \vspace{-2ex}
@@ -91,6 +91,7 @@ AVANT la séance d'atelier, écrivez sommairement dans votre cahier de recherche
 Les objectifs à atteindre avec le filtre RC de la figure~\ref{fig:passe-bas-RC} sont :
 
 \begin{itemize}
+    \item identifier les paramètres caractérisant son fonctionnement,
     \item associer les domaines temporel et fréquentiel en faisant théoriquement et expérimentalement son analyse par transformée de Laplace et Fourier,
     \item améliorer son fonctionnement pour le rapprocher d'un filtre idéal indépendant de la charge placée à sa sortie.
 \end{itemize}
@@ -142,12 +143,11 @@ L'objectif de cette partie est de concevoir et analyser un filtre passe-bande se
     \item Est-ce que le circuit réalisé avec ces composants montre bien la réponse en fréquence prévue? %Pour le déphasage, je pourrais amener mon idée de comparer à un système masse-ressort en jeu de raquette-balle qu'on voit clairement en phase à basses fréquence et déphasé de pi (ou pi/2) en résonance et perd tout après!!! OU garder pour les oscillateurs???
     \item Quel est le facteur de qualité $Q=f_o/B$ de ce résonateur? %Réponse correspondante : Q=0.117
 \end{itemize}
-%Réponse possible : L= 1 mH (10e-3), C= 1 microfarad (10e-6), R= 270 ohms
-%RLC générique, setter RLC
+%Réponse possible : L= 1 mH (10e-3), C= 1 microfarad (10e-6) R = 270 ohms
 % De la mesure de SNR pourrait être ramenée à qqpart dans le coin avec carré des résidus par rapport à une référence qui devient le bruit.
 
 \section{Partie 3}\label{sec:filtrage-source}
- L'objectif final de cet l'atelier est d'adapter un filtre des parties précédentes pour décrypter le signal qui vous est fourni via un module Moku: Go selon les instructions à la fin de cette partie.
+ L'objectif final de cet l'atelier est d'adapter un filtre des parties précédentes et de le mettre en application sur signal. Il s'agit ici spécifiquement de décrypter le signal qui vous est fourni via un module Moku: Go selon les instructions à la fin de cette partie.
 
 \subsection{Questions à explorer avec votre circuit}
 \begin{itemize}
