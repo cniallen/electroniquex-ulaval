@@ -6,9 +6,9 @@
 %**********************
 %ToDo
 % - pont de Wien: la branche sur l'entrée non inverseuse combine un filtre passe-haut et un filtre passe-bas pour obtenir une bande. Fixer RC pour un des filtres (voir ancien protocole) et étudier la bande passante pour différents RC de l'autre filtre. Changer la résistance 1 k\Omega pour un pot 5k afin de trouver le signal de sortie le plus sinusoïdal: plus il y a de gain d'amplification plus des fréquences de la bande passante vont s'ajouter. Noter qu'une bande passante trop large selon les valeurs de R et C choisies va aussi rajouter des fréquences et être moins sinusoïdal en sortie.
-% - Oscillateur harmonique à rétroaction douteux, trouver le bobo ou remplacer p-e avec l'oscillateur astable de la porte NON-OU qui est commented out dans le prochain atelier? consulter la bible The Art of electronics pour se faire une tête.
+% - Oscillateur harmonique à rétroaction douteux, trouver le bobo : critère nécessaires, mais pas suffisants de Barkhausen
 % - Puce 555: changer la fonctionnalité pour un calcul du temps visant à ré-intégrer la rétro-ingénierie du circuit mesurant l'accélération gravitationnelle entre cet atelier et le prochain. Passer alors le speaker pour le son sur un autre oscillateur (check anciens protocoles)
-% - Raccourcir en combinant les sections de préparation et déroulement de l'atelier vu que ça répète le début du lab 7 (à recopier au cours 6 aussi). Réviser et ramener les anciens objectifs en renommant "Thématique et objectifs" en voyant si ça ne serait pas mieux de renommer les sous-objectifs en "but à atteindre ou qqch du genre.
+%- Section oscillateur quartz (en démo et/ou état solide!) à ajouter. ->Variance Allen: mesure de stabilité (avancé) pourrait être fait en démo qu’on garde tjrs tjrs fonctionnel et p-e même compare à une éventuelle horloge atomique :)
 
 \RequirePackage[l2tabu, orthodox]{nag} %Check for obsolete commands
 \documentclass[canadien,12pt,oneside,letterpaper]{article}
@@ -52,7 +52,7 @@
 %
 %---------------------------------------------------
 %
-\title{\textbf{Atelier VIII}\\Oscillateurs électroniques\thanks{Auteurs: Claudine Allen, Jérémie Guilbert \& Jean-Raphaël Carrier}}
+\title{\textbf{Atelier VIII}\\Oscillateurs électroniques\thanks{Auteurs: Claudine Allen, Samuel Nadeau, Jérémie Guilbert \& Jean-Raphaël Carrier}}
 \renewcommand\footnotemark{}
 \date{}
 
@@ -61,7 +61,7 @@
 \maketitle \vspace{-2.5cm}
 
 \section{Thématique}\label{sec:objectifs}
-À l’inverse de filtrer des fréquences d’un signal, cet atelier explore comment y ajouter de nouvelles fréquences. Un circuit linéaire ne peut pas modifier les fréquences à son entrée\footnote{Les modèles des circuits RLC sont des équations différentielles ordinaires d'ordre 2 où un signal en entrée est représenté par un terme non homogène. Comme son nom l'indique pour la résolution, la méthode des coefficients indéterminés démontre que la solution en signal de sortie a la même forme que l'entrée, incluant la même fréquence.}, d'où il ne peut pas générer un signal oscillant périodiquement à partir d’un courant constant qui a une fréquence nulle. Ceci nécessite alors au moins un composant non linéaire actif avec une boucle de rétroaction entre son entrée et sa sortie, d'où les conditions d'oscillation stable peuvent être limitées. Les premiers circuits vont contraster une oscillation instable entre un niveau haut et un niveau bas d'un inverseur avec celle stable et ajustable en fréquence d'une puce 555 dédiée comme minuterie. Les principes des autres oscillateurs étudiés feront intervenir la fonction de comparateur de l’amplificateur opérationnel pour contrôler le cycle de charge-décharge d’un condensateur, puis celle d’amplification avec rétroaction où la fréquence d’oscillation est sélectionnée avec un filtre passe-bande. Des fonctions d’intérêt pour les circuits oscillateurs sont d’actionner un transducteur afin d’obtenir des ondes mécaniques, ou encore de définir un étalon de temps (horloge) permettant de mesurer une durée écoulée. %La transduction sera d’abord mise en pratique avec un haut-parleur pour générer des ondes sonores, et puis avec la résonance de vibration d’un cristal de quartz.
+À l’inverse de filtrer des fréquences d’un signal, cet atelier explore comment y ajouter de nouvelles fréquences. Un circuit linéaire ne peut pas modifier les fréquences à son entrée\footnote{Les modèles des circuits RLC sont des équations différentielles ordinaires d'ordre 2 où un signal en entrée est représenté par un terme non homogène. Comme son nom l'indique pour la résolution, la méthode des coefficients indéterminés démontre que la solution en signal de sortie a la même forme que l'entrée, incluant la même fréquence.}, d'où il ne peut pas générer un signal oscillant périodiquement (CA) à partir d’un courant constant (CC) qui a une fréquence nulle. Ceci nécessite alors au moins un composant non linéaire actif avec une boucle de rétroaction entre son entrée et sa sortie, d'où les conditions d'oscillation stable peuvent être limitées. Les premiers circuits vont contraster une oscillation instable entre un niveau haut et un niveau bas d'un inverseur avec celle stable et ajustable en fréquence d'une puce 555 dédiée comme minuterie. Les principes des autres oscillateurs étudiés feront intervenir la fonction de comparateur de l’amplificateur opérationnel pour contrôler le cycle de charge-décharge d’un condensateur, puis celle d’amplification avec rétroaction où la fréquence d’oscillation est sélectionnée avec un filtre passe-bande. Des fonctions d’intérêt pour les circuits oscillateurs sont d’actionner un transducteur afin d’obtenir des ondes mécaniques, ou encore de définir un étalon de temps (horloge) permettant de mesurer une durée écoulée. %La transduction sera d’abord mise en pratique avec un haut-parleur pour générer des ondes sonores, et puis avec la résonance de vibration d’un cristal de quartz.
 
 % % Les travaux effectués aborderont les objectifs d’ensemble 1, 2, 5, 7, 11 et 12 du plan de cours et couvriront la qualité 5, utilisation d’outils d’ingénierie, prescrite dans les normes du Bureau d’agrément d’Ingénieurs Canada (BAIC).
 
@@ -71,11 +71,6 @@
 \begin{itemize}
 \item complément \textit{Oscillateurs électroniques}
 \end{itemize}
-% Avant de se présenter à la séance de laboratoire, chaque étudiant.e doit:
-% \begin{itemize}
-% \item lire le protocole de ce laboratoire;
-% \item déterminer la fréquence des oscillations que produit l'oscillateur à relaxation (figure~\ref{sch-osc-relax}) en fonction de $R$ et $C$ selon les principes de fonctionnement de l'amplificateur opérationnel.
-% \end{itemize}
 
 % \section{Matériel}
 
@@ -92,40 +87,46 @@
 % \item deux puces 555;
 % \item une plaquette de montage.
 % \end{itemize}
-%\vspace{-2ex}
+
 \section{Préparation}\label{sec:prep}
-%\vspace{-1ex}
-AVANT la séance d'atelier, écrivez sommairement dans votre cahier de recherche tout ce que vous prévoyez faire au laboratoire pour accomplir les livrables de la prochaine section sans oublier de calculer toute valeur de référence donnée en complément aux fins de comparaison à l'expérience. En plus des manipulations expérimentales, des mesures à prendre et de leur analyse, n'oubliez pas de considérer des étapes de modélisation, conception et simulation. Plusieurs logiciels spécialisés pour l'électronique listés sur le site de cours, dans la section \texttt{Logiciels} de l'onglet \texttt{Matériel didactique}, vous aideront dans cette préparation. En particulier, l'onglet \texttt{Circuits} de \href{https://www.falstad.com/circuit/}{l'application Web de Paul Falstad} contient tous les blocs en atelier, montrant directement les "réponses" des comportements idéaux attendus\footnote{Sur le \href{https://www.falstad.com/circuit/}{simulateur de circuits électroniques par Paul Falstad}, il importe de différencier entre les amplificateurs opérationnels «réels» et «idéaux». Les amplificateurs réels sont de mise ici, car dans certains cas, c'est la présence de bruit à leurs entrées qui est à l'origine du signal mesuré à la sortie, un phénomène qui n'est pas modélisé par les amplificateurs idéaux. N'hésitez pas à explorer les possibilités du menu \texttt{Dessiner~>~Sorties et étiquettes} de l'app, entre autres pour exporter des données de simulation.}. 
 
-%\section{Livrables}\label{sec:livrables}
-%\vspace{-1ex}
-Le minimum de simulations, expériences et analyses à être accomplies par équipe de 4 personnes doivent satisfaire les sous-objectifs des figures~\ref{sch-osc-astable} et~\ref{sch-alarme-1} ainsi qu'un des trois sous-objectifs suivants au choix. Divisez les tâches afin que personne ne se tourne les pouces en atelier et utilisez un maximum de plaquettes de montage sans rien démonter : un membre de l'équipe d'enseignement doit valider l'accomplissement des livrables avec tous vos montages et votre cahier de recherche juste AVANT votre départ. Finalement, nous vous encourageons à consacrer tout temps restant à l'atelier pour avancer votre projet de conception final afin de mieux respirer en fin de session!
+AVANT la séance d'atelier, écrivez sommairement dans votre cahier de recherche tout ce que vous prévoyez faire au laboratoire pour atteindre les objectifs. N'oubliez pas de calculer toute valeur ou modèle de référence donné en complément aux fins de comparaison à l'expérience. En plus des manipulations expérimentales, des mesures à prendre et de leur analyse, notez aussi les étapes de modélisation, conception et simulation nécessaires. Plusieurs logiciels spécialisés pour l'électronique listés sur le site de cours, dans la section \texttt{Logiciels} de l'onglet \texttt{Matériel didactique}, vous aideront dans cette préparation. En particulier, l'onglet \texttt{Circuits} de \href{https://www.falstad.com/circuit/}{l'application Web de Paul Falstad} contient pratiquement tous les circuits en atelier, montrant directement les comportements idéaux attendus.%\footnote{Une liste des circuits se trouve \href{https://www.falstad.com/circuit/directions.html}{ici} et des réponses en fréquence (diagrammes de Bode du gain) de différents filtres selon le menu \texttt{Circuits} sont même disponibles \href{https://www.falstad.com/afilter/}{ici}. N'hésitez pas à explorer les possibilités du menu \texttt{Dessiner~>~Sorties et étiquettes} de l'app, entre autres pour exporter des données de simulation.}. 
 
-%\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
-\newpage
-\section{Atelier}\label{sec:atelier}
-\vspace{-2ex}
-\subsection{Oscillateur avec porte logique}
-\vspace{-2ex}
-\begin{figure}[h]
+\section{Partie 1 --- Oscillateurs à relaxation}
+
+    Les objectifs à atteindre avec les oscillateurs des figures~\ref{fig:relax-comparateur} et~\ref{fig:555chip} sont:
+    
+\begin{itemize}
+    \item expliquer le fonctionnement d'un oscillateur à relaxation, %J'aimerais éventuellement arriver à faire modèliser, mais ça va prendre un retravail du complément de l'ampli-op avant. Mais surtout rajouter la version de vocademy.net pour introduire le concept de Duty cycle -> PWM & reconnecter à tension efficace du lab IV :)
+    \item utiliser un oscillateur comme horloge numérique,
+    \item pratiquer la conversion d'un signal électrique en un signal mécanique (sonore).
+\end{itemize}
+
+\begin{figure}[H]
 \centering
 \begin{circuitikz} \draw
-(0,0) node[not port](not){}
-(not.in) to[short] (-1,0) node[left]{$v_{\mathrm{in}}$}
-(not.out) to[short] (1,0) node[right]{$v_{\mathrm{out}}$}
+(0,0) node[op amp](opamp){}
+(opamp.+) to[short] 
+(-1.2,-0.5) to[short] (-1.2,-2.2)
+(opamp.-) to[short] 
+(-1.2,0.5) to[short] (-1.2,2.2)
+(opamp.out) to[short,-o] 
+(2.1,0) node[right]{$v_{\mathrm{out}}$}
+(opamp.down) ++ (0,-0.5) node[below]{$-5$~V} -- (opamp.down)
+(opamp.up) ++ (0,0.5) node[above]{5~V} -- (opamp.up)
+(-4,2.2) node[ground]{} to[C=1$\mu$F] 
+(-1.2,2.2) to[R=560 $\Omega$] 
+(1.6,2.2) to[short] 
+(1.6,-2.2) to[R=10~k$\Omega$] 
+(-1.2,-2.2) to[R=10~k$\Omega$] 
+(-4,-2.2) node[ground]{}
 ;\end{circuitikz}
-\caption{\label{sch-osc-astable}\textbf{Sous-objectif:} Construire un oscillateur astable à partir d'un inverseur sur puce (porte NON) en ajoutant un fil de rétroaction entre l'entrée et la sortie, toutes deux sondées à l'oscilloscope. En plus de mesurer au mieux l'impressionnante fréquence d'oscillation, décrire les corrélations des fluctuations temporelles avec le \texttt{mode horizontal XY}. Ces fluctuations se nomment bruit de gigue ou de sautillement (\textit{jitter}) et présentent un caractère chaotique pour cet oscillateur.}%Ring oscillator d'intérêt pour le complément(et aussi SRAM au prochain labo), en particulier pour introduire le terme "jitter": https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwin3Lz0zK6FAxVrFmIAHRc5DzoQFnoECBMQAQ&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRing_oscillator&usg=AOvVaw1HaXg4iCtqOLMUE78BBG_j&opi=89978449  ; Aussi, On dit que ce circuit est astable, puisqu'il ne possède aucun niveau stable : il s'agit en fait d'un oscillateur.
+\caption{Oscillateur à relaxation avec ampli-op. Utilisez le condensateur de précision avec une capacité de 1 $\mu$F $\pm$ 5 \%.}
+\label{fig:relax-comparateur}
 \end{figure}
+\vspace{-1ex}
 
-\section{Partie ??}
-
-% a) Construisez d'abord l'oscillateur qui permettra de produire le son. Sur la plaquette de montage, faites le circuit de la figure~\ref{sch-alarme-1}. Utilisez les composants $R_A=270~\Omega$, $R_B=1~k\Omega$ et $C=1~\mu\mathrm{F}$. Reliez le haut-parleur à la sortie de la puce.
-Les objectifs à atteindre avec l'oscillateur de la figure \ref{sch-alarme-1} sont:
-\begin{itemize}
-    \item convertir un signal électrique en un signal mécanique (sonore) grâce à un oscillateur,
-    \item utiliser un oscillateur comme horloge numérique.
-\end{itemize}
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
 \begin{circuitikz} \draw[thick]
 (0,0) to[short,-*] (0,1) node[right]{2} to[short] (0,2) node[right]{6} to[short,*-*] (0,3) node[right]{7} to[short] (0,4) to[short] (1,4) node[below]{4} to[short,*-*] (2,4) node[below]{8} to[short] (3,4) to[short] (3,3) node[left]{3} to[short,*-*] (3,1) node[left]{5} to[short] (3,0) to[short,-*] (1.5,0) node[above]{1} to[short] (0,0)
@@ -147,153 +148,64 @@ Les objectifs à atteindre avec l'oscillateur de la figure \ref{sch-alarme-1} so
 (-4,5) to[short] (-2,5)
 (-4,-0.5) to[short] (1.5,-0.5)
 ;\end{circuitikz}
-\caption{\label{sch-alarme-1}Oscillateur avec puce 555}
+\caption{\label{fig:555chip}Oscillateur avec puce 555.}
+\end{figure}
+
+\subsection{Questions à explorer avec ces circuits}
+\begin{itemize}
+    \item Quelles sont les trois fonctions électroniques qui interviennent pour faire osciller le circuit de la figure~\ref{fig:relax-comparateur}? %J'aimerais éventuellement arriver à faire modèliser, mais ça va prendre un retravail du complément de l'ampli-op avant. Mais surtout rajouter la version de vocademy.net pour introduire le concept de Duty cycle -> PWM & reconnecter à tension efficace du lab IV :)
+    \item Quel est la valeur de son gain en tension dicté par la branche en entrée non inverseuse?
+    \item Quelle fréquence d'oscillation mesurez-vous à la sortie de ce circuit après l'avoir construit? Montrez que celui-ci est alors une horloge numérique avec une équation simple pour évaluer une durée de temps écoulé.
+    \item Quel ensemble de valeurs de $R_A$, $R_B$ et $C$ à la figure~\ref{fig:555chip} donnent un signal de sortie à une fréquence audible par l'oreille humaine? Vérifiez votre prédiction en ajoutant un haut-parleur à la sortie du circuit et en plaçant un potentiomètre pour $R_B$. %R_A=270~ohms, R_B=1~kohms, C=1~microF
+    \item  Est-ce que l'ajout du haut-parleur affecte la fréquence et cause de la distorsion, c'est-à-dire une déformation du signal de sortie de l'oscillateur? Comment feriez-vous pour rapprocher le son d'une note juste, parfaite? %rajouter un filtre passe-bande actif avec le neilleur facteur de qualité possible
+%    \item En ajoutant un deuxième oscillateur du même type, qu'arrive-t-il au son généré? %alarme, base de concepts de modulation pourraient être introduits, porteuse & enveloppe
+%    \item Quel est le rôle de chacune des puces? Essayez différentes valeurs de résistances pour chacun des oscillateurs afin de répondre aux deux dernières questions. 
+\end{itemize}
+% proposer de trouver la note (table) et app pour mesurer (procède avec oscillo), j'ai envie de ramener ma symphonie! Mais probablement à l'intérieur même d'une équipe qui refait plusieurs fois le même circuit (vidéo de la fois que ça a déjà été fait). oouuuhhh ramener via programation d'un Arduino!... sauf que ça prendrait une résistance et/ou condensateur controllable par tension pour changer la férquence, hm. Old version : Dans cette partie du laboratoire, vous utiliserez deux puces 555 pour contruire un circuit constitué de deux oscillateurs. L'un produira une oscillation à une fréquence assez élevée pour être un son audible via un haut-parleur (la porteuse), alors que l'autre produira une oscillation à très basse fréquence qui modulera l'amplitude du son (l'enveloppe). Vous obtiendrez donc un son dont l'intensité oscillera dans le temps, comme une alarme!
+
+\section{Partie 2 --- Oscillateur chaotique}
+
+L'objectif de cette partie est de faire osciller une puce inverseuse qui convertit une tension basse en une tension haute et vice-versa, tout en décrivant son comportement.
+
+\footnotetext{Cette puce fait partie de la famille des portes logiques auquel un prochain atelier est consacré. La tension basse est alors définie comme le niveau logique $0$ et la haute, comme le niveau logique $1$.}
+\begin{figure}[h]
+\centering
+\begin{circuitikz} \draw
+(0,0) node[not port](not){}
+(not.in) to[short] (-1,0) node[left]{$v_{\mathrm{in}}$}
+(not.out) to[short] (1,0) node[right]{$v_{\mathrm{out}}$}
+;\end{circuitikz}
+\caption{Inverseur logique sur puce aussi appelé porte NON\protect\footnotemark.}
+\label{fig:astable-inverseur}
 \end{figure}
 
 \subsection{Questions à explorer avec ce circuit}
 \begin{itemize}
-    \item Quel ensemble de valeurs de $R_A$, $R_B$ et $C$ donnent un signal de sortie à une fréquence audible par l'oreille humaine lorsqu'on ajoute un haut-parleur à la sortie du circuit? %R_A=270~ohms, R_B=1~kohms, C=1~microF
-    \item Pouvez-vous déterminer une équation simple qui permet d'évaluer le temps écoulé? L'oscilloscope pourrait vous faciliter la tâche pour cette question.
-    \item En ajoutant un deuxième oscillateur du même type, qu'arrive-t-il au son généré? 
-    \item Quel est le rôle de chacune des puces? Essayez différentes valeurs de résistances pour chacun des oscillateurs afin de répondre aux deux dernières questions. 
+    \item En analysant à l'oscilloscope l'entrée et la sortie de l'inverseur schématisé à la figure~\ref{fig:astable-inverseur}, que se passe-t-il si vous reliez $v_{\text{out}}$ et $v_{\text{in}}$ par un simple fil?
+    \item Quel est l'ordre de grandeur de la fréquence d'oscillation? Pouvez-vous estimer la gigue temporelle \textit{(jitter)}, c'est-à-dire de combien fluctue la valeur de la période?
+    \item Expérimentez avec l'alimentation de la puce, les autres inverseurs sur celle-ci et le mode horizontal d'affichage à l'oscilloscope, pouvez-vous obtenir une fonction au sens mathématique du terme, soit $v_{\text{out}} = f\left(v_{\text{in}}\right)$? Est-ce que tous les couples de coordonnées $(v_{\text{in}},v_{\text{out}})$ se produisent? %Ça prend le mode XY et j'ai vu au mieux un cycle limite, encore jamais de fonction associant une seule valeur de v_out à v_in. L'ensemble de coordonées qui se produit est cependant corrélé (pourrait faire calculer des matrices de covariance, corrélation et trucs du genre ouh!), il ne couvre pas l'infinité de toutes les valeurs.
 \end{itemize}
-% Clarifier de Mettre le haut-parleur, travailler avec un potentiomètre? ; Observez-vous à l'oscilloscope une distorsion du signal de sortie en ajoutant le haut-parleur?
-% Étape de haut-parleur, modulation
-% proposer de trouver la note (table) et app pour mesurer (procède avec oscillo), j'ai envie de ramener ma symphonie! Dans cette partie du laboratoire, vous utiliserez deux puces 555 pour contruire un circuit constitué de deux oscillateurs. L'un produira une oscillation à une fréquence assez élevée pour être un son audible via un haut-parleur (la porteuse), alors que l'autre produira une oscillation à très basse fréquence qui modulera l'amplitude du son (l'enveloppe). Vous obtiendrez donc un son dont l'intensité oscillera dans le temps, comme une alarme!
+%Ring oscillator d'intérêt (et aussi SRAM au prochain labo), en particulier pour introduire le terme "jitter": https://en.wikipedia.org/wiki/Ring_oscillator; https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwin3Lz0zK6FAxVrFmIAHRc5DzoQFnoECBMQAQ&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRing_oscillator&usg=AOvVaw1HaXg4iCtqOLMUE78BBG_j&opi=89978449 -> Application "A Provably Secure True Random Number Generator with Built-in Tolerance to Active Attacks" (PDF). Archived from the original (PDF) on 2016-03-04. Retrieved 2012-05-12. ; Aussi dans un contexte de logique, On dit que ce circuit est astable, puisqu'il ne possède aucun niveau stable : il s'agit en fait d'un oscillateur.
 
-\subsection{Oscillateur à relaxation avec comparateur}
+\section{Partie 3 --- Oscillateur harmonique à rétroaction}
+L'objectif de cette dernière partie est de concevoir son propre oscillateur harmonique en sélectionnant et caractérisant :
 
-\begin{figure}[H]
-\centering
-\begin{circuitikz} \draw
-(0,0) node[op amp](opamp){}
-(opamp.+) to[short] 
-(-1.2,-0.5) to[short] (-1.2,-2.2)
-(opamp.-) to[short] 
-(-1.2,0.5) to[short] (-1.2,2.2)
-(opamp.out) to[short,-o] 
-(2.1,0) node[right]{$v_{\mathrm{out}}$}
-(opamp.down) ++ (0,-0.5) node[below]{$-5$~V} -- (opamp.down)
-(opamp.up) ++ (0,0.5) node[above]{5~V} -- (opamp.up)
-(-4,2.2) node[ground]{} to[C=$C$] 
-(-1.2,2.2) to[R=$R$] 
-(1.6,2.2) to[short] 
-(1.6,-2.2) to[R=10~k$\Omega$] 
-(-1.2,-2.2) to[R=10~k$\Omega$] 
-(-4,-2.2) node[ground]{}
-;\end{circuitikz}
-\caption{\label{sch-osc-relax}\textbf{Sous-objectif:} Déterminer la forme du signal à la sortie de l'amplificateur et étudier l'impact des paramètres R et C sur celui-ci.}
-\end{figure}
-\vspace{-1ex}
-
-
-% a) Sur la plaquette de montage, construisez le circuit de l'oscillateur à relaxation que vous avez analysé en préparation (figure~\ref{sch-osc-relax}). Encore une fois, envoyez la sortie $v_{\mathrm{out}}$ à la fois dans le haut-parleur et dans le canal~1 de l'oscilloscope. Utilisez le condensateur de précision de 1~$\mu\mathrm{F}$~$\pm5$~\% pour la capacité $C$. Pour la résistance $R$, placez une résistance de 560~$\Omega$.
-
-% b) À l'oscilloscope, observez la forme du signal et notez sa fréquence à l'aide des curseurs et aussi avec la FFT.
-
-% c) Comparez vos résultats expérimentaux avec l'équation de la fréquence en fonction de $R$ et $C$ que vous aviez calculée en préparation. Pour vos calculs, utilisez la valeur nominale du condensateur et la valeur réelle de la résistance mesurée avec le multimètre.
-
-% d) Remplacez la résistance de 560~$\Omega$ par un potentiomètre linéaire de 1~k$\Omega$. En ajustant le potentiomètre, vous serez en mesure de générer un son à une fréquence donnée. Vous pouvez ajouter une résistance en série avec le potentiomètre si vous avez besoin d'une résistance supérieure à 1~k$\Omega$. Chaque équipe devra produire une note différente (dictée par vos dictateurs). Le but ultime est, en combinant les efforts de toute la classe, de jouer une symphonie grandiose!
-
-\section{Partie ??}
-Les objectifs à atteindre avec l'oscillateur de la figure \ref{sch-osc-Wien} sont:
 \begin{itemize}
-    \item Caractériser l'oscillateur à rétroaction.
-    \item Comprendre le rôle des différents composants dans un pont de Wien
+    \item le gain en rétroaction sur l'entrée inverseuse de l'ampli-op,
+    \item le filtre à l'entrée non inverseuse.
 \end{itemize}
-% a) En continuant sur une autre plaquette de montage, construisez l'oscillateur à pont de Wien (figure~\ref{sch-osc-Wien}). Prenez les composants $C=1\,\mu\mathrm{F}$ et $R=270\,\Omega$. Utilisez les sorties $+25$~V et $-25$~V du bloc d'alimentation pour alimenter l'amplificateur opérationnel.
 
-\begin{figure}[H]
-\centering
-\begin{circuitikz} \draw
-(0,0) node[op amp](opamp){}
-(opamp.+) to[short] (-1.2,-0.5) to[short] (-1.2,-2.2)
-(opamp.-) to[short] (-1.2,0.5) to[short] (-1.2,2.2)
-(opamp.out) to[short,-o] (2.1,0) node[right]{$v_{\mathrm{out}}$}
-(opamp.down) ++ (0,-0.5) node[below]{$-5$~V} -- (opamp.down)
-(opamp.up) ++ (0,0.5) node[above]{5~V} -- (opamp.up)
-(-4,2.2) node[ground]{} to[R=1~k$\Omega$] (-1.2,2.2) to[R=10~k$\Omega$] (1.6,2.2) to[short] (1.6,0) to[C=$C$] (1.6,-2.2) to[R=$R$] (-1.2,-2.2)
-(-1.2,-2.2) to[C=$C$] (-3,-2.2) node[ground]{} to[R=$R$] (-3,-0.5) to[short] (-1.2,-0.5)
-;\end{circuitikz}
-\vspace{2ex}
-\caption{\label{sch-osc-Wien} Pont de Wien} 
- %\textbf{Sous-objectif:} Puisque la section du bas de ce circuit (SANS l'ampli-op ni la section du haut) combine un filtre passe-haut avec un filtre passe-bas, caractériser le filtre passe-bande qui résulte pour différentes valeurs de R et C.
-\end{figure}
-
-\subsection{Questions à explorer avec ce circuit}
+\subsection{Pistes à explorer}
 \begin{itemize}
-    \item Quel type de signal périodique observez-vous à la sortie?
-    \item Lorsqu'on enlève l'ampli-op et la partie du haut, à quel type de filtre correspond la section du bas de ce circuit? 
-    \item En testant pour différentes valeurs de $R$ et $C$, pouvez-vous caractériser la réponse en fréquence du filtre? Pensez au diagramme de Bode. 
-    \item Quel est le rôle de l'ampli-op dans ce circuit? 
+    \item Revoir le complément qui traite de gain et celui qui traite de filtrage.
+    \item Rechercher des exemples de circuits d'oscillateurs harmoniques en partant du complément de cet atelier jusqu'à tout le vaste Internet, sans oublier notre \href{https://www.bibl.ulaval.ca}{bibliothèque universitaire} qui garantit un minimum de crédibilité des ressources cataloguées.
+    \item Comparer le gain d'amplification sélectionné $>1$ à celui mesuré en pratique avec le ratio $\frac{v_{\text{out}}}{v_{\text{in}}}$ lorsque les résistances sont branchées à l'ampli-op avec une tension connue appliquée en entrée non inverseuse.
+    \item Caractériser la réponse complexe en fréquence du ou des filtres choisis à l'aide des diagrammes de Bode.
 \end{itemize}
+%Commence de qqch qui a déjà été (peut faire remarquer que mes choix de filtre la semaine dernière étaient pédagogiques, beaucoup de design plus complexes et performants existent), référer à tout mon blabla DIY à réorganiser en médiagraphie du site et présenter en début de lancement de projet de conception avec logiciels, fonctions, etc.)
 
+%Parler des critères de Barkhausen au tableau et éventuellement mettre en complément
 
-%OBJECTIFS: 1) Déterminer la fréquence du signal à la sortie. 2) Déterminer l'impact de l'ajout d'une charge à la sortie (résistance ou haut parleur sur tinkercad??) sur la fréquence. Qu'est-ce qui cause la variation observée?
-
-% b) À l'aide de l'oscilloscope, observez la forme du signal $v_{\mathrm{out}}$. Notez la fréquence principale du signal généré en mesurant la fréquence des oscillations avec les curseurs et aussi en effectuant une FFT.
-
-% c) Branchez un haut-parleur entre la sortie $v_{\mathrm{out}}$ et la mise à la terre. Cependant, l'ajout du haut-parleur dans le circuit modifie légèrement le fonctionnement de ce dernier. En gardant affichée la FFT du signal à l'oscilloscope, mesurez la nouvelle fréquence principale.
-
-% \subsubsection{Fonctionnement de l'oscillateur à pont de Wien}
-% %SOUS-SECTION À METTRE EN COMPLÉMENT
-% Le signal à l'entrée non inverseuse (\textit{a priori} ce signal n'est que du bruit) est amplifié, puis il passe au travers d'un pont de Wien qui le filtre, avant de retourner à l'entrée de l'amplificateur, pour être à nouveau amplifié et filtré, et ainsi de suite, \textit{ad infinitum}. Le pont de Wien est \textit{grosso modo} l'addition d'un filtre passe-bas et d'un filtre passe-haut, pour former un filtre passe-bande. La fréquence du signal de sortie est $f=\left(2\,\pi\,R\,C\right)^{-1}$. L'amplitude finale du signal est fixée par la source d'alimentation. % Cet oscillateur doit son oscillation au chargement/déchargement du condensateur qui relie l'entrée non inverseuse de l'amplificateur au \textit{ground}.
-
-%\vspace{ \stretch{3} }
-
-
-%\subsection{Optionnel: fabrication d'une alarme}
-
-%Vous pouvez obtenir un son d'alarme rudimentaire en ajoutant un deuxième oscillateur qui viendra moduler beaucoup plus lentement le son de votre premier oscillateur. Avec le circuit de la figure~\ref{sch-alarme-2}, la sortie de la nouvelle puce (B) commande en effet directement directement l'autre (A). Notez que les deux nouvelles résistances sont nettement plus grandes, afin de fournir un signal oscillant beaucoup plus lentement.
-%\begin{figure}[h]
-%\centering
-%\begin{circuitikz} \draw[thick]
-%(0,0) to[short,-*] (0,1) node[right]{2} to[short] (0,2) node[right]{6} to[short,*-*] (0,3) node[right]{7} to[short] (0,4) to[short] (1,4) node[below]{4} to[short,*-*] (2,4) node[below]{8} to[short] (3,4) to[short] (3,3) node[left]{3} to[short,*-*] (3,1) node[left]{5} to[short] (3,0) to[short,-*] (1.5,0) node[above]{1} to[short] (0,0)
-%(-7,0) to[short,-*] (-7,1) node[right]{2} to[short] (-7,2) node[right]{6} to[short,*-*] (-7,3) node[right]{7} to[short] (-7,4) to[short] (-6,4) node[below]{4} to[short,*-*] (-5,4) node[below]{8} to[short] (-4,4) to[short] (-4,3) node[left]{3} to[short,*-*] (-4,1) node[left]{5} to[short] (-4,0) to[short,-*] (-5.5,0) node[above]{1} to[short] (-7,0)
-%;\draw
-%(3,3) to[short,-o] (3.5,3) node[right]{$v_{\mathrm{out}}$}
-%(1.5,0) to[short] (1.5,-0.5)
-%(-2,-0.5) to[C=1~$\mu$F] (-2,1) to[R=1~k$\Omega$] (-2,3)
-%(-2,1) to[short] (0,1)
-%(-1,1) to[short] (-1,2) to[short] (0,2)
-%(-2,3) to[short] (0,3)
-%(1,4) to[short] (1,5)
-%(2,4) to[short] (2,5)
-%(-11, 5) to[V, l_=4~V] (-11,-0.5)
-%(-11,-0.5) node[ground]{} 
-%(-11,5) to[short] 
-%(-2,5) to[short] (2,5)
-%(-4,3) to[R=270~$\Omega$] (-2,3)
-%(-5.5,0) to[short] (-5.5,-0.5)
-%(-9,-0.5) to[C=1~$\mu$F] 
-%(-9,1) to[R=1~M$\Omega$] 
-%(-9,3) to[R=100~k$\Omega$] (-9,5)
-%(-9,1) to[short] (-7,1)
-%(-8,1) to[short] (-8,2) to[short] (-7,2)
-%(-9,3) to[short] (-7,3)
-%(-6,4) to[short] (-6,5)
-%(-5,4) to[short] (-5,5)
-%(-11,-0.5) to[short] (1.5,-0.5)
-%(-5.5,1.7) node[above]{\textbf{B}}
-%(1.5,1.7) node[above]{\textbf{A}}
-%;\end{circuitikz}
-%\caption{\label{sch-alarme-2}Circuit d'une alarme.}
-%\end{figure}
-
-
-% Initialement, lorsque le bloc d'alimentation s'allume, la tension à l'entrée \textbf{TRIG} est basse, donc la sortie est élevée ($v_{\mathrm{out}}=v_{\mathrm{s}}=\mathrm{V_{CC}}$) et le condensateur $C$ se charge avec une constante de temps $\tau=\left(R_A+R_B\right)\,C$. La tension aux bornes du condensateur, \textit{i.e.} la tension aux terminaux \textbf{TRIG} et \textbf{THRES}, augmente jusqu'à atteindre le niveau de seuil, soit $\frac{2}{3}\,v_{\mathrm{s}}$. À ce moment, la sortie devient basse ($v_{\mathrm{out}}=0$~V), le terminal \textbf{DISCH} devient mis à la terre et le condensateur se décharge avec une constante de temps plus petite $\tau=R_B\,C$. Lorsque la différence de potentiel aux bornes du condensateur a diminué jusqu'à atteindre $\frac{1}{3}\,v_{\mathrm{s}}$, alors la sortie redevient élevée, le terminal \textbf{DISCH} est déconnecté de la masse et le condensateur recommence à se charger. Ainsi, la sortie passe de 0~V à $v_{\mathrm{s}}$ puis retourne à 0~V et ainsi de suite, avec une période de $T=\mathrm{ln}\!\left(2\right)\left(R_A+2\,R_B\right)C$\label{eq:alarme}.
-
-% b) Allumez le bloc d'alimentation et fournissez une tension suffisante pour entendre un son clair (4~V devrait être une tension suffisante). Lorsque vous êtes tannés d'entendre cette note plutôt horrible, désactivez l'alimentation.
-
-% d) Lorsque votre circuit est fin prêt, allumez de nouveau le bloc d'alimentation et écoutez la douce mélodie de votre alarme!
-
-% e) Comparez les deux fréquences (la fréquence sonore et la fréquence associée à l'alternance son--silence) de l'alarme avec les fréquences attendues (calculées à partir de l'équation donnée en page~\pageref{eq:alarme}).
-
-% \subsection{Partie pour terminer votre dernier laboratoire plus tôt}
-
-% Si vous complétez vos manipulations avant la fin de la séance de laboratoire, veuillez lire la première partie du prochain et dernier laboratoire de votre session puis vous présenter au montage d'accélération gravitationnelle pour y faire votre première contribution d'une dizaine de minutes.
-
-
-%Section oscillateur quartz (démo?) à ajouter. ->Variance Allen: mesure de stabilité (avancé) pourrait être fait en démo qu’on garde tjrs tjrs fonctionnel et p-e même compare à une éventuelle horloge atomique :)
+% Pont de Wien du complément fonctionne avec les caleurs $C=1\,\mu\mathrm{F}$ et $R=270\,\Omega$
 
 \end{document}
