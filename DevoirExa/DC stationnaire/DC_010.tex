@@ -1,0 +1,40 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%DC_010.tex : sources indépendantes de 36 V, 12 A et 4 résistances | rectangulaire
+%------------------------------------------------------------------
+%SOURCE: inconnue
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): D-2022, D-2025
+%DIFFICULTÉ courte et/ou simple? (Y/N): à déterminer
+%
+%Créé par Jean-Raphaël Carrier
+%Contributions par -
+%Compilateur pdfLaTeX, distribution TeX Live 2024
+%Dernière modification : 2 février 2025
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[../ElectroX-DevoirDC.tex]{subfiles}
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}}
+%
+Déterminez la tension $v_0$ dans le circuit suivant.
+
+\begin{center}
+\begin{circuitikz} \draw
+(9,0) to[short,o-] (0,0) to[R,l^=$2\,\Omega$] (0,3) to[short] (2,3) to[V,l^=$36\,\mathrm{V}$] (5,3) to[R,l^=$4\,\Omega$] (8,3) to[short,-o] (9,3)
+(2,0) to[I,l_=$12\,\mathrm{A}$] (2,3)
+(5,0) to[R,l^=$6\,\Omega$] (5,3)
+(8,0) to[R,l^=$8\,\Omega$] (8,3)
+{[anchor=west] (9,0) node{$-$} (9,1.5) node{$v_0$} (9,3) node{$+$}}
+;\draw[dashed]
+(9.3,0.2) to[short] (9.3,1.2)
+(9.3,1.8) to[short] (9.3,2.7)
+;\end{circuitikz}
+\end{center}
+
+%
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------

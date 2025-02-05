@@ -1,0 +1,36 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%DC_011.tex : source de courant commandée, sources indépendantes de 12 V, 2 A et 6 résistances | rectangulaire
+%------------------------------------------------------------------
+%SOURCE: inconnue
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): D-2022, D-2025
+%DIFFICULTÉ courte et/ou simple? (Y/N): N
+%
+%Créé par Jean-Raphaël Carrier
+%Contributions par -
+%Compilateur pdfLaTeX, distribution TeX Live 2024
+%Dernière modification : 4 février 2025
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[../ElectroX-DevoirDC.tex]{subfiles}
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}}
+%
+Calculez le potentiel $v_x$ dans le circuit suivant. La référence implicite de potentiel nul est évidemment au noeud de mise à la terre.
+
+\begin{center}
+\begin{circuitikz} \draw
+(0,0) node[ground]{} to[V,l^=12~V] (0,6) to[short] (2,6) to[R,l^=1~$\Omega$] (5,6) to[short] (7,6) to[R,l^=1~$\Omega$] (7,3) to[short,-*] (5,3) to[R,l^=1~$\Omega$] (2,3)
+(2,6) to[R,l_=1~$\Omega$] (2,3) to[R,l_=1~$\Omega$,i=$i_0$] (2,0)
+(0,0) to[short] (7,0) to[american controlled current source,l_=$4\,i_0$] (7,3)
+(5,0) to[R,l^=1~$\Omega$] (5,3) to[I,l_=2~A] (5,6)
+{[anchor=north west] (5,3) node{$v_x$}}
+;\end{circuitikz}
+\end{center}
+%
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------
