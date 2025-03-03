@@ -222,7 +222,7 @@ $>\frac{1}{3}$\textbf{v$_{\text{cc}}$} & $<\frac{2}{3}$\textbf{v$_{\text{cc}}$} 
 
 La figure~\ref{sch-alarme-1} illustre comment utiliser la puce 555 pour générer un signal oscillant à une fréquence précise. Initialement, lorsque le bloc d'alimentation s'allume, la tension à l'entrée \textbf{TRIG} est basse, donc la sortie est élevée ($v_{\mathrm{out}}=v_{\mathrm{s}}=\mathbf{v_{\text{cc}}}$) et le condensateur de capacité $C$ se charge avec une constante de temps $\tau=\left(R_A+R_B\right)\,C$. La tension aux bornes du condensateur, \textit{i.e.} la tension aux terminaux \textbf{TRIG} et \textbf{THRES}, augmente jusqu'à atteindre le niveau de seuil, soit $\frac{2}{3}\,v_{\mathrm{s}}$. À ce moment, la sortie devient basse ($v_{\mathrm{out}}=0$~V), le terminal \textbf{DISCH} devient mis à la terre et le condensateur se décharge avec une constante de temps plus petite $\tau=R_B\,C$. Lorsque la différence de potentiel aux bornes du condensateur a diminué jusqu'à atteindre $\frac{1}{3}\,v_{\mathrm{s}}$, alors la sortie redevient élevée, le terminal \textbf{DISCH} est déconnecté de la masse et le condensateur recommence à se charger. Ainsi, la sortie passe de 0~V à $v_{\mathrm{s}}$ puis retourne à 0~V et ainsi de suite, avec une période de $T=\mathrm{ln}\!\left(2\right)\left(R_A+2\,R_B\right)C$\label{eq:alarme}.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \begin{circuitikz} \draw[thick]
 (0,0) to[short,-*] 
@@ -259,5 +259,14 @@ La figure~\ref{sch-alarme-1} illustre comment utiliser la puce 555 pour génére
 \caption{Circuit d'une puce 555 en mode astable. Les numéros des entrées de la puce sont définis à la figure~\ref{sch-555}.}
 \label{sch-alarme-1}
 \end{figure}
+
+\section{Modification de largeur d'impulsion (PWM)}
+La modification de la largeur d'impulsion, ou \textit{pulse width modulation} (PWM) en anglais, est une technique principalement utilisée pour contrôler la puissance acheminée à une charge quelconque. Par exemple, celle-ci permet de contrôler la vitesse d'un moteur DC ou l'intensité d'une lumière DEL. Supposons un signal carré périodique tel qu'illustré à la figure []. Pour une période donné, on appelle rapport cyclique ou \textit{duty cycle} la fraction de la période où la tension est non-nulle dans le signal. En définissant la période du signal par:
+$$T = T_{on} + T_{off},$$
+le rapport cyclique est donné par:
+$$\text{Rapport cyclique} = \frac{T_{on}}{T_{on} + T_{off}}$$
+Comme le nom l'indique, en PWM on fait varier la largeur de l'impulsion et par de fait même le rapport cyclique. C'est en faisant varier celui-ci qu'on peut choisir la tension effective du signal et contrôler par exemple l'intensité lumineuse d'une lumière DEL. Cette tension est donnée par:
+$$V_{eff} = V_{on} \times \text{Rapport cyclique}$$
+Ainsi, pour le cas de la lumière, l'intensité sera proportionnelle à la tension efficace. En effet, si on a un signal avec une valeur maximale de 5 V, même si la lumière reçoit effectivement 5 V pendant un certain temps de la période du signal, si on utilise une fréquence assez élevée l'oeil humain percevra une diminution de l'intensité lumineuse lorsqu'on fait diminuer le rapport cyclique du signal. Pour le cas d'un moteur DC, d'une manière similaire, si on a une fréquence de signal suffisamment élevé, le moment où la tension est nulle est négligeable et donc l'effet net de la modification de la largeur d'impulsion est de contrôler la vitesse du moteur. Certains pourraient se demander quel est l'avantage d'utiliser le PWM à la place de tout simplement diminuer ou augmenter la tension d'un signal DC. Pour certains composants comme le moteur, la tension sera tout simplement insuffisante pour le faire fonctionner à partir d'un certain point. De plus, il n'y a souvent pas de corrélation linéaire entre la tension et le output d'un composant quelconque. La modification de la largeur d'impulsion est donc supérieure pour contrôler précisément le \textit{output} voulu. 
 
 \end{document}
