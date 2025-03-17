@@ -77,6 +77,7 @@ Dans ce laboratoire, il s'agit d'explorer chacun des composants d'un système co
 \begin{itemize}
 \item complément \textit{Mesures lumineuses};
 \item complément \textit{Batteries};
+\item fiche technique de la pile.
 \end{itemize}
 
 \section{Préparation}\label{sec:preparation}
@@ -92,22 +93,44 @@ simulation nécessaires.
 \section{Partie 1: Rendement d'un système d'énergie durable}\label{sec:partie1}
 \vspace{-2ex}
 
-La figure 1 illustre les différents composants du système d'énergie durable: a)  alimentation d'une ampoule, b) stockage de l'énergie, c) variation du rayonnement.
+Cette partie vise à étudier la puissance fournie par un panneau solaire éclairé et les effets des conditions non idéales qui sont forcément présentes lors d'utilisation réelle. Il vous sera fourni une boite contenant un panneau solaire pouvant être pivoté et une lampe DEL. Vos mesures devraient vous permettre de qualifier le rendement des panneaux solaires et l'énergie qu'ils peuvent produire de façon réaliste. La figure \ref{fig:mesures panneau} montre les branchements à effectuer pour ce montage. Vous pouvez vous référer aux expériences déjà faites qui contenaient des objectifs similaires.
 
-i) Source lumineuse (lampe1), ii) cellule photovoltaïque (panneau solaire2), iii) contrôleur et écran3, iv) sortie lumineuse (ampoule4), v) stockage (batterie5), vi) instrument (chargeur, ventilateur, radio, etc.)
 
-La figure 2 montre les branchements à effectuer pour ce montage.
+%todo: demander le w/m2 de la lampe
 
  
 Les objectifs à atteindre pour évaluer le rendement du système sont:
 \begin{itemize}
-\item évaluer le rendement d'un système alimenté par une source lumineuse et visant à produire de la lumière;
-\item caractériser la courbe i-v d'un panneau solaire et son efficacité énergétique
-\item caractériser le stockage de la batterie dans des conditions environnantes variables
-\item évaluer la réponse voltaïque d'un panneau solaire soumis à différents angles
+\item Obtenir les courbes i-v et p-v du panneau solaire selon l'angle incident de la lumière sur le panneau. Votre montage permet de créer un angle de 0 à 60 degrées.
+\item Obtenir les courbes i-v et p-v du panneau solaire avec et sans nuages (modélisé par un filtre 50\%).
+\item Déterminer le rendement optimal du panneau solaire
+\item Déterminer la charge maximisant le transfert de puissance dans divers scénarios.
 \end{itemize}
 
 %figure du montage: montrer les endroits où prendre des mesures et les positions du panneau solaire
+
+
+\begin{figure}[h]
+    \centering
+    \begin{circuitikz} \draw
+    %(0,0) node[ground]{} 
+    (0,3) to[V] (0,0)  
+    (0,3) to[short] 
+    (2,3) to[ammeter] (5,3)
+    (5,0) to[pR,n=pR] (5,3)
+    (4,0) to[short] (0,0)
+    (4,0) to[short] (4,1.5)
+    (4,1.5) to[short, n=pR] (4.5,1.5)
+    (2,0) to[voltmeter] (2,3)
+    node[label=right:0-10k$\Omega$] at (5,1.5)
+    node[rotate=90] at (-0.75,1.5) {Panneau solaire}
+    ;\end{circuitikz}
+    \caption{Circuit pour l'obtention des courbes i-v et p-v du panneau solaire}
+    \label{fig:mesures panneau}
+\end{figure}
+
+Vous aurez à prendre beaucoup de mesures, alors il est pertinent de prendre le temps de concevoir un script LabVIEW qui simplifiera au maximum votre prise de mesures. Prenez un DAQ comme voltmètre et le multimètre 6$\frac{1}{2}$ chiffres comme ampèremètre.
+
 
 \section{Questions à explorer dans la première partie}
 \begin{itemize}

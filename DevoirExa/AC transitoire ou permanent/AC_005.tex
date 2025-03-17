@@ -1,0 +1,52 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%AC_XXX.tex : X inductances, Y condensateurs et Z résistances | Passe-X, phase, signal d'entrée, constante de temps, bande passante, facteur de qualité (garder tout ce qui s'applique)
+%
+%SOURCE: 
+%UTILISATION (D=devoir, E=examen, A=atelier de dépannage, C=en classe - année): 
+%DIFFICULTÉ courte et/ou simple? (Y/N): 
+%------------------------------------------------------------------
+%Créé par 
+%Contributions par 
+%Compilateur pdfLaTeX, distribution TeX Live 20XX
+%Dernière modification : 
+%
+%ToDo:
+%   [] ...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[../ElectroX-DevoirAC.tex]{subfiles}
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}}
+%
+Soit le filtre illustré la figure~\ref{circuit}.
+
+\textbf{a)} Évaluez analytiquement sa fonction de transfert $\displaystyle H\!\left(s\right)=\frac{V_{\mathrm{out}}\!\left(s\right)}{V_{\mathrm{in}}\!\left(s\right)}$ dans le domaine de Laplace.
+
+\textbf{b)} En régime permanent, évaluez et tracez le diagramme de Bode du gain $G\!\left(\omega\right)=\left|H\!\left(\omega\right)\right|$. Mettez l'axe des fréquences en échelle logarithmique.
+
+\textbf{c)} Sans oublier de continuer à détailler votre démarche, évaluez et tracez le diagramme de Bode de la phase $\varphi\!\left(\omega\right)$.
+
+\textbf{d)} Est-ce qu'il s'agit d'un filtre passe-haut, passe-bas, passe-bande ou coupe-bande?
+
+\textbf{e)} Directement avec la courbe numérique, déterminez s'il est possible de trouver une ou deux fréquences de coupure $\omega_{c}$ , définies à $-3$~dB de la valeur maximale de $G\!\left(\omega\right)$. Identifiez celle(s)-ci sur le graphique.
+
+\textbf{f)} Si possible, trouvez la valeur de la fréquence de résonance $\omega_0$ et la largeur de bande passante $B=\omega_{c2}-\omega_{c1}$ du filtre. Calculez le ratio de ces deux valeurs pour obtenir le facteur de qualité $Q=\omega_0/B$.
+
+\begin{figure}[h]
+\begin{center}
+\begin{circuitikz} \draw
+(0,3) node[left]{$v_{\mathrm{in}}\!\left(t\right)$} to[R,l^=$66\,\Omega$,o-] (3,3) to[R,l^=$135\,\Omega$] (6,3) to[short,-o] (8,3) node[right]{$v_{\mathrm{out}}\!\left(t\right)$}
+(3,3) to[C,l_=$1\,\mu\mathrm{F}$] (3,1) node[ground]{}
+(6,3) to[L,l_=$2\,\mathrm{mH}$] (6,1) node[ground]{}
+;\end{circuitikz}
+\end{center}
+\caption{\label{circuit}Filtre à identifier.}
+\end{figure}
+%
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------

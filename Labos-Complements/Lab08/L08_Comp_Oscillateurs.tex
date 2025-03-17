@@ -35,6 +35,7 @@
 \usepackage[letterpaper,headheight=15pt]{geometry}
 \usepackage{fancyhdr}
 \usepackage{setspace}
+\usepackage{pgfplots}
 %
 \captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
 \pagestyle{myheadings}
@@ -185,7 +186,10 @@ où $A$ et $\varphi$ sont des constantes déterminées par les conditions initia
 %Si la résistance est non-nulle, la fréquence d'oscillation sera amortie et sera plutôt de $\sqrt{w_0^2-\alpha^2}=\sqrt{\frac{1}{LC}-\left(\frac{R}{L}\right)^2}$.
 %La résolution de l'équation homogène décrite ici permet de trouver la fréquence de résonance d'un circuit. 
 
-Il faut insister sur le fait que les oscillations naturelles dans le circuit~RLC sont toujours transitoires, elles ne peuvent pas perdurer beaucoup plus longtemps que la constante de temps $\tau$ du circuit. En effet, même un circuit~LC (\textit{tank or tuned circuit}) sans composant résistif dissipera de la puissance hors du circuit puisque les fils ne sont pas idéaux avec une résistivité intrinsèque non nulle. C'est pourquoi un composant actif, donc alimenté comme l'ampli-op, est nécessaire dans la conception d'oscillateurs électroniques et que l'analyse doit aussi considérer le régime permanent maintenu par un terme d'entretien non nul, tel que vu en classe et dans le complément \textit{Analyse fréquentielle}. Les relations constitutives~\eqref{eq:RelCon} permettent d'obtenir directement le comportement aussi oscillatoire de la différence de potentiel aux bornes de chaque composant et on peut alors retrouver la réponse en fréquence du circuit~RLC à l'aide de la transformée de Fourier. Toutefois, la présence d'un ampli-op demanderait un système d'EDO non linéaires, non homogènes et couplées pour complètement représenter le circuit, d'où on se tourne plutôt vers un modèle approximatif de l'ampli-op tel qu'introduit dans le complément \textit{Amplificateurs} et vers le diagramme de Bode du gain pour le circuit~RLC, soit un filtre passe-bande. 
+
+%Il faut insister sur le fait que les oscillations naturelles dans le circuit~RLC sont toujours transitoires, elles ne peuvent pas perdurer beaucoup plus longtemps que la constante de temps $\tau$ du circuit. En effet, même un circuit~LC (\textit{tank or tuned circuit}) sans composant résistif dissipera de la puissance hors du circuit puisque les fils ne sont pas idéaux avec une résistivité intrinsèque non nulle. C'est pourquoi un composant actif, donc alimenté comme l'ampli-op, est nécessaire dans la conception d'oscillateurs électroniques et que l'analyse doit aussi considérer le régime permanent maintenu par un terme d'entretien non nul, tel que vu en classe et dans le complément \textit{Analyse fréquentielle}. 
+%Les relations constitutives~\eqref{eq:RelCon} permettent d'obtenir directement le comportement aussi oscillatoire de la différence de potentiel aux bornes de chaque composant et on peut alors retrouver la réponse en fréquence du circuit~RLC à l'aide de la transformée de Fourier. Toutefois, la présence d'un ampli-op demanderait un système d'EDO non linéaires, non homogènes et couplées pour complètement représenter le circuit, d'où on se tourne plutôt vers un modèle approximatif de l'ampli-op tel qu'introduit dans le complément \textit{Amplificateurs} et vers le diagramme de Bode du gain pour le circuit~RLC, soit un filtre passe-bande. 
+
 
 %Pour déterminer la réponse en fréquence, c'est-à-dire la valeur du gain en fonction de la fréquence d'oscillation du signal d'entrée $V_S(t)$, il faut résoudre l'équation non-homogène. Ceci est habituellement réalisé en calculant la fonction de transfert du système directement dans l'espace des fréquences avec les expressions pour l'impédance des composants, tel que détaillé dans le complément \textit{Analyse fréquentielle}.
 
@@ -261,12 +265,48 @@ La figure~\ref{sch-alarme-1} illustre comment utiliser la puce 555 pour génére
 \end{figure}
 
 \section{Modification de largeur d'impulsion (PWM)}
-La modification de la largeur d'impulsion, ou \textit{pulse width modulation} (PWM) en anglais, est une technique principalement utilisée pour contrôler la puissance acheminée à une charge quelconque. Par exemple, celle-ci permet de contrôler la vitesse d'un moteur DC ou l'intensité d'une lumière DEL. Supposons un signal carré périodique tel qu'illustré à la figure []. Pour une période donné, on appelle rapport cyclique ou \textit{duty cycle} la fraction de la période où la tension est non-nulle dans le signal. En définissant la période du signal par:
+La modification de la largeur d'impulsion, ou \textit{pulse width modulation} (PWM) en anglais, est une technique principalement utilisée pour contrôler la puissance acheminée à une charge quelconque. Par exemple, celle-ci permet de contrôler la vitesse d'un moteur DC ou l'intensité d'une lumière DEL. Supposons un signal carré périodique tel qu'illustré à la figure \ref{fig:Graph-PWM}. Pour une période donnée, on appelle rapport cyclique ou \textit{duty cycle} la fraction de la période où la tension est non nulle dans le signal. En définissant la période du signal par:
 $$T = T_{on} + T_{off},$$
 le rapport cyclique est donné par:
 $$\text{Rapport cyclique} = \frac{T_{on}}{T_{on} + T_{off}}$$
-Comme le nom l'indique, en PWM on fait varier la largeur de l'impulsion et par de fait même le rapport cyclique. C'est en faisant varier celui-ci qu'on peut choisir la tension effective du signal et contrôler par exemple l'intensité lumineuse d'une lumière DEL. Cette tension est donnée par:
+Comme le nom l'indique, en PWM on fait varier la largeur de l'impulsion et par le fait même le rapport cyclique. C'est en faisant varier celui-ci qu'on peut choisir la tension efficace du signal et contrôler par exemple l'intensité lumineuse d'une lumière DEL. Cette tension est donnée par:
 $$V_{eff} = V_{on} \times \text{Rapport cyclique}$$
-Ainsi, pour le cas de la lumière, l'intensité sera proportionnelle à la tension efficace. En effet, si on a un signal avec une valeur maximale de 5 V, même si la lumière reçoit effectivement 5 V pendant un certain temps de la période du signal, si on utilise une fréquence assez élevée l'oeil humain percevra une diminution de l'intensité lumineuse lorsqu'on fait diminuer le rapport cyclique du signal. Pour le cas d'un moteur DC, d'une manière similaire, si on a une fréquence de signal suffisamment élevé, le moment où la tension est nulle est négligeable et donc l'effet net de la modification de la largeur d'impulsion est de contrôler la vitesse du moteur. Certains pourraient se demander quel est l'avantage d'utiliser le PWM à la place de tout simplement diminuer ou augmenter la tension d'un signal DC. Pour certains composants comme le moteur, la tension sera tout simplement insuffisante pour le faire fonctionner à partir d'un certain point. De plus, il n'y a souvent pas de corrélation linéaire entre la tension et le output d'un composant quelconque. La modification de la largeur d'impulsion est donc supérieure pour contrôler précisément le \textit{output} voulu. 
+Ainsi, pour le cas de la lumière, l'intensité sera proportionnelle à la tension efficace. En effet, si on a un signal avec une valeur maximale de 5 V, même si la lumière reçoit effectivement 5 V pendant un certain temps de la période du signal, si on utilise une fréquence assez élevée, l'œil humain percevra une diminution de l'intensité lumineuse lorsqu'on fait diminuer le rapport cyclique du signal. Pour le cas d'un moteur DC, d'une manière similaire, si on a une fréquence de signal suffisamment élevée, le moment où la tension est nulle est négligeable et donc l'effet net de la modification de la largeur d'impulsion est de contrôler la vitesse du moteur. Certains pourraient se demander quel est l'avantage d'utiliser le PWM à la place de tout simplement diminuer ou augmenter la tension d'un signal DC. Pour certains composants comme le moteur, la tension sera tout simplement insuffisante pour le faire fonctionner à partir d'un certain point. De plus, il n'y a souvent pas de corrélation linéaire entre la tension et le output d'un composant quelconque. La modification de la largeur d'impulsion est donc supérieure pour contrôler précisément le \textit{output} voulu.\\ 
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+width=15cm,
+height=8cm,
+x axis line style={-stealth},
+y axis line style={-stealth},
+title={},
+xticklabels={},
+ymax = 1.5,xmax=7.99,
+ymin = -0.5,
+axis lines*=center,
+ytick={1},
+xlabel={Temps},
+ylabel={Tension},
+xlabel near ticks,
+xlabel style={xshift=185pt},
+ylabel near ticks,
+ylabel style={xshift=15pt}]
+
+\draw[thick,->] (axis cs:1.25,1.15) -- (axis cs:2.5,1.15);
+\draw[thick,->] (axis cs:1.25,1.15) -- (axis cs:0,1.15);
+\node at (axis cs:1.25, 1.25){Rapport cyclique};
+\draw[thick,->] (axis cs:2,-0.15) -- (axis cs:4,-0.15);
+\draw[thick,->] (axis cs:2,-0.15) -- (axis cs:0,-0.15);
+\node at (axis cs:2,-0.25){Période};
+\addplot+[thick,mark=none,const plot]
+coordinates
+{(0,0) (0,1) (2.5,0) (4,0) (4,1) (6.5,1) (6.5,0) (8,0)};
+\end{axis}
+\end{tikzpicture}
+\caption{Graphique d'un signal avec largeur d'impulsion modifiée}
+\label{fig:Graph-PWM}
+\end{figure}
+
 
 \end{document}
