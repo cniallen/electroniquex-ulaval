@@ -1,11 +1,64 @@
-\documentclass{article}
-\usepackage{graphicx}
+%Format inspired from : https://cheatography.com/fredv/cheat-sheets/eq-tips/tex/
+\documentclass[english,french,12pt]{article}
 \usepackage{longtable}
 \usepackage{multirow}
-\usepackage{caption}
 \usepackage{geometry}
+\usepackage{fancyhdr}           % For header and footer
+\usepackage{multicol}           % Allows multicols in tables
+\usepackage{tabularx}           % Intelligent column widths
+\usepackage{tabulary}           % Used in header and footer
+\usepackage{hhline}             % Border under tables
+\usepackage{graphicx}           % For images
+\usepackage{xcolor}             % For hex colours
+\usepackage[utf8x]{inputenc}    % For unicode character support
+\usepackage[T1]{fontenc}        % Without this we get weird character replacements
+\usepackage{colortbl}           % For coloured tables
+\usepackage{setspace}           % For line height
+\usepackage{lastpage}           % Needed for total page number
+\usepackage{seqsplit}           % Splits long words.
+
+% Lengths and widths
+\geometry{  %%for geometry package
+%    showframe,  %%uncomment to see lines delimiting the dimension boxes
+    letterpaper,
+    margin=0.75in}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{}
+%\addtolength{\textwidth}{6cm}
+%\addtolength{\textheight}{-1cm}
+%\addtolength{\hoffset}{-3cm}
+%\addtolength{\voffset}{-2cm}
+\setlength{\tabcolsep}{0.2cm} % Space between columns
+%\setlength{\headsep}{-12pt} % Reduce space between header and content
+%\setlength{\headheight}{85pt} % If less, LaTeX automatically increases it
+\renewcommand{\footrulewidth}{0pt} % Remove footer line
+\renewcommand{\headrulewidth}{0pt} % Remove header line
+\renewcommand{\seqinsert}{\ifmmode\allowbreak\else\-\fi} % Hyphens in seqsplit
+% This two commands together give roughly
+% the right line height in the tables
+\renewcommand{\arraystretch}{1.7}
+\onehalfspacing
+
+% Commands
+\newcommand{\SetRowColor}[1]{\noalign{\gdef\RowColorName{#1}}\rowcolor{\RowColorName}} % Shortcut for row colour
+\newcommand{\mymulticolumn}[3]{\multicolumn{#1}{>{\columncolor{\RowColorName}}#2}{#3}} % For coloured multi-cols
+\newcolumntype{x}[1]{>{\raggedright}p{#1}} % New column types for ragged-right paragraph columns
+\newcommand{\tn}{\tabularnewline} % Required as custom column type in use
+
+% Font and Colours
+\definecolor{HeadBackground}{HTML}{333333}
+\definecolor{FootBackground}{HTML}{666666}
+\definecolor{TextColor}{HTML}{333333}
+\definecolor{DarkBackground}{HTML}{C48027}
+\definecolor{LightBackground}{HTML}{FBF7F1}
+\renewcommand{\familydefault}{\sfdefault}
+\color{TextColor}
 
 \begin{document}
+\section*{Revue de composants et blocs de circuits}
+\raggedright
+\raggedcolumns
 % trucs du parfait petit inventeur.euse, chercheur.eus
 % TEXTE D'INTRO DES ATELIERS : Avant la séance d’atelier, écrivez sommairement dans votre cahier de recherche tout ce que vous prévoyez faire au laboratoire pour accomplir les livrables de la prochaine section. N’oubliez pas de calculer toute valeur de référence donnée en complément aux fins de comparaison à l’expérience. En plus des manipulations expérimentales, des mesures à prendre et de leur analyse, n’oubliez pas de considérer des étapes de modélisation, conception et simulation. Plusieurs logiciels spécialisés pour l’électronique listés sur le site de cours, dans la section Logiciels de l’onglet Matériel didactique, vous aideront dans cette préparation. En particulier, l’onglet Circuits de l’application Web de Paul Falstad contient tous les blocs en atelier, montrant directement les "réponses" des comportements idéaux attendus 1. Comme la programmation LabVIEW s’avère souvent chronophage, vous pouvez être soulagés qu’aucun VI n’est demandé pour les ateliers. Toutefois pour mieux caractériser les filtres avec des diagrammes de Bode lorsqu’ils sont mentionnés en sous-objectifs ci-dessous, utilisez le VI LabVIEW déjà prêt dans le module de cet atelier.
 % KISS
@@ -15,42 +68,90 @@
 % love your Kirchhoff laws as soon as you see linear circuit parts 
 % copy-paste of error messages from program code to search online
 % with just that, we made a simple gated amplifier synchronized to a particle accelerator that improved the SNR of the measured scintillation signal :)
-\begin{center}
-%\begin{table}[h]
-\begin{longtable}{ p{0.75\textwidth} p{0.2\textwidth} } 
-%\begin{tabular}{c|c} 
-%\renewcommand{\arraystretch}{1.5}
-\hline
-Fonction exécutée par le circuit & Où?\\
-\hline
-\hline
-Mesurage en conversion tension-courant & \\
-Dissipation de puissance  &  \\
-Variation de résistance & \\
-Division de tension &  \\
-Division de courant & \\
-Régulation de tension & \\
-Minimisation écologique des pertes de puissance & \\
-Minimisation écologique des réflexions parasites & \\
-Redressement du courant alternatif & \\
-Conversion CA$\rightarrow$ CC & \\
-Amplification de puissance & \\
-Suivi de tension & \\
-Comparaison de tension & \\
-Filtrage de fréquences & \\
-Génération CA & \\
-Chronométrage & \\
-Sonorisation & \\
-Opération de calculs logique & \\
-Conversion analogique-numérique & \\
-%emmagasinage d'énergie et introduction de délais avec capaciteur et inducteurs
-%polarisation de la direction du courant continu avec une diode
+
+%\begin{figure}
+%\centering
+\begin{tabularx}{\textwidth}{ 
+   >{\raggedright\arraybackslash}X 
+   >{\centering\arraybackslash}X  }%{x{8 cm} x{8 cm} }
+
+\SetRowColor{DarkBackground}
+\textbf{\large Fonction exécutée} & \textbf{\large Où se trouve ce circuit?} \tn 
+\SetRowColor{LightBackground}
+Dissipation de puissance (effet Joule) & \tn 
+\SetRowColor{white}
+Variation de résistance & \tn 
+\SetRowColor{LightBackground}
+Emmagasinage d'énergie & \tn 
+\SetRowColor{white}
+Division de tension & \tn 
+\SetRowColor{LightBackground}
+Division de courant & \tn 
+\SetRowColor{white}
+Polarisation de direction du courant dans un sens & \tn
+\SetRowColor{LightBackground}
+Régulation de tension & \tn 
+\SetRowColor{white}
+Délais et déphasages & \tn 
+\SetRowColor{LightBackground}
+Minimisation écologique des pertes de puissance & \tn 
+\SetRowColor{white}
+Minimisation écologique des réflexions parasites & \tn
+\SetRowColor{LightBackground}
+Redressement du courant alternatif & \tn 
+\SetRowColor{white}
+Conversion CA $\rightarrow$ CC & \tn
+\SetRowColor{LightBackground}
+Amplification de puissance & \tn 
+\SetRowColor{white}
+Suivi de tension & \tn
+\SetRowColor{LightBackground}
+Comparaison de tension & \tn 
+\SetRowColor{white}
+Filtrage de fréquences & \tn
+ \SetRowColor{LightBackground}
+Génération CA & \tn 
+\SetRowColor{white}
+Chronométrage & \tn
+ \SetRowColor{LightBackground}
+Sonorisation & \tn 
+\SetRowColor{white}
+Opération de calculs logique & \tn
+ \SetRowColor{LightBackground}
+Conversion analogique-numérique & \tn 
+\end{tabularx}
+%\caption{Révision des cours et expériences pour rassembler des fonctions qui peuvent être accomplies par un circuit électronique.}
+%\label{tab:electronic_fcts}
+%\end{figure}
+
+%ANCIENNE MISE EN FORME
+%Fonction exécutée par le circuit & Où?\\
+%Mesurage en conversion tension-courant & \\
+%Dissipation de puissance  &  \\
+%Emmagasinage d'énergie & \\
+%Variation de résistance & \\
+%Division de tension &  \\
+%Division de courant & \\
+%Régulation de tension & \\
+%Délais et déphasages & \\
+%Polarisation de direction du courant dans un sens & \\
+%Minimisation écologique des pertes de puissance & \\
+%Minimisation écologique des réflexions parasites & \\
+%Redressement du courant alternatif & \\
+%Conversion CA$\rightarrow$ CC & \\
+%Amplification de puissance & \\
+%Suivi de tension & \\
+%Comparaison de tension & \\
+%Filtrage de fréquences & \\
+%Génération CA & \\
+%Chronométrage & \\
+%Sonorisation & \\
+%Opération de calculs logique & \\
+%Conversion analogique-numérique & \\
 %il y en avait un autre auquel j'ai pensé pendant le lancement qui serait utile projet de conception, mais je ne m'en rappelle plus :(
-\hline
 %\end{tabular}
-\caption{Révision des cours et expériences pour rassembler des fonctions qui peuvent être accomplies par un circuit électronique.}
-\label{tab:electronic_fcts}
-\end{longtable}
-\end{center}
+%\caption{Révision des cours et expériences pour rassembler des fonctions qui peuvent être accomplies par un circuit électronique.}
+%\label{tab:electronic_fcts}
+
 
 \end{document}

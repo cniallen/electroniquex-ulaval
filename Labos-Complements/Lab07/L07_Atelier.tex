@@ -49,7 +49,7 @@
 %
 %---------------------------------------------------
 %
-\title{\textbf{Atelier VII}\\Filtres passifs \& actifs\thanks{Auteurs: Claudine Allen, Samuel Nadeau \& Jean-Raphaël Carrier \& Jérémie Guilbert}}
+\title{\textbf{Atelier VII}\\Filtres passifs \& actifs\thanks{Auteurs: Claudine Allen, Samuel Nadeau, Jean-Raphaël Carrier \& Jérémie Guilbert}}
 \renewcommand\footnotemark{}
 \date{}
 
@@ -60,10 +60,9 @@
 
 \noindent\textit{\textbf{Prélude de contexte et déroulement des ateliers}}
 
-\textit{Les ateliers se rapprochent d'un mode de travail expérimental plus autonome, s'éloignant du contexte pédagogique pour se rapprocher du milieu professionnel. En effet, après avoir étudié tous les éléments de la section \nameref{sec:lectures}, vous devez concevoir votre propre protocole dans votre cahier de recherche afin d'atteindre les objectifs de chaque partie. Les questions à explorer et la section \nameref{sec:prep} vous guideront dans votre rédaction du protocole, puis l'équipe d'enseignement vous assistera au laboratoire avec toute explication souhaitée et des suggestions pour bonifier vos manipulations. S'il reste du temps à la fin de chaque atelier, profitez-en pour avancer votre projet de conception final afin de mieux respirer en fin de session et de bénéficier directement de support de l'équipe.}
+\textit{Les ateliers se déroulent séquentiellement dans un mode de travail expérimental plus autonome à votre rythme, en s'éloignant du contexte pédagogique pour se rapprocher du milieu professionnel. En effet, après avoir étudié tous les éléments de la section \nameref{sec:lectures}, vous devez concevoir votre propre protocole dans votre cahier de recherche afin d'atteindre les objectifs de chaque partie. Les questions ou pistes à explorer ainsi que la section \nameref{sec:prep} vous guideront dans votre rédaction du protocole, puis l'équipe d'enseignement vous assistera seulement pendant votre période de laboratoire avec toute explication souhaitée et des suggestions pour bonifier vos manipulations.}
 
-\textit{Les équipes pour ces ateliers et le projet de conception passent de 2 à 4 personnes pour partager les tâches de modélisation, conception et simulation en plus des manipulations expérimentales, des mesures à prendre et de leur analyse. Vous pouvez même utilisez des postes et plaquettes de montage en parallèle afin que personne ne se tourne les pouces! Consignez soigneusement tout votre travail dans votre cahier de recherche et assurez-vous que le superviseur de l'équipe d'enseignement qui vous encadre évalue si vous avez atteint les objectifs avant de démonter vos circuits. Il n'y a aucune autre remise à faire pour les ateliers afin de vous donner le temps de travailler sur votre projet final.}
-
+\textbf{L'évaluation porte sur les objectifs, votre travail doit être examiné par le.la superviseur.e qui vous est attribué.e sur le site de cours monPortail AVANT de passer à l'atelier suivant.} \textit{Ce travail, à répartir entre tous les membres de la nouvelle équipe de 3 à 4 personnes, comprend les tâches de modélisation, conception et simulation en plus des manipulations expérimentales, des mesures à prendre et de leur analyse. Vous pouvez même utiliser des postes et plaquettes de montage en parallèle afin que personne ne se tourne les pouces! Consignez soigneusement tout ce travail dans un même cahier de recherche regroupant l'équipe à l'aide de la fonction de partage dans OneNote. Il n'y a rien d'autre à remettre pour les ateliers afin de vous donner le temps de travailler sur votre projet final.}
 
 \vspace{-2.5ex}
 \section{Thématique}\label{sec:theme}
@@ -93,7 +92,8 @@ Les objectifs à atteindre avec le filtre RC de la figure~\ref{fig:passe-bas-RC}
 \begin{itemize}
     \item identifier les paramètres caractérisant son fonctionnement,
     \item associer les domaines temporel et fréquentiel en faisant théoriquement et expérimentalement son analyse par transformée de Laplace et Fourier,
-    \item améliorer son fonctionnement pour le rapprocher d'un filtre idéal indépendant de la charge placée à sa sortie.
+    \item améliorer son fonctionnement pour le rapprocher d'un filtre idéal indépendant de la charge placée à sa sortie,
+    \item consigner sa préparation et tout son travail dans le cahier de recherche en temps réel.
 \end{itemize}
 
 \begin{figure}[h]
@@ -121,10 +121,12 @@ Les objectifs à atteindre avec le filtre RC de la figure~\ref{fig:passe-bas-RC}
 \end{itemize}
 
 \subsubsection{Instructions pour le VI d'acquisition des diagrammes de Bode}
-Les diagrammes de Bode nécessitent une fréquence idéalement unique en abscisse, ce qui est obtenu expérimentalement avec un signal sinusoïdal envoyé par le générateur de fonctions. Branchez ce signal de tension sur le canal~1 de l'oscilloscope et à l'entrée du filtre alors que celui à sa sortie sera lu en l'envoyant au canal~2. Sur la face-avant du VI, faites en sorte que les types des mesures 1, 2 et 3 soient respectivement \texttt{Amplitude}, \texttt{Amplitude} et \texttt{Phase}. La fréquence initiale $f_{\mathrm{ini}}$ doit être 1~Hz. Fixez le nombre d'itérations à 25. Les mesures seront prises une fois par octave, \textit{i.e.} aux fréquences définies par $f_{i}=2^i\,f_{\mathrm{ini}}$, donc de 1~Hz à 16,777~MHz (soit presque la totalité de la plage de l'oscilloscope). Lorsque vous tracerez les diagrammes de Bode, ne prenez pas en compte les points où la valeur est de 9,90E+37 ; ces mesures sont erronées et sont dues au fait que le signal à cette fréquence était trop faible pour une mesure adéquate avec l'oscilloscope. %Mettez $V_{\mathrm{min}}$ à $-2$~V et $V_{\mathrm{max}}$ à 2~V, mais il fallait changer pour certains filtres dans la version "laboratoire" anyway.
+Les diagrammes de Bode nécessitent une fréquence idéalement unique en abscisse, ce qui est obtenu expérimentalement avec un signal sinusoïdal envoyé par le générateur de fonctions. Branchez ce signal de tension sur le canal~1 de l'oscilloscope et à l'entrée du filtre alors que celui à sa sortie sera lu en l'envoyant au canal~2. Sur la face-avant du VI, faites en sorte que les types des mesures 1, 2 et 3 soient respectivement \texttt{Amplitude}, \texttt{Amplitude} et \texttt{Phase}. La fréquence initiale $f_{\mathrm{ini}}$ doit être 1~Hz et fixez le nombre d'itérations à 25. Les mesures seront alors prises une fois par octave, \textit{i.e.} aux fréquences définies par $f_{i}=2^i\,f_{\mathrm{ini}}$, donc de 1~Hz à 16,777~MHz (soit presque la totalité de la plage de fréquence atteignable par l'oscilloscope). L'amplitude du signal harmonique généré est à votre choix, mais évitez d'introduire un décalage CC avec les tensions $V_{min}$ et $V_{max}$. Varier l'échelle de tension en affichage vertical de l'oscilloscope sert alors à voir au mieux le signal complet, une \textit{règle du pouce} est de remplir environ les 3/4 de l'écran.
+
+Lorsque vous tracerez les diagrammes de Bode, ne prenez pas en compte les points où la valeur est de 9,90E+37 ; ces mesures sont erronées et sont dues au fait que le signal à cette fréquence était trop faible pour une mesure adéquate avec l'oscilloscope. %Mettez $V_{\mathrm{min}}$ à $-2$~V et $V_{\mathrm{max}}$ à 2~V, mais il fallait changer pour certains filtres dans la version "laboratoire" anyway.
 
 \section{Partie 2}\label{sec:conceptionRLC}
-L'objectif de cette partie est de concevoir et analyser un filtre passe-bande selon la configuration de la figure~\ref{fig:passe-bande-RLC} qui doit répondre aux spécifications demandées.
+L'objectif de cette partie est de concevoir et d'analyser un filtre passe-bande selon la configuration de la figure~\ref{fig:passe-bande-RLC} qui doit répondre aux spécifications demandées. Les calculs de design en préparation du filtre et son analyse expérimentale doivent être consignés dans le cahier de recherche en temps réel.
 %Calculateur http://sim.okawa-denshi.jp/en/RLCtool.php and find back the French one
 \begin{figure}[h!]
 \centering
@@ -147,7 +149,7 @@ L'objectif de cette partie est de concevoir et analyser un filtre passe-bande se
 % De la mesure de SNR pourrait être ramenée à qqpart dans le coin avec carré des résidus par rapport à une référence qui devient le bruit.
 
 \section{Partie 3}\label{sec:filtrage-source}
- L'objectif final de cet l'atelier est d'adapter un filtre des parties précédentes et de le mettre en application sur signal. Il s'agit ici spécifiquement de décrypter le signal qui vous est fourni via un module Moku: Go selon les instructions à la fin de cette partie.
+ L'objectif final de cet l'atelier est d'adapter un filtre des parties précédentes et de le mettre en application sur un signal, tout en continuant de consigner sa préparation et son travail dans le cahier de recherche en temps réel. Il s'agit ici spécifiquement de décrypter le signal qui vous est fourni via un module Moku: Go selon les instructions à la fin de cette partie. 
 
 \subsection{Questions à explorer avec votre circuit}
 \begin{itemize}
