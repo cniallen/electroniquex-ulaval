@@ -14,6 +14,7 @@
 \usepackage{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{multirow}
+\usepackage{ccicons}
 
 
 \captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
@@ -24,97 +25,114 @@
 \begin{document}
 
 
-\title{\textbf{Complément}\\Mesures lumineuses}
-\author{Nicolas Payeur, Annie-Claude Parent}
+\title{\textbf{Complément}\\Conversion d'énergie solaire : effet photovoltaïque}
+\author{Claudine Allen}
 \date{}
 \maketitle
 
+La provenance de l'énergie utilisée pour l'alimentation des circuits jusqu'à maintenant n'est pas directement apparente avec le branchement sur le réseau d'Hydro-Québec, donc il ne s'agit pas nécessairement d'énergie renouvelable \footnote{Jusqu'en 2012, Hydro-Québec opérait même la centrale nucléaire Gentilly-2.}. Pour faire la conversion d'une énergie renouvelable comme l'énergie solaire vers une source de courant continu (CC), il faut sortir du domaine électrique en ajoutant une nouvelle fonction à nos composants : la sensibilité à la lumière, appelée photosensibilité. 
 
-\section{Intensité d'une source lumineuse}
+\section{Efficacité de conversion}
 
-Dans tout système instrumental utilisant une énergie, la source de cette énergie doit être quantifiée. Dans un système à énergie solaire, la luminosité réelle de la source doit être mesurée. 
+La seule cause de perte d'énergie électrique des circuits alimentés CC vient de la dissipation de puissance des résistances, et l'étude du transfert d'une source d'alimentation non idéale avec une impédance interne non nulle a déjà conclu que les pertes sont minimisées lorsque l'impédance de la charge (circuit de sortie) est le complexe conjugué de celle interne de la source. Il ne reste donc qu'à considérer l'efficacité de conversion~$\eta$ des nouvelles sources photosensibles, soit la fraction de puissance électrique $p_{cc}=v\times i$ obtenue du flux énergétique de puissance rayonnée en lumière~$p_e$, toutes deux mesurées en watts (\qty{1}{\watt} = \qty[per-mode = symbol]{1}{\joule\per\second}). Cette efficacité s'exprime donc succinctement
 
-\begin{itemize}
-\item L'\textit{éclairement lumineux} est une mesure de la façon dont l'humain perçoit la lumière sur une surface et se mesure en lux. Par exemple, la lumière du soleil varie de 5 à 120 000 lux. Un lux est l'énergie produite par un lumen incident sur une surface de 1 m\textsuperscript{2}. 
-\item La \textit{luminosité} est la quantité totale d'énergie émise par unité de temps. Elle représente la brillance d'un objet et se mesure en lumens (lm). 
-\item La \textit{puissance} est la quantité d'énergie fournie par unité de temps et s'exprime en watts $W$. 
-\end{itemize}
+\[
+\eta=\frac{p_{cc}}{p_e}=\frac{v\times i}{p_e}\;,
+\]
+et elle est affectée par toute résistance de charge placée en sortie du composant photosensible, ce qui peut être analysé avec une courbe $p_{cc}$--$v$.
 
-Lorsque la source est une ampoule à incandescence, l’indicateur utilisé pour la quantifier est la puissance, exprimée par sa consommation électrique en watts (W), par exemple : 20 W, 60 W ou 100 W. Dans le cas d’une ampoule LED, sa puissance peut aussi être exprimée en watts, mais n’est qu’une approximation de sa luminosité réelle. Contrairement à une ampoule à incandescence, une ampoule LED peut produire une luminosité différente avec la même consommation électrique. Ce sont les composants, de qualités différentes, qui font en sorte qu’une ampoule LED a une meilleure efficacité qu’une autre. 
-Une source lumineuse émet un flux lumineux ($\phi_V$), qui s’exprime en lumens (lm). Les lumens sont utilisés pour comparer la luminosité de diverses sources lumineuses indépendamment de leur efficacité et des composants. L'efficacité ($\eta$) est exprimée en lumens par watts (lm/W). La puissance en watts (W) se calcule comme suit : 
-\begin{equation}
-P_{(W)}=\phi_{V(lm)}/\eta_{(lm/W)}		
-\end{equation}
-Il est possible de se référer aux tableaux suivants pour estimer la puissance d’une source lumineuse. 
-Tableau 1. Table d’efficacité lumineuse
-Tableau 2. Table de Lumens en Watts
+% \section{Grandeurs radiométriques}
 
-\begin{table}[h]
-\centering
-\begin{tabular}{ccccc}
-Catégorie & Type & lm/W &  &  \\ \cline{1-3}
-\multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}lampes \\ incandescentes\end{tabular}} & Lampe halogène 20W (2700 K) & ≈ 12 &  &  \\
- & Lampe halogène 116W (2800 K) & ≈ 18 &  &  \\
- & Lampe halogène 400W (2900 K) & ≈ 22 &  &  \\
- & Lampe halogène 2000W (3200 K) & ≈ 26 &  &  \\ \cline{1-3}
-\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}lampes \\ fluorescentes\end{tabular}} & Tube fluorescent & 60 à 114 &  &  \\
- & Lampe fluocompacte & 55 à 70 &  &  \\ \cline{1-3}
-\multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Lampes à arc et \\ à décharge\end{tabular}} & Lampe au xénon & 13 à 478 &  &  \\
- & Lampe à vapeur de sodium haute pression & 81 à 1508,9 &  &  \\
- & Lampe à vapeur de sodium basse pression & 167 à 2069 &  &  \\
- & Lampe aux halogénures métalliques & 70 à 100 &  &  \\ \cline{1-3}
-\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Lampes à diode \\ électroluminescente\end{tabular}} & LED blanche & 80 à 2008,9 &  &  \\
- & LED blanche (2014) (5 100 K) & ≈ 30011 &  & 
-\end{tabular}
-\end{table}
+% Les grandeurs photométriques font intervenir la réponse de l'œil humain qui est maximale dans le vert et n'intervient pas dans la conversion d'énergie solaire. C'est directement la réponse du silicium dans panneau solaire qui importe et elle est maximale dans l'infra-rouge proche (que l'on ne peut pas voir).
 
+% \subsection{Conversion de l'énergie lumineuse}
+% \begin{itemize}
+% \item L'\textit{intensité lumineuse} est l'équivalent radiométrique de de l'intensité énergétique. Elle s'exprime en watts par stéradian $W/sr$.
+% \item La \textit{luminosité} est la quantité totale d'énergie émise par unité de temps. Elle représente la brillance d'un objet et se mesure en lumens (lm). 
+% \item Le \textit{flux lumineux} est la quantité d'énergie fournie par unité de temps et s'exprime en watts $W$. 
+% \item L'\textit{éclairement lumineux} est une mesure de la façon dont l'humain perçoit la lumière sur une surface et se mesure en lux. Par exemple, la lumière du soleil varie de 5 à 120 000 lux. Un lux est l'énergie produite par un lumen incident sur une surface de 1 m\textsuperscript{2}. 
+% \end{itemize}
 
-%\begin{table}[h]
-%\centering
-%\begin{tabular}{cccc}
-%Lumen & \begin{tabular}[c]{@{}c@{}}incandescentes\\hallogènes\end{tabular} & fluocompacte & LED \\
-%\[ [lm] \] & [W] & [W] & [W] \\ \hline
-%200 & 20 & 5 & 3 \\
-%300 & 35 & 12 & 4 \\
-%600 & 50 & 15 & 6.5
-%\end{tabular}
-%\end{table}
+% Lorsque la source est une ampoule à incandescence, l’indicateur utilisé pour la quantifier est la puissance, exprimée par sa consommation électrique en watts (W), par exemple : 20 W, 60 W ou 100 W. Dans le cas d’une ampoule LED, sa puissance peut aussi être exprimée en watts, mais n’est qu’une approximation de sa luminosité réelle. Contrairement à une ampoule à incandescence, une ampoule LED peut produire une luminosité différente avec la même consommation électrique. Ce sont les composants, de qualités différentes, qui font en sorte qu’une ampoule LED a une meilleure efficacité qu’une autre. 
+% Une source lumineuse émet un flux lumineux ($\phi_V$), qui s’exprime en lumens (lm). Les lumens sont utilisés pour comparer la luminosité de diverses sources lumineuses indépendamment de leur efficacité et des composants. L'efficacité ($\eta$) est exprimée en lumens par watts (lm/W). La puissance en watts (W) se calcule comme suit : 
+% \begin{equation}
+% P_{(W)}=\phi_{V(lm)}/\eta_{(lm/W)}    
+% \end{equation}
+% Il est possible de se référer aux tableaux suivants pour estimer la puissance d’une source lumineuse. 
+
+% Tableau 1. Table d’efficacité lumineuse
+% \begin{table}[h]
+% \centering
+% \begin{tabular}{ccccc}
+% Catégorie & Type & lm/W &  &  \\ \cline{1-3}
+% \multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Lampes \\ incandescentes\end{tabular}} & Lampe halogène 20W (2700 K) & ≈ 12 &  &  \\
+%  & Lampe halogène 116W (2800 K) & ≈ 18 &  &  \\
+%  & Lampe halogène 400W (2900 K) & ≈ 22 &  &  \\
+%  & Lampe halogène 2000W (3200 K) & ≈ 26 &  &  \\ \cline{1-3}
+% \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Lampes \\ fluorescentes\end{tabular}} & Tube fluorescent & 60 à 114 &  &  \\
+%  & Lampe fluocompacte & 55 à 70 &  &  \\ \cline{1-3}
+% \multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Lampes à arc et \\ à décharge\end{tabular}} & Lampe au xénon & 13 à 478 &  &  \\
+%  & Lampe à vapeur de sodium haute pression & 81 à 1508,9 &  &  \\
+%  & Lampe à vapeur de sodium basse pression & 167 à 2069 &  &  \\
+%  & Lampe aux halogénures métalliques & 70 à 100 &  &  \\ \cline{1-3}
+% \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Lampes à diode \\ électroluminescente\end{tabular}} & LED blanche & 80 à 2008,9 &  &  \\
+%  & LED blanche (2014) (5 100 K) & ≈ 30011 &  & 
+% \end{tabular}
+% \end{table}
 
 
-\section{Électronique photosensible}
+% Tableau 2. Table de Lumens en Watts
+% \begin{table}[h]
+% \centering
+% \begin{tabular}{cccc}
+% Lumen & Incandescentes & Fluorescentes ou LED \\
+% \[ [lm] \] & [W] & [W] \\ \hline
+% 300 & 35 & 12 \\
+% 600 & 50 & 15 \\
+% 900	& 60 & 15 \\
+% 1125 & 75 & 18,75 \\
+% 1500 & 100 & 25 \\
+% 2250 & 150 & 37,5 \\
+% 3000 & 200 & 50 
+% \end{tabular}
+% \end{table}
+
+
+\section{Capteurs photosensibles}
+
+Parmi les composants électroniques étudiés précédemment, trois sont couramment adaptés avec des matériaux qui optimisent leur sensibilité à la lumière. Il s'agit de la résistance, de la diode et du transistor auxquels le préfixe "photo" est ajouté pour indiquer cette nouvelle fonction; l'opération des deux premières est discutée ci-dessous. Les matériaux photosensibles sont appelés semi-conducteurs pour mettre l'accent sur leur conductivité très variable non seulement avec la lumière, mais aussi avec la température. Alors que les matériaux isolants sont composés d'atomes qui retiennent fortement tous leurs électrons, à l'inverse les métaux contiennent de très nombreux électrons libres. Donc globalement à l'intérieur de la matière, les charges peuvent être soit liées, soit libres et c'est seulement dans ce deuxième cas qu'elles peuvent contribuer à la conductivité électrique du matériau. Avec les semi-conducteurs, la conductivité devient variable, parce que l'énergie additionnelle fournie par une onde électromagnétique, des vibrations thermiques, etc. permet d'exciter les électrons d'un état lié à un état libre.
 
 \subsection{Photorésistance}
-Le fonctionnement des photorésistances est assez simple: Plus il y a de photons qui atteignent la photorésistance, plus sa résistance diminue. Plus précisément, les photons incidents excitent les électrons d'un semi-conducteur afin que ceux-ci passent de la bande de valence à la bande de conduction. Ainsi, il y a plus d'électrons libres dans le matériau pour porter le courant. La résistance est donc moindre. Le ou les matériaux choisis pour créer le semi-conducteur permettent à la photorésistance d'être plus ou moins sensible à différentes longueurs d'onde. Les photorésistances sont généralement utilisées pour détecter la présence ou l'absence de lumière plutôt que la mesure exacte de luminosité étant donné les fortes dépendances en longueur d'onde et en température. Elles sont donc souvent présentes dans des circuits comme ceux allumant les lumières lorsque la nuit tombe.
-\begin{figure}[h]
+
+Le comportement d'une photorésistance, aussi connue sous le nom de \textit{light-dependent resistor} (LDR) en anglais, obéit toujours à la loi d'Ohm reliant linéairement le courant et la tension. Il suffit d'indiquer explicitement que sa résistance $R$ dépend maintenant du flux énergétique $p_e$ de la lumière incidente sur sa surface:
+\[
+v=R(p_e)i\;.
+\]
+Comme la conductivité de la photorésistance augmente avec la lumière, à l'inverse sa résistance diminue.
+
+Les photorésistances sont généralement utilisées pour détecter la présence ou l'absence de lumière plutôt que pour mesurer quantitativement le flux énergétique (puissance) de lumière. Elles sont donc souvent présentes dans des circuits comme ceux qui allument automatiquement les lumières lorsque la nuit tombe. Ce sont néanmoins des LDR qui sont fournies dans le matériel du projet de conception final pour une mesure de lumière étant donné leur plus grande robustesse diminuant les chances de bris en cas d'erreur d'expérimentation.
+
+%Le ou les matériaux choisis pour créer le semi-conducteur permettent à la photorésistance d'être plus ou moins sensible à différentes longueurs d'onde. %Est-ce que les photorésistances sont dopées pour diminuer leur dépendance en température ou le composant est gardé moins cher avec un semiconducteur plus ou moins purifié?
+
+\subsection{Photodiode}
+
+La relation courant-tension $i$--$v$ non linéaire des photodiodes en l'absence de lumière est identique à celle d'une diode standard et l'effet de libérer des charge en l'éclairant est analogue à l'ajout d'une source de courant en parallèle à une diode idéale. Les courbes $i$--$v$ deviennent donc contrôlées par la lumière incidente tel qu'illustré à la figure~\ref{fig:photodiode_i-v}. 
+
+\begin{figure}
     \centering
-    \includegraphics[scale = 0.4]{Labos-Complements/Lab09/LabDD/Figures/photoresistance.jpg}
-    \caption{Exemple de photorésistance}
-    \label{fig:enter-label}
-\end{figure}
-\subsection{Photodiodes}
-Les Photodiodes agissent à la fois comme une diode standard et comme une source de courant, contrôlée par la lumière incidente. Les photons entrant en collisions avec des électrons dans les matériaux de la photodiode ont une chance d'exciter un de ceux-ci. Cette excitation créera une paire de charges libres, de signes opposées qui se «déplaceront» dans des directions opposées, dû au champ électrique intrinsèque à la photodiode. Ainsi, un courant est généré. Ce fonctionnement simplifié est celui à la base des receveurs de télécommunications, de plusieurs capteurs lumineux et des panneaux solaires.
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.4]{Labos-Complements/Lab09/LabDD/Figures/photodiode.jpg}
-    \caption{Exemple de photodiode}
-    \label{fig:enter-label}
+    \includegraphics[width=0.5\linewidth]{./Figures/Photodiode_operation.png}
+    \caption{Les courbes $i$--$v$ descendent progressivement avec l'augmentation de la lumière incidente sur la photodiode, d'où celle-ci génère de plus en plus de courant conventionnel inverse allant de la cathode vers l'anode. Plusieurs auteurs choisissent de renverser ces courbes pour le confort de présenter un courant positif en analysant à quelles valeurs les courbes interceptent l'axe $x$ (tension en circuit ouvert) ou l'axe $y$ (courant en court-circuit). \textit{Attribution : Gregor Hess sur Wikimedia Commons \ccbysa}}
+    \label{fig:photodiode_i-v}
 \end{figure}
 
-\subsection{Phototransistors}
+Le quadrant inférieur droit du graphique des courbes $i$--$v$ est le mode photovoltaïque de la photodiode à la base des panneaux solaires alors que mode photodiode proprement dit, aussi appelé photoconductif, correspond au quadrant inférieur gauche en polarité inverse. Dans ce mode, le courant produit par la photodiode répond très rapidement aux changements du flux énergétique de lumière, ce qui la rend très utile comme receveur de télécommunications optiques ou toute autre application nécessitant des capteurs lumineux rapide.
 
-Un phototransistor fonctionne comme un transistor standard, à l'exception que la base est contrôlée par la lumière. La quantité de lumière est directement liée au signal pouvant être transmis entre le collecteur et l'émetteur. Le phototransistor peut aussi être vu comme une photodiode avec amplification. De plus, si le collecteur est laissé débranché, le phototransistor agit exactement comme une photodiode avec les deux autres terminaisons.
+%\subsection{Phototransistors}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale = 0.6]{Labos-Complements/Lab09/LabDD/Figures/phototransistor.jpg}
-    \caption{Exemple de phototransistor}
-    \label{fig:enter-label}
-\end{figure}
-\newpage
-\subsection{Détecteurs CCD, CMOS et EMCCD}
-Ces trois termes réfèrent aux types de capteurs dans les caméras digitales commerciales et scientifiques. Les trois sont une matrice de composants photosensibles. Les capteurs CCD et EMCCD contiennent une photodiode par pixel. La seule différence entre les deux étant que les capteurs EMCCD multiplie les électrons excités avant de mesurer le signal. Les capteurs CMOS tant qu'à eux sont composés d'un phototransistor par pixel. L'avantage évident de ces capteurs est de pouvoir résoudre spatialement l'influx lumineux par l'ajout d'optiques en avant du capteur.
+%Un phototransistor fonctionne comme un transistor standard, à l'exception que la base est contrôlée par la lumière. La quantité de lumière est directement liée au signal pouvant être transmis entre le collecteur et l'émetteur. Le phototransistor peut aussi être vu comme une photodiode avec amplification. De plus, si le collecteur est laissé débranché, le phototransistor agit exactement comme une photodiode avec les deux autres terminaisons.
 
-
+%\subsection{Détecteurs CCD, CMOS et EMCCD}
+%Ces trois termes réfèrent aux types de capteurs dans les caméras digitales commerciales et scientifiques. Les trois sont une matrice de composants photosensibles. Les capteurs CCD et EMCCD contiennent une photodiode par pixel. La seule différence entre les deux étant que les capteurs EMCCD multiplie les électrons excités avant de mesurer le signal. Les capteurs CMOS tant qu'à eux sont composés d'un phototransistor par pixel. L'avantage évident de ces capteurs est de pouvoir résoudre spatialement l'influx lumineux par l'ajout d'optiques en avant du capteur.
 
 \end{document}
 

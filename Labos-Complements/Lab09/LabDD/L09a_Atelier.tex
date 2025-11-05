@@ -45,7 +45,7 @@
 %
 %---------------------------------------------------
 %
-\title{\textbf{Atelier IX}\\Énergie durable\thanks{Auteurs: Nicolas Payeur, Annie-Claude Parent, Dominique Trottier-Beaulieu, Claudine Allen \& Tigran Galstian.}}
+\title{\textbf{Atelier IX}\\Énergie durable\thanks{Auteurs: Nicolas Payeur, Annie-Claude Parent, Dominique Trottier-Beaulieu, Tigran Galstian \& Claudine Allen.}}
 \renewcommand\footnotemark{}
 \date{}
 
@@ -68,16 +68,19 @@ de bénéficier directement de support de l’équipe.
 \newpage
 \section{Thématique}\label{sec:thematique}
 \vspace{-2ex}
-Il existe une myriade de processus permettant de transformer l’énergie qui nous entoure en énergie consommable pour nos fins. Les sources à notre disposition sont nombreuses, que ce soit le soleil, le vent, l’eau, la chaleur du sol, etc. On les qualifie de “renouvelables”, car elles sont disponibles naturellement et n’ont pas à être générées d’une quelconque façon. Il n’y a qu’à déterminer les processus électroniques pour capter l'énergie à la source et en produire une énergie utilisable. Ce laboratoire d'énergie durable a pour objectif de transformer l'énergie d'une source lumineuse pour l'alimentation électrique d'un instrument, en l'occurrence une ampoule. L'expérience fait ainsi écho au cycle de l'énergie lumineuse, de la source (le soleil) à la borne (l'ampoule). D'autres instruments sont proposés pour comprendre le rendement électrique d'un système, par exemple: un chargeur, un ventilateur ou encore une radio. Comme l'énergie disponible n'est pas constante, celle-ci doit être entreposée dans une batterie qui libérera à son tour l'énergie selon la demande. Bien entendu, plusieurs facteurs environnants sont sources de variabilité, notamment la température, l'angle d'incidence des rayons, la consommation fluctuante de l'instrument, etc.
 
-Dans ce laboratoire, il s'agit d'explorer chacun des composants d'un système complet d'énergie durable, de les caractériser et de tester certains éléments causant de la variabilité dans le système. Les éléments principaux sont: la source lumineuse, le dispositif de captation (cellule photovoltaïque), la transformation et la régulation de l'énergie en électricité, le stockage en charge électrique, l'alimentation et la consommation de l'instrument.
+Cette expérience vise à utiliser un système d'approvisionnement en énergie renouvelable pour se rendre compte de la complexité des problèmes de la vie réelle. Bien souvent, l'enthousiasme des gens fait perdre de vues les difficultés rencontrées avec ces types d'énergie. Nous souhaitons que l'énergie renouvelable réponde à tous nos besoins, mais, malheureusement, nous devons être réalistes et tenir compte de nombreuses limitations naturelles et techniques, telles que l'efficacité des panneaux solaires, leur variation en fonction des conditions météorologiques (nuages, neige, température, etc.) et du jour (position du soleil ; nuit). Ainsi, cet atelier permettra de comprendre les impacts de ces limites et l'utilisation réaliste qu'il est possible de faire avec ces types d'énergie aujourd'hui.
+
+Et ce n'est que le début de nos problèmes. Les énergies renouvelables comme le solaire impliquent forcément de réfléchir au stockage de cette énergie et à son utilisation appropriée, en tenant compte des limites de puissance du système. Encore une fois, les batteries sont affectées par plusieurs limites et par l'environnement dans lequel elles sont utilisées. Il y a notamment la température des opérations, qui peut souvent réserver des surprises (la distance réalisable pour les voitures électriques n'est pas la même au Québec et dans le sud de la Californie). Enfin, le coût d'une telle solution doit être pris en compte (peut-être pas dans le cadre de cette expérience).
+
+Les objectifs spécifiques de cette expérience sont 1- la compréhension de la capacité d'un panneau solaire en termes de puissance générée ; 2- la dépendance de l'efficacité aux conditions « naturelles », telles que les jours ensoleillés ou nuageux, le moment de la journée (angle d'incidence), 3- les conditions de stockage et 4- les limites d'utilisation, etc.
 
 \section{Lectures préparatoires}\label{sec:lectures preparatoires}
 \vspace{-2ex}
 \begin{itemize}
-\item complément \textit{Mesures lumineuses};
-\item complément \textit{Batteries};
-\item fiche technique de la pile.
+\item Complément \textit{Mesures lumineuses};
+\item Complément \textit{Batteries};
+\item Explications de la carte Arduino en annexe du projet de conception.
 \end{itemize}
 
 \section{Préparation}\label{sec:preparation}
@@ -90,10 +93,10 @@ comparaison à l’expérience. En plus des manipulations expérimentales, des m
 simulation nécessaires. 
 
 
-\section{Partie 1: Rendement d'un système d'énergie durable}\label{sec:partie1}
+\section{Partie 1: Efficacité d'un système d'énergie durable}\label{sec:partie1}
 \vspace{-2ex}
 
-Cette partie vise à étudier la puissance fournie par un panneau solaire éclairé et les effets des conditions non idéales qui sont forcément présentes lors d'utilisation réelle. Il vous sera fourni une boite contenant un panneau solaire pouvant être pivoté et une lampe DEL. Vos mesures devraient vous permettre de qualifier le rendement des panneaux solaires et l'énergie qu'ils peuvent produire de façon réaliste. La figure \ref{fig:mesures panneau} montre les branchements à effectuer pour ce montage. Vous pouvez vous référer aux expériences déjà faites qui contenaient des objectifs similaires.
+Cette partie vise à étudier la puissance fournie par un panneau solaire éclairé et les effets des conditions non idéales qui sont forcément présentes lors d'utilisation réelle. Il vous sera fourni une boite contenant un panneau solaire pouvant être pivoté et une lampe DEL. Vos mesures devraient vous permettre de quantifier l'efficacité des panneaux solaires et l'énergie qu'ils peuvent produire. La figure~\ref{fig:mesures panneau} montre les branchements à effectuer pour ce montage.
 
 
 %todo: demander le w/m2 de la lampe
@@ -101,20 +104,19 @@ Cette partie vise à étudier la puissance fournie par un panneau solaire éclai
  
 Les objectifs à atteindre pour évaluer le rendement du système sont:
 \begin{itemize}
-\item Obtenir les courbes i-v et p-v du panneau solaire selon l'angle incident de la lumière sur le panneau. Votre montage permet de créer un angle de 0 à 60 degrées.
-\item Obtenir les courbes i-v et p-v du panneau solaire avec et sans nuages (modélisé par un filtre 50\%).
-\item Déterminer le rendement optimal du panneau solaire
-\item Déterminer la charge maximisant le transfert de puissance dans divers scénarios.
+\item obtenir les courbes i-v et p-v du panneau solaire selon l'angle incident de la lumière sur le panneau pour plus qu'un angle en faisant varier $R_{charge}$. Votre montage permet de créer un angle de 0° à 60°,
+\item obtenir les courbes i-v et p-v du panneau solaire avec et sans nuages (modélisé par un filtre 50\% à placer devant le panneau solaire), en hiver et en été (modélisé par deux niveaux d'illumination de la lampe) en faisasnt varier $R_{charge}$,
+\item déterminer l'efficacité optimale du panneau solaire,
+\item déterminer la charge maximisant le transfert de puissance suivant les divers scénarios.
+\item Détailler le travail dans le cahier de recherche
 \end{itemize}
-
-%figure du montage: montrer les endroits où prendre des mesures et les positions du panneau solaire
 
 
 \begin{figure}[h]
     \centering
     \begin{circuitikz} \draw
     %(0,0) node[ground]{} 
-    (0,3) to[V] (0,0)  
+    (0,0) to[I] (0,3)  
     (0,3) to[short] 
     (2,3) to[ammeter] (5,3)
     (5,0) to[pR,n=pR] (5,3)
@@ -122,36 +124,41 @@ Les objectifs à atteindre pour évaluer le rendement du système sont:
     (4,0) to[short] (4,1.5)
     (4,1.5) to[short, n=pR] (4.5,1.5)
     (2,0) to[voltmeter] (2,3)
-    node[label=right:0-10k$\Omega$] at (5,1.5)
+    node[label=right:{$R_{charge}=0-10\mathrm{k}\Omega$}] at (5,1.5)
     node[rotate=90] at (-0.75,1.5) {Panneau solaire}
     ;\end{circuitikz}
-    \caption{Circuit pour l'obtention des courbes i-v et p-v du panneau solaire}
+    \caption{Circuit pour la mesure des courbes i-v et p-v du panneau solaire comme source de courant dans la boîte fournie avec la lampe DEL.}
     \label{fig:mesures panneau}
 \end{figure}
 
-Vous aurez à prendre beaucoup de mesures, alors un script labVIEW vous est fourni. Celui-ci moyenne le voltage, le courant et la puissance et les ajoute à la suite des autres valeurs dans un fichier .xlsx spécifié à chaque fois que le VI est exécuté. Il vous sera facile de créer les courbes ensuite. Prenez un DAQ comme voltmètre et le multimètre 6$\frac{1}{2}$ chiffres comme ampèremètre.
+\subsubsection{Instructions pour le VI d'acquisition des courbes i-v et p-v}
+Vous aurez à prendre beaucoup de mesures, alors un script labVIEW vous est fourni. Celui-ci moyenne la tension, le courant et la puissance, puis les ajoute à la suite des autres valeurs dans un fichier .xlsx spécifié à chaque fois que le VI est exécuté. Il vous sera utile pour créer les courbes ensuite. Prenez un DAQ comme voltmètre et le multimètre 6$\frac{1}{2}$ chiffres comme ampèremètre. Prenez soin de renommer le fichier selon le test que vous êtes en train de faire et de vérifier où ces fichiers sont enregistrés. Prenez \textbf{environ 10 points par courbe i-v et p-v} de données bien répartis dans la plage de la résistance variable.
 
 
 \section{Questions à explorer dans la première partie}
 \begin{itemize}
+\item Faire les courbes i-v et p-v de vos prises de données à partir des données dans vos fichiers .xlsx
 \item Quels sont les facteurs qui influencent l'efficacité d'un panneau solaire? 
-\item Comment la rotation du panneau solaire impacte-t-elle la sortie électrique du panneau solaire?
+\item Comment la rotation du panneau solaire et l'application d'un filtre affectent-elles la sortie électrique du panneau solaire?
+\item Est-ce que la puissance générée par le panneau solaire diminue linéairement avec la diminution de l'éclairage ?
 \end{itemize}
 
-\section{Partie 2: Entreposage de l'énergie}\label{sec:partie2}
+\section{Partie 2: Stockage de l'énergie}\label{sec:partie2}
 \vspace{-2ex}
-Lorsqu'on parle de panneau solaire comme solution énergétique, on parle également d'entreposage de cette énergie, donc de batteries. Celles-ci, comme expliqué dans le complément \textit{Batteries}, ont un fonctionnement impliquant plusieurs considérations importantes. Vous devrez dans cet atelier analyser une d'elles: les courbes de charge et de décharge. Vous devez concevoir un script permettant au arduino de votre coffre de mesurer la tension aux bornes de la pile fournie lors de sa décharge et de sa recharge. La recharge se fait directement à partir de la sortie 3 ou 5 volts de votre arduino, alors que la décharge nécessite de faire passer un courant dans une résistance.
+Les batteries sont essentielles dans une solution énergétique renouvelable. Celles-ci, comme expliqué dans le complément \textit{Batteries}, ont un fonctionnement impliquant plusieurs considérations importantes. Vous devrez dans cet atelier analyser l'une d'elles, soit les courbes de charge et de décharge. Vous devez concevoir un script permettant au Arduino de votre coffre de mesurer la tension aux bornes de la pile fournie lors de sa décharge et de sa recharge. Un script python supplémentaire vous est fourni pour communiquer avec l'Arduino et enregistrer les données mesurées par celui-ci. La recharge se fait avec un chargeur dédié, branché à la source de tension, avec deux fils permettant de mesurer les bornes de la pile. La décharge nécessite de faire passer un courant dans une résistance de mesurer en même temps la tension aux bornes de la pile.
 
-Les objectifs à atteindre pour l'entreposage de l'énergie sont:
+Les objectifs à atteindre pour le stockage d'énergie sont:
 \begin{itemize}
-\item caractériser la charge de la pile selon plusieurs tensions de charge
-\item caractériser la décharge de la pile selon plusieurs courants fournis 
+\item Caractériser la charge de la pile selon plus qu'une tension de charge,
+\item Caractériser la décharge de la pile selon plus qu'un courant fourni.
+\item Détailler le travail dans le cahier de recherche
 \end{itemize}
 
 \section{Questions à explorer dans le deuxième partie}
 \begin{itemize}
-\item Quelle tension permet la charge de la pile la plus rapide ? et la plus efficace ?
-\item Quel courant permet la meilleure efficacité énergétique de la pile ?
+\item Quelle tension permet la charge de pile la plus rapide? et la plus efficace?
+\item Quel courant permet la meilleure efficacité énergétique de la pile?
+
 \end{itemize}
 
 

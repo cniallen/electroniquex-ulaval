@@ -2,7 +2,7 @@
 %(Élimination du labo de résistivité des matériaux (IV) à la fin de l'ère JRC + regroupement des labos VI & VII en début de pandémie COVID-19 => renumérotation X -> VIII maintenant)
 %Dernière modification JRC: 2 avril 2014
 %Dernière modification JG: 11 novembre 2020
-%Dernière modification CA: 8 avril 2024
+%Dernière modification CA: 1 avril 2025
 %**********************
 %ToDo
 % - pont de Wien: la branche sur l'entrée non inverseuse combine un filtre passe-haut et un filtre passe-bas pour obtenir une bande. Fixer RC pour un des filtres (voir ancien protocole) et étudier la bande passante pour différents RC de l'autre filtre. Changer la résistance 1 k\Omega pour un pot 5k afin de trouver le signal de sortie le plus sinusoïdal: plus il y a de gain d'amplification plus des fréquences de la bande passante vont s'ajouter. Noter qu'une bande passante trop large selon les valeurs de R et C choisies va aussi rajouter des fréquences et être moins sinusoïdal en sortie.
@@ -97,7 +97,8 @@ AVANT la séance d'atelier, écrivez sommairement dans votre cahier de recherche
     Les objectifs à atteindre avec les oscillateurs des figures~\ref{fig:relax-comparateur} et~\ref{fig:555chip} sont:
     
 \begin{itemize}
-    \item expliquer le fonctionnement d'un oscillateur à relaxation, %J'aimerais éventuellement arriver à faire modèliser, mais ça va prendre un retravail du complément de l'ampli-op avant. Mais surtout rajouter la version de vocademy.net pour introduire le concept de Duty cycle -> PWM & reconnecter à tension efficace du lab IV :)
+    \item expliquer le fonctionnement d'un oscillateur à relaxation, %J'aimerais éventuellement arriver à faire modèliser, mais ça va prendre un retravail du complément de l'ampli-op avant. 
+    \item varier le rapport cyclique à la sortie de cet oscillateur,
     \item utiliser un oscillateur comme horloge numérique,
     \item pratiquer la conversion d'un signal électrique en un signal mécanique (sonore).
 \end{itemize}
@@ -156,9 +157,9 @@ AVANT la séance d'atelier, écrivez sommairement dans votre cahier de recherche
     \item Quelles sont les trois fonctions électroniques qui interviennent pour faire osciller le circuit de la figure~\ref{fig:relax-comparateur}? %J'aimerais éventuellement arriver à faire modèliser, mais ça va prendre un retravail du complément de l'ampli-op avant. Mais surtout rajouter la version de vocademy.net pour introduire le concept de Duty cycle -> PWM & reconnecter à tension efficace du lab IV :)
     \item Quel est la valeur de son gain en tension dicté par la branche en entrée non inverseuse?
     \item Quelle fréquence d'oscillation mesurez-vous à la sortie de ce circuit après l'avoir construit? Montrez que celui-ci est alors une horloge numérique avec une équation simple pour évaluer une durée de temps écoulé.
-    \item Toujours pour le circuit de la figure \ref{fig:relax-comparateur}, si vous changez la mise à la terre pour une tension entre 0 à 2 V et que vous faites varier celle-ci, quel phénomène observez-vous?
-    \item En vous référant à votre compréhension des circuits d'oscillateurs et à l'ampli-op, pouvez-vous expliquer pourquoi le phénomène a lieu?
-    \item Quel serait une application de ce phénomène? (pas certain de la pertinence de cette question mais je la laisse ici pour l'instant, mais on peut les amener à parler du PWM et de l'Arduino)
+    \item Toujours pour le circuit de la figure \ref{fig:relax-comparateur}, si vous changez la mise à la terre pour une source de tension CC que vous faites varier entre 0 à 2 V, quel phénomène observez-vous à la sortie de l'oscillateur?
+    \item Est-ce que le rapport cyclique, défini comme le ratio de la durée du niveau haut sur la durée du niveau bas en sortie, change avec la tension appliquée par la source? Qu'en est-il de la tension efficace?
+%    \item En vous référant à votre compréhension des circuits d'oscillateurs et à l'ampli-op, pouvez-vous expliquer pourquoi le phénomène a lieu?
     \item Quel ensemble de valeurs de $R_A$, $R_B$ et $C$ à la figure~\ref{fig:555chip} donnent un signal de sortie à une fréquence audible par l'oreille humaine? Vérifiez votre prédiction en ajoutant un haut-parleur à la sortie du circuit et en plaçant un potentiomètre pour $R_B$. %R_A=270~ohms, R_B=1~kohms, C=1~microF
     \item  Est-ce que l'ajout du haut-parleur affecte la fréquence et cause de la distorsion, c'est-à-dire une déformation du signal de sortie de l'oscillateur? Comment feriez-vous pour rapprocher le son d'une note juste, parfaite? %rajouter un filtre passe-bande actif avec le neilleur facteur de qualité possible
 %    \item En ajoutant un deuxième oscillateur du même type, qu'arrive-t-il au son généré? %alarme, base de concepts de modulation pourraient être introduits, porteuse & enveloppe

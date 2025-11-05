@@ -15,6 +15,8 @@
 \usepackage[all]{hypcap}
 \usepackage{multirow}
 
+\usepackage{biblatex}
+\addbibresource{refs.bib} 
 
 \captionsetup{font=small,labelfont=bf,margin=0.1\textwidth}
 \pagestyle{myheadings}
@@ -28,6 +30,90 @@
 \author{Nicolas Payeur}
 \date{}
 \maketitle
+
+Il y a plusieurs façons de stocker de l'énergie pour un usage futur. Par exemple, les châteaux d'eau ont un rôle de stockage d'énergie gravitationnel, les volants d'inertie (ou \textit{flywheel} en anglais) permettent de stocker de l'énergie cinétique. Lorsqu'on parle de stoker de l'énergie électrique, on parle généralement de batteries. Celles-ci sont un assemblage de piles électrochimiques, dont le fonctionnement a été décrit dans le complément \textit{Stockage d'énergie} au laboratoire I. Il existe deux sortes de batteries: primaires et secondaires. Les batteries primaires sont à usage unique, mais sont moins couteuses à produire. Les batteries secondaires nécessitent des composants supplémentaires et de meilleure qualité afin de permettre la recharge. Les usages de ces deux types de batterie sont assez connus. La primaire sert généralement dans les montres, les télécommandes, les jouets, etc. là où le prix est important et où la consommation électrique est relativement basse, alors que la secondaire sert plutôt dans les appareils à grande consommation électrique, comme les téléphones, les ordinateurs portables, les voitures, etc. Les propriétés de base des batteries seront présentées dans les prochaines sections. Celles-ci traiteront davantage des batteries secondaires, mais peuvent souvent s'appliquer aux batteries primaires également.
+
+\section{Tension nominale}
+
+La tension nominale dépend des matériaux des piles et de combien sont placées en série. Par exemple, une pile lithium-ion a une tension nominale d'environ 3.6~V, alors qu'une pile nickel-cadmium a une tension nominale de 1.2~V. De plus, la valeur nominale d'une batterie sera la valeur nominale de la pile utilisée multipliée par le nombre de celles-ci en série. Ainsi, une batterie composée de 5 piles lithium-ion en série aura une tension nominale de 18~V. On remarque également la distinction entre une pile et une batterie. La première est l'assemblage électrochimique décrit dans le complément \textit{Stockage d'énergie} alors que la batterie est une somme de plusieurs piles.
+
+\section{Capacité et Énergie}
+
+\begin{gather}
+    E = C \times V
+\end{gather}
+
+L'énergie électrique $E$, en watt-heure (Wh), est la quantité d'énergie contenue dans la batterie. Elle représente l'intégration de la puissance dans le temps. Dans le Système international d'unités, 1 Wh correspond à 3600 joules. La capacité est la quantité d'électrons que peut fournir une batterie à l'alimentation d'un appareil. Celle-ci est exprimée en ampère-heure (Ah) et plus souvent en milliampère-heure (mAh). Dans le Système international d'unités, 1 Ah équivaut à 3600 coulombs. Finalement, $V$ est la tension nominale de la batterie. Une batterie composée de plusieurs piles en parallèle verra sa capacité augmentée, étant donné le courant sera distribué entre les piles demandant un courant moindre pour chacune d'elles. Une batterie composée de 3 piles de capacité de 1000 mAh aura donc une capacité de 3000 mAh, triplant l'énergie disponible. Une batterie composée de plusieurs piles en série aura la même capacité, mais comme mentionné précédemment, elle aura une tension nominale 3 fois plus grande, triplant aussi l'énergie disponible.
+
+\section{Efficacité de charge}
+
+Ce n'est pas toute l'énergie qui est fournie à la batterie qui sera stockée. En effet, il faudra fournir plus d'énergie à la batterie qu'il sera disponible pour un travail ensuite. L'efficacité de charge est définie comme la quantité d'énergie dans la batterie $E_{cell}$, sur l'énergie fournie $E_{in}$ telle que
+\begin{gather}
+    \eta_{ch} = \frac{E_{cell}}{E_{in}}.
+\end{gather}
+Les efficacités typiques de différentes piles électriques sont données dans la table~\ref{tab:efficacité_life}.
+
+Les causes de pertes sont multiples, mais les deux principales sont par la chaleur et chimiquement. Premièrement, les batteries ont des résistances internes inhérentes et celles-ci consomment un peu de la puissance transmise par effet joule. Aussi, chimiquement, les réactions chimiques se produisant dans les piles ne sont pas sans pertes. Par exemple, pour renverser les réactions électrochimiques et recharger la batterie, il faut fournir une énergie légèrement supérieure à l'énergie d'activation de la réaction et cette énergie supplémentaire peut être dissipée en chaleur et alimenter d'autres réactions parasites qui ne servent pas à stocker de l'énergie. 
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lccc}
+        \textbf{Composition} & \textbf{Efficacité} & \textbf{Durée de} & \textbf{Nombre de}\\
+
+        \textbf{de la pile} & \textbf{de charge} & \textbf{conservation} & \textbf{cycles}\\
+        
+        & \% & années & - \\ 
+        
+        \hline
+        Alcaline & 45-85 & 5-10 & 5-100\\
+        Acide-Plomb & 50-92 & 3-5 & 50-100\\
+        Nickel-Fer & 65-80 & 30-50 & 5000 \\
+        Nickel-Hydrure métallique & 66 & 5 &300-800\\
+        Lithium-ion & 90 & 5-20 & 300-12000\\
+        \hline
+    \end{tabular}
+    \caption{Efficacités de charge, durée de conservation et nombre de cycles de quelques types de piles électriques.}
+    \label{tab:efficacité_life}
+\end{table}
+
+\section{Durée de vie}
+
+Il y a deux notions qui dictent la durée de vie d'une pile: 1) la durée de conservation (\textit{shelf life}) est la durée de vie de la pile après sa conception, de la même manière que les aliments qui ont une date d'expiration, et 2) le nombre de cycles (\textit{cyclic life}) est une indication de combien de fois une pile peut être chargée et déchargée.
+
+\subsection{Durée de conservation}
+
+Une pile, même sans être utilisée, se dégrade avec le temps. Les matériaux qui la constituent peuvent s'oxyder ou se réduire spontanément vers une composition plus stable et la réaction électrochimique qui devrait générer le courant s'interrompt de plus en plus. Ainsi, la pile perd en capacité, en tension et en efficacité avec le temps. Des conditions environnementales comme la température, l'humidité, l'état de charge en plus de la composition de la pile influencent sa durée de vie. La table~\ref{tab:efficacité_life} présente quelques durées de conservation typiques.
+
+\subsection{Nombre de cycles}
+
+En plus de la durée de conservation, une pile rechargeable se dégrade lorsqu'elle est déchargée puis rechargée. À chaque cycle de décharge-recharge, une portion de la matière active dans la pile n'est plus en mesure de produire de réaction électrochimique et devient inerte. Ainsi, la pile ne regagne pas tout à fait la même quantité d'énergie qu'au cycle précédent. Le nombre maximal de cycles d'une pile dépend évidemment de sa composition, mais également de l'usage qui en est fait. En effet, plus une pile est déchargée, plus grande sera la portion de matière rendue inerte. C'est pourquoi il est conseillé de concevoir des systèmes avec un mécanisme empêchant les batteries de se décharger complètement. La table~\ref{tab:efficacité_life} présente le nombre de cycles de charge et décharge de 100\% de la capacité d'une pile, et ce, pour divers types de piles.
+
+\section{Courbes de charge et de décharge}
+
+La différence de tension aux bornes d'une pile est une façon indirecte de suivre l'état de charge de celle-ci. En effet, la plupart des piles verront leur tension diminuer rapidement au début de la décharge pour atteindre un plateau à la tension nominale. Ce plateau sera plus ou moins long selon la composition et la qualité de la pile. Vers la fin de la décharge, la tension chutera subitement jusqu'à atteindre un point auquel la pile ne peut plus fournir de courant. Ceci est observé dans la figure~\ref{fig:décharge}, soit la figure tirée de la fiche technique de la pile fournie en laboratoire. Bien que la tendance de cette courbe reste généralement similaire, plusieurs paramètres affecteront les détails. Par exemple, la tension nominale monte légèrement avec la température. Également, le courant de décharge fera diminuer sensiblement plus rapidement la tension tout au long de la décharge. C'est ce qu'on observe entre les différentes courbes sur la figure \ref{fig:décharge} où 1 $C_5 A$ indique un courant d'une fois la capacité de la batterie, ampère. Dans ce cas-ci un courant de 45 mA.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Labos-Complements/Lab09/LabDD/Figures/discharge characterisctics.png}
+    \caption{Courbe de décharge de la pile lithium-ion LIR2032 l'axe des x n'est pas intuitif, il indique le pourcentage de la capacité \textbf{déchargée}.[1]}
+    \label{fig:décharge} 
+\end{figure}
+
+La recharge de la pile, quant à elle, se fait linéairement au début, puis ralentit avant d'atteindre la charge maximale: c'est la courbe mauve de la figure \ref{fig:charge}. On remarque également que la courbe bleue est suit une inversement la tendance de la courbe de décharge. Finalement, la courbe verte montre que le courant de recharge est constant jusqu'au moment où la tension est saturée au maximum.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Labos-Complements/Lab09/LabDD/Figures/charge characteristics.png}
+    \caption{Courbe de charge de la pile lithium-ion LIR2032.[1]}
+    \label{fig:charge}
+\end{figure}
+
+\newpage
+\section{Références}
+\begin{enumerate}
+    \item EEMB Battery. (2019). Li-ion Battery
+Specification. \url{https://www.eemb.com/product-9}
+\end{enumerate}
 
 
 \end{document}

@@ -103,12 +103,10 @@ Le laboratoire revient aux composants non linéaires pour explorer de nouvelles 
 %\item résistances de 12~$\Omega$, 1~k$\Omega$ (deux fois), 100~k$\Omega$ (deux fois) et 1~M$\Omega$;
 \item un gros paquet de résistances; %(une de 270~$\Omega$, une de 560~$\Omega$, quatre de 1~k$\Omega$, quatre de 10~k$\Omega$ et deux de 100~k$\Omega$);
 %\item deux potentiomètres linéaires de 1~k$\Omega$ (code 102);
-\item un condensateur de 1~$\mu\mathrm{F}$;%\pm20$~\% et un condensateur de précision de $1~\mu\mathrm{F}\pm5$~\%;
-%\item une bobine de 1~mH;
+\item un condensateur de 1~$\mu\mathrm{F}$;
 \item quatre diodes standards 914;
 \item une diode électroluminescente (LED);
 \item un transistor 2222A;
-\item un régulateur de tension intégré;
 \item un amplificateur opérationnel intégré (puce 741), voir son point de couleur qui l'identifie dans la liste d'inventaire des composants \& instruments;
 \item une plaquette de montage.
 \end{itemize}
@@ -275,9 +273,7 @@ b) Comparez à nouveau, à l'aide de l'oscilloscope, les tensions $v_{\mathrm{g}
 
 \subsection{Partie 4 --- Amplificateur opérationnel (ampli-op) \& son principe différentiel} \label{sec:ampli-diff}
 
-Le monde des circuits intégrés est extrêmement vaste et complexe\footnote{Sans pouvoir remplacer des programmes de baccalauréat complets entre le génie électrique et le génie informatique, je recommande la série télévisée de fiction \textit{Halt and Catch Fire} qui montre l'intense aspect humain et commercial dans les premiers temps de la microélectronique et des ordinateurs avec quelques bons aspects documentaires.}, d'où la leçon essentielle est qu'il faut se référer à la fiche technique du manufacturier pour chaque puce. Ceci dit, l'élégance fondamentale demeure que tous ces circuits, allant jusqu'à nos ordinateurs et téléphones(!), sont constitués de versions miniaturisées des composants étudiés jusqu'à maintenant: résistance, condensateur, bobine d'inductance, diode et transistor. Il existe à peine quelques exceptions dont les relais électromécaniques et les vibrations de cristaux de quartz. 
-
-Nous sommes donc ici en transition vers la deuxième moitié du cours qui survole quelques fonctions de base réalisables avec les principaux circuits électroniques ainsi que leur conception. Lorsque possible, nous prendrons l'approche physique de se ramener aux composants fondamentaux pour focaliser sur le principe de fonctionnement des puces plutôt que le détail de leur design.
+Le monde des circuits intégrés est extrêmement vaste et complexe\footnote{Sans pouvoir remplacer des programmes de baccalauréat complets entre le génie électrique et le génie informatique, je recommande la série télévisée de fiction \textit{Halt and Catch Fire} qui montre l'intense aspect humain et commercial dans les premiers temps de la microélectronique et des ordinateurs avec quelques bons aspects documentaires.}, d'où la leçon essentielle est qu'il faut se référer à la fiche technique du manufacturier pour chaque puce. Ceci dit, l'élégance fondamentale demeure que tous ces circuits, allant jusqu'à nos ordinateurs et téléphones, sont essentiellement constitués de versions miniaturisées des composants fondamentaux étudiés jusqu'à maintenant: résistance, condensateur, bobine d'inductance, diode et transistor. Lorsque possible, nous prendrons l'approche physique d'étudier une version simplifiée du circuit intégré réalisée avec les composants fondamentaux pour faire ressortir son principe de base, mais en pratique, e se ramener à ces composants fondamentaux pour focaliser sur le principe de fonctionnement des puces plutôt que le détail de leur design.
 
 a) Pour vous initier au fonctionnement de l'amplificateur opérationnel, réalisez le circuit suiveur de tension illustré à la figure~\ref{fig:suiveux}. La mise à la terre COM (abbréviation de \textit{common}) est définie comme référence de potentiel électrique pour tous les appareils, explicitement indiquée par les connecteurs en noir sur la source d'alimentation. Mettez la puce sous tension seulement à la fin, en reliant les bornes $v_{\mathrm{cc}+}$ et $v_{\mathrm{cc}-}$ aux sorties $\pm25$~V de la source pour y appliquer des tensions de +10~V et $-10$~V respectivement.
 
@@ -348,7 +344,8 @@ Un comparateur, comme son nom l'indique, permet de comparer deux signaux.  Il s'
 (opamp.down) ++ (0,-0.5) node[below]{$-5$~V} -- (opamp.down)
 (opamp.up) ++ (0,0.5) node[above]{$+5$~V} -- (opamp.up)
 (-1.2,-0.5) to(-4.3, -0.5) 
-(-4.3,-2.5) to[sV, v_=0~V~--~2~V] (-4.3,-0.5)
+%(-4.3,-2.5) to[sV, v_=0~V~--~2~V] (-4.3,-0.5)
+(-4.3,-0.5) to[sV, v^=0~V~--~2~V] (-4.3,-2.5)
 (-4.3,-2.5) node[ground]{}
 (-6,-2.5) node[ground]{} 
 (-6, 0.5) to[V, l_=1~V] (-6, -2.5) 
